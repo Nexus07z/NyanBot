@@ -43,6 +43,7 @@ const samuGgImg = require('g-i-s');
 
 const {y2mateA, y2mateV} = require('./lib/y2mate.js')
 const {sm330mfire} = require('./lib/mediafire.js')
+const {covidworld} = require('./lib/covidworld.js')
 const { ssstik } = require("./lib/tiktok.js")
 const {fbDown} = require('./lib/fb.js')
 const conn = require("./lib/connect")
@@ -1624,6 +1625,7 @@ reply(mess.ferr)
 }
 break
 
+
 case 'p2':
 let pyb = samu330.prepareMessageFromContent(from,{
   "listMessage": {
@@ -1945,6 +1947,17 @@ result = `  「  𝗦𝗮𝗺 𝘆 𝗣𝗲𝗿𝗿𝘆🍒  」
 _*El archivo se esta enviando......*_`
 reply(result)
 sendFileFromUrl(resm[0].link, document, {mimetype: resm[0].mime, filename: resm[0].nombre, quoted: fdoc})
+break
+
+case 'covid':
+reply('*Espera un momento...*')
+const resm = await covidworld()
+result = `  「  𝗦𝗮𝗺 𝘆 𝗣𝗲𝗿𝗿𝘆🍒  」
+*Nombre :* ${resm[0].kasus}
+*Tamaño :* ${resm[0].kematian}
+*Link :* ${resm[0].sembuh}
+_*El archivo se esta enviando......*_`
+reply(result)
 break
 
 case 'play':
