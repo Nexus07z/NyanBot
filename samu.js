@@ -859,39 +859,9 @@ function _0x44c4(_0x538587,_0x3dc520)
 case 'menu77':
 
 
-const jmn = moment.tz('America/Mexico_City').format('HH:mm:ss')
-whatsapp = '0@s.whatsapp.net'
-fb = '447710173736@s.whatsapp.net'
-let d = new Date
-let locale = 'es'
-let gmt = new Date(0).getTime() - new Date('1 Januari 2021').getTime()
-let weton = ['domingo','lunes','Martes','Miercoles','Jueves','Viernes','Sabado'][Math.floor(((d * 1) + gmt) / 84600000) % 7]
-let week = d.toLocaleDateString(locale, { weekday: 'long' })
-let calender = d.toLocaleDateString(locale, {
-day: 'numeric',
-month: 'long',
-year: 'numeric'
-})
-var num = sam.participant
-foto = fs.readFileSync('./src/help.jpg')
-fakee = fs.readFileSync('./src/fake.jpg')
-assistant = fs.readFileSync('./src/assistant.jpg')
 if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: `😊 Hola, ${timeFt}.\n*Yo soy Sam*, Asistente de *Nexus*.\n\nAl parecer no estas registrado en _*Nexusᴮᴼᵀ*_, Para registrarte usa el comando: *${prefix}reg*`, thumbnail: assistant, contextInfo: {"forwardingScore": 999, "isForwarded": true}})
 Menu77 = `
-Hola *${pushname}* ${timeFt}
 
-*Hora:* ${jmn}
-*Fecha:* ${calender}
-*No olvides leer las reglas:* ${prefix}reglas
-
-======[ *Versión 1.0* ]======
-
-*Comandos usados hoy:* ${hit_today.length}
-*Prefijo:* [ ${prefix} ]
-*Tiempo de actividad:* ${uptime}
-*Estado:* Conectado
-*Grupo:* ${groupName}
-*Número del Creador:* wa.me/+51963324153
 
 
 ======[ *Información de Nexusᴮᴼᵀ* ]======
