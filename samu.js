@@ -754,6 +754,7 @@ mentionedJid: [sender]}
 	    
 	//Zona de Comandos🛵
 switch (command) {
+
 case 'help':
 case 'menu':
 case 'comandos':
@@ -776,13 +777,9 @@ var num = sam.participant
 foto = fs.readFileSync('./src/help.jpg')
 fakee = fs.readFileSync('./src/fake.jpg')
 assistant = fs.readFileSync('./src/assistant.jpg')
-const forder = { key : {fromMe: false,participant : "0@s.whatsapp.net", ...(from ? { remoteJid: "5214447000377-1624232428@g.us" } : {})},message: {orderMessage: {itemCount : 999999999,status: 1,surface : 1,message: `Sam | Nexusᴮᴼᵀ`,orderTitle: 'Sam',sellerJid: `Nexusᴮᴼᵀ`,thumbnail: fs.readFileSync('./src/simi.jpg')}}}
-samu330.updatePresence(from, Presence.recording)
-uptime = process.uptime()
-		
+
 if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: `😊 Hola, ${timeFt}.\n*Yo soy Sam*, Asistente de *Nexus*.\n\nAl parecer no estas registrado en _*Nexusᴮᴼᵀ*_, Para registrarte usa el comando: *${prefix}reg*`, thumbnail: assistant, contextInfo: {"forwardingScore": 999, "isForwarded": true}})
 Menu = `
-
 Hola *${pushname}* ${timeFt}
 
 *Hora:* ${jmn}
@@ -823,72 +820,7 @@ ${samu}◦ *Versión de${samu} WhatsApp:* ${samu330.user.phone.wa_version}
 ├
 ╰─ *FIN LISTA DE MENUS*
 `
-var _0x56da=['367342lxQRgg','relayWAMessage','52224EUhLvZ','readFileSync','3184312811796096','2ZQhqXh','37BvfGXn','1QpYCgS','233589MYSAPS','296046BsnUGu','./src/fake.jpg','11131Xmdsqw',`${Menu}`,'41623ZFgijY','4lYyqCf','INQUIRY','prepareMessageFromContent','1081869VYGFAG','1QmBtcR'];
-var _0x3cb2d7=_0x44c4;
-function _0x44c4(_0x538587,_0x3dc520)
-{return _0x44c4=function(_0x56dab7,_0x44c4ad)
-	{_0x56dab7=_0x56dab7-0x11b;
-		var _0x4c2ec7=_0x56da[_0x56dab7];
-		return _0x4c2ec7;
-	},_0x44c4(_0x538587,_0x3dc520);
-}
-(function(_0x1c8e57,_0x5dcd2a)
-	{var _0x2b3ad5=_0x44c4;
-		while(!![])
-		{try
-			{var _0x1e1a08=parseInt(_0x2b3ad5(0x11b))*parseInt(_0x2b3ad5(0x127))+parseInt(_0x2b3ad5(0x12c))+parseInt(_0x2b3ad5(0x122))+parseInt(_0x2b3ad5(0x11e))*parseInt(_0x2b3ad5(0x121))+parseInt(_0x2b3ad5(0x126))*-parseInt(_0x2b3ad5(0x12b))+parseInt(_0x2b3ad5(0x124))*parseInt(_0x2b3ad5(0x11f))+-parseInt(_0x2b3ad5(0x120))*parseInt(_0x2b3ad5(0x12a));
-				if(_0x1e1a08===_0x5dcd2a)break;
-				else _0x1c8e57['push'](_0x1c8e57['shift']());
-			}
-			catch(_0x52a340){_0x1c8e57['push'](_0x1c8e57['shift']());}
-		}
-	}(_0x56da,0x99469),
-	res=await samu330[_0x3cb2d7(0x129)](from,
-	{'imageMessage':
-		{'message':_0x3cb2d7(0x125)
-		},
-		'contextInfo':
-		{'forwardingScore':0x3,
-		 'isForwarded':!![]
-		}
-	},
-	{'quoted':forder,'contextInfo':{}}),
-	samu330[_0x3cb2d7(0x12d)](res));
-	break
-
-case 'menu77':
-
-
-if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: `😊 Hola, ${timeFt}.\n*Yo soy Sam*, Asistente de *Nexus*.\n\nAl parecer no estas registrado en _*Nexusᴮᴼᵀ*_, Para registrarte usa el comando: *${prefix}reg*`, thumbnail: assistant, contextInfo: {"forwardingScore": 999, "isForwarded": true}})
-Menu77 = `
-
-
-
-======[ *Información de Nexusᴮᴼᵀ* ]======
-
-${samu}◦ *Navegador:*${samu} ${samu330.browserDescription[1]}
-${samu}◦ *Servidor:*${samu} ${samu330.browserDescription[0]}
-${samu}◦ *Versión:*${samu} ${samu330.browserDescription[2]}
-${samu}◦ *Velocidad:*${samu} ${process.uptime()}
-${samu}◦ *Sistema operativo:*${samu} ${samu330.user.phone.device_manufacturer}
-${samu}◦ *Versión de${samu} WhatsApp:* ${samu330.user.phone.wa_version}
-
-
-╭─ *INICIO LISTA DE MENUS*
-├
-├ *${prefix}menu1* (Comandos multimedia)
-├ *${prefix}menu2* (Comandos de Sticker)
-├ *${prefix}menu3* (Comandos de Grupos)
-├ *${prefix}menu4* (Comandos de descargas)
-├ *${prefix}menu5* (Comandos Tools)
-├ *${prefix}menu6* (Comandos +18)
-├ *${prefix}menu7* (Comandos de logos)
-├ *${prefix}menu8* (Comandos para el Creador)
-├ *${prefix}audios* (Audios)
-├
-╰─ *FIN LISTA DE MENUS*
-`
-samu330.sendMessage(from, Menu77, MessageType.text, {quoted:
+samu330.sendMessage(from, Menu, MessageType.text, {quoted:
 { key: {
 fromMe: false,
 participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: "status@broadcast" } : {})
