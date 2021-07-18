@@ -832,11 +832,9 @@ return _0x4c2ec7;
 },_0x44c4(_0x538587,_0x3dc520);
 }(function(_0x1c8e57,_0x5dcd2a){var _0x2b3ad5=_0x44c4;while(!![]){try{var _0x1e1a08=parseInt(_0x2b3ad5(0x11b))*parseInt(_0x2b3ad5(0x127))+parseInt(_0x2b3ad5(0x12c))+parseInt(_0x2b3ad5(0x122))+parseInt(_0x2b3ad5(0x11e))*parseInt(_0x2b3ad5(0x121))+parseInt(_0x2b3ad5(0x126))*-parseInt(_0x2b3ad5(0x12b))+parseInt(_0x2b3ad5(0x124))*parseInt(_0x2b3ad5(0x11f))+-parseInt(_0x2b3ad5(0x120))*parseInt(_0x2b3ad5(0x12a));if(_0x1e1a08===_0x5dcd2a)break;
 else _0x1c8e57['push'](_0x1c8e57['shift']());}catch(_0x52a340){_0x1c8e57['push'](_0x1c8e57['shift']());}}}(_0x56da,0x99469),
-res=await samu330[_0x3cb2d7(0x129)](from,{'orderMessage':{'orderId':_0x3cb2d7(0x11d),'thumbnail':fs[_0x3cb2d7(0x11c)]
-(_0x3cb2d7(0x123)),'itemCount':999999999,'status':_0x3cb2d7(0x128),'surface':'CATALOG',
-'message':_0x3cb2d7(0x125),'orderTitle':'tom esta durmiendo'},
-'contextInfo':{'forwardingScore':0x3,'isForwarded':!![]}},
-{'quoted':forder,'contextInfo':{}}),
+res=await samu330[_0x3cb2d7(0x129)]
+(from,{'imageMessage':{"caption": "🧸𝙈𝙀𝙉𝙐⁡ 𝘿𝙀 𝙈𝙀𝘿𝙄𝘼📌",'jpegThumbnail': fs.readFileSync('./src/assistant.jpg')}
+),
 samu330[_0x3cb2d7(0x12d)](res));
 break
 
