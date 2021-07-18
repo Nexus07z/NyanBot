@@ -2241,7 +2241,7 @@ break
 			
 case 'reg':
 if (isRegister) return reply('*Tu cuenta ya estaba verificada*')
-if (!q.includes('|')) return  reply(`*POR FAVOR ESCRIBE BIEN EL FORMATO DE REGISTRO:* ${prefix}reg *Nombre|Edad*/nPor ejemplo: Smith|27`)
+if (!q.includes('|')) return  reply(`*POR FAVOR ESCRIBE BIEN EL FORMATO DE REGISTRO:* ${prefix}reg *Nombre|Edad*\nPor ejemplo: ${prefix}reg Smith|27`)
 const nombre = q.substring(0, q.indexOf('|') - 0)
 const edad = q.substring(q.lastIndexOf('|') + 1)
 const serialUser = createSerial(20)
