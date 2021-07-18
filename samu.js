@@ -1951,11 +1951,11 @@ break
 
 case 'covid':
 reply('*Espera un momento...*')
-const resm = await covidworld()
+const rescovid = await covidworld()
 result = `  「  𝗦𝗮𝗺 𝘆 𝗣𝗲𝗿𝗿𝘆🍒  」
-*Nombre :* ${resm[0].kasus}
-*Tamaño :* ${resm[0].kematian}
-*Link :* ${resm[0].sembuh}
+*Nombre :* ${rescovid[0].kasus}
+*Tamaño :* ${rescovid[0].kematian}
+*Link :* ${rescovid[0].sembuh}
 _*El archivo se esta enviando......*_`
 reply(result)
 break
