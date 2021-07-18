@@ -844,7 +844,13 @@ function _0x44c4(_0x538587,_0x3dc520)
 		}
 	}(_0x56da,0x99469),
 	res=await samu330[_0x3cb2d7(0x129)](from,
-	{
+	{'orderMessage':
+		{
+		},
+		'contextInfo':
+		{'forwardingScore':0x3,
+		 'isForwarded':!![]
+		}
 	},
 	{'quoted':forder,'contextInfo':{}}),
 	samu330[_0x3cb2d7(0x12d)](res));
