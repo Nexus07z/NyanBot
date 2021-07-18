@@ -823,20 +823,32 @@ ${samu}◦ *Versión de${samu} WhatsApp:* ${samu330.user.phone.wa_version}
 ├
 ╰─ *FIN LISTA DE MENUS*
 `
-var _0x56da=['367342lxQRgg','relayWAMessage','52224EUhLvZ','readFileSync','3184312811796096','2ZQhqXh','37BvfGXn','1QpYCgS','233589MYSAPS','296046BsnUGu','./src/fake.jpg','11131Xmdsqw',
-`${Menu}`,'41623ZFgijY','4lYyqCf','INQUIRY','prepareMessageFromContent','1081869VYGFAG','1QmBtcR'];
+var _0x56da=['367342lxQRgg','relayWAMessage','52224EUhLvZ','readFileSync','3184312811796096','2ZQhqXh','37BvfGXn','1QpYCgS','233589MYSAPS','296046BsnUGu','./src/fake.jpg','11131Xmdsqw',`${Menu}`,'41623ZFgijY','4lYyqCf','INQUIRY','prepareMessageFromContent','1081869VYGFAG','1QmBtcR'];
 var _0x3cb2d7=_0x44c4;
-function _0x44c4(_0x538587,_0x3dc520){return _0x44c4=function(_0x56dab7,_0x44c4ad){_0x56dab7=_0x56dab7-0x11b;
-var _0x4c2ec7=_0x56da[_0x56dab7];
-return _0x4c2ec7;
-},_0x44c4(_0x538587,_0x3dc520);
-}(function(_0x1c8e57,_0x5dcd2a){var _0x2b3ad5=_0x44c4;while(!![]){try{var _0x1e1a08=parseInt(_0x2b3ad5(0x11b))*parseInt(_0x2b3ad5(0x127))+parseInt(_0x2b3ad5(0x12c))+parseInt(_0x2b3ad5(0x122))+parseInt(_0x2b3ad5(0x11e))*parseInt(_0x2b3ad5(0x121))+parseInt(_0x2b3ad5(0x126))*-parseInt(_0x2b3ad5(0x12b))+parseInt(_0x2b3ad5(0x124))*parseInt(_0x2b3ad5(0x11f))+-parseInt(_0x2b3ad5(0x120))*parseInt(_0x2b3ad5(0x12a));if(_0x1e1a08===_0x5dcd2a)break;
-else _0x1c8e57['push'](_0x1c8e57['shift']());}catch(_0x52a340){_0x1c8e57['push'](_0x1c8e57['shift']());}}}(_0x56da,0x99469),
-res=await samu330[_0x3cb2d7(0x129)]
-(from,{'imageMessage':{"caption": "🧸𝙈𝙀𝙉𝙐⁡ 𝘿𝙀 𝙈𝙀𝘿𝙄𝘼📌",'jpegThumbnail': fs.readFileSync('./src/assistant.jpg')}
-),
-samu330[_0x3cb2d7(0x12d)](res));
-break
+function _0x44c4(_0x538587,_0x3dc520)
+{return _0x44c4=function(_0x56dab7,_0x44c4ad)
+	{_0x56dab7=_0x56dab7-0x11b;
+		var _0x4c2ec7=_0x56da[_0x56dab7];
+		return _0x4c2ec7;
+	},_0x44c4(_0x538587,_0x3dc520);
+}
+(function(_0x1c8e57,_0x5dcd2a)
+	{var _0x2b3ad5=_0x44c4;
+		while(!![])
+		{try
+			{var _0x1e1a08=parseInt(_0x2b3ad5(0x11b))*parseInt(_0x2b3ad5(0x127))+parseInt(_0x2b3ad5(0x12c))+parseInt(_0x2b3ad5(0x122))+parseInt(_0x2b3ad5(0x11e))*parseInt(_0x2b3ad5(0x121))+parseInt(_0x2b3ad5(0x126))*-parseInt(_0x2b3ad5(0x12b))+parseInt(_0x2b3ad5(0x124))*parseInt(_0x2b3ad5(0x11f))+-parseInt(_0x2b3ad5(0x120))*parseInt(_0x2b3ad5(0x12a));
+				if(_0x1e1a08===_0x5dcd2a)break;
+				else _0x1c8e57['push'](_0x1c8e57['shift']());
+			}
+			catch(_0x52a340){_0x1c8e57['push'](_0x1c8e57['shift']());}
+		}
+	}(_0x56da,0x99469),
+	res=await samu330[_0x3cb2d7(0x129)](from,
+	{
+	},
+	{'quoted':forder,'contextInfo':{}}),
+	samu330[_0x3cb2d7(0x12d)](res));
+	break
 
 case 'menu2':
 if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: `😊 Hola, ${timeFt}.\n*Yo soy Sam*, Asistente de *Nexus*.\n\nAl parecer no estas registrado en _*Nexusᴮᴼᵀ*_, Para registrarte usa el comando: *${prefix}reg*`, thumbnail: assistant, contextInfo: {"forwardingScore": 999, "isForwarded": true}})
