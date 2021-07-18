@@ -799,23 +799,23 @@ Hola *${pushname}* ${timeFt}
 
 ======[ *Información de Nexusᴮᴼᵀ* ]======
 
-${samu}◦ *Navegador:*${samu} ${samu330.browserDescription[1]}
-${samu}◦ *Servidor:*${samu} ${samu330.browserDescription[0]}
-${samu}◦ *Versión:*${samu} ${samu330.browserDescription[2]}
-${samu}◦ *Velocidad:*${samu} ${process.uptime()}
-${samu}◦ *Sistema operativo:*${samu} ${samu330.user.phone.device_manufacturer}
-${samu}◦ *Versión de${samu} WhatsApp:* ${samu330.user.phone.wa_version}
+*Navegador:* ${samu330.browserDescription[1]}
+*Servidor:* ${samu330.browserDescription[0]}
+*Versión:* ${samu330.browserDescription[2]}
+*Velocidad:* ${process.uptime()}
+*Sistema operativo:* ${samu330.user.phone.device_manufacturer}
+*Versión de WhatsApp:* ${samu330.user.phone.wa_version}
 
 
 ╭─ *INICIO LISTA DE MENUS*
 ├
-├ *${prefix}menu1* (Comandos multimedia)
+├ *${prefix}menu1* (Comandos Multimedia)
 ├ *${prefix}menu2* (Comandos de Sticker)
 ├ *${prefix}menu3* (Comandos de Grupos)
-├ *${prefix}menu4* (Comandos de descargas)
-├ *${prefix}menu5* (Comandos Tools)
+├ *${prefix}menu4* (Comandos de Descargas)
+├ *${prefix}menu5* (Comandos Herramientas)
 ├ *${prefix}menu6* (Comandos +18)
-├ *${prefix}menu7* (Comandos de logos)
+├ *${prefix}menu7* (Comandos para Logos)
 ├ *${prefix}menu8* (Comandos para el Creador)
 ├ *${prefix}audios* (Audios)
 ├
@@ -827,7 +827,7 @@ fromMe: false,
 participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: "status@broadcast" } : {})
 },
 message: {
-"documentMessage": { "title": "📚𝑆𝑡𝑖𝑘𝑒𝑟 𝑚𝑒𝑛𝑢", 'jpegThumbnail': fs.readFileSync('./src/assistant.jpg')}}
+"documentMessage": { "title": "Sam | Nexusᴮᴼᵀ", 'jpegThumbnail': fs.readFileSync('./src/assistant.jpg')}}
 }})
 break
 case 'menu2':
