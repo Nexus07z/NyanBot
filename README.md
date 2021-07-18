@@ -20,18 +20,22 @@
   </a>
 
 ```bash
-> git clone https://github.com/Samu330/NyanBot
+> pkg upgrade && update
+> pkg install git
+> pkg install bash
+> git clone https://github.com/Nexus07z/NexusBot
 ```
 
 ## Inicia la Instalacion:
 
 ```bash
-> cd NyanBot
+> cd NexusBot
 > bash install.sh
 ```
 
 ### Para correr el bot usa:
 ```bash
 > npm start
+> node samu
 ```
 
