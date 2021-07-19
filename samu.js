@@ -734,8 +734,8 @@ samu330.on('chat-update', async (sam) => {
 					samu330.groupSettingChange(from, GroupSettingChange.messageSend, true).then(() => {
 						samu330.sendMessage(from, '*Esperemos 10 segundos🙄*', MessageType.text)
 					})
-					samu330.groupRemove(from, [sender])
 					await sleep(10000)
+					samu330.groupRemove(from, [sender])
 					samu330.groupSettingChange(from, GroupSettingChange.messageSend, false)
 				}
 			}
@@ -754,7 +754,7 @@ samu330.on('chat-update', async (sam) => {
 			case 'buenos':
 				buf = fs.readFileSync(`./temp/audio/wenas.mp3`)
 				samu330.sendMessage(from, buf, audio, {
-					mimetype: 'audio/mp4', quoted: fliveLoc, duration: -999999, ptt: true
+					mimetype: 'audio/mp4', quoted: faud, duration: -999999, ptt: true
 				})
 		}
 
@@ -763,7 +763,7 @@ samu330.on('chat-update', async (sam) => {
 			case 'buenos':
 				buf = fs.readFileSync(`./temp/audio/wenas.mp3`)
 				samu330.sendMessage(from, buf, audio, {
-					mimetype: 'audio/mp4', quoted: fliveLoc, duration: -999999, ptt: true
+					mimetype: 'audio/mp4', quoted: faud, duration: -999999, ptt: true
 				})
 			break
 			case 'help':
@@ -771,7 +771,7 @@ samu330.on('chat-update', async (sam) => {
 			case 'comandos':
 				const moment = require('moment-timezone')
 
-				const jmn = moment.tz('America/Mexico_City').format('HH:mm:ss')
+				const jmn = moment.tz('America/Lima').format('HH:mm:ss')
 				whatsapp = '0@s.whatsapp.net'
 				fb = '447710173736@s.whatsapp.net'
 				let d = new Date
@@ -910,24 +910,24 @@ Hola *${pushname}* ${timeFt}
 				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: `😊 Hola, ${timeFt}.\n*Yo soy Sam*, Asistente de *Nexus*.\n\nAl parecer no estas registrado en _*Nexusᴮᴼᵀ*_, Para registrarte usa el comando: *${prefix}reg*`, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
 
 				mda = `
-╔════════════════╗
-╠  ◈  𝙈𝙀𝙉𝙐⁪⁡ 𝘿𝙀 𝙈𝙀𝘿𝙄𝘼 ◈  ╣
-╠════════════════╝
+╔═════════════════════╗
+╠   MENU MULTIMEDIA   ╣
+╠═════════════════════╝
 ║
-╠ *●${prefix}caras*
-║ _Etiqueta una imagen para detectar caras_
+╠ *${prefix}caras*
+║ _Etiqueta una imagen para detectar caras._
 ║
-╠ *●${prefix}reversa*
-║ _Etiqueta un video_
+╠ *${prefix}reversa*
+║ _Etiqueta un video ponerlo en reversa._
 ║
-╠ *●${prefix}imagen*
+╠ *${prefix}imagen*
 ║ _Búsqueda de imágenes_
 ║ _en Google_
 ║
-╠ *●${prefix}sinfondo*
+╠ *${prefix}sinfondo*
 ║ _Quita fondo a imagenes_
 ║
-╠ *●${prefix}wp* 
+╠ *${prefix}wp* 
 ║ _Búsqueda de fondos_
 ║ _de pantalla_
 ║
@@ -3849,9 +3849,9 @@ Titulo :* ${a.judul}
 					resultc = `${anu.display_url}`;
 					caras = await getBuffer(`https://api.lolhuman.xyz/api/facedetect?apikey=${api}&img=${resultc}`)
 					fs.writeFileSync('caras.jpg', caras)
-					samu330.sendMessage(from, fs.readFileSync('caras.jpg'), MessageType.image, { quoted: fimg, caption: '💠Samu330 | NyanBot💎' })
+					samu330.sendMessage(from, fs.readFileSync('caras.jpg'), MessageType.image, { quoted: fimg })
 				} else {
-					reply('*Porfavor etiqueta una imagen con el comando*')
+					reply('*Por favor etiqueta una imagen con el comando.*')
 				}
 				break
 
