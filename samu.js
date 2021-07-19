@@ -918,14 +918,13 @@ Hola *${pushname}* ${timeFt}
 ║ _Etiqueta una imagen para detectar caras._
 ║
 ╠ *${prefix}reversa*
-║ _Etiqueta un video ponerlo en reversa._
+║ _Etiqueta un video para ponerlo en reversa._
 ║
 ╠ *${prefix}imagen*
-║ _Búsqueda de imágenes_
-║ _en Google_
+║ _Búsqueda de imágenes en Google_
 ║
 ╠ *${prefix}sinfondo*
-║ _Quita fondo a imagenes_
+║ _Etiqueta una imagen para quitarle el fondo_
 ║
 ╠ *${prefix}wp* 
 ║ _Búsqueda de fondos_
@@ -2215,8 +2214,8 @@ _*El archivo se esta enviando.....*_
 				break
 
 			case 'reversa':
-				if (!isQuotedVideo) return reply('Porfavor etiqueta un video con el comando!')
-				reply('*Espera un momento porfavor....*')
+				if (!isQuotedVideo) return reply('*Por favor etiqueta un video con el comando.*')
+				reply('*Espera un momento porfavor...*')
 				encmediav = JSON.parse(JSON.stringify(sam).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo
 				mediav = await samu330.downloadAndSaveMediaMessage(encmediav)
 				ran = getRandom('.mp4')
@@ -2640,9 +2639,11 @@ ase,fps=15, pad=320:320:-1:-1:color=white@0.0, split [a][b]; [a] palettegen=rese
 					await removeBackgroundFromImageFile({ path: median, apiKey: keyrmbg, size: 'auto', type: 'auto', ranp }).then(res => {
 						fs.unlinkSync(median)
 						let buffer = Buffer.from(res.base64img, 'base64')
-						samu330.sendMessage(from, buffer, image, { quoted: fimg, caption: '©Samu330 | NoBg™' })
+						samu330.sendMessage(from, buffer, image, { quoted: fimg })
 						fs.unlinkSync(buffer)
 					})
+				} else {
+					reply('*Por favor etiqueta una imagen con el comando.*')
 				}
 				break
 			case 'snobg':
