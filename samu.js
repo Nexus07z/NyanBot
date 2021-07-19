@@ -911,7 +911,7 @@ Hola *${pushname}* ${timeFt}
 
 				mda = `
 ╔═════════════════╗
-╠                *MENU MULTIMEDIA*                ╣
+╠               *MENU MULTIMEDIA*               ╣
 ╠═════════════════╝
 ║
 ╠ *${prefix}caras*
