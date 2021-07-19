@@ -2560,7 +2560,7 @@ ${m}
 				if (isMedia && !sam.message.videoMessage || isQuotedImage) {
 					const encmedia1 = isQuotedImage ? JSON.parse(JSON.stringify(sam).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo : sam
 					const media1 = await samu330.downloadAndSaveMediaMessage(encmedia1, `./sticker/${sender}`)
-					const packname10 = `\n\n\n\n\n\n\n\n\n\n\nSam | Nexusᴮᴼᵀ\n\n       Sticker`
+					const packname10 = `\n\n\n\n\n\n\n\n\n\n\nSami330 NyanBot\n\n       Sam y Perry`
 					const author10 = args.join(' ')
 					exif.create(packname10, author10, `stickwm_${sender}`)
 					await ffmpeg(`${media1}`)
@@ -2592,7 +2592,7 @@ paletteuse`])
 					const encmedia2 = isQuotedVideo ? JSON.parse(JSON.stringify(sam).replace('quotedM', 'm')).message.extendedTextMessage.
 						contextInfo : sam
 					const media2 = await samu330.downloadAndSaveMediaMessage(encmedia2, `./sticker/${sender}`)
-					const packname101 = `\n\n\n\n\n\n\n\n\n\n\nSamu330 NyanBot\n\n       Sam y Perry`
+					const packname101 = `\n\n\n\n\n\n\n\n\n\n\nSami330 NyanBot\n\n       Sam y Perry`
 					const author101 = args.join(' ')
 					exif.create(packname101, author101, `stickwm_${sender}`)
 					reply('*⌛EN PROCESO*')
