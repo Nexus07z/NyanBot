@@ -927,7 +927,7 @@ Hola *${pushname}* ${timeFt}
 ║ _Etiqueta una imagen para quitarle el fondo._
 ║
 ╠ *${prefix}wpbusca* 
-║ _Búsqueda de fondos de pantalla_
+║ _Búsqueda de fondos de pantalla._
 ║
 ╠ *●${prefix}loli*
 ║
@@ -2841,7 +2841,7 @@ ase,fps=15, pad=320:320:-1:-1:color=white@0.0, split [a][b]; [a] palettegen=rese
 				uk = ["anime neko"]
 				nk = uk[Math.floor(Math.random() * uk.length)]
 				try {
-					data = await getJson(`https://nekos.life/api/v2/img/neko`, {
+					data = await getJson(`https://api.fdci.se/sosmed/rep.php?gambar=${nk}`, {
 						method: 'get'
 					})
 					reply(mess.wait)
@@ -3219,7 +3219,21 @@ Titulo :* ${a.judul}
 				samu330.sendMessage(from, buffer, image, {
 					quoted: fimg
 				})
-				break
+			break
+			case 'xdxd':
+					if (!isGroup) return reply(mess.only.group)
+					if (!isNsfw) return reply(mess.nsfw)
+					xdxd = ["https://nekos.life/api/v2/img/neko","https://nekos.life/api/v2/img/neko"]
+					sxdxd = xdxd[Math.floor(Math.random() * xdxd.length)]
+					rxdxd = await getJson(`${sxdxd}`, {
+						method: 'get'
+					})
+					reply(mess.wait)
+					buffer = await getBuffer(`${rxdxd.url}`)
+					samu330.sendMessage(from, buffer, image, {
+						quoted: fimg
+					})
+			break
 
 			case 'simi':
 
