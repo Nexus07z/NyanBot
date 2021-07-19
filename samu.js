@@ -911,7 +911,7 @@ Hola *${pushname}* ${timeFt}
 
 				mda = `
 ╔═════════════════╗
-╠ MENU MULTIMEDIA ╣
+╠   MENU MULTIMEDIA   ╣
 ╠═════════════════╝
 ║
 ╠ *${prefix}caras*
@@ -921,7 +921,7 @@ Hola *${pushname}* ${timeFt}
 ║ _Etiqueta un video para ponerlo en reversa._
 ║
 ╠ *${prefix}imagen*
-║ _Búsqueda de imágenes en Google_
+║ _Búsqueda de imágenes en Google._
 ║
 ╠ *${prefix}sinfondo*
 ║ _Etiqueta una imagen para quitarle el fondo._
@@ -1628,7 +1628,7 @@ _${prefix}apagar_
 			case 'lyric':
 			case 'letra':
 			case 'letras':
-				if (args.length < 1) return reply('Escribe el nombre del artista o grupo junto al nombre de la canción.\nPor ejemplo: ${prefix}letra Camila Mientes')
+				if (args.length < 1) return reply(`Escribe el nombre del artista o grupo junto al nombre de la canción.\nPor ejemplo: ${prefix}letra Camila Mientes`)
 				if (!isRegister) return reply(mess.only.usrReg)
 				samu330.updatePresence(from, Presence.composing)
 				tels = args.join(' ')
@@ -1665,7 +1665,7 @@ _${prefix}apagar_
 			case 'imagen':
 				assistant = fs.readFileSync('./src/assistant.jpg')
 				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: `😊 Hola, ${timeFt}.\n*Yo soy Sam*, Asistente de *Nexus*.\n\nAl parecer no estas registrado en _*Nexusᴮᴼᵀ*_, Para registrarte usa el comando: *${prefix}reg*`, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
-				if (args.length < 1) return reply('*Agrega lo que deseas buscar.*\nPor ejemplo: ${prefix}imagen gato ')
+				if (args.length < 1) return reply(`*Agrega lo que deseas buscar.*\nPor ejemplo: ${prefix}imagen gato`)
 				reply(`Por favor espera un momento mientras busco imágenes de ` + args.join(' '))
 				ggimg = args.join(' ')
 				res = await samuGgImg(ggimg, google)
