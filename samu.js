@@ -803,8 +803,13 @@ Hola *${pushname}* ${timeFt}
 *Servidor:* ${samu330.browserDescription[0]}
 *Versión:* ${samu330.browserDescription[2]}
 *Velocidad:* ${process.uptime()}
-*Sistema operativo:* ${samu330.user.phone.device_manufacturer}
+*Dispositivo:* ${samu330.user.phone.device_manufacturer}
+*Modelo:* ${samu330.user.phone.device_model}
+*Memoria RAM:* ${ram2}
+*Sistema operativo:* ${os.platform()}
+*Versión Sistema operativo:* ${samu330.user.phone.os_version}
 *Versión de WhatsApp:* ${samu330.user.phone.wa_version}
+
 
 
 ╭─ *INICIO LISTA DE MENUS*
@@ -3496,7 +3501,7 @@ const timestamp = speed();
 const totalChat = await samu330.chats.all()
 const latensi = speed() - timestamp
 //	const total12 = math(`${groups.length}*${privat.length}`)
-teks = `_Pong_ xD\n*ESTADISTICAS DEL BOT:*\n*- Group Chats :* ${groups.length}\n*- Private Chats :* ${privat.length}\n*- Total Chats :* ${totalChat.length}\n*- Speed :* ${latensi.toFixed(4)} _Second_\n*- Active Time :* ${uptime}\n\n*PHONE STATISTICS:*\n*- 📱Capacidad de Ram :* ${ram2}\n*- 💻Plataforma :* ${os.platform()}\n*- 🌐Hostname :* ${os.hostname()}\n*- 🕐Uptime :* ${os.uptime()}\n*- 🪀Wa Version:* ${samu330.user.phone.wa_version}\n*- 📡Os Version:* ${samu330.user.phone.os_version}\n*- 🔐Device Manufacturer:* ${samu330.user.phone.device_manufacturer}\n*- 📲Device Model:* ${samu330.user.phone.device_model}\n*- 🧬Os Build Number:* ${samu330.user.phone.os_build_number}\n${os.loadavg()}\n${os.networkInterfaces()}`
+teks = `_Pong_ xD\n*ESTADISTICAS DEL BOT:*\n*- Group Chats :* ${groups.length}\n*- Private Chats :* ${privat.length}\n*- Total Chats :* ${totalChat.length}\n*- Speed :* ${latensi.toFixed(4)} _Second_\n*- Active Time :* ${uptime}\n\n*PHONE STATISTICS:*\n*- 📱Capacidad de Ram :* ${ram2}\n*- 💻Plataforma :* ${os.platform()}\n*- 🌐Hostname :* ${os.hostname()}\n*- 🕐Uptime :* ${os.uptime()}\n*- 🪀Wa Version:* ${samu330.user.phone.wa_version}\n*- 📡Os Version:* ${samu330.user.phone.os_version}\n*- 🔐Device Manufacturer:* ${samu330.user.phone.device_manufacturer}\n*- 📲Device Model:* ${samu330.user.phone.device_model}\n*- 🧬Os Build Number:* ${samu330.user.phone.os_build_number}\n`
 samu330.sendMessage(from, teks, MessageType.text, {quoted: fdoc, contextInfo: {"forwardingScore": 999, "isForwarded": true}})
 break
 case 'clonar':
