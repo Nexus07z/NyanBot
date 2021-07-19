@@ -121,7 +121,7 @@ const getRegisteredRandomId = () => {
 samu330.on('CB:action,,call', async json => {
 const callerId = json[2][0][1].from;
 console.log("Llamada recibida de "+ callerId)
-samu330.sendMessage(callerId, "Las llamadas no se permiten, *PORFAVOR LEE LAS REGLAS!* Te bloqueare😒", MessageType.text, {quoted: {key: {
+samu330.sendMessage(callerId, "Las llamadas no están permitidas, *por favor lee las reglas*. Serás bloqueado por el sistema automático de Nexusᴮᴼᵀ.", MessageType.text, {quoted: {key: {
 fromMe: false,
 participant: `0@s.whatsapp.net`
 },
@@ -132,7 +132,7 @@ message: {
 "mimetype": "image/jpeg",
 "jpegThumbnail": fs.readFileSync(`./media/call.png`)
 },
-"title": `🚫No se permiten las llamadas🚫`,
+"title": `🚫 No se permiten las llamadas 🚫`,
 "description": "",
 "currencyCode": "SYP",
 "priceAmount1000": "999999999999999999",
@@ -163,7 +163,7 @@ if (isAntiFake && num.startsWith('48')) return samu330.groupRemove(mdata.id, [nu
 if (isAntiFake && num.startsWith('91')) return samu330.groupRemove(mdata.id, [num])
 if (isAntiFake && num.startsWith('44')) return samu330.groupRemove(mdata.id, [num])
 const moment = require('moment-timezone')
-const jm = moment.tz('America/Mexico_City').format('HH:mm:ss')
+const jm = moment.tz('America/Lima').format('HH:mm:ss')
 let d = new Date
 let locale = 'es'
 let gmt = new Date(0).getTime() - new Date('1 Januari 2021').getTime()
@@ -466,9 +466,9 @@ samu330.on('chat-update', async(sam) => {
 		"product": {
 		"title": '🗒️𝐔𝐬𝐮𝐚𝐫𝐢𝐨 𝐧𝐨 𝐫𝐞𝐠𝐢𝐬𝐭𝐫𝐚𝐝𝐨',
 		"description": "𝙍𝙚𝙜𝙞𝙨𝙩𝙧𝙖𝙩𝙚",
-		"currencyCode": "SYP",
-		"priceAmount1000": "999999999999999999",
-		"retailerId": "NyanBot",
+		"currencyCode": "",
+		"priceAmount1000": "",
+		"retailerId": "Sam | Nexusᴮᴼᵀ",
 		"productImageCount": 1
 		},
 		"businessOwnerJid": `0@s.whatsapp.net`
@@ -2249,7 +2249,7 @@ const nombre = q.substring(0, q.indexOf('|') - 0)
 const edad = q.substring(q.lastIndexOf('|') + 1)
 const serialUser = createSerial(20)
 const momento = require('moment-timezone')
-const time = momento.tz('America/Mexico_City').format('HH:mm:ss')
+const time = momento.tz('America/Lima').format('HH:mm:ss')
 if(isNaN(edad)) return await reply('*La edad es un numero🙄*!!')
 if (nombre.length >= 10) return reply(`*Tu nombre es acaso un tren?*\nUn nombre no puede tener mas de *10* letras`)
 if (edad > 30) return reply(`Uuuu, yastas viejito:c\n*Lo siento pero no puedo registrarte si eres mayor de 30 años*`)
