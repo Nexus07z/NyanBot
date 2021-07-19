@@ -929,9 +929,11 @@ Hola *${pushname}* ${timeFt}
 ╠ *${prefix}wpbusca* 
 ║ _Búsqueda de fondos de pantalla._
 ║
-╠ *●${prefix}loli*
+╠ *●${prefix}waifu*
+║ _Imagen aleatoria de una waifu._
 ║
 ╠ *●${prefix}neko*
+║ _Imagen aleatoria de una neko girl._
 ║
 ╟╼╾┤🎧 Efectos para 𝘈𝘶𝘥𝘪𝘰𝘴 🎧├╼╾
 ║
@@ -2811,7 +2813,7 @@ ase,fps=15, pad=320:320:-1:-1:color=white@0.0, split [a][b]; [a] palettegen=rese
 				reply('*Este chat a dejado de silenciarse*')
 				console.log('succes unmute chat = ' + from)
 				break
-			case 'loli':
+			case 'loli2000':
 				if (!isRegister) return reply(mess.only.usrReg)
 
 				samu330.updatePresence(from, Presence.composing)
@@ -2834,7 +2836,7 @@ ase,fps=15, pad=320:320:-1:-1:color=white@0.0, split [a][b]; [a] palettegen=rese
 				}
 				break
 
-			case 'neko2':
+			case 'neko2000':
 				if (!isRegister) return reply(mess.only.usrReg)
 
 				samu330.updatePresence(from, Presence.composing)
@@ -2855,20 +2857,20 @@ ase,fps=15, pad=320:320:-1:-1:color=white@0.0, split [a][b]; [a] palettegen=rese
 				} catch {
 					reply(mess.ferr)
 				}
-				break
-				case 'neko':
-					if (!isRegister) return reply(mess.only.usrReg)
-					samu330.updatePresence(from, Presence.composing)
-					neko = ["https://nekos.life/api/v2/img/neko","https://nekos.life/api/v2/img/neko"]
-					sneko = neko[Math.floor(Math.random() * neko.length)]
-					rneko = await getJson(`${sneko}`, {
-						method: 'get'
-					})
-					reply(mess.wait)
-					buffer = await getBuffer(`${rneko.url}`)
-					samu330.sendMessage(from, buffer, image, {
-						quoted: fimg
-					})
+			break
+			case 'neko':
+				if (!isRegister) return reply(mess.only.usrReg)
+				samu330.updatePresence(from, Presence.composing)
+				neko = ["https://nekos.life/api/v2/img/neko","https://nekos.life/api/v2/img/neko"]
+				sneko = neko[Math.floor(Math.random() * neko.length)]
+				rneko = await getJson(`${sneko}`, {
+					method: 'get'
+				})
+				reply(mess.wait)
+				buffer = await getBuffer(`${rneko.url}`)
+				samu330.sendMessage(from, buffer, image, {
+					quoted: fimg
+				})
 			break
 			case 'facebook':
 			case 'fb':
@@ -2900,7 +2902,7 @@ Titulo :* ${a.judul}
 					get_result = get_result.result
 					ini_txt = ""
 					for (var x of get_result) {
-						ini_txt += `*◦Titulo* : ${x.title}\n`
+						ini_txt += `*◦Titulo* : ${api} ${x.title}\n`
 						ini_txt += `*◦Vistas* : ${x.views}\n`
 						ini_txt += `◦Publicado el ${x.published}\n`
 						ini_txt += `📸Thumbnail : ${x.thumbnail}\n`
