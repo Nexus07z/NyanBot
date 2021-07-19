@@ -429,7 +429,7 @@ samu330.on('chat-update', async (sam) => {
 				fetch(link).then((hasil) => {
 					samu330.sendMessage(from, hasil, type, options).catch(e => {
 						samu330.sendMessage(from, { url: link }, type, options).catch(e => {
-							reply('_[ ! ] Error al descargar el archivo_')
+							reply('_[ ! ] Error al descargar el archivo._')
 							console.log(e)
 						})
 					})
@@ -910,9 +910,9 @@ Hola *${pushname}* ${timeFt}
 				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: `😊 Hola, ${timeFt}.\n*Yo soy Sam*, Asistente de *Nexus*.\n\nAl parecer no estas registrado en _*Nexusᴮᴼᵀ*_, Para registrarte usa el comando: *${prefix}reg*`, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
 
 				mda = `
-╔═════════════════════╗
-╠   MENU MULTIMEDIA   ╣
-╠═════════════════════╝
+╔═════════════════╗
+╠ MENU MULTIMEDIA ╣
+╠═════════════════╝
 ║
 ╠ *${prefix}caras*
 ║ _Etiqueta una imagen para detectar caras._
@@ -924,7 +924,7 @@ Hola *${pushname}* ${timeFt}
 ║ _Búsqueda de imágenes en Google_
 ║
 ╠ *${prefix}sinfondo*
-║ _Etiqueta una imagen para quitarle el fondo_
+║ _Etiqueta una imagen para quitarle el fondo._
 ║
 ╠ *${prefix}wp* 
 ║ _Búsqueda de fondos_
@@ -1665,16 +1665,16 @@ _${prefix}apagar_
 			case 'imagen':
 				assistant = fs.readFileSync('./src/assistant.jpg')
 				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: `😊 Hola, ${timeFt}.\n*Yo soy Sam*, Asistente de *Nexus*.\n\nAl parecer no estas registrado en _*Nexusᴮᴼᵀ*_, Para registrarte usa el comando: *${prefix}reg*`, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
-				if (args.length < 1) return reply('Que deseas buscar?')
-				reply(`Porfavor espera un momento mientras busco imagenes de ` + args.join(' '))
+				if (args.length < 1) return reply('*Agrega lo que deseas buscar.*\nPor ejemplo: ${prefix}imagen gato ')
+				reply(`Por favor espera un momento mientras busco imágenes de ` + args.join(' '))
 				ggimg = args.join(' ')
 				res = await samuGgImg(ggimg, google)
 				function google(error, result) {
-					if (error) { return reply('_[ ! ] *Intentalo de nuevo*_') }
+					if (error) { return reply('_[ ! ] *Intentalo de nuevo.*_') }
 					else {
 						var gugIm = result
 						var random = gugIm[Math.floor(Math.random() * gugIm.length)].url
-						sendFileFromUrl(random, image, { quoted: sam, caption: `*🔍Busqueda de* _${ggimg}_\n*Realizada por 🐉Samu330🐉*` })
+						sendFileFromUrl(random, image, { quoted: sam, caption: `*🔍Busqueda de* _${ggimg}_\n` })
 					}
 				}
 				break
@@ -2497,7 +2497,7 @@ _*El archivo se esta enviando.....*_
 				if (!isRegister) return reply(mess.only.usrReg)
 				if (!isGroup) return reply(mess.only.group)
 				if (!isNsfw) return reply(mess.nsfw)
-				codigor = [1234, 1111, 2222, 3333, 4444, 5555, 6666, 7777, 8888, 9999, 0000, 1122, 1133, 1144, 1555, 5566, 7183, 7874, 89874, 00086, 8732365874524, 635463185, 78676587135, 78573857, 725471469385013690147590398473918461837463781567485713, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+				codigor = [1234, 1111, 2222, 3333, 4444, 5555, 6666, 7777, 8888, 9999, 0000, 1122, 1133, 1144, 1555, 5566, 7183, 7874, 89874, 0006, 8732365874524, 635463185, 78676587135, 78573857, 725471469385013690147590398473918461837463781567485713, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 				codigo = codigor[Math.floor(Math.random() * codigor.length)]
 				nopsw = samu330.prepareMessageFromContent(from, {
 					"listMessage": { "title": "*🔐Codigo requerido*", "description": `Para usar este comando es obligatorio establecer un codigo de validacion, este codigo te permitira ejercer esta funcion.\n\n*Puedes usar cualquier número, o puedes generar uno en el boton de abajo, solo te quedaria copiar y pegar ese codigo*\n\nPara seguir con tu descarga, debes escribir el comando de la siguiente manera:\n*${prefix}dxvid (CODIGO)|(LINK)*\n_Es importante que uses el signo_ *"|"* _para separar el codigo del link._`, "buttonText": "Quieres un codigo ya establecido por el Bot? Click aqui.", "listType": "SINGLE_SELECT", "sections": [{ "rows": [{ "title": `${codigo}`, "singleSelectReply": { "selectedRowId": "*Bien, ahora copia y pega*" } }] }] }
@@ -2506,7 +2506,7 @@ _*El archivo se esta enviando.....*_
 				const contra1 = q.substring(0, q.indexOf('|') - 0)
 				if (isNaN(contra1)) return await reply('El codigo es un Numero')
 				const linkx = q.substring(q.lastIndexOf('|') + 1)
-				if (!contra1) return reply(`*Y la contraseña?*\n_Recuerda separar la contraseña del link con el simbolo_ *'|'*`)
+				if (!contra1) return reply(`*Y la contraseña?*\n_Recuerda separar la contraseña del link con el simbolo_ *`)
 				if (!linkx) return reply(`*Y el link?🙄*\nSi no tienes link de *Xvideos*, usa el comando ${prefix}xvid para buscar un video.`)
 				xv = await getJson(`https://fxc7-api.herokuapp.com/api/download/xvideos?url=${linkx}&apikey=Fxc7`)
 				v = xv.result
