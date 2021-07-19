@@ -787,7 +787,7 @@ Hola *${pushname}* ${timeFt}
 *Fecha:* ${calender}
 *No olvides leer las reglas:* ${prefix}reglas
 
-======[ *Versión 1.0* ]======
+======[ *Versión 3.0* ]======
 
 *Comandos usados hoy:* ${hit_today.length}
 *Prefijo:* [ ${prefix} ]
@@ -805,11 +805,9 @@ Hola *${pushname}* ${timeFt}
 *Velocidad:* ${process.uptime()}
 *Dispositivo:* ${samu330.user.phone.device_manufacturer}
 *Modelo:* ${samu330.user.phone.device_model}
-*Memoria RAM:* ${ram2}
 *Sistema operativo:* ${os.platform()}
 *Versión Sistema operativo:* ${samu330.user.phone.os_version}
 *Versión de WhatsApp:* ${samu330.user.phone.wa_version}
-
 
 
 ╭─ *INICIO LISTA DE MENUS*
