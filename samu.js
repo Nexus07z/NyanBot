@@ -126,22 +126,9 @@ fromMe: false,
 participant: `0@s.whatsapp.net`
 },
 message: {
-"productMessage": {
-"product": {
-"productImage":{
-"mimetype": "image/jpeg",
-"jpegThumbnail": fs.readFileSync(`./media/call.png`)
-},
-"title": `🚫 No se permiten las llamadas 🚫`,
-"description": "",
-"currencyCode": "SYP",
-"priceAmount1000": "999999999999999999",
-"retailerId": "",
-"productImageCount": 999
-},
-"businessOwnerJid": `0@s.whatsapp.net`
-}
-}}})
+		"imageMessage": { "caption": "🚫 No se permiten las llamadas 🚫", 'jpegThumbnail': fs.readFileSync('./src/fake.jpg')}
+		}
+		}})
 await sleep(4000)
 await samu330.blockUser(callerId, "add")
 })
