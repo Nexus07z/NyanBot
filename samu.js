@@ -926,47 +926,35 @@ Hola *${pushname}* ${timeFt}
 ╠ *${prefix}sinfondo*
 ║ _Etiqueta una imagen para quitarle el fondo._
 ║
-╠ *${prefix}wp* 
-║ _Búsqueda de fondos_
-║ _de pantalla_
-║
-╠ *●${prefix}par*
-║ _Anime para compartir perfil_
-║ _(hombre | mujere)_
-║
-╠ *●${prefix}animevid*
-║ _Videos anime cortos_
-║
-╠ *●${prefix}queanime*
-║ _Etiqueta una imagen de un Anime_
-║ _Para saber que anime es_
+╠ *${prefix}wpbusca* 
+║ _Búsqueda de fondos de pantalla_
 ║
 ╠ *●${prefix}loli*
 ║
 ╠ *●${prefix}neko*
 ║
-╟╼╾┤🎧𝘈𝘶𝘥𝘪𝘰𝘴🎧├╼╾
-║
-╠ *●${prefix}bass*
-║ _Etiqueta un audio_
+╟╼╾┤🎧 Efectos para 𝘈𝘶𝘥𝘪𝘰𝘴 🎧├╼╾
 ║
 ╠ *●${prefix}ardilla*
-║ _Etiqueta un audio_
+║ _Etiqueta un audio._
 ║
-╠ *●${prefix}trigger*
-║ _Etiqueta un audio_
-║
-╠ *●${prefix}lento*
-║ _Etiqueta un audio_
-║
-╠ *●${prefix}imut*
-║ _Etiqueta un audio_
-║
-╠ *●${prefix}hode*
-║ _Etiqueta un audio_
+╠ *●${prefix}bass*
+║ _Etiqueta un audio._
 ║
 ╠ *●${prefix}grave*
-║ _Etiqueta un audio_
+║ _Etiqueta un audio._
+║
+╠ *●${prefix}hode*
+║ _Etiqueta un audio._
+║
+╠ *●${prefix}imut*
+║ _Etiqueta un audio._
+║
+╠ *●${prefix}lento*
+║ _Etiqueta un audio._
+║
+╠ *●${prefix}trigger*
+║ _Etiqueta un audio._
 ║
 ╰──────────────
 `
@@ -2362,13 +2350,13 @@ _*El archivo se esta enviando.....*_
 			case 'animevid':
 				url = `https://lindow-api.herokuapp.com/api/randomaesthetic?apikey=${apikey}`
 				estetik = await getBuffer(url)
-				samu330.sendMessage(from, estetik, MessageType.video, { mimetype: 'video/mp4', duration: 999999999, filename: `estetod.mp4`, quoted: fvid, caption: '𝗦𝗮𝗺 𝘆 𝗣𝗲𝗿𝗿𝘆🍒' })
+				samu330.sendMessage(from, estetik, MessageType.video, { mimetype: 'video/mp4', duration: 999999999, filename: `estetod.mp4`, quoted: fvid })
 				break
 
 			case 'asupan':
 				url = `https://lindow-api.herokuapp.com/api/asupan?apikey=${apikey}`
 				asupan = await getBuffer(url)
-				samu330.sendMessage(from, asupan, MessageType.video, { mimetype: 'video/mp4', duration: 999999999, filename: `asupan.mp4`, quoted: fvid, caption: '𝗦𝗮𝗺 𝘆 𝗣𝗲𝗿𝗿𝘆🍒' })
+				samu330.sendMessage(from, asupan, MessageType.video, { mimetype: 'video/mp4', duration: 999999999, filename: `asupan.mp4`, quoted: fvid })
 				break
 
 			case 'robar':
@@ -2853,7 +2841,7 @@ ase,fps=15, pad=320:320:-1:-1:color=white@0.0, split [a][b]; [a] palettegen=rese
 				uk = ["anime neko"]
 				nk = uk[Math.floor(Math.random() * uk.length)]
 				try {
-					data = await getJson(`https://api.fdci.se/sosmed/rep.php?gambar=${nk}`, {
+					data = await getJson(`https://nekos.life/api/v2/img/neko`, {
 						method: 'get'
 					})
 					reply(mess.wait)
