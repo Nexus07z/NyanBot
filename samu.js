@@ -688,6 +688,7 @@ samu330.on('chat-update', async (sam) => {
 				if (isMedia && !sam.message.videoMessage || isImage) {
 					samu330.updatePresence(from, Presence.composing)
 					reply(`Lo siento ${sender.split("@")[0]}, pero aquí no se permiten las fotos ni videos, *serás expulsado por seguridad.*`)
+					await sleep(5000)
 					samu330.groupRemove(from, [sender])
 				}
 			}
@@ -697,6 +698,7 @@ samu330.on('chat-update', async (sam) => {
 				if (isMedia && sam.message.videoMessage) {
 					samu330.updatePresence(from, Presence.composing)
 					reply(`Lo siento ${sender.split("@")[0]}, pero aquí no se permiten las fotos ni videos, *serás expulsado por seguridad.*`)
+					await sleep(5000)
 					samu330.groupRemove(from, [sender])
 				}
 			}
@@ -704,9 +706,11 @@ samu330.on('chat-update', async (sam) => {
 		if (isGroup && botAdmin && isAntiLeg) {
 			if (!itsMe) {
 				if (isAudio) {
-					if (isAdmin) reply(`😒che admin pndejo, enves que des el ejemplo, ya que el Antilegiones esta activado, osea que no se permiten toda clase de mensajes que puedan ser travas... pero noooo... como eres admin te crees la gran vrg no?🙄\n*Pues conmigo te jodiste😑*\nALV por puto👿`)
-					reply(`*AUDIO DETECTADO, EN ESTE GRUPO NO SE PERMITEN LOS AUDIOS, YA QUE ESTAN ACTIVADOS LOS COMANDOS ANTILEGIONES, POR SEGURIDAD TE ELIMINARE*\n\n🛃 ESTE GRUPO ESTA PROTEGIDO POR:\n𝚂𝚊𝚖𝚞𝟹𝟹𝟶® | NyanBot™\n\n*🐉Samu330*`)
-					await sleep(2000)
+					if (isAdmin) reply(`😒Por ser administrador deberías dar el ejemplo, ya que *Antileg* está activado, ósea que no se permiten toda clase de mensajes que puedan ser perjudiciales para el Bot... pero... como eres administrador crees que puedes hacer lo que sea. 🙄\n*
+					Pero conmigo no es así. 😑*\n
+					`)
+					reply(`*AUDIO DETECTADO, EN ESTE GRUPO NO SE PERMITEN LOS AUDIOS, YA QUE ESTA ACTIVADO EL COMANDO ANTILEG, POR SEGURIDAD TE ELIMINARE.*\n`)
+					await sleep(5000)
 					samu330.groupRemove(from, [sender])
 				}
 			}
@@ -714,8 +718,11 @@ samu330.on('chat-update', async (sam) => {
 		if (isGroup && botAdmin && isAntiLeg) {
 			if (!itsMe) {
 				if (isContact) {
-					if (isAdmin) reply(`😒che admin pndejo, enves que des el ejemplo, ya que el Antilegiones esta activado, osea que no se permiten toda clase de mensajes que puedan ser travas... pero noooo... como eres admin te crees la gran vrg no?🙄\n*Pues conmigo te jodiste😑*\nALV por puto👿`)
-					reply(`*CONTACTO DETECTADO, EN ESTE GRUPO NO SE PERMITEN LOS AUDIOS, YA QUE ESTAN ACTIVADOS LOS COMANDOS ANTILEGIONES, POR SEGURIDAD TE ELIMINARE*\n\n🛃 ESTE GRUPO ESTA PROTEGIDO POR:\n𝚂𝚊𝚖𝚞𝟹𝟹𝟶® | NyanBot™\n\n*🐉Samu330*`)
+					if (isAdmin) reply(`😒Por ser administrador deberías dar el ejemplo, ya que *Antileg* está activado, ósea que no se permiten toda clase de mensajes que puedan ser perjudiciales para el Bot... pero... como eres administrador crees que puedes hacer lo que sea. 🙄\n*
+					Pero conmigo no es así. 😑*\n
+					`)
+					reply(`*CONTACTO DETECTADO, EN ESTE GRUPO NO SE PERMITEN LOS CONTACTOS, YA QUE ESTA ACTIVADO EL COMANDO ANTILEG, POR SEGURIDAD TE ELIMINARE*\n`)
+					await sleep(5000)
 					samu330.groupRemove(from, [sender])
 				}
 			}
@@ -723,7 +730,7 @@ samu330.on('chat-update', async (sam) => {
 		if (isGroup && botAdmin && isAntiLeg) {
 			if (!itsMe) {
 				if (q.length > 10000) {
-					reply('*Este mensaje contiene mas de 10, 000 caracteres, probablemente puede ser una trava, por lo que tendre que eliminarte🙂*\n\n_Este grupo esta protegido por_ *🔐Samu330*')
+					reply('*Este mensaje contiene más de 10, 000 caracteres, probablemente pueda causar problemas al Bot, por lo que tendré que eliminarte🙂*\n')
 					samu330.groupSettingChange(from, GroupSettingChange.messageSend, true).then(() => {
 						samu330.sendMessage(from, '*Esperemos 10 segundos🙄*', MessageType.text)
 					})
@@ -736,8 +743,9 @@ samu330.on('chat-update', async (sam) => {
 		if (isGroup && botAdmin && isAntiLeg) {
 			if (!itsMe) {
 				if (isLocation) {
-					if (isAdmin) reply(`😒che admin pndejo, enves que des el ejemplo, ya que el Antilegiones esta activado, osea que no se permiten toda clase de mensajes que puedan ser travas... pero noooo... como eres admin te crees la gran vrg no?🙄\n*Pues conmigo te jodiste😑*\nALV por puto👿`)
-					reply(`*LOCALIZACION DETECTADA, EN ESTE GRUPO NO SE PERMITEN LOS AUDIOS, YA QUE ESTAN ACTIVADOS LOS COMANDOS ANTILEGIONES, POR SEGURIDAD TE ELIMINARE*\n\n🛃 ESTE GRUPO ESTA PROTEGIDO POR:\n𝚂𝚊𝚖𝚞𝟹𝟹𝟶® | NyanBot™\n\n*🐉Samu330*`)
+					if (isAdmin) reply(`😒Por ser administrador deberías dar el ejemplo, ya que *Antileg* está activado, ósea que no se permiten toda clase de mensajes que puedan ser perjudiciales para el Bot... pero... como eres administrador crees que puedes hacer lo que sea. 🙄\n`)
+					reply(`*LOCALIZACION DETECTADA, EN ESTE GRUPO NO SE PERMITEN LAS LOCALIZACIONES, YA QUE ESTA ACTIVADO EL COMANDO ANTILEG, POR SEGURIDAD TE ELIMINARE*\n`)
+					await sleep(5000)
 					samu330.groupRemove(from, [sender])
 				}
 			}
@@ -752,7 +760,12 @@ samu330.on('chat-update', async (sam) => {
 
 		//Zona de Comandos🛵
 		switch (command) {
-
+			case 'buenos':
+				buf = fs.readFileSync(`./temp/audio/wenas.mp3`)
+				samu330.sendMessage(from, buf, audio, {
+					mimetype: 'audio/mp4', quoted: fliveLoc, duration: -999999, ptt: true
+				})
+			break
 			case 'help':
 			case 'menu':
 			case 'comandos':
