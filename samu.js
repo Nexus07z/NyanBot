@@ -2834,7 +2834,7 @@ ase,fps=15, pad=320:320:-1:-1:color=white@0.0, split [a][b]; [a] palettegen=rese
 				}
 				break
 
-			case 'neko':
+			case 'neko2':
 				if (!isRegister) return reply(mess.only.usrReg)
 
 				samu330.updatePresence(from, Presence.composing)
@@ -2849,13 +2849,27 @@ ase,fps=15, pad=320:320:-1:-1:color=white@0.0, split [a][b]; [a] palettegen=rese
 					nimek = n[Math.floor(Math.random() * n.length)];
 					pok = await getBuffer(nimek)
 					samu330.sendMessage(from, pok, image, {
-						quoted: fimg, caption: `*Samu330*🐉`, contextInfo: { "forwardingScore": 9999, "isForwarded": true }
+						quoted: fimg, contextInfo: { "forwardingScore": 9999, "isForwarded": true }
 					})
 
 				} catch {
 					reply(mess.ferr)
 				}
 				break
+				case 'neko':
+					if (!isRegister) return reply(mess.only.usrReg)
+					samu330.updatePresence(from, Presence.composing)
+					neko = ["https://nekos.life/api/v2/img/neko","https://nekos.life/api/v2/img/neko"]
+					sneko = neko[Math.floor(Math.random() * neko.length)]
+					rneko = await getJson(`${sneko}`, {
+						method: 'get'
+					})
+					reply(mess.wait)
+					buffer = await getBuffer(`${rneko.url}`)
+					samu330.sendMessage(from, buffer, image, {
+						quoted: fimg
+					})
+			break
 			case 'facebook':
 			case 'fb':
 				if (args.length < 1) return reply('Y el link? ')
