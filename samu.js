@@ -2560,7 +2560,7 @@ ${m}
 				if (isMedia && !sam.message.videoMessage || isQuotedImage) {
 					const encmedia1 = isQuotedImage ? JSON.parse(JSON.stringify(sam).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo : sam
 					const media1 = await samu330.downloadAndSaveMediaMessage(encmedia1, `./sticker/${sender}`)
-					const packname10 = `\nSam | Nexusᴮᴼᵀ\n `
+					const packname10 = `\n\n\n\n\n\n\n\n\n\n\nSamu330 NyanBot\n\n       Sam y Perry`
 					const author10 = args.join(' ')
 					exif.create(packname10, author10, `stickwm_${sender}`)
 					await ffmpeg(`${media1}`)
