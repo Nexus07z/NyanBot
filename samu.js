@@ -465,7 +465,7 @@ samu330.on('chat-update', async(sam) => {
 		"imageMessage": { "caption": "🧸𝙈𝙀𝙉𝙐⁡ 𝘿𝙀 𝙈𝙀𝘿𝙄𝘼📌", 'jpegThumbnail': fs.readFileSync('./src/assistant.jpg')}
 		}
 		}
-		}
+		
 
 
 		
