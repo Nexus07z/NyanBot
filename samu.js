@@ -2871,7 +2871,7 @@ ase,fps=15, pad=320:320:-1:-1:color=white@0.0, split [a][b]; [a] palettegen=rese
 					ini_txt = `🧊Titulo : ${get_result.title}\n\n`
 					ini_txt += `_Si el video no llega, puede descargar por aqui_ :\n ${short.result}`
 					ini_buffer = await getBuffer(get_result.thumbnail)
-					await samu330.sendMessage(from, ini_buffer, image, { quoted: fvid, caption: ini_txt, thumbnail: fakee, contextInfo: { "forwardingScore": 9999, "isForwarded": true } })
+					await samu330.sendMessage(from, ini_buffer, image, { quoted: fvid, caption: ini_txt, contextInfo: { "forwardingScore": 9999, "isForwarded": true } })
 					get_video = await getBuffer(get_result.video)
 					await samu330.sendMessage(from, get_video, video, { mimetype: 'video/mp4', quoted: fvid, duration: -999999 })
 				} catch {
