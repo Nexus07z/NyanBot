@@ -2873,7 +2873,7 @@ ase,fps=15, pad=320:320:-1:-1:color=white@0.0, split [a][b]; [a] palettegen=rese
 					ini_buffer = await getBuffer(get_result.thumbnail)
 					await samu330.sendMessage(from, ini_buffer, image, { quoted: fvid, caption: ini_txt, thumbnail: fakee, contextInfo: { "forwardingScore": 9999, "isForwarded": true } })
 					get_video = await getBuffer(get_result.video)
-					await samu330.sendMessage(from, get_video, video, { mimetype: Mimetype.audio/mp4, duration: -999999999999999, filename: `${get_result.title}.mp4`, quoted: fvid })
+					await samu330.sendMessage(from, get_video, video, { mimetype: 'video/mp4', quoted: fvid, duration: -999999 })
 				} catch {
 					reply(`*Ocurrio un problema, la key vencio, puedes descargar videos de la siguiente manera:*\n\nBusca el video que quieras descargar con el comando *${prefix}ytsearch*\nCopias el link del video y descargas con: *${prefix}ytmp4*`)
 				}
