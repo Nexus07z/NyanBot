@@ -2857,7 +2857,26 @@ ase,fps=15, pad=320:320:-1:-1:color=white@0.0, split [a][b]; [a] palettegen=rese
 					reply(mess.ferr)
 				}
 			break
-			
+			case 'play2':
+				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: `😊 Hola, ${timeFt}.\n*Yo soy Sam*, Asistente de *Nexus*.\n\nAl parecer no estas registrado en _*Nexusᴮᴼᵀ*_, Para registrarte usa el comando: *${prefix}reg*`, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
+				if (args.length == 0) return reply(`Ejemplo: ${prefix + command} Me olvide de vivir`)
+				reply('*Espere un momento...*')
+				query = args.join(' ')
+				assistant = fs.readFileSync('./src/img.jpg')
+				try {
+					get_result = await getJson(`https://api.lolhuman.xyz/api/ytplay2?apikey=${api}&query=${query}`)
+					get_result = get_result.result
+					get_info = get_result.info
+					ini_txt = ` *Titulo* : ${get_info.title}\n`
+					ini_txt += `•Duracion : ${get_info.thumbnail}\n`
+					ini_buffer = await getBuffer(get_info.thumbnail)
+					await samu330.sendMessage(from, ini_buffer, image, { quoted: ftoko, caption: ini_txt, thumbnail: fakee, contextInfo: { "forwardingScore": 9999, "isForwarded": true } })
+					
+				} 
+				catch {
+					reply(mess.ferr)
+				}
+			break
 			case 'waifu':
 				if (!isRegister) return reply(mess.only.usrReg)
 				samu330.updatePresence(from, Presence.composing)
