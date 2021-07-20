@@ -2858,30 +2858,26 @@ ase,fps=15, pad=320:320:-1:-1:color=white@0.0, split [a][b]; [a] palettegen=rese
 				}
 			break
 			case 'play2':
-				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: `😊 Hola, ${timeFt}.\n*Yo soy Sam*, Asistente de *Nexus*.\n\nAl parecer no estas registrado en _*Nexusᴮᴼᵀ*_, Para registrarte usa el comando: *${prefix}reg*`, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
-				if (args.length == 0) return reply(`Ejemplo: ${prefix + command} Me olvide de vivir`)
-				reply('*Espere un momento...*')
-				query = args.join(' ')
-				assistant = fs.readFileSync('./src/img.jpg')
-				try {
-					get_result = await getJson(`https://api.lolhuman.xyz/api/ytplay2?apikey=967708a41dbb7e1de3be0213&query=${query}`)
-					get_result = get_result.result
-					get_info = get_result.info
-					ini_txt = ` *Titulo* : ${get_info.title}\n`
-					ini_txt += `Si el audio no llega, puede descargar por aqui: :\n ${get_result.audio.link}\n\n`
-					ini_txt += `Puede descargar tambien el video aqui: :\n ${get_result.video.link}\n`
-					ini_buffer = await getBuffer(get_info.thumbnail)
-					await samu330.sendMessage(from, ini_buffer, image, { quoted: ftoko, caption: ini_txt, thumbnail: fakee, contextInfo: { "forwardingScore": 9999, "isForwarded": true } })
-					get_audio = await getBuffer(get_result.audio.link)
-					await samu330.sendMessage(from, get_audio, audio, { mimetype: 'audio/mp4', duration: -999999999999999, filename: `${get_info.title}.mp3`, quoted: faud })
-					get_audio = await getBuffer(get_result.audio.link)
-					await samu330.sendMessage(from, get_audio, audio, { mimetype: 'audio/mp4', duration: -999999999999999, ptt: true, filename: `${get_info.title}.mp3`, quoted: faud })
 
-				} 
-				catch {
-					reply(mess.ferr)
+				if (!isRegister) return reply(mess.only.usrReg)
+				if (args.length == 0) return reply(`Ejemplo: ${prefix + command} Me olvide de vivir`)
+				reply('*Espere un momento porfavor...*')
+				query = args.join(' ')
+				fakee = fs.readFileSync('./src/img.jpg')
+				try {
+					get_result = await getJson(`https://api.lolhuman.xyz/api/ytplay2?apikey=${api}&query=${query}`)
+					get_result = get_result.result
+					short = await getJson(`https://api.lolhuman.xyz/api/shortlink?apikey=${api}&url=${get_result.video}`)
+					ini_txt = `🧊Titulo : ${get_result.title}\n\n`
+					ini_txt += `_Si el video no llega, puede descargar por aqui_ :\n ${short.result}`
+					ini_buffer = await getBuffer(get_result.thumbnail)
+					await samu330.sendMessage(from, ini_buffer, image, { quoted: fvid, caption: ini_txt, thumbnail: fakee, contextInfo: { "forwardingScore": 9999, "isForwarded": true } })
+					get_video = await getBuffer(get_result.video)
+					await samu330.sendMessage(from, get_video, video, { mimetype: Mimetype.audio/mp4, duration: -999999999999999, filename: `${get_result.title}.mp4`, quoted: fvid })
+				} catch {
+					reply(`*Ocurrio un problema, la key vencio, puedes descargar videos de la siguiente manera:*\n\nBusca el video que quieras descargar con el comando *${prefix}ytsearch*\nCopias el link del video y descargas con: *${prefix}ytmp4*`)
 				}
-			break
+				break
 			case 'waifu':
 				if (!isRegister) return reply(mess.only.usrReg)
 				samu330.updatePresence(from, Presence.composing)
