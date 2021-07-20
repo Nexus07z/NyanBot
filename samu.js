@@ -3865,7 +3865,7 @@ Titulo :* ${a.judul}
 					reply('Manda la foto!');
 				}
 				break
-			case 'caras':
+			case 'caras2':
 				var imgbb = require('imgbb-uploader')
 				if (((isMedia && !sam.message.videoMessage) || isQuotedImage) && args.length == 0) {
 					cara = isQuotedImage ? JSON.parse(JSON.stringify(sam).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo : sam;
@@ -3878,6 +3878,22 @@ Titulo :* ${a.judul}
 					samu330.sendMessage(from, fs.readFileSync('caras.jpg'), MessageType.image, { quoted: fimg })
 				} else {
 					reply('*Por favor etiqueta una imagen con el comando.*')
+				}
+				break
+
+			case 'caras':
+				var imgbb = require('imgbb-uploader')
+				if (((isMedia && !sam.message.videoMessage) || isQuotedImage) && args.length == 0) {
+					cara = isQuotedImage ? JSON.parse(JSON.stringify(sam).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo : sam;
+					reply(mess.wait);
+					samsam = await samu330.downloadAndSaveMediaMessage(cara);
+					anu = await imgbb('20a14861e4f7591f3dc52649cb07ae02', samsam);
+					resultc = `${anu.display_url}`;
+					caras = await getBuffer(`https://api.lolhuman.xyz/api/facedetect?apikey=${api}&img=${resultc}`)
+					fs.writeFileSync('caras.jpg', caras)
+					samu330.sendMessage(from, fs.readFileSync('caras.jpg'), MessageType.image, {quoted: fimg, caption: '💠Samu330 | NyanBot💎'})
+				} else {
+						reply('*Porfavor etiqueta una imagen con el comando*')
 				}
 				break
 
