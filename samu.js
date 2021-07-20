@@ -1618,7 +1618,7 @@ _${prefix}apagar_
 			case 'lyric':
 			case 'letra':
 			case 'letras':
-				if (args.length < 1) return reply(`Escribe el nombre del artista o grupo junto al nombre de la canción.\nPor ejemplo: ${prefix}letra Camila Mientes`)
+				if (args.length < 1) return reply(`Escribe el nombre del artista o grupo junto al nombre de la canción.\nPor ejemplo: ${prefix + command} Camila Mientes`)
 				if (!isRegister) return reply(mess.only.usrReg)
 				samu330.updatePresence(from, Presence.composing)
 				tels = args.join(' ')
@@ -1655,7 +1655,7 @@ _${prefix}apagar_
 			case 'imagen':
 				assistant = fs.readFileSync('./src/assistant.jpg')
 				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: `😊 Hola, ${timeFt}.\n*Yo soy Sam*, Asistente de *Nexus*.\n\nAl parecer no estas registrado en _*Nexusᴮᴼᵀ*_, Para registrarte usa el comando: *${prefix}reg*`, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
-				if (args.length < 1) return reply(`*Agrega lo que deseas buscar.*\nPor ejemplo: ${prefix}imagen gato`)
+				if (args.length < 1) return reply(`*Agrega lo que deseas buscar.*\nPor ejemplo: ${prefix + command} gato`)
 				reply(`Por favor espera un momento mientras busco imágenes de ` + args.join(' '))
 				ggimg = args.join(' ')
 				res = await samuGgImg(ggimg, google)
@@ -2109,20 +2109,23 @@ _*El archivo se esta enviando.....*_
 
 				break
 			case 'ardilla':
-				reply(mess.wait)
+				if (((isAudio && !sam.message.audioMessage) || isQuotedAudio) && args.length == 0) {
 				pai = JSON.parse(JSON.stringify(sam).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo
-
+				reply(mess.wait)
 				tup = await samu330.downloadAndSaveMediaMessage(pai)
 				ran = getRandom('.mp3')
 				exec(`ffmpeg -i ${tup} -filter:a "atempo=0.5,asetrate=65100" ${ran}`, (err, stderr, stdout) => {
 					fs.unlinkSync(tup)
-					if (err) return reply('Error!')
+					if (err) return reply('¡Error!')
 					hah = fs.readFileSync(ran)
 					samu330.sendMessage(from, hah, audio, { mimetype: 'audio/mp4', duration: -999999999999999, ptt: true, quoted: fdoc })
 					fs.unlinkSync(ran)
 				})
-
-				break
+			} else {
+				reply('*Por favor etiqueta un audio con el comando.*')
+			}
+			break
+			
 			case 'grave':
 				reply(mess.wait)
 				muk = JSON.parse(JSON.stringify(sam).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo
@@ -2198,7 +2201,7 @@ _*El archivo se esta enviando.....*_
 
 			case 'reg':
 				if (isRegister) return reply('*Tu cuenta ya ha sido registrada anteriormente.*')
-				if (!q.includes('|')) return reply(`*POR FAVOR ESCRIBE BIEN EL FORMATO DE REGISTRO:* ${prefix}reg *Nombre|Edad*\nPor ejemplo: ${prefix}reg Smith|27`)
+				if (!q.includes('|')) return reply(`*POR FAVOR ESCRIBE BIEN EL FORMATO DE REGISTRO:* ${prefix + command} *Nombre|Edad*\nPor ejemplo: ${prefix + command} Smith|27`)
 				const nombre = q.substring(0, q.indexOf('|') - 0)
 				const edad = q.substring(q.lastIndexOf('|') + 1)
 				const serialUser = createSerial(20)
@@ -2815,7 +2818,7 @@ ase,fps=15, pad=320:320:-1:-1:color=white@0.0, split [a][b]; [a] palettegen=rese
 			case 'play':
 
 				if (!isRegister) return reply(mess.only.usrReg)
-				if (args.length == 0) return reply(`*Agrega lo que deseas buscar.*\nPor ejemplo: ${prefix}play Green day Holiday`)
+				if (args.length == 0) return reply(`*Agrega lo que deseas buscar.*\nPor ejemplo: ${prefix + command} Green day Holiday`)
 				reply('*Espere un momento por favor...*')
 				query = args.join(' ')
 				fakee = fs.readFileSync('./src/img.jpg')
@@ -2836,7 +2839,7 @@ ase,fps=15, pad=320:320:-1:-1:color=white@0.0, split [a][b]; [a] palettegen=rese
 			case 'playvid':
 
 				if (!isRegister) return reply(mess.only.usrReg)
-				if (args.length == 0) return reply(`*Agrega lo que deseas buscar.*\nPor ejemplo: ${prefix}playvid Green day Holiday`)
+				if (args.length == 0) return reply(`*Agrega lo que deseas buscar.*\nPor ejemplo: ${prefix + command} Green day Holiday`)
 				reply('*Espere un momento por favor...*')
 				query = args.join(' ')
 				fakee = fs.readFileSync('./src/img.jpg')
@@ -2857,7 +2860,7 @@ ase,fps=15, pad=320:320:-1:-1:color=white@0.0, split [a][b]; [a] palettegen=rese
 			case 'playvidgif':
 
 				if (!isRegister) return reply(mess.only.usrReg)
-				if (args.length == 0) return reply(`*Agrega lo que deseas buscar.*\nPor ejemplo: ${prefix}playvidgif Green day Holiday`)
+				if (args.length == 0) return reply(`*Agrega lo que deseas buscar.*\nPor ejemplo: ${prefix + command} Green day Holiday`)
 				reply('*Espere un momento por favor...*')
 				query = args.join(' ')
 				fakee = fs.readFileSync('./src/img.jpg')
@@ -3520,7 +3523,7 @@ Titulo :* ${a.judul}
 
 			case 'wpbusca':
 
-				if (args.length == 0) return reply(`Example: ${prefix + command} gatos`)
+				if (args.length == 0) return reply(`*Agrega lo que deseas buscar.*\nPor ejemplo: ${prefix + command} gatos`)
 				query = args.join(' ')
 				get_result = await getJson(`https://api.lolhuman.xyz/api/wallpaper?apikey=${api}&query=${query}`)
 				ini_buffer = await getBuffer(get_result.result)
