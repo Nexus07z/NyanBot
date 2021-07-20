@@ -933,33 +933,33 @@ Hola *${pushname}* ${timeFt}
 ╠ *${prefix}wpbusca* 
 ║ _Búsqueda de fondos de pantalla._
 ║
-╠ *●${prefix}waifu*
+╠ *${prefix}waifu*
 ║ _Imagen aleatoria de una waifu._
 ║
-╠ *●${prefix}neko*
+╠ *${prefix}neko*
 ║ _Imagen aleatoria de una neko-girl._
 ║
 ╟╼╾┤🎧 Efectos para 𝘈𝘶𝘥𝘪𝘰𝘴 🎧├╼╾
 ║
-╠ *●${prefix}ardilla*
+╠ *${prefix}ardilla*
 ║ _Etiqueta un audio._
 ║
-╠ *●${prefix}bass*
+╠ *${prefix}bass*
 ║ _Etiqueta un audio._
 ║
-╠ *●${prefix}grave*
+╠ *${prefix}grave*
 ║ _Etiqueta un audio._
 ║
-╠ *●${prefix}hode*
+╠ *${prefix}hode*
 ║ _Etiqueta un audio._
 ║
-╠ *●${prefix}imut*
+╠ *${prefix}imut*
 ║ _Etiqueta un audio._
 ║
-╠ *●${prefix}lento*
+╠ *${prefix}lento*
 ║ _Etiqueta un audio._
 ║
-╠ *●${prefix}trigger*
+╠ *${prefix}trigger*
 ║ _Etiqueta un audio._
 ║
 ╰──────────────
@@ -1652,22 +1652,6 @@ _${prefix}apagar_
 				reply(`*🔍Busqueda realizada\n\n${nyangg}`)
 				break
 
-			case 'imagen':
-				assistant = fs.readFileSync('./src/assistant.jpg')
-				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: `😊 Hola, ${timeFt}.\n*Yo soy Sam*, Asistente de *Nexus*.\n\nAl parecer no estas registrado en _*Nexusᴮᴼᵀ*_, Para registrarte usa el comando: *${prefix}reg*`, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
-				if (args.length < 1) return reply(`*Agrega lo que deseas buscar.*\nPor ejemplo: ${prefix + command} gato`)
-				reply(`Por favor espera un momento mientras busco imágenes de ` + args.join(' '))
-				ggimg = args.join(' ')
-				res = await samuGgImg(ggimg, google)
-				function google(error, result) {
-					if (error) { return reply('_[ ! ] *Intentalo de nuevo.*_') }
-					else {
-						var gugIm = result
-						var random = gugIm[Math.floor(Math.random() * gugIm.length)].url
-						sendFileFromUrl(random, image, { quoted: sam, caption: `*🔍Busqueda de* _${ggimg}_\n` })
-					}
-				}
-				break
 			case 'apagar':
 				if (!isOwner) return reply('tu quien eres para decirme que hacer!?🤔')
 				reply('Me apagare en 3 Segundos....')
@@ -2049,52 +2033,110 @@ _*El archivo se esta enviando.....*_
 				})
 				break
 
-			case 'imut':
-				reply(mess.wait)
-				im = JSON.parse(JSON.stringify(sam).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo
-				ut = await samu330.downloadAndSaveMediaMessage(im)
-				ran = getRandom('.mp3')
-				exec(`ffmpeg -i ${ut} -af atempo=3/4,asetrate=44500*4/3 ${ran}`, (err, stderr, stdout) => {
-					fs.unlinkSync(ut)
-					if (err) return reply('Error!')
-					hah = fs.readFileSync(ran)
-					samu330.sendMessage(from, hah, audio, { mimetype: 'audio/mp4', ptt: true, quoted: fdoc })
+			case 'caras':
+				var imgbb = require('imgbb-uploader')
+				if (((isMedia && !sam.message.videoMessage) || isQuotedImage) && args.length == 0) {
+					cara = isQuotedImage ? JSON.parse(JSON.stringify(sam).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo : sam;
+					reply(mess.wait);
+					samsam = await samu330.downloadAndSaveMediaMessage(cara);
+					anu = await imgbb('20a14861e4f7591f3dc52649cb07ae02', samsam);
+					resultc = `${anu.display_url}`;
+					caras = await getBuffer(`https://api.lolhuman.xyz/api/facedetect?apikey=${api}&img=${resultc}`)
+					fs.writeFileSync('caras.jpg', caras)
+					samu330.sendMessage(from, fs.readFileSync('caras.jpg'), MessageType.image, { quoted: fimg })
+				} else {
+					reply('*Por favor etiqueta una imagen con el comando.*')
+				}
+			break
+
+			case 'reversa':
+				if (!isQuotedVideo) return reply('*Por favor etiqueta un video con el comando.*')
+				reply('*Espera un momento por favor...*')
+				encmediav = JSON.parse(JSON.stringify(sam).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo
+				mediav = await samu330.downloadAndSaveMediaMessage(encmediav)
+				ran = getRandom('.mp4')
+				exec(`ffmpeg -i ${mediav} -vf reverse -af areverse ${ran}`, (err) => {
+					fs.unlinkSync(mediav)
+					if (err) return reply(`Error: ${err}`)
+					vre = fs.readFileSync(ran)
+					samu330.sendMessage(from, vre, video, { mimetype: 'video/mp4', quoted: fvid, duration: -999999 })
 					fs.unlinkSync(ran)
 				})
+			break
 
-				break
-			
+			case 'imagen':
+				assistant = fs.readFileSync('./src/assistant.jpg')
+				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: `😊 Hola, ${timeFt}.\n*Yo soy Sam*, Asistente de *Nexus*.\n\nAl parecer no estas registrado en _*Nexusᴮᴼᵀ*_, Para registrarte usa el comando: *${prefix}reg*`, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
+				if (args.length < 1) return reply(`*Agrega lo que deseas buscar.*\nPor ejemplo: ${prefix + command} gato`)
+				reply(`Por favor espera un momento mientras busco imágenes de ` + args.join(' '))
+				ggimg = args.join(' ')
+				res = await samuGgImg(ggimg, google)
+				function google(error, result) {
+					if (error) { return reply('_[ ! ] *Intentalo de nuevo.*_') }
+					else {
+						var gugIm = result
+						var random = gugIm[Math.floor(Math.random() * gugIm.length)].url
+						sendFileFromUrl(random, image, { quoted: sam, caption: `*🔍Busqueda de* _${ggimg}_\n` })
+					}
+				}
+			break
 
-			case 'trigger':
-				reply(mess.wait)
-				tri = JSON.parse(JSON.stringify(sam).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo
-				ger = await samu330.downloadAndSaveMediaMessage(tri)
-				ran = getRandom('.mp3')
-				exec(`ffmpeg -i ${ger} -filter_complex "acrusher=level_in=8:level_out=18:bits=8:mode=log:aa=1" ${ran}`, (err, stderr, stdout) => {
-					fs.unlinkSync(ger)
-					if (err) return reply('Error!')
-					hah = fs.readFileSync(ran)
-					samu330.sendMessage(from, hah, audio, { mimetype: 'audio/mp4', ptt: true, quoted: fdoc })
-					fs.unlinkSync(ran)
+			case 'sinfondo':
+				if ((isMedia || isQuotedImage)) {
+					const encmedianb = isQuotedImage ? JSON.parse(JSON.stringify(sam).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo : sam
+					const median = await samu330.downloadAndSaveMediaMessage(encmedianb)
+					reply(mess.wait)
+					keyrmbg = 'bcAvZyjYAjKkp1cmK8ZgQvWH'
+					ranp = getRandom('.png')
+					await removeBackgroundFromImageFile({ path: median, apiKey: keyrmbg, size: 'auto', type: 'auto', ranp }).then(res => {
+						fs.unlinkSync(median)
+						let buffer = Buffer.from(res.base64img, 'base64')
+						samu330.sendMessage(from, buffer, image, { quoted: fimg })
+						fs.unlinkSync(buffer)
+					})
+				} else {
+					reply('*Por favor etiqueta una imagen con el comando.*')
+				}
+			break
+
+			case 'wpbusca':
+				if (args.length == 0) return reply(`*Agrega lo que deseas buscar.*\nPor ejemplo: ${prefix + command} gatos`)
+				query = args.join(' ')
+				get_result = await getJson(`https://api.lolhuman.xyz/api/wallpaper?apikey=${api}&query=${query}`)
+				ini_buffer = await getBuffer(get_result.result)
+				await samu330.sendMessage(from, ini_buffer, image, { quoted: ftoko })
+			break
+
+			case 'waifu':
+				if (!isRegister) return reply(mess.only.usrReg)
+					samu330.updatePresence(from, Presence.composing)
+					waifu = ["https://hertz-ingenieros.com/api/lh/waifu.php","https://hertz-ingenieros.com/api/lh/waifu.php"]
+					swaifu = waifu[Math.floor(Math.random() * waifu.length)]
+					rwaifu = await getJson(`${swaifu}`, {
+					method: 'get'
 				})
-
-				break
-
-			case 'slow':
-			case 'lento':
 				reply(mess.wait)
-				low = JSON.parse(JSON.stringify(sam).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo
-				slo = await samu330.downloadAndSaveMediaMessage(low)
-				ran = getRandom('.mp3')
-				exec(`ffmpeg -i ${slo} -filter:a "atempo=0.7,asetrate=44100" ${ran}`, (err, stderr, stdout) => {
-					fs.unlinkSync(slo)
-					if (err) return reply('Error!')
-					hah = fs.readFileSync(ran)
-					samu330.sendMessage(from, hah, audio, { mimetype: 'audio/mp4', duration: -999999999999999, ptt: true, quoted: fdoc })
-					fs.unlinkSync(ran)
+				buffer = await getBuffer(`${rwaifu.url}`)
+				samu330.sendMessage(from, buffer, image, {
+					quoted: fimg
 				})
+			break
 
-				break
+			case 'neko':
+				if (!isRegister) return reply(mess.only.usrReg)
+					samu330.updatePresence(from, Presence.composing)
+					neko = ["https://nekos.life/api/v2/img/neko","https://nekos.life/api/v2/img/neko"]
+					sneko = neko[Math.floor(Math.random() * neko.length)]
+					rneko = await getJson(`${sneko}`, {
+					method: 'get'
+				})
+				reply(mess.wait)
+				buffer = await getBuffer(`${rneko.url}`)
+				samu330.sendMessage(from, buffer, image, {
+					quoted: fimg
+				})
+			break
+
 			case 'ardilla':
 				if (((isAudio && !sam.message.audioMessage) || isQuotedAudio) && args.length == 0) {
 					pai = JSON.parse(JSON.stringify(sam).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo
@@ -2109,8 +2151,8 @@ _*El archivo se esta enviando.....*_
 						fs.unlinkSync(ran)
 					})
 				} else {
-				reply('*Por favor etiqueta un audio con el comando.*')
-			}
+					reply('*Por favor etiqueta un audio con el comando.*')
+				}
 			break
 
 			case 'bass':
@@ -2127,8 +2169,8 @@ _*El archivo se esta enviando.....*_
 						fs.unlinkSync(ran)
 					})
 				} else {
-				reply('*Por favor etiqueta un audio con el comando.*')
-			}
+					reply('*Por favor etiqueta un audio con el comando.*')
+				}
 			break
 			
 			case 'grave':
@@ -2145,8 +2187,8 @@ _*El archivo se esta enviando.....*_
 						fs.unlinkSync(ran)
 					})
 				} else {
-				reply('*Por favor etiqueta un audio con el comando.*')
-			}
+					reply('*Por favor etiqueta un audio con el comando.*')
+				}
 			break
 
 			case 'hode':
@@ -2163,24 +2205,64 @@ _*El archivo se esta enviando.....*_
 						fs.unlinkSync(ran)
 					})
 				} else {
-				reply('*Por favor etiqueta un audio con el comando.*')
-			}
+					reply('*Por favor etiqueta un audio con el comando.*')
+				}
+			break
+
+			case 'imut':
+				if (((isAudio && !sam.message.audioMessage) || isQuotedAudio) && args.length == 0) {
+					im = JSON.parse(JSON.stringify(sam).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo
+					//reply(mess.wait)
+					ut = await samu330.downloadAndSaveMediaMessage(im)
+					ran = getRandom('.mp3')
+					exec(`ffmpeg -i ${ut} -af atempo=3/4,asetrate=44500*4/3 ${ran}`, (err, stderr, stdout) => {
+						fs.unlinkSync(ut)
+						if (err) return reply('¡Error!')
+						hah = fs.readFileSync(ran)
+						samu330.sendMessage(from, hah, audio, { mimetype: 'audio/mp4', ptt: true, quoted: fdoc })
+						fs.unlinkSync(ran)
+					})
+				} else {
+					reply('*Por favor etiqueta un audio con el comando.*')
+				}
 			break
 			
-			case 'reversa':
-				if (!isQuotedVideo) return reply('*Por favor etiqueta un video con el comando.*')
-				reply('*Espera un momento por favor...*')
-				encmediav = JSON.parse(JSON.stringify(sam).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo
-				mediav = await samu330.downloadAndSaveMediaMessage(encmediav)
-				ran = getRandom('.mp4')
-				exec(`ffmpeg -i ${mediav} -vf reverse -af areverse ${ran}`, (err) => {
-					fs.unlinkSync(mediav)
-					if (err) return reply(`Error: ${err}`)
-					vre = fs.readFileSync(ran)
-					samu330.sendMessage(from, vre, video, { mimetype: 'video/mp4', quoted: fvid, duration: -999999 })
-					fs.unlinkSync(ran)
-				})
-				break
+			case 'slow':
+			case 'lento':
+				if (((isAudio && !sam.message.audioMessage) || isQuotedAudio) && args.length == 0) {
+					low = JSON.parse(JSON.stringify(sam).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo
+					//reply(mess.wait)
+					slo = await samu330.downloadAndSaveMediaMessage(low)
+					ran = getRandom('.mp3')
+					exec(`ffmpeg -i ${slo} -filter:a "atempo=0.7,asetrate=44100" ${ran}`, (err, stderr, stdout) => {
+						fs.unlinkSync(slo)
+						if (err) return reply('¡Error!')
+						hah = fs.readFileSync(ran)
+						samu330.sendMessage(from, hah, audio, { mimetype: 'audio/mp4', ptt: true, quoted: fdoc })
+						fs.unlinkSync(ran)
+					})
+				} else {
+					reply('*Por favor etiqueta un audio con el comando.*')
+				}
+			break
+
+			case 'trigger':
+				if (((isAudio && !sam.message.audioMessage) || isQuotedAudio) && args.length == 0) {
+					tri = JSON.parse(JSON.stringify(sam).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo
+					//reply(mess.wait)
+					ger = await samu330.downloadAndSaveMediaMessage(tri)
+					ran = getRandom('.mp3')
+					exec(`ffmpeg -i ${ger} -filter_complex "acrusher=level_in=8:level_out=18:bits=8:mode=log:aa=1" ${ran}`, (err, stderr, stdout) => {
+						fs.unlinkSync(ger)
+						if (err) return reply('¡Error!')
+						hah = fs.readFileSync(ran)
+						samu330.sendMessage(from, hah, audio, { mimetype: 'audio/mp4', ptt: true, quoted: fdoc })
+						fs.unlinkSync(ran)
+					})
+				} else {
+					reply('*Por favor etiqueta un audio con el comando.*')
+				}
+			break
 
 			case 'wa.me':
 			case 'wame':
@@ -2583,23 +2665,7 @@ ase,fps=15, pad=320:320:-1:-1:color=white@0.0, split [a][b]; [a] palettegen=rese
 					reply(`Envie o etiquete una imagen/vido/gif con el comando: ${prefix}swm nombre|autor *OJO!* El video/gif no debe de durar mas de 10 segundos`)
 				}
 				break
-			case 'sinfondo':
-				if ((isMedia || isQuotedImage)) {
-					const encmedianb = isQuotedImage ? JSON.parse(JSON.stringify(sam).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo : sam
-					const median = await samu330.downloadAndSaveMediaMessage(encmedianb)
-					reply(mess.wait)
-					keyrmbg = 'bcAvZyjYAjKkp1cmK8ZgQvWH'
-					ranp = getRandom('.png')
-					await removeBackgroundFromImageFile({ path: median, apiKey: keyrmbg, size: 'auto', type: 'auto', ranp }).then(res => {
-						fs.unlinkSync(median)
-						let buffer = Buffer.from(res.base64img, 'base64')
-						samu330.sendMessage(from, buffer, image, { quoted: fimg })
-						fs.unlinkSync(buffer)
-					})
-				} else {
-					reply('*Por favor etiqueta una imagen con el comando.*')
-				}
-				break
+			
 			case 'snobg':
 				if ((isMedia || isQuotedImage)) {
 					const encmedianb1 = isQuotedImage ? JSON.parse(JSON.stringify(sam).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo : sam
@@ -2890,35 +2956,7 @@ ase,fps=15, pad=320:320:-1:-1:color=white@0.0, split [a][b]; [a] palettegen=rese
 					reply(`*Ocurrió un problema, puedes descargar del link mencionado en el mensaje anterior o intentarlo nuevamente más tarde.*`)
 				}
 			break
-			case 'waifu':
-				if (!isRegister) return reply(mess.only.usrReg)
-				samu330.updatePresence(from, Presence.composing)
-				waifu = ["https://hertz-ingenieros.com/api/lh/waifu.php","https://hertz-ingenieros.com/api/lh/waifu.php"]
-				swaifu = waifu[Math.floor(Math.random() * waifu.length)]
-				rwaifu = await getJson(`${swaifu}`, {
-					method: 'get'
-				})
-				reply(mess.wait)
-				buffer = await getBuffer(`${rwaifu.url}`)
-				samu330.sendMessage(from, buffer, image, {
-					quoted: fimg
-				})
-			break
-
-			case 'neko':
-				if (!isRegister) return reply(mess.only.usrReg)
-				samu330.updatePresence(from, Presence.composing)
-				neko = ["https://nekos.life/api/v2/img/neko","https://nekos.life/api/v2/img/neko"]
-				sneko = neko[Math.floor(Math.random() * neko.length)]
-				rneko = await getJson(`${sneko}`, {
-					method: 'get'
-				})
-				reply(mess.wait)
-				buffer = await getBuffer(`${rneko.url}`)
-				samu330.sendMessage(from, buffer, image, {
-					quoted: fimg
-				})
-			break
+			
 			case 'facebook':
 			case 'fb':
 				if (args.length < 1) return reply('Y el link? ')
@@ -3533,16 +3571,6 @@ Titulo :* ${a.judul}
 				}
 				break
 
-			case 'wpbusca':
-
-				if (args.length == 0) return reply(`*Agrega lo que deseas buscar.*\nPor ejemplo: ${prefix + command} gatos`)
-				query = args.join(' ')
-				get_result = await getJson(`https://api.lolhuman.xyz/api/wallpaper?apikey=${api}&query=${query}`)
-				ini_buffer = await getBuffer(get_result.result)
-				await samu330.sendMessage(from, ini_buffer, image, { quoted: ftoko })
-
-				break
-
 			case 'translate':
 				if (args.length == 0) return reply(`Example: ${prefix + command} es Hi bro`)
 				idioma = args[0]
@@ -3881,24 +3909,7 @@ Titulo :* ${a.judul}
 					reply('Manda la foto!');
 				}
 				break
-			case 'caras':
-				var imgbb = require('imgbb-uploader')
-				if (((isMedia && !sam.message.videoMessage) || isQuotedImage) && args.length == 0) {
-					cara = isQuotedImage ? JSON.parse(JSON.stringify(sam).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo : sam;
-					reply(mess.wait);
-					samsam = await samu330.downloadAndSaveMediaMessage(cara);
-					anu = await imgbb('20a14861e4f7591f3dc52649cb07ae02', samsam);
-					resultc = `${anu.display_url}`;
-					caras = await getBuffer(`https://api.lolhuman.xyz/api/facedetect?apikey=${api}&img=${resultc}`)
-					fs.writeFileSync('caras.jpg', caras)
-					samu330.sendMessage(from, fs.readFileSync('caras.jpg'), MessageType.image, { quoted: fimg })
-				} else {
-					reply('*Por favor etiqueta una imagen con el comando.*')
-				}
-				break
-
 		
-
 			case 'ger':
 				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: `😊 Hola, ${timeFt}.\n*Yo soy Sam*, Asistente de *Nexus*.\n\nAl parecer no estas registrado en _*Nexusᴮᴼᵀ*_, Para registrarte usa el comando: *${prefix}reg*`, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
 				var imgbb = require('imgbb-uploader')
