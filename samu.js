@@ -2875,9 +2875,30 @@ ase,fps=15, pad=320:320:-1:-1:color=white@0.0, split [a][b]; [a] palettegen=rese
 					get_video = await getBuffer(get_result.video)
 					await samu330.sendMessage(from, get_video, video, { mimetype: 'video/mp4', quoted: fvid, duration: -999999 })
 				} catch {
-					reply(`*Ocurrio un problema, la key vencio, puedes descargar videos de la siguiente manera:*\n\nBusca el video que quieras descargar con el comando *${prefix}ytsearch*\nCopias el link del video y descargas con: *${prefix}ytmp4*`)
+					reply(`*Ocurrió un problema, puedes descargar del link mencionado en el mensaje anterior o intentarlo nuevamente más tarde.*`)
 				}
-				break
+			break
+			case 'play3':
+
+				if (!isRegister) return reply(mess.only.usrReg)
+				if (args.length == 0) return reply(`Ejemplo: ${prefix + command} Me olvide de vivir`)
+				reply('*Espere un momento porfavor...*')
+				query = args.join(' ')
+				fakee = fs.readFileSync('./src/img.jpg')
+				try {
+					get_result = await getJson(`https://api.lolhuman.xyz/api/ytplay2?apikey=${api}&query=${query}`)
+					get_result = get_result.result
+					short = await getJson(`https://api.lolhuman.xyz/api/shortlink?apikey=${api}&url=${get_result.video}`)
+					ini_txt = `🧊Titulo : ${get_result.title}\n\n`
+					ini_txt += `_Si el video no llega, puede descargar por aqui_ :\n ${short.result}`
+					ini_buffer = await getBuffer(get_result.thumbnail)
+					await samu330.sendMessage(from, ini_buffer, image, { quoted: fvid, caption: ini_txt, contextInfo: { "forwardingScore": 9999, "isForwarded": true } })
+					get_video = await getBuffer(get_result.video)
+					await samu330.sendMessage(from, get_video, video, { mimetype: Mimetype.gif, duration: -999999999999999, filename: `${get_result.title}.mp4`, quoted: fvid })
+				} catch {
+					reply(`*Ocurrió un problema, puedes descargar del link mencionado en el mensaje anterior o intentarlo nuevamente más tarde.*`)
+				}
+			break
 			case 'waifu':
 				if (!isRegister) return reply(mess.only.usrReg)
 				samu330.updatePresence(from, Presence.composing)
