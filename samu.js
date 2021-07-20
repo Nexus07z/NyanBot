@@ -85,7 +85,10 @@ const sleep = async (ms) => {
 	return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-const api = '273a9e8195c27ba24abd53e3'
+// lolhuman.xyz
+const api = '967708a41dbb7e1de3be0213'
+//
+const apivh = '2aba63b48dbe4e788cc43cd3e7fb1943'
 fak = 'samu3300'
 prefix = '.'
 apikey = 'LindowApi'
@@ -933,7 +936,7 @@ Hola *${pushname}* ${timeFt}
 ║ _Imagen aleatoria de una waifu._
 ║
 ╠ *●${prefix}neko*
-║ _Imagen aleatoria de una neko girl._
+║ _Imagen aleatoria de una neko-girl._
 ║
 ╟╼╾┤🎧 Efectos para 𝘈𝘶𝘥𝘪𝘰𝘴 🎧├╼╾
 ║
@@ -1953,7 +1956,7 @@ _*El archivo se esta enviando......*_`
 				query = args.join(' ')
 				assistant = fs.readFileSync('./src/img.jpg')
 				try {
-					get_result = await getJson(`https://api.lolhuman.xyz/api/ytplay?apikey=ec35353a991a258b05876861&query=${query}`)
+					get_result = await getJson(`https://api.lolhuman.xyz/api/ytplay?apikey=${api}&query=${query}`)
 					get_result = get_result.result
 					get_info = get_result.info
 					ini_txt = ` *Titulo* : ${get_info.title}\n`
@@ -2828,14 +2831,15 @@ ase,fps=15, pad=320:320:-1:-1:color=white@0.0, split [a][b]; [a] palettegen=rese
 					nimek = n[Math.floor(Math.random() * n.length)];
 					pok = await getBuffer(nimek)
 					samu330.sendMessage(from, pok, image, {
-						quoted: fimg, caption: `*Samu300*🐉`, contextInfo: { "forwardingScore": 9999, "isForwarded": true }
+						quoted: fimg, contextInfo: { "forwardingScore": 9999, "isForwarded": true }
 					})
 
 				} catch {
 					reply(mess.ferr)
 				}
 				break
-
+				
+			
 			case 'neko2000':
 				if (!isRegister) return reply(mess.only.usrReg)
 
@@ -2858,6 +2862,22 @@ ase,fps=15, pad=320:320:-1:-1:color=white@0.0, split [a][b]; [a] palettegen=rese
 					reply(mess.ferr)
 				}
 			break
+			
+			case 'waifu':
+				if (!isRegister) return reply(mess.only.usrReg)
+				samu330.updatePresence(from, Presence.composing)
+				waifu = ["https://hertz-ingenieros.com/api/lh/waifu.php","https://hertz-ingenieros.com/api/lh/waifu.php"]
+				swaifu = waifu[Math.floor(Math.random() * waifu.length)]
+				rwaifu = await getJson(`${swaifu}`, {
+					method: 'get'
+				})
+				reply(mess.wait)
+				buffer = await getBuffer(`${rwaifu.url}`)
+				samu330.sendMessage(from, buffer, image, {
+					quoted: fimg
+				})
+			break
+
 			case 'neko':
 				if (!isRegister) return reply(mess.only.usrReg)
 				samu330.updatePresence(from, Presence.composing)
