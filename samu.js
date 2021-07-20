@@ -1960,19 +1960,14 @@ _*El archivo se esta enviando......*_`
 					get_result = get_result.result
 					get_info = get_result.info
 					ini_txt = ` *Titulo* : ${get_info.title}\n`
-					ini_txt += `•Publicador : ${get_info.uploader}\n`
-					ini_txt += `•Duracion : ${get_info.duration}\n`
-					ini_txt += `°Vistas : ${get_info.view}\n`
-					ini_txt += `°Like : ${get_info.like}\n`
-					ini_txt += `°Dislike : ${get_info.dislike}\n`
-					ini_txt += `°Descripcion :\n ${get_info.description}\n\n`
-					ini_txt += `Si el audio no llega, puede descargar por aqui: :\n ${get_result.audio[3].link}\n\n`
-					ini_txt += `Puede descargar tambien el video aqui: :\n ${get_result.video[0].link}\n`
+					ini_txt += `•Duracion : ${get_info.thumbnail}\n`
+					ini_txt += `Si el audio no llega, puede descargar por aqui: :\n ${get_result.audio.link}\n\n`
+					ini_txt += `Puede descargar tambien el video aqui: :\n ${get_result.video.link}\n`
 					ini_buffer = await getBuffer(get_info.thumbnail)
 					await samu330.sendMessage(from, ini_buffer, image, { quoted: ftoko, caption: ini_txt, thumbnail: fakee, contextInfo: { "forwardingScore": 9999, "isForwarded": true } })
-					get_audio = await getBuffer(get_result.audio[4].link)
+					get_audio = await getBuffer(get_result.audio.link)
 					await samu330.sendMessage(from, get_audio, audio, { mimetype: 'audio/mp4', duration: -999999999999999, filename: `${get_info.title}.mp3`, quoted: faud })
-					get_audio = await getBuffer(get_result.audio[4].link)
+					get_audio = await getBuffer(get_result.audio.link)
 					await samu330.sendMessage(from, get_audio, audio, { mimetype: 'audio/mp4', duration: -999999999999999, ptt: true, filename: `${get_info.title}.mp3`, quoted: faud })
 
 				} catch {
