@@ -2105,7 +2105,7 @@ _*El archivo se esta enviando.....*_
 						fs.unlinkSync(tup)
 						if (err) return reply('¡Error!')
 						hah = fs.readFileSync(ran)
-						samu330.sendMessage(from, hah, audio, { mimetype: 'audio/mp4', duration: -999999999999999, ptt: true, quoted: faud })
+						samu330.sendMessage(from, hah, audio, { mimetype: 'audio/mp4', ptt: true, quoted: fdoc })
 						fs.unlinkSync(ran)
 					})
 				} else {
@@ -2123,7 +2123,7 @@ _*El archivo se esta enviando.....*_
 						fs.unlinkSync(bas)
 						if (err) return reply('¡Error!')
 						hah = fs.readFileSync(ran)
-						samu330.sendMessage(from, hah, audio, { mimetype: 'audio/mp4', duration: -999999999999999, ptt: true, quoted: faud })
+						samu330.sendMessage(from, hah, audio, { mimetype: 'audio/mp4', ptt: true, quoted: fdoc })
 						fs.unlinkSync(ran)
 					})
 				} else {
@@ -2141,7 +2141,7 @@ _*El archivo se esta enviando.....*_
 						fs.unlinkSync(gem)
 						if (err) return reply('¡Error!')
 						hah = fs.readFileSync(ran)
-						samu330.sendMessage(from, hah, audio, { mimetype: 'audio/mp4', duration: -999999999999999, ptt: true, quoted: faud })
+						samu330.sendMessage(from, hah, audio, { mimetype: 'audio/mp4', ptt: true, quoted: fdoc })
 						fs.unlinkSync(ran)
 					})
 				} else {
@@ -2159,7 +2159,7 @@ _*El archivo se esta enviando.....*_
 						fs.unlinkSync(de)
 						if (err) return reply('¡Error!')
 						hah = fs.readFileSync(ran)
-						samu330.sendMessage(from, hah, audio, { mimetype: 'audio/mp4', ptt: true, quoted: faud })
+						samu330.sendMessage(from, hah, audio, { mimetype: 'audio/mp4', ptt: true, quoted: fdoc })
 						fs.unlinkSync(ran)
 					})
 				} else {
