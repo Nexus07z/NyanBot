@@ -2063,20 +2063,7 @@ _*El archivo se esta enviando.....*_
 				})
 
 				break
-			case 'hode':
-				reply(mess.wait)
-				ho = JSON.parse(JSON.stringify(sam).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo
-				de = await samu330.downloadAndSaveMediaMessage(ho)
-				ran = getRandom('.mp3')
-				exec(`ffmpeg -i ${de} -af atempo=4/3,asetrate=44500*3/4 ${ran}`, (err, stderr, stdout) => {
-					fs.unlinkSync(de)
-					if (err) return reply('Error!')
-					hah = fs.readFileSync(ran)
-					samu330.sendMessage(from, hah, audio, { mimetype: 'audio/mp4', ptt: true, quoted: fdoc })
-					fs.unlinkSync(ran)
-				})
-
-				break
+			
 
 			case 'trigger':
 				reply(mess.wait)
@@ -2110,51 +2097,76 @@ _*El archivo se esta enviando.....*_
 				break
 			case 'ardilla':
 				if (((isAudio && !sam.message.audioMessage) || isQuotedAudio) && args.length == 0) {
-				pai = JSON.parse(JSON.stringify(sam).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo
-				reply(mess.wait)
-				tup = await samu330.downloadAndSaveMediaMessage(pai)
-				ran = getRandom('.mp3')
-				exec(`ffmpeg -i ${tup} -filter:a "atempo=0.5,asetrate=65100" ${ran}`, (err, stderr, stdout) => {
-					fs.unlinkSync(tup)
-					if (err) return reply('¡Error!')
-					hah = fs.readFileSync(ran)
-					samu330.sendMessage(from, hah, audio, { mimetype: 'audio/mp4', duration: -999999999999999, ptt: true, quoted: faud })
-					fs.unlinkSync(ran)
-				})
-			} else {
+					pai = JSON.parse(JSON.stringify(sam).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo
+					//reply(mess.wait)
+					tup = await samu330.downloadAndSaveMediaMessage(pai)
+					ran = getRandom('.mp3')
+					exec(`ffmpeg -i ${tup} -filter:a "atempo=0.5,asetrate=65100" ${ran}`, (err, stderr, stdout) => {
+						fs.unlinkSync(tup)
+						if (err) return reply('¡Error!')
+						hah = fs.readFileSync(ran)
+						samu330.sendMessage(from, hah, audio, { mimetype: 'audio/mp4', duration: -999999999999999, ptt: true, quoted: faud })
+						fs.unlinkSync(ran)
+					})
+				} else {
+				reply('*Por favor etiqueta un audio con el comando.*')
+			}
+			break
+
+			case 'bass':
+				if (((isAudio && !sam.message.audioMessage) || isQuotedAudio) && args.length == 0) {
+					ass = JSON.parse(JSON.stringify(sam).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo
+					//reply(mess.wait)
+					bas = await samu330.downloadAndSaveMediaMessage(ass)
+					ran = getRandom('.mp3')
+					exec(`ffmpeg -i ${bas} -af equalizer=f=94:width_type=o:width=2:g=30 ${ran}`, (err, stderr, stdout) => {
+						fs.unlinkSync(bas)
+						if (err) return reply('¡Error!')
+						hah = fs.readFileSync(ran)
+						samu330.sendMessage(from, hah, audio, { mimetype: 'audio/mp4', duration: -999999999999999, ptt: true, quoted: faud })
+						fs.unlinkSync(ran)
+					})
+				} else {
 				reply('*Por favor etiqueta un audio con el comando.*')
 			}
 			break
 			
 			case 'grave':
-				reply(mess.wait)
-				muk = JSON.parse(JSON.stringify(sam).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo
-				gem = await samu330.downloadAndSaveMediaMessage(muk)
-				ran = getRandom('.mp3')
-				exec(`ffmpeg -i ${gem} -filter:a "atempo=1.6,asetrate=22100" ${ran}`, (err, stderr, stdout) => {
-					fs.unlinkSync(gem)
-					if (err) return reply('Error!')
-					hah = fs.readFileSync(ran)
-					samu330.sendMessage(from, hah, audio, { mimetype: 'audio/mp4', duration: -999999999999999, ptt: true, quoted: fdoc })
-					fs.unlinkSync(ran)
-				})
+				if (((isAudio && !sam.message.audioMessage) || isQuotedAudio) && args.length == 0) {
+					muk = JSON.parse(JSON.stringify(sam).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo
+					//reply(mess.wait)
+					gem = await samu330.downloadAndSaveMediaMessage(muk)
+					ran = getRandom('.mp3')
+					exec(`ffmpeg -i ${gem} -filter:a "atempo=1.6,asetrate=22100" ${ran}`, (err, stderr, stdout) => {
+						fs.unlinkSync(gem)
+						if (err) return reply('¡Error!')
+						hah = fs.readFileSync(ran)
+						samu330.sendMessage(from, hah, audio, { mimetype: 'audio/mp4', duration: -999999999999999, ptt: true, quoted: faud })
+						fs.unlinkSync(ran)
+					})
+				} else {
+				reply('*Por favor etiqueta un audio con el comando.*')
+			}
+			break
 
-				break
-			case 'bass':
-				ass = JSON.parse(JSON.stringify(sam).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo
-
-				bas = await samu330.downloadAndSaveMediaMessage(ass)
-				ran = getRandom('.mp3')
-				exec(`ffmpeg -i ${bas} -af equalizer=f=94:width_type=o:width=2:g=30 ${ran}`, (err, stderr, stdout) => {
-					fs.unlinkSync(bas)
-					if (err) return reply('Error!')
-					hah = fs.readFileSync(ran)
-					samu330.sendMessage(from, hah, audio, { mimetype: 'audio/mp4', duration: -999999999999999, ptt: true, quoted: fdoc })
-					fs.unlinkSync(ran)
-				})
-
-				break
-
+			case 'hode':
+				if (((isAudio && !sam.message.audioMessage) || isQuotedAudio) && args.length == 0) {
+					ho = JSON.parse(JSON.stringify(sam).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo
+					//reply(mess.wait)
+					de = await samu330.downloadAndSaveMediaMessage(ho)
+					ran = getRandom('.mp3')
+					exec(`ffmpeg -i ${de} -af atempo=4/3,asetrate=44500*3/4 ${ran}`, (err, stderr, stdout) => {
+						fs.unlinkSync(de)
+						if (err) return reply('¡Error!')
+						hah = fs.readFileSync(ran)
+						samu330.sendMessage(from, hah, audio, { mimetype: 'audio/mp4', ptt: true, quoted: faud })
+						fs.unlinkSync(ran)
+					})
+				} else {
+				reply('*Por favor etiqueta un audio con el comando.*')
+			}
+			break
+			
 			case 'reversa':
 				if (!isQuotedVideo) return reply('*Por favor etiqueta un video con el comando.*')
 				reply('*Espera un momento por favor...*')
