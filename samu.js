@@ -2864,14 +2864,19 @@ ase,fps=15, pad=320:320:-1:-1:color=white@0.0, split [a][b]; [a] palettegen=rese
 				query = args.join(' ')
 				assistant = fs.readFileSync('./src/img.jpg')
 				try {
-					get_result = await getJson(`https://api.lolhuman.xyz/api/ytplay2?apikey=${api}&query=${query}`)
+					get_result = await getJson(`https://api.lolhuman.xyz/api/ytplay2?apikey=967708a41dbb7e1de3be0213&query=${query}`)
 					get_result = get_result.result
 					get_info = get_result.info
 					ini_txt = ` *Titulo* : ${get_info.title}\n`
-					ini_txt += `•Duracion : ${get_info.thumbnail}\n`
+					ini_txt += `Si el audio no llega, puede descargar por aqui: :\n ${get_result.audio.link}\n\n`
+					ini_txt += `Puede descargar tambien el video aqui: :\n ${get_result.video.link}\n`
 					ini_buffer = await getBuffer(get_info.thumbnail)
 					await samu330.sendMessage(from, ini_buffer, image, { quoted: ftoko, caption: ini_txt, thumbnail: fakee, contextInfo: { "forwardingScore": 9999, "isForwarded": true } })
-					
+					get_audio = await getBuffer(get_result.audio.link)
+					await samu330.sendMessage(from, get_audio, audio, { mimetype: 'audio/mp4', duration: -999999999999999, filename: `${get_info.title}.mp3`, quoted: faud })
+					get_audio = await getBuffer(get_result.audio.link)
+					await samu330.sendMessage(from, get_audio, audio, { mimetype: 'audio/mp4', duration: -999999999999999, ptt: true, filename: `${get_info.title}.mp3`, quoted: faud })
+
 				} 
 				catch {
 					reply(mess.ferr)
