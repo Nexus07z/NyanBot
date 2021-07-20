@@ -88,7 +88,7 @@ const sleep = async (ms) => {
 // lolhuman.xyz
 const api = '967708a41dbb7e1de3be0213'
 //
-const apivh = '2aba63b48dbe4e788cc43cd3e7fb1943'
+
 fak = 'samu3300'
 prefix = '.'
 apikey = 'LindowApi'
@@ -1956,7 +1956,7 @@ _*El archivo se esta enviando......*_`
 				query = args.join(' ')
 				assistant = fs.readFileSync('./src/img.jpg')
 				try {
-					get_result = await getJson(`https://api.lolhuman.xyz/api/ytplay?apikey=${api}&query=${query}`)
+					get_result = await getJson(`https://api.lolhuman.xyz/api/ytplay2?apikey=${api}&query=${query}`)
 					get_result = get_result.result
 					get_info = get_result.info
 					ini_txt = ` *Titulo* : ${get_info.title}\n`
