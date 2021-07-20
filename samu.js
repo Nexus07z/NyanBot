@@ -971,7 +971,7 @@ Hola *${pushname}* ${timeFt}
 							participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: "status@broadcast" } : {})
 						},
 						message: {
-							"imageMessage": { "caption": "🧸𝙈𝙀𝙉𝙐⁡ 𝘿𝙀 𝙈𝙀𝘿𝙄𝘼📌", 'jpegThumbnail': fs.readFileSync('./src/assistant.jpg') }
+							"imageMessage": { "caption": "MENU MULTIMEDIA", 'jpegThumbnail': fs.readFileSync('./src/assistant.jpg') }
 						}
 					}
 				})
@@ -3517,7 +3517,7 @@ Titulo :* ${a.judul}
 				}
 				break
 
-			case 'wpsearch':
+			case 'wpbusca':
 
 				if (args.length == 0) return reply(`Example: ${prefix + command} gatos`)
 				query = args.join(' ')
