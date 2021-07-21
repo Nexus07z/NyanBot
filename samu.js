@@ -764,17 +764,18 @@ samu330.on('chat-update', async (sam) => {
 
 		//Zona de Comandos🛵
 		switch (command) {
+			
 			case 'buenos':
 				buf = fs.readFileSync(`./temp/audio/wenas.mp3`)
 				samu330.sendMessage(from, buf, audio, {
 					mimetype: 'audio/mp4', quoted: faud, duration: -999999, ptt: true
 				})
 			break
+
 			case 'help':
 			case 'menu':
 			case 'comandos':
 				const moment = require('moment-timezone')
-
 				const jmn = moment.tz('America/Lima').format('HH:mm:ss')
 				whatsapp = '0@s.whatsapp.net'
 				fb = '447710173736@s.whatsapp.net'
@@ -796,49 +797,49 @@ samu330.on('chat-update', async (sam) => {
 				uptime = process.uptime()
 				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: `😊 Hola, ${timeFt}.\n*Yo soy Sam*, Asistente de *Nexus*.\n\nAl parecer no estas registrado en _*Nexusᴮᴼᵀ*_, Para registrarte usa el comando: *${prefix}reg*`, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
 				Menu = `
-Hola *${pushname}* ${timeFt}
+					Hola *${pushname}* ${timeFt}
 
-*Hora:* ${jmn}
-*Fecha:* ${calender}
-*No olvides leer las reglas:* ${prefix}reglas
+					*Hora:* ${jmn}
+					*Fecha:* ${calender}
+					*No olvides leer las reglas:* ${prefix}reglas
 
-======[ *Versión 3.0* ]======
+					======[ *Versión 3.0* ]======
 
-*Comandos usados hoy:* ${hit_today.length}
-*Prefijo:* [ ${prefix} ]
-*Tiempo de actividad:* ${uptime}
-*Estado:* Conectado
-*Grupo:* ${groupName}
-*Número del Creador:* wa.me/+51963324153
-
-
-======[ *Nexusᴮᴼᵀ* ]======
-
-*Navegador:* ${samu330.browserDescription[1]}
-*Servidor:* ${samu330.browserDescription[0]}
-*Versión:* ${samu330.browserDescription[2]}
-*Velocidad:* ${process.uptime()}
-*Dispositivo:* ${samu330.user.phone.device_manufacturer}
-*Modelo:* ${samu330.user.phone.device_model}
-*Sistema operativo:* ${os.platform()}
-*Versión Sistema operativo:* ${samu330.user.phone.os_version}
-*Versión de WhatsApp:* ${samu330.user.phone.wa_version}
+					*Comandos usados hoy:* ${hit_today.length}
+					*Prefijo:* [ ${prefix} ]
+					*Tiempo de actividad:* ${uptime}
+					*Estado:* Conectado
+					*Grupo:* ${groupName}
+					*Número del Creador:* wa.me/+51963324153
 
 
-╭─ *INICIO LISTA DE MENUS*
-├
-├ *${prefix}menu1* (Comandos Multimedia)
-├ *${prefix}menu2* (Comandos de Sticker)
-├ *${prefix}menu3* (Comandos de Grupos)
-├ *${prefix}menu4* (Comandos de Descargas)
-├ *${prefix}menu5* (Comandos Herramientas)
-├ *${prefix}menu6* (Comandos +18)
-├ *${prefix}menu7* (Comandos para Logos)
-├ *${prefix}menu8* (Comandos para el Creador)
-├ *${prefix}audios* (Audios)
-├
-╰─ *FIN LISTA DE MENUS*
-`
+					======[ *Nexusᴮᴼᵀ* ]======
+
+					*Navegador:* ${samu330.browserDescription[1]}
+					*Servidor:* ${samu330.browserDescription[0]}
+					*Versión:* ${samu330.browserDescription[2]}
+					*Velocidad:* ${process.uptime()}
+					*Dispositivo:* ${samu330.user.phone.device_manufacturer}
+					*Modelo:* ${samu330.user.phone.device_model}
+					*Sistema operativo:* ${os.platform()}
+					*Versión Sistema operativo:* ${samu330.user.phone.os_version}
+					*Versión de WhatsApp:* ${samu330.user.phone.wa_version}
+
+
+					╭─ *INICIO LISTA DE MENUS*
+					├
+					├ *${prefix}menu1* (Comandos Multimedia)
+					├ *${prefix}menu2* (Comandos de Sticker)
+					├ *${prefix}menu3* (Comandos de Grupos)
+					├ *${prefix}menu4* (Comandos de Descargas)
+					├ *${prefix}menu5* (Comandos Herramientas)
+					├ *${prefix}menu6* (Comandos +18)
+					├ *${prefix}menu7* (Comandos para Logos)
+					├ *${prefix}menu8* (Comandos para el Creador)
+					├ *${prefix}audios* (Audios)
+					├
+					╰─ *FIN LISTA DE MENUS*
+				`
 				samu330.sendMessage(from, Menu, MessageType.text, {
 					quoted:
 					{
@@ -851,8 +852,76 @@ Hola *${pushname}* ${timeFt}
 						}
 					}
 				})
+			break
+
+			case 'menu1':
+				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: `😊 Hola, ${timeFt}.\n*Yo soy Sam*, Asistente de *Nexus*.\n\nAl parecer no estas registrado en _*Nexusᴮᴼᵀ*_, Para registrarte usa el comando: *${prefix}reg*`, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
+				mda = `
+					╔═════════════════╗
+					╠               *MENU MULTIMEDIA*               ╣
+					╠═════════════════╝
+					║
+					╠ *${prefix}caras*
+					║ _Etiqueta una imagen para detectar caras._
+					║
+					╠ *${prefix}reversa*
+					║ _Etiqueta un video para ponerlo en reversa._
+					║
+					╠ *${prefix}imagen*
+					║ _Búsqueda de imágenes en Google._
+					║
+					╠ *${prefix}sinfondo*
+					║ _Etiqueta una imagen para quitarle el fondo._
+					║
+					╠ *${prefix}wpbusca* 
+					║ _Búsqueda de fondos de pantalla._
+					║
+					╠ *${prefix}waifu*
+					║ _Imagen aleatoria de una waifu._
+					║
+					╠ *${prefix}neko*
+					║ _Imagen aleatoria de una neko-girl._
+					║
+					╟╼╾┤🎧 Efectos para 𝘈𝘶𝘥𝘪𝘰𝘴 🎧├╼╾
+					║
+					╠ *${prefix}ardilla*
+					║ _Etiqueta un audio._
+					║
+					╠ *${prefix}bass*
+					║ _Etiqueta un audio._
+					║
+					╠ *${prefix}grave*
+					║ _Etiqueta un audio._
+					║
+					╠ *${prefix}hode*
+					║ _Etiqueta un audio._
+					║
+					╠ *${prefix}imut*
+					║ _Etiqueta un audio._
+					║
+					╠ *${prefix}lento*
+					║ _Etiqueta un audio._
+					║
+					╠ *${prefix}trigger*
+					║ _Etiqueta un audio._
+					║
+					╰──────────────
+				`
+				samu330.sendMessage(from, mda, MessageType.text, {
+					quoted:
+					{
+						key: {
+							fromMe: false,
+							participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: "status@broadcast" } : {})
+						},
+						message: {
+							"imageMessage": { "caption": "MENU MULTIMEDIA", 'jpegThumbnail': fs.readFileSync('./src/assistant.jpg') }
+						}
+					}
+				})
 				break
-			case 'menu2':
+			
+				case 'menu2':
 				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: `😊 Hola, ${timeFt}.\n*Yo soy Sam*, Asistente de *Nexus*.\n\nAl parecer no estas registrado en _*Nexusᴮᴼᵀ*_, Para registrarte usa el comando: *${prefix}reg*`, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
 				stc = `╭⸻⃞✫꯭𝙈꯭𝙀꯭𝙉꯭𝙐꯭✫⃞⸻╮
 ╰────ြ𝐒𝐭𝐢𝐜𝐤𝐞𝐫🃏
@@ -910,73 +979,7 @@ Hola *${pushname}* ${timeFt}
 				})
 				break
 
-			case 'menu1':
-				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: `😊 Hola, ${timeFt}.\n*Yo soy Sam*, Asistente de *Nexus*.\n\nAl parecer no estas registrado en _*Nexusᴮᴼᵀ*_, Para registrarte usa el comando: *${prefix}reg*`, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
-
-				mda = `
-╔═════════════════╗
-╠               *MENU MULTIMEDIA*               ╣
-╠═════════════════╝
-║
-╠ *${prefix}caras*
-║ _Etiqueta una imagen para detectar caras._
-║
-╠ *${prefix}reversa*
-║ _Etiqueta un video para ponerlo en reversa._
-║
-╠ *${prefix}imagen*
-║ _Búsqueda de imágenes en Google._
-║
-╠ *${prefix}sinfondo*
-║ _Etiqueta una imagen para quitarle el fondo._
-║
-╠ *${prefix}wpbusca* 
-║ _Búsqueda de fondos de pantalla._
-║
-╠ *${prefix}waifu*
-║ _Imagen aleatoria de una waifu._
-║
-╠ *${prefix}neko*
-║ _Imagen aleatoria de una neko-girl._
-║
-╟╼╾┤🎧 Efectos para 𝘈𝘶𝘥𝘪𝘰𝘴 🎧├╼╾
-║
-╠ *${prefix}ardilla*
-║ _Etiqueta un audio._
-║
-╠ *${prefix}bass*
-║ _Etiqueta un audio._
-║
-╠ *${prefix}grave*
-║ _Etiqueta un audio._
-║
-╠ *${prefix}hode*
-║ _Etiqueta un audio._
-║
-╠ *${prefix}imut*
-║ _Etiqueta un audio._
-║
-╠ *${prefix}lento*
-║ _Etiqueta un audio._
-║
-╠ *${prefix}trigger*
-║ _Etiqueta un audio._
-║
-╰──────────────
-`
-				samu330.sendMessage(from, mda, MessageType.text, {
-					quoted:
-					{
-						key: {
-							fromMe: false,
-							participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: "status@broadcast" } : {})
-						},
-						message: {
-							"imageMessage": { "caption": "MENU MULTIMEDIA", 'jpegThumbnail': fs.readFileSync('./src/assistant.jpg') }
-						}
-					}
-				})
-				break
+			
 			case 'menu3':
 				samu330.updatePresence(from, Presence.composing)
 				if (!isRegister) return reply(mess.only.usrReg)
