@@ -466,7 +466,7 @@ samu330.on('chat-update', async (sam) => {
 				participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: "status@broadcast" } : {})
 			},
 			message: {
-				"imageMessage": { "caption": "🗒️𝐔𝐬𝐮𝐚𝐫𝐢𝐨 𝐧𝐨 𝐫𝐞𝐠𝐢𝐬𝐭𝐫𝐚𝐝𝐨", 'jpegThumbnail': fs.readFileSync('./src/fake.jpg') }
+				"documentMessage": { "caption": "Usuario no registrado", 'jpegThumbnail': fs.readFileSync('./src/fake.jpg') }
 			}
 		}
 
