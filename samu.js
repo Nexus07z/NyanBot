@@ -2120,7 +2120,7 @@ _*El archivo se esta enviando.....*_
 			break
 
 			case 'neko':
-				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: `😊 Hola, ${timeFt}.\n*Yo soy Sam*, Asistente de *Nexus*.\n\nAl parecer no estas registrado en _*Nexusᴮᴼᵀ*_, Para registrarte usa el comando: *${prefix}reg*`, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
+				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.demoReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
 					samu330.updatePresence(from, Presence.composing)
 					neko = ["https://nekos.life/api/v2/img/neko","https://nekos.life/api/v2/img/neko"]
 					sneko = neko[Math.floor(Math.random() * neko.length)]
