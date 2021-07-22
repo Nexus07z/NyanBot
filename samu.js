@@ -2145,7 +2145,7 @@ _*El archivo se esta enviando.....*_
 						fs.unlinkSync(tup)
 						if (err) return reply('¡Error!')
 						hah = fs.readFileSync(ran)
-						samu330.sendMessage(from, hah, audio, { mimetype: 'audio/mp4', ptt: true, quoted: faud })
+						samu330.sendMessage(from, hah, audio, { quoted: faud })
 						fs.unlinkSync(ran)
 					})
 				} else {
