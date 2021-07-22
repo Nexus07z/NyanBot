@@ -2138,7 +2138,7 @@ _*El archivo se esta enviando.....*_
 				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
 				if (((isAudio && !sam.message.audioMessage) || isQuotedAudio) && args.length == 0) {
 					pai = JSON.parse(JSON.stringify(sam).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo
-					//reply(mess.wait)
+					reply(mess.wait)
 					tup = await samu330.downloadAndSaveMediaMessage(pai)
 					ran = getRandom('.mp3')
 					exec(`ffmpeg -i ${tup} -filter:a "atempo=0.5,asetrate=65100" ${ran}`, (err, stderr, stdout) => {
