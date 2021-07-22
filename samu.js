@@ -540,7 +540,7 @@ samu330.on('chat-update', async (sam) => {
 				participant: `0@s.whatsapp.net`, ...(from ?
 					{ remoteJid: "status@broadcast" } : {})
 			},
-			message: { "audioMessage": { "caption": `Sam | Nexusᴮᴼᵀ`, 'jpegThumbnail': fs.readFileSync('./src/help.jpg') } }
+			message: { "audioMessage": { "mimetype": "audio/mp4", "caption": `Sam | Nexusᴮᴼᵀ`, 'jpegThumbnail': fs.readFileSync('./src/help.jpg') } }
 		}
 		contextInfo: {
 			mentionedJid: [sender]
@@ -2145,7 +2145,7 @@ _*El archivo se esta enviando.....*_
 						fs.unlinkSync(tup)
 						if (err) return reply('¡Error!')
 						hah = fs.readFileSync(ran)
-						samu330.sendMessage(from, hah, audio, { quoted: faud })
+						samu330.sendMessage(from, hah, audio, { mimetype: 'audio/mp4', ptt: true, quoted: faud })
 						fs.unlinkSync(ran)
 					})
 				} else {
