@@ -915,56 +915,49 @@ samu330.on('chat-update', async (sam) => {
 							participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: "status@broadcast" } : {})
 						},
 						message: {
-							"imageMessage": { "caption": "MENU MULTIMEDIA", 'jpegThumbnail': fs.readFileSync('./src/assistant.jpg') }
+							"documentMessage": { "title": "Sam | Nexusᴮᴼᵀ", 'jpegThumbnail': fs.readFileSync('./src/assistant.jpg') }
 						}
 					}
 				})
-				break
+			break
 			
-				case 'menu2':
+			case 'menu2':
 				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: `😊 Hola, ${timeFt}.\n*Yo soy Sam*, Asistente de *Nexus*.\n\nAl parecer no estas registrado en _*Nexusᴮᴼᵀ*_, Para registrarte usa el comando: *${prefix}reg*`, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
-				stc = `╭⸻⃞✫꯭𝙈꯭𝙀꯭𝙉꯭𝙐꯭✫⃞⸻╮
-╰────ြ𝐒𝐭𝐢𝐜𝐤𝐞𝐫🃏
-╭─────────────
-│ *${prefix}sticker*
-│ _Imagen/gif/video_
-╰─────────────╮
-╭─────────────╯
-│ *${prefix}spack*
-│ _Paquete personalizado_
-│Ex: *${prefix}spack* Samu|330
-╰───────────────────╮
-╭───────────────────╯
-│ *${prefix}robar*
-│ *${prefix}exif*
-╰─────────────╮
-╭─────────────╯
-│ *${prefix}takestick*
-│ _Nombre|Autor_
-╰─────────────╮
-╭─────────────╯
-│ *${prefix}swm*
-│ _Nombre|Autor_
-╰─────────────╮
-╭─────────────╯
-│ *${prefix}colores*
-│ _Texto a colores_
-╰─────────────╮
-╭─────────────╯
-│ *${prefix}ger*
-│ _Estilo Triggered_
-╰─────────────╮
-╭─────────────╯
-│ *${prefix}aimg*
-│ _Stiker a imagen_
-╰─────────────╮
-╭─────────────╯
-│ *${prefix}agif*
-│ _Stiker a gif_
-╰─────────────╮
-╭─────────────┴╮
-│ြ𝚜ᷤ𝚊ͣ𝚖ͫ𝚞𝉄𖾔𖾔𖽙😈.li Oℱịcιɑl.li 
-╰──────────────╯`
+				stc = `
+					╔═════════════════╗
+					╠               *MENU DE STICKER*               ╣
+					╠═════════════════╝
+					║
+					╠ *${prefix}sticker*
+					║ _Etiqueta una imagen/gif/video._
+					║
+					╠ *${prefix}spack*
+					║ _Paquete personalizado._
+					║
+					╠ *${prefix}robar*
+					║
+					╠ *${prefix}exif*
+					║
+					╠ *${prefix}takestick*
+    				║ _Nombre|Autor_
+					║
+					╠ *${prefix}swm*
+					║ _Nombre|Autor_
+					║
+					╠ *${prefix}colores*
+					║ _Texto a colores_
+					║
+					╠ *${prefix}ger*
+					║ _Estilo Triggered_
+					║
+					╠ *${prefix}aimg*
+					║ _Stiker a imagen_
+					║
+					╠ *${prefix}agif*
+					║ _Stiker a gif_
+					║
+					╰──────────────
+				`
 				samu330.sendMessage(from, stc, MessageType.text, {
 					quoted:
 					{
@@ -973,7 +966,7 @@ samu330.on('chat-update', async (sam) => {
 							participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: "status@broadcast" } : {})
 						},
 						message: {
-							"documentMessage": { "title": "📚𝑆𝑡𝑖𝑘𝑒𝑟 𝑚𝑒𝑛𝑢", 'jpegThumbnail': fs.readFileSync('./src/assistant.jpg') }
+							"documentMessage": { "title": "Sam | Nexusᴮᴼᵀ", 'jpegThumbnail': fs.readFileSync('./src/assistant.jpg') }
 						}
 					}
 				})
@@ -2068,7 +2061,6 @@ _*El archivo se esta enviando.....*_
 			break
 
 			case 'imagen':
-				assistant = fs.readFileSync('./src/assistant.jpg')
 				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: `😊 Hola, ${timeFt}.\n*Yo soy Sam*, Asistente de *Nexus*.\n\nAl parecer no estas registrado en _*Nexusᴮᴼᵀ*_, Para registrarte usa el comando: *${prefix}reg*`, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
 				if (args.length < 1) return reply(`*Agrega lo que deseas buscar.*\nPor ejemplo: ${prefix + command} gato`)
 				reply(`Por favor espera un momento mientras busco imágenes de ` + args.join(' '))
@@ -2079,7 +2071,7 @@ _*El archivo se esta enviando.....*_
 					else {
 						var gugIm = result
 						var random = gugIm[Math.floor(Math.random() * gugIm.length)].url
-						sendFileFromUrl(random, image, { quoted: sam, caption: `*🔍Busqueda de* _${ggimg}_\n` })
+						sendFileFromUrl(random, image, { quoted: sam, caption: `*🔍Busqueda de* _${ggimg}_` })
 					}
 				}
 			break
