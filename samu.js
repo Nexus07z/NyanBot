@@ -2120,6 +2120,7 @@ _*El archivo se esta enviando.....*_
 			break
 
 			case 'neko':
+				assistant = fs.readFileSync('./src/assistant.jpg')
 				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.demoReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
 					samu330.updatePresence(from, Presence.composing)
 					neko = ["https://nekos.life/api/v2/img/neko","https://nekos.life/api/v2/img/neko"]
