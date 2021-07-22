@@ -2029,6 +2029,8 @@ _*El archivo se esta enviando.....*_
 				break
 
 			case 'caras':
+				assistant = fs.readFileSync('./src/assistant.jpg')
+				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
 				var imgbb = require('imgbb-uploader')
 				if (((isMedia && !sam.message.videoMessage) || isQuotedImage) && args.length == 0) {
 					cara = isQuotedImage ? JSON.parse(JSON.stringify(sam).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo : sam;
@@ -2045,6 +2047,8 @@ _*El archivo se esta enviando.....*_
 			break
 
 			case 'reversa':
+				assistant = fs.readFileSync('./src/assistant.jpg')
+				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
 				if (!isQuotedVideo) return reply('*Por favor etiqueta un video con el comando.*')
 				reply('*Espera un momento por favor...*')
 				encmediav = JSON.parse(JSON.stringify(sam).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo
@@ -2060,7 +2064,8 @@ _*El archivo se esta enviando.....*_
 			break
 
 			case 'imagen':
-				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: `😊 Hola, ${timeFt}.\n*Yo soy Sam*, Asistente de *Nexus*.\n\nAl parecer no estas registrado en _*Nexusᴮᴼᵀ*_, Para registrarte usa el comando: *${prefix}reg*`, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
+				assistant = fs.readFileSync('./src/assistant.jpg')
+				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
 				if (args.length < 1) return reply(`*Agrega lo que deseas buscar.*\nPor ejemplo: ${prefix + command} gato`)
 				reply(`Por favor espera un momento mientras busco imágenes de ` + args.join(' '))
 				ggimg = args.join(' ')
@@ -2076,6 +2081,8 @@ _*El archivo se esta enviando.....*_
 			break
 
 			case 'sinfondo':
+				assistant = fs.readFileSync('./src/assistant.jpg')
+				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
 				if ((isMedia || isQuotedImage)) {
 					const encmedianb = isQuotedImage ? JSON.parse(JSON.stringify(sam).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo : sam
 					const median = await samu330.downloadAndSaveMediaMessage(encmedianb)
@@ -2094,6 +2101,8 @@ _*El archivo se esta enviando.....*_
 			break
 
 			case 'wpbusca':
+				assistant = fs.readFileSync('./src/assistant.jpg')
+				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
 				if (args.length == 0) return reply(`*Agrega lo que deseas buscar.*\nPor ejemplo: ${prefix + command} gatos`)
 				query = args.join(' ')
 				get_result = await getJson(`https://api.lolhuman.xyz/api/wallpaper?apikey=${api}&query=${query}`)
@@ -2138,7 +2147,7 @@ _*El archivo se esta enviando.....*_
 				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
 				if (((isAudio && !sam.message.audioMessage) || isQuotedAudio) && args.length == 0) {
 					pai = JSON.parse(JSON.stringify(sam).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo
-					reply(mess.wait)
+					//reply(mess.wait)
 					tup = await samu330.downloadAndSaveMediaMessage(pai)
 					ran = getRandom('.mp3')
 					exec(`ffmpeg -i ${tup} -filter:a "atempo=0.5,asetrate=65100" ${ran}`, (err, stderr, stdout) => {
@@ -2154,6 +2163,8 @@ _*El archivo se esta enviando.....*_
 			break
 
 			case 'bass':
+				assistant = fs.readFileSync('./src/assistant.jpg')
+				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
 				if (((isAudio && !sam.message.audioMessage) || isQuotedAudio) && args.length == 0) {
 					ass = JSON.parse(JSON.stringify(sam).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo
 					//reply(mess.wait)
@@ -2163,7 +2174,7 @@ _*El archivo se esta enviando.....*_
 						fs.unlinkSync(bas)
 						if (err) return reply('¡Error!')
 						hah = fs.readFileSync(ran)
-						samu330.sendMessage(from, hah, audio, { mimetype: 'audio/mp4', ptt: true, quoted: fdoc })
+						samu330.sendMessage(from, hah, audio, { mimetype: 'audio/mp4', ptt: true, quoted: faud })
 						fs.unlinkSync(ran)
 					})
 				} else {
@@ -2172,6 +2183,8 @@ _*El archivo se esta enviando.....*_
 			break
 			
 			case 'grave':
+				assistant = fs.readFileSync('./src/assistant.jpg')
+				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
 				if (((isAudio && !sam.message.audioMessage) || isQuotedAudio) && args.length == 0) {
 					muk = JSON.parse(JSON.stringify(sam).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo
 					//reply(mess.wait)
@@ -2181,7 +2194,7 @@ _*El archivo se esta enviando.....*_
 						fs.unlinkSync(gem)
 						if (err) return reply('¡Error!')
 						hah = fs.readFileSync(ran)
-						samu330.sendMessage(from, hah, audio, { mimetype: 'audio/mp4', ptt: true, quoted: fdoc })
+						samu330.sendMessage(from, hah, audio, { mimetype: 'audio/mp4', ptt: true, quoted: faud })
 						fs.unlinkSync(ran)
 					})
 				} else {
@@ -2190,6 +2203,8 @@ _*El archivo se esta enviando.....*_
 			break
 
 			case 'hode':
+				assistant = fs.readFileSync('./src/assistant.jpg')
+				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
 				if (((isAudio && !sam.message.audioMessage) || isQuotedAudio) && args.length == 0) {
 					ho = JSON.parse(JSON.stringify(sam).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo
 					//reply(mess.wait)
@@ -2199,7 +2214,7 @@ _*El archivo se esta enviando.....*_
 						fs.unlinkSync(de)
 						if (err) return reply('¡Error!')
 						hah = fs.readFileSync(ran)
-						samu330.sendMessage(from, hah, audio, { mimetype: 'audio/mp4', ptt: true, quoted: fdoc })
+						samu330.sendMessage(from, hah, audio, { mimetype: 'audio/mp4', ptt: true, quoted: faud })
 						fs.unlinkSync(ran)
 					})
 				} else {
@@ -2208,6 +2223,8 @@ _*El archivo se esta enviando.....*_
 			break
 
 			case 'imut':
+				assistant = fs.readFileSync('./src/assistant.jpg')
+				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
 				if (((isAudio && !sam.message.audioMessage) || isQuotedAudio) && args.length == 0) {
 					im = JSON.parse(JSON.stringify(sam).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo
 					//reply(mess.wait)
@@ -2217,7 +2234,7 @@ _*El archivo se esta enviando.....*_
 						fs.unlinkSync(ut)
 						if (err) return reply('¡Error!')
 						hah = fs.readFileSync(ran)
-						samu330.sendMessage(from, hah, audio, { mimetype: 'audio/mp4', ptt: true, quoted: fdoc })
+						samu330.sendMessage(from, hah, audio, { mimetype: 'audio/mp4', ptt: true, quoted: faud })
 						fs.unlinkSync(ran)
 					})
 				} else {
@@ -2227,6 +2244,8 @@ _*El archivo se esta enviando.....*_
 			
 			case 'slow':
 			case 'lento':
+				assistant = fs.readFileSync('./src/assistant.jpg')
+				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
 				if (((isAudio && !sam.message.audioMessage) || isQuotedAudio) && args.length == 0) {
 					low = JSON.parse(JSON.stringify(sam).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo
 					//reply(mess.wait)
@@ -2236,7 +2255,7 @@ _*El archivo se esta enviando.....*_
 						fs.unlinkSync(slo)
 						if (err) return reply('¡Error!')
 						hah = fs.readFileSync(ran)
-						samu330.sendMessage(from, hah, audio, { mimetype: 'audio/mp4', ptt: true, quoted: fdoc })
+						samu330.sendMessage(from, hah, audio, { mimetype: 'audio/mp4', ptt: true, quoted: faud })
 						fs.unlinkSync(ran)
 					})
 				} else {
@@ -2245,6 +2264,8 @@ _*El archivo se esta enviando.....*_
 			break
 
 			case 'trigger':
+				assistant = fs.readFileSync('./src/assistant.jpg')
+				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
 				if (((isAudio && !sam.message.audioMessage) || isQuotedAudio) && args.length == 0) {
 					tri = JSON.parse(JSON.stringify(sam).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo
 					//reply(mess.wait)
@@ -2254,7 +2275,7 @@ _*El archivo se esta enviando.....*_
 						fs.unlinkSync(ger)
 						if (err) return reply('¡Error!')
 						hah = fs.readFileSync(ran)
-						samu330.sendMessage(from, hah, audio, { mimetype: 'audio/mp4', ptt: true, quoted: fdoc })
+						samu330.sendMessage(from, hah, audio, { mimetype: 'audio/mp4', ptt: true, quoted: faud })
 						fs.unlinkSync(ran)
 					})
 				} else {
@@ -2292,6 +2313,7 @@ _*El archivo se esta enviando.....*_
 				break
 
 			case 'reg':
+				assistant = fs.readFileSync('./src/assistant.jpg')
 				if (isRegister) return reply('*Tu cuenta ya ha sido registrada anteriormente.*')
 				if (!q.includes('|')) return reply(`*POR FAVOR ESCRIBE BIEN EL FORMATO DE REGISTRO:* ${prefix + command} *Nombre|Edad*\nPor ejemplo: ${prefix + command} Smith|27`)
 				const nombre = q.substring(0, q.indexOf('|') - 0)
@@ -2314,7 +2336,7 @@ _*El archivo se esta enviando.....*_
 				exec(`magick './src/reg.jpg' -gravity west -fill '#00FF00' -font './src/font-gue.ttf' -size 1280x710 -pointsize 90 -interline-spacing 7.5 -annotate +460-45 '${nombre}' -pointsize 50 -annotate +460+200 '${serialUser}' '${ppimg}' -resize %[fx:t?u.w*0.2:u.w]x%[fx:?u.h*0.2:u.h] -gravity center -geometry -430+70 -composite './src/regsm.jpg'`)
 					.on('error', () => reply('error'))
 					.on('exit', () => {
-						samu330.sendMessage(from, fs.readFileSync('./src/regsm.jpg'), MessageType.image, { quoted: sam, caption: `*「 REGISTRO CORRECTO 」*\n\n*◦ Nombre : ${nombre}*\n*◦ Número : wa.me/${sender.split("@")[0]}*\n*◦ Edad : ${edad}*\n*◦ Hora De Registro : ${time}*\n*◦ SN : ${serialUser}*\n\n *📋Se ha registrado correctamente*\n\n*Para ver todos los comandos que acepta Sam | Nexusᴮᴼᵀ escribe el siguiente comando: ${prefix}menu*` })
+						samu330.sendMessage(from, assistant, image, { quoted: fdoc, caption: `*「 REGISTRO CORRECTO 」*\n\n*◦ Nombre : ${nombre}*\n*◦ Número : wa.me/${sender.split("@")[0]}*\n*◦ Edad : ${edad}*\n*◦ Hora De Registro : ${time}*\n*◦ SN : ${serialUser}*\n\n *📋Se ha registrado correctamente*\n\n*Para ver todos los comandos que acepta Sam | Nexusᴮᴼᵀ escribe el siguiente comando: ${prefix}menu*`,thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
 					})
 				break
 
