@@ -357,6 +357,22 @@ samu330.on('chat-update', async (sam) => {
 			samu330.sendMessage(hehe, teks, MessageType.text, { quoted: ftoko })
 		}
 
+		const hour_now = moment().format('HH')
+		var timeFt = '*Buenos días 🌅*'
+		if (hour_now >= '03' && hour_now <= '10') {
+			timeFt = 'Buenos días'
+		} else if (hour_now >= '10' && hour_now <= '14') {
+			timeFt = '*Buenos días 🌅*'
+		} else if (hour_now >= '14' && hour_now <= '17') {
+			timeFt = 'Buenas tardes 🌇'
+		} else if (hour_now >= '17' && hour_now <= '18') {
+			timeFy = 'Buenas tardes 🌇'
+		} else if (hour_now >= '18' && hour_now <= '23') {
+			timeFt = 'Buenas noches 🌃'
+		} else {
+			timeFt = 'Buen inicio del día 🌱'
+		}
+
 		mess = {
 			wait: 'Espera un momento por favor...',
 			success: '✔️ HECHO ✔️',
@@ -378,23 +394,6 @@ samu330.on('chat-update', async (sam) => {
 				
 			}
 		}
-
-		const hour_now = moment().format('HH')
-		var timeFt = '*Buenos días 🌅*'
-		if (hour_now >= '03' && hour_now <= '10') {
-			timeFt = 'Buenos días'
-		} else if (hour_now >= '10' && hour_now <= '14') {
-			timeFt = '*Buenos días 🌅*'
-		} else if (hour_now >= '14' && hour_now <= '17') {
-			timeFt = 'Buenas tardes 🌇'
-		} else if (hour_now >= '17' && hour_now <= '18') {
-			timeFy = 'Buenas tardes 🌇'
-		} else if (hour_now >= '18' && hour_now <= '23') {
-			timeFt = 'Buenas noches 🌃'
-		} else {
-			timeFt = 'Buen inicio del día 🌱'
-		}
-
 
 		const isImage = type == 'imageMessage'
 		const isVideo = type == 'videoMessage'
