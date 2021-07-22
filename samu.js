@@ -358,7 +358,7 @@ samu330.on('chat-update', async (sam) => {
 		}
 
 		mess = {
-			wait: '⌛ 𝐄𝐍 𝐏𝐑𝐎𝐂𝐄𝐒𝐎 ⌛',
+			wait: 'Espera un momento por favor...',
 			success: '✔️ HECHO ✔️',
 			nsfw: `𝗟𝗼 𝘀𝗶𝗲𝗻𝘁𝗼 𝗽𝗲𝗿𝗼 𝗻𝗼 𝗽𝘂𝗲𝗱𝗼 𝗲𝗷𝗲𝗰𝘂𝘁𝗮𝗿 𝗲𝘀𝗲 𝗰𝗼𝗺𝗮𝗻𝗱𝗼, 𝗲𝘀𝘁𝗲 𝗴𝗿𝘂𝗽𝗼 𝗻𝗼 𝗽𝗲𝗿𝗺𝗶𝘁𝗲 𝗰𝗼𝗻𝘁𝗲𝗻𝗶𝗱𝗼 +𝟭𝟴\n*PARA ACTIVAR LOS COMANDOS +18, USA:* ${prefix}+18 1`,
 			ferr: 'Inténtalo de nuevo más tarde.',
@@ -373,7 +373,9 @@ samu330.on('chat-update', async (sam) => {
 				ownerB: '[❗] ¡Este comando solo puede ser utilizado por el creador del bot! ❌',
 				admin: '[❗] ¡Este comando solo puede ser utilizado por administradores del grupo! ❌',
 				Badmin: '[❗] ¡Este comando solo se puede usar cuando el Bot es administrador! ❌',
-				usrReg: `Usuario no *Registrado*\n_Para registrarte usa el comando_: *${prefix}reg*`
+				usrReg: `Usuario no *Registrado*\n_Para registrarte usa el comando_: *${prefix}reg*`,
+				demoReg: `😊 Hola, ${timeFt}.\n*Yo soy Sam*, Asistente de *Nexus*.\n\nAl parecer no estas registrado en _*Nexusᴮᴼᵀ*_, Para registrarte usa el comando: *${prefix}reg*`
+				
 			}
 		}
 
@@ -2118,7 +2120,7 @@ _*El archivo se esta enviando.....*_
 			break
 
 			case 'neko':
-				if (!isRegister) return reply(mess.only.usrReg)
+				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.demoReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
 					samu330.updatePresence(from, Presence.composing)
 					neko = ["https://nekos.life/api/v2/img/neko","https://nekos.life/api/v2/img/neko"]
 					sneko = neko[Math.floor(Math.random() * neko.length)]
