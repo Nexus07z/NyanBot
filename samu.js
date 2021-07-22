@@ -126,12 +126,12 @@ const checkRegisteredUser = (sender) => {
 samu330.on('CB:action,,call', async json => {
 	const callerId = json[2][0][1].from;
 	console.log("Llamada recibida de " + callerId)
-	samu330.sendMessage(callerId, "Las llamadas no están permitidas, *por favor lee las reglas*. Ahora estas bloqueado por el sistema automático de Nexusᴮᴼᵀ.", MessageType.text,
+	samu330.sendMessage(callerId, "Las llamadas no están permitidas, *por favor lee las reglas.* Ahora estas bloqueado por el sistema automático de Nexusᴮᴼᵀ.", MessageType.text,
 		{
 			quoted:
 			{
 				key: { fromMe: false, participant: `0@s.whatsapp.net` },
-				message: { "imageMessage": { "caption": "🚫 No se permiten las llamadas 🚫", 'jpegThumbnail': fs.readFileSync('./src/fake.jpg') } }
+				message: { "documentMessage": { "title": "🚫 No se permiten las llamadas 🚫", 'jpegThumbnail': fs.readFileSync('./src/fake.jpg') } }
 			}
 		}
 	)
@@ -214,7 +214,7 @@ samu330.on('group-participants-update', async (anu) => {
 			num = anu.participants[0]
 			teks = `_😪...  @${num.split('@')[0]} salió del grupo._\n
 _*No le deseo el mal, pero tampoco el bien…*_
-*Seguramente nadie lo extrañara. 🤣*`
+`
 			samu330.sendMessage(mdata.id, teks, MessageType.text, { contextInfo: { "mentionedJid": [num] } })
 
 		} else if (anu.action == 'promote') {
@@ -389,8 +389,7 @@ samu330.on('chat-update', async (sam) => {
 				ownerB: '[❗] ¡Este comando solo puede ser utilizado por el creador del bot! ❌',
 				admin: '[❗] ¡Este comando solo puede ser utilizado por administradores del grupo! ❌',
 				Badmin: '[❗] ¡Este comando solo se puede usar cuando el Bot es administrador! ❌',
-				usrReg: `Usuario no *Registrado*\n_Para registrarte usa el comando_: *${prefix}reg*`,
-				demoReg: `😊 Hola, ${timeFt}.\n*Yo soy Sam*, Asistente de *Nexus*.\n\nAl parecer no estas registrado en _*Nexusᴮᴼᵀ*_, Para registrarte usa el comando: *${prefix}reg*`
+				usrReg: `😊 Hola, ${timeFt}.\n*Yo soy Sam*, Asistente de *Nexus*.\n\nAl parecer no estas registrado en _*Nexusᴮᴼᵀ*_, Para registrarte usa el comando: *${prefix}reg*`
 				
 			}
 		}
@@ -450,9 +449,8 @@ samu330.on('chat-update', async (sam) => {
 						participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: "status@broadcast" } : {})
 					},
 					message: {
-						"imageMessage": {
-							"mimetype": "image/jpeg",
-							"caption": `Sam | Nexusᴮᴼᵀ\n${prefix}${command} ${q}`,
+						"documentMessage": {
+							"title": `Sam | Nexusᴮᴼᵀ\n${prefix}${command} ${q}`,
 							'jpegThumbnail': fs.readFileSync('./src/fake.jpg')
 						}
 					}
@@ -542,7 +540,7 @@ samu330.on('chat-update', async (sam) => {
 				participant: `0@s.whatsapp.net`, ...(from ?
 					{ remoteJid: "status@broadcast" } : {})
 			},
-			message: { "audioMessage": { "mimetype": "audio/mp4", "ptt": true, "seconds": -999999 } }
+			message: { "audioMessage": { "mimetype": "audio/mp4", "caption": `Sam | Nexusᴮᴼᵀ`, "ptt": true, "seconds": -999999 } }
 		}
 		contextInfo: {
 			mentionedJid: [sender]
@@ -2104,7 +2102,8 @@ _*El archivo se esta enviando.....*_
 			break
 
 			case 'waifu':
-				if (!isRegister) return reply(mess.only.usrReg)
+				assistant = fs.readFileSync('./src/assistant.jpg')
+				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
 					samu330.updatePresence(from, Presence.composing)
 					waifu = ["https://hertz-ingenieros.com/api/lh/waifu.php","https://hertz-ingenieros.com/api/lh/waifu.php"]
 					swaifu = waifu[Math.floor(Math.random() * waifu.length)]
@@ -2120,7 +2119,7 @@ _*El archivo se esta enviando.....*_
 
 			case 'neko':
 				assistant = fs.readFileSync('./src/assistant.jpg')
-				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.demoReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
+				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
 					samu330.updatePresence(from, Presence.composing)
 					neko = ["https://nekos.life/api/v2/img/neko","https://nekos.life/api/v2/img/neko"]
 					sneko = neko[Math.floor(Math.random() * neko.length)]
@@ -2135,6 +2134,7 @@ _*El archivo se esta enviando.....*_
 			break
 
 			case 'ardilla':
+				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
 				if (((isAudio && !sam.message.audioMessage) || isQuotedAudio) && args.length == 0) {
 					pai = JSON.parse(JSON.stringify(sam).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo
 					//reply(mess.wait)
@@ -2144,7 +2144,7 @@ _*El archivo se esta enviando.....*_
 						fs.unlinkSync(tup)
 						if (err) return reply('¡Error!')
 						hah = fs.readFileSync(ran)
-						samu330.sendMessage(from, hah, audio, { mimetype: 'audio/mp4', ptt: true, quoted: fdoc })
+						samu330.sendMessage(from, hah, audio, { mimetype: 'audio/mp4', ptt: true, quoted: faud })
 						fs.unlinkSync(ran)
 					})
 				} else {
