@@ -2134,6 +2134,7 @@ _*El archivo se esta enviando.....*_
 			break
 
 			case 'ardilla':
+				assistant = fs.readFileSync('./src/assistant.jpg')
 				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
 				if (((isAudio && !sam.message.audioMessage) || isQuotedAudio) && args.length == 0) {
 					pai = JSON.parse(JSON.stringify(sam).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo
