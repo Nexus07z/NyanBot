@@ -2079,7 +2079,7 @@ _*El archivo se esta enviando.....*_
 					else {
 						var gugIm = result
 						var random = gugIm[Math.floor(Math.random() * gugIm.length)].url
-						sendFileFromUrl(random, image, { quoted: sam, caption: `*🔍Busqueda de* _${ggimg}_` })
+						sendFileFromUrl(random, image, { quoted: fimg, caption: `*🔍Busqueda de* _${ggimg}_` })
 					}
 				}
 			break
