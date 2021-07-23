@@ -2509,7 +2509,7 @@ ase,fps=15, pad=320:320:-1:-1:color=white@0.0, split [a][b]; [a] palettegen=rese
 				assistant = fs.readFileSync('./src/assistant.jpg')
 				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
 				if (!isQuotedSticker) return reply(`Por favor etiqueta un sticker con el comando.`)
-				if (sam.message.extendedTextMessage.contextInfo.isAnimated === true) {
+				if (sam.message.extendedTextMessage.contextInfo.quotedMessage.stickerMessage.isAnimated === true) {
 					reply(`Este comando solo funciona con stickers estáticos, para convertir un sticker animado a gif, usa: ${prefix}agif`)
 				} else {
 					var media1 = JSON.parse(JSON.stringify(sam).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo
@@ -2517,14 +2517,12 @@ ase,fps=15, pad=320:320:-1:-1:color=white@0.0, split [a][b]; [a] palettegen=rese
 					ran = getRandom('.png')
 					exec(`ffmpeg -i ${media2} ${ran}`, (err) => {
 						fs.unlinkSync(media2)
-						if (err) {
-							reply(`error\n\n${err}`)
-							fs.unlinkSync(ran)
-						} else {
-							buffer = fs.readFileSync(ran)
-							samu330.sendMessage(from, buffer, MessageType.image, { quoted: sam })
-							fs.unlinkSync(ran)
-						}
+						if (err) return reply('*Algo salio mal, intenta de nuevo.*')
+						
+						buffer = fs.readFileSync(ran)
+						samu330.sendMessage(from, buffer, MessageType.image, { quoted: sam })
+						fs.unlinkSync(ran)
+						
 					})
 				}
 			break
