@@ -2062,7 +2062,7 @@ _*El archivo se esta enviando.....*_
 					fs.unlinkSync(mediav)
 					if (err) return reply(`Error: ${err}`)
 					vre = fs.readFileSync(ran)
-					samu330.sendMessage(from, vre, video, { mimetype: 'video/mp4', quoted: fvid })
+					samu330.sendMessage(from, vre, MessageType.video, { mimetype: 'video/mp4', quoted: fvid })
 					fs.unlinkSync(ran)
 				})
 			break
