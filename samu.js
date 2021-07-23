@@ -867,13 +867,13 @@ Hola *${pushname}* ${timeFt}
 ╠ *${prefix}reversa*
 ║ _Etiqueta un video para ponerlo en reversa._
 ║
-╠ *${prefix}imagen*
+╠ *${prefix}imagen* [Palabra]
 ║ _Búsqueda de imágenes en Google._
 ║
 ╠ *${prefix}sinfondo*
 ║ _Etiqueta una imagen para quitarle el fondo._
 ║
-╠ *${prefix}wpbusca* 
+╠ *${prefix}wpbusca* [Palabra]
 ║ _Búsqueda de fondos de pantalla._
 ║
 ╠ *${prefix}waifu*
@@ -925,40 +925,46 @@ Hola *${pushname}* ${timeFt}
 				assistant = fs.readFileSync('./src/assistant.jpg')
 				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
 				stc = `
-					╔═════════════════╗
-					╠               *MENU DE STICKER*               ╣
-					╠═════════════════╝
-					║
-					╠ *${prefix}sticker*
-					║ _Etiqueta una imagen/gif/video._
-					║
-					╠ *${prefix}spack*
-					║ _Paquete personalizado._
-					║
-					╠ *${prefix}robar*
-					║
-					╠ *${prefix}exif*
-					║
-					╠ *${prefix}takestick*
-    				║ _Nombre|Autor_
-					║
-					╠ *${prefix}swm*
-					║ _Nombre|Autor_
-					║
-					╠ *${prefix}colores*
-					║ _Texto a colores_
-					║
-					╠ *${prefix}ger*
-					║ _Estilo Triggered_
-					║
-					╠ *${prefix}aimg*
-					║ _Stiker a imagen_
-					║
-					╠ *${prefix}agif*
-					║ _Stiker a gif_
-					║
-					╰──────────────
-				`
+╔═════════════════╗
+╠               *MENU DE STICKER*               ╣
+╠═════════════════╝
+║
+╠ *${prefix}imagen* [Palabra]
+║ _Búsqueda de imágenes en Google._
+║
+╠ *${prefix}sinfondo*
+║ _Etiqueta una imagen para quitarle el fondo._
+║
+╠ *${prefix}sticker*
+║ _Etiqueta una imagen/gif/video._
+║ _Para convertirlo en sticker._
+║
+╠ *${prefix}stickerp* [Nombre|Autor]
+║ _Etiqueta una imagen/gif/video._
+║ _Para convertirlo en sticker personalizado._
+║
+╠ *${prefix}renombrar*
+║ _Etiqueta un sticker para renombrarlo._
+║ _ Sticker|WhatsApp 
+║
+╠ *${prefix}renombrarp* [Nombre|Autor]
+║ _Etiqueta un sticker para renombrarlo._
+║ _Nombre|Autor Personalizado._
+║
+╠ *${prefix}colores*
+║ _Texto a colores_
+║
+╠ *${prefix}ger*
+║ _Estilo Triggered_
+║
+╠ *${prefix}aimg*
+║ _Stiker a imagen_
+║
+╠ *${prefix}agif*
+║ _Stiker a gif_
+║
+╰──────────────
+`
 				samu330.sendMessage(from, stc, MessageType.text, {
 					quoted:
 					{
@@ -2288,6 +2294,182 @@ _*El archivo se esta enviando.....*_
 				}
 			break
 
+			case 'sticker':
+			case 's':
+			case 'stiker':
+				assistant = fs.readFileSync('./src/assistant.jpg')
+				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
+				if (isMedia && !sam.message.videoMessage || isQuotedImage) {
+					const encmedia1 = isQuotedImage ? JSON.parse(JSON.stringify(sam).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo : sam
+					const media1 = await samu330.downloadAndSaveMediaMessage(encmedia1, `./sticker/${sender}`)
+					const packname10 = `Sam NexusBOT\n\n        Sticker`
+					const author10 = args.join(' ')
+					exif.create(packname10, author10, `stickwm_${sender}`)
+					await ffmpeg(`${media1}`)
+						.input(media1)
+						.on('start', function (cmd) {
+							console.log(`Started : ${cmd}`)
+						})
+						.on('error', function (err) {
+							console.log(`Error : ${err}`)
+							fs.unlinkSync(media1)
+							reply('*Intenta de nuevo*')
+						})
+						.on('end', function () {
+							console.log('Finish')
+							exec(`webpmux -set exif ./sticker/stickwm_${sender}.exif ./sticker/${sender}.webp -o ./sticker/${sender}.webp`, async (error) => {
+								if (error) return reply('error')
+								wa.sendSticker(from, fs.readFileSync(`./sticker/${sender}.webp`), ftoko)
+								fs.unlinkSync(media1)
+								fs.unlinkSync(`./sticker/${sender}.webp`)
+								fs.unlinkSync(`./sticker/stickwm_${sender}.exif`)
+							})
+						})
+						.addOutputOptions([`-vcodec`, `libwebp`, `-vf`, `scale='min(320,iw)':min'(320,ih)':force_original_aspect_ratio=decrease,
+fps=15, pad=320:320:-1:-1:color=white@0.0, split [a][b]; [a] palettegen=reserve_transparent=on:transparency_color=ffffff [p]; [b][p]
+paletteuse`])
+						.toFormat('webp')
+						.save(`./sticker/${sender}.webp`)
+				} else if ((isMedia && sam.message.videoMessage.fileLength < 10000000 || isQuotedVideo && sam.message.extendedTextMessage.contextInfo.quotedMessage.videoMessage.fileLength < 10000000)) {
+					const encmedia2 = isQuotedVideo ? JSON.parse(JSON.stringify(sam).replace('quotedM', 'm')).message.extendedTextMessage.
+						contextInfo : sam
+					const media2 = await samu330.downloadAndSaveMediaMessage(encmedia2, `./sticker/${sender}`)
+					const packname101 = `Sam NexusBOT\n\n        Sticker`
+					const author101 = args.join(' ')
+					exif.create(packname101, author101, `stickwm_${sender}`)
+					reply(mess.wait)
+					await ffmpeg(`${media2}`)
+						.inputFormat(media2.split('.')[4])
+						.on('start', function (cmd) {
+							console.log(`Started : ${cmd}`)
+						})
+						.on('error', function (err) {
+							console.log(`Error : ${err}`)
+							fs.unlinkSync(media2)
+							tipe = media.endsWith('.mp4') ? 'video' : 'gif'
+							reply('*Intenta de nuevo*')
+						})
+						.on('end', function () {
+							console.log('Finish')
+							exec(`webpmux -set exif ./sticker/stickwm_${sender}.exif ./sticker/${sender}.webp -o ./sticker/${sender}.webp`, async (error) => {
+								if (error) return reply('error')
+								wa.sendSticker(from, fs.readFileSync(`./sticker/${sender}.webp`), ftoko)
+								fs.unlinkSync(media2)
+								fs.unlinkSync(`./sticker/${sender}.webp`)
+								fs.unlinkSync(`./sticker/stickwm_${sender}.exif`)
+							})
+						})
+						.addOutputOptions([`-vcodec`, `libwebp`, `-vf`, `scale='min(320,iw)':min'(320,ih)':force_original_aspect_ratio=decre
+ase,fps=15, pad=320:320:-1:-1:color=white@0.0, split [a][b]; [a] palettegen=reserve_transparent=on:transparency_color=ffffff [p]; [b][p] paletteuse`])
+						.toFormat('webp')
+						.save(`./sticker/${sender}.webp`)
+				} else {
+					reply(`*Por favor etiqueta una imagen/video/gif con el comando.\nNota: El video/gif no debe de durar mas de 10 segundos.*`)
+				}
+			break
+
+			case 'stickerp':
+				assistant = fs.readFileSync('./src/assistant.jpg')
+				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
+				if (isMedia && !sam.message.videoMessage || isQuotedImage) {
+					if (!arg.includes('|')) return reply(`*Envía o etiqueta una imagen con el comando.*\nPor ejemplo *${prefix + command} nombre|autor*`)
+					const encmedia = isQuotedImage ? JSON.parse(JSON.stringify(sam).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo : sam
+					const media = await samu330.downloadAndSaveMediaMessage(encmedia, `./sticker/${sender}`)
+					const packname1 = arg.split('|')[0]
+					const author1 = arg.split('|')[1]
+					exif.create(packname1, author1, `stickwm_${sender}`)
+					await ffmpeg(`${media}`)
+						.input(media)
+						.on('start', function (cmd) {
+							console.log(`Started : ${cmd}`)
+						})
+						.on('error', function (err) {
+							console.log(`Error : ${err}`)
+							fs.unlinkSync(media)
+							reply('error')
+						})
+						.on('end', function () {
+							console.log('Finish')
+							exec(`webpmux -set exif ./sticker/stickwm_${sender}.exif ./sticker/${sender}.webp -o ./sticker/${sender}.webp`, async (error) => {
+								if (error) return reply('error')
+								wa.sendSticker(from, fs.readFileSync(`./sticker/${sender}.webp`), fliveLoc)
+								fs.unlinkSync(media)
+								fs.unlinkSync(`./sticker/${sender}.webp`)
+								fs.unlinkSync(`./sticker/stickwm_${sender}.exif`)
+							})
+						})
+						.addOutputOptions([`-vcodec`, `libwebp`, `-vf`, `scale='min(320,iw)':min'(320,ih)':force_original_aspect_ratio=decrease,fps=15, pad=320:320:-1:-1:color=white@0.0, split [a][b]; [a] palettegen=reserve_transparent=on:transparency_color=ffffff [p]; [b][p] paletteuse`])
+						.toFormat('webp')
+						.save(`./sticker/${sender}.webp`)
+				} else if ((isMedia && sam.message.videoMessage.fileLength < 10000000 || isQuotedVideo && sam.message.extendedTextMessage.contextInfo.quotedMessage.videoMessage.fileLength < 10000000)) {
+					if (!arg.includes('|')) return reply(`Envía o etiqueta una imagen con el comando.*\nPor ejemplo *${prefix + command} nombre|autor`)
+					const encmedia = isQuotedVideo ? JSON.parse(JSON.stringify(sam).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo : sam
+					const media = await samu330.downloadAndSaveMediaMessage(encmedia, `./sticker/${sender}`)
+					const packname1 = arg.split('|')[0]
+					const author1 = arg.split('|')[1]
+					exif.create(packname1, author1, `stickwm_${sender}`)
+					reply(mess.wait)
+					await ffmpeg(`${media}`)
+						.inputFormat(media.split('.')[4])
+						.on('start', function (cmd) {
+							console.log(`Started : ${cmd}`)
+						})
+						.on('error', function (err) {
+							console.log(`Error : ${err}`)
+							fs.unlinkSync(media)
+							tipe = media.endsWith('.mp4') ? 'video' : 'gif'
+							reply('error')
+						})
+						.on('end', function () {
+							console.log('Finish')
+							exec(`webpmux -set exif ./sticker/stickwm_${sender}.exif ./sticker/${sender}.webp -o ./sticker/${sender}.webp`, async (error) => {
+								if (error) return reply('error')
+								wa.sendSticker(from, fs.readFileSync(`./sticker/${sender}.webp`), ftoko)
+								fs.unlinkSync(media)
+								fs.unlinkSync(`./sticker/${sender}.webp`)
+								fs.unlinkSync(`./sticker/stickwm_${sender}.exif`)
+							})
+						})
+						.addOutputOptions([`-vcodec`, `libwebp`, `-vf`, `scale='min(320,iw)':min'(320,ih)':force_original_aspect_ratio=decrease,fps=15, pad=320:320:-1:-1:color=white@0.0, split [a][b]; [a] palettegen=reserve_transparent=on:transparency_color=ffffff [p]; [b][p] paletteuse`])
+						.toFormat('webp')
+						.save(`./sticker/${sender}.webp`)
+				} else {
+					reply(`*Por favor etiqueta una imagen/video/gif con el comando, agregando también nombre|autor.\nNota: El video/gif no debe de durar mas de 10 segundos.*`)
+				}
+			break
+
+			case 'renombrar':
+				assistant = fs.readFileSync('./src/assistant.jpg')
+				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
+				if (!isQuotedSticker) return reply(`*Por favor etiqueta un sticker con el comando.*`)
+				const encmediia = JSON.parse(JSON.stringify(sam).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo
+				const meidia = await samu330.downloadAndSaveMediaMessage(encmediia, `./sticker/${sender}`)
+				exec(`webpmux -set exif ./sticker/data.exif ./sticker/${sender}.webp -o ./sticker/${sender}.webp`, async (error) => {
+					if (error) return reply('error')
+					wa.sendSticker(from, fs.readFileSync(`./sticker/${sender}.webp`), ftoko)
+					fs.unlinkSync(meidia)
+				})
+			break
+
+			case 'renombrarp':
+				assistant = fs.readFileSync('./src/assistant.jpg')
+				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
+				if (!isQuotedSticker) return reply(`*Por favor etiqueta un sticker con el comando.*\nPor ejemplo *${prefix + command} nombre|autor`)
+				const stsam = body.slice(11)
+				if (!stsam.includes('|')) return reply(`*Por favor etiqueta un sticker con el comando.*\nPor ejemplo *${prefix + command} nombre|autor`)
+				const encmedia = JSON.parse(JSON.stringify(sam).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo
+				const media = await samu330.downloadAndSaveMediaMessage(encmedia, `./sticker/${sender}`)
+				const packname = stsam.split('|')[0]
+				const author = stsam.split('|')[1]
+				exif.create(packname, author, `takestick_${sender}`)
+				exec(`webpmux -set exif ./sticker/takestick_${sender}.exif ./sticker/${sender}.webp -o ./sticker/${sender}.webp`, async (error) => {
+					if (error) return reply('error')
+					wa.sendSticker(from, fs.readFileSync(`./sticker/${sender}.webp`), floc)
+					fs.unlinkSync(media)
+					fs.unlinkSync(`./sticker/takestick_${sender}.exif`)
+				})
+				break
+
 			case 'wa.me':
 			case 'wame':
 				samu330.updatePresence(from, Presence.composing)
@@ -2388,23 +2570,6 @@ _*El archivo se esta enviando.....*_
 				reply(`*El nombre de paquete de Stiker a cambiado a:* _${arg.split('|')[0]}\n*Y el autor a:* ${arg.split('|')[1]}`)
 				break
 
-			case 'takestick':
-				if (!isQuotedSticker) return reply(`Etiqueta un stiquer y escribe: *${prefix}takestick nombre|autor*`)
-				const stsam = body.slice(11)
-				if (!stsam.includes('|')) return reply(`Etiqueta un stiquer y escribe: *${prefix}takestick nombre|autor*`)
-				const encmedia = JSON.parse(JSON.stringify(sam).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo
-				const media = await samu330.downloadAndSaveMediaMessage(encmedia, `./sticker/${sender}`)
-				const packname = stsam.split('|')[0]
-				const author = stsam.split('|')[1]
-				exif.create(packname, author, `takestick_${sender}`)
-				exec(`webpmux -set exif ./sticker/takestick_${sender}.exif ./sticker/${sender}.webp -o ./sticker/${sender}.webp`, async (error) => {
-					if (error) return reply('error')
-					wa.sendSticker(from, fs.readFileSync(`./sticker/${sender}.webp`), floc)
-					fs.unlinkSync(media)
-					fs.unlinkSync(`./sticker/takestick_${sender}.exif`)
-				})
-				break
-
 			case 'scdl':
 				var url = budy.slice(6)
 				var res1 = await axios.get(`https://lindow-api.herokuapp.com/api/dlsoundcloud?url=${url}&apikey=${apikey}`)
@@ -2434,88 +2599,6 @@ _*El archivo se esta enviando.....*_
 				url = `https://lindow-api.herokuapp.com/api/asupan?apikey=${apikey}`
 				asupan = await getBuffer(url)
 				samu330.sendMessage(from, asupan, MessageType.video, { mimetype: 'video/mp4', duration: 999999999, filename: `asupan.mp4`, quoted: fvid })
-				break
-
-			case 'robar':
-				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: `😊 Hola, ${timeFt}.\n*Yo soy Sam*, Asistente de *Nexus*.\n\nAl parecer no estas registrado en _*Nexusᴮᴼᵀ*_, Para registrarte usa el comando: *${prefix}reg*`, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
-				if (!isQuotedSticker) return reply(`*Tururuu.... y el stiker kbron?*`)
-				const encmediia = JSON.parse(JSON.stringify(sam).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo
-				const meidia = await samu330.downloadAndSaveMediaMessage(encmediia, `./sticker/${sender}`)
-				exec(`webpmux -set exif ./sticker/data.exif ./sticker/${sender}.webp -o ./sticker/${sender}.webp`, async (error) => {
-					if (error) return reply('error')
-					wa.sendSticker(from, fs.readFileSync(`./sticker/${sender}.webp`), ftoko)
-					fs.unlinkSync(meidia)
-				})
-				break
-
-			case 'swm':
-			case 'stickerwm':
-				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: `😊 Hola, ${timeFt}.\n*Yo soy Sam*, Asistente de *Nexus*.\n\nAl parecer no estas registrado en _*Nexusᴮᴼᵀ*_, Para registrarte usa el comando: *${prefix}reg*`, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
-				if (isMedia && !sam.message.videoMessage || isQuotedImage) {
-					if (!arg.includes('|')) return reply(`Envie o etiquete una imagen con el comando: *${prefix}swn nombre|autor*`)
-					const encmedia = isQuotedImage ? JSON.parse(JSON.stringify(sam).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo : sam
-					const media = await samu330.downloadAndSaveMediaMessage(encmedia, `./sticker/${sender}`)
-					const packname1 = arg.split('|')[0]
-					const author1 = arg.split('|')[1]
-					exif.create(packname1, author1, `stickwm_${sender}`)
-					await ffmpeg(`${media}`)
-						.input(media)
-						.on('start', function (cmd) {
-							console.log(`Started : ${cmd}`)
-						})
-						.on('error', function (err) {
-							console.log(`Error : ${err}`)
-							fs.unlinkSync(media)
-							reply('error')
-						})
-						.on('end', function () {
-							console.log('Finish')
-							exec(`webpmux -set exif ./sticker/stickwm_${sender}.exif ./sticker/${sender}.webp -o ./sticker/${sender}.webp`, async (error) => {
-								if (error) return reply('error')
-								wa.sendSticker(from, fs.readFileSync(`./sticker/${sender}.webp`), fliveLoc)
-								fs.unlinkSync(media)
-								fs.unlinkSync(`./sticker/${sender}.webp`)
-								fs.unlinkSync(`./sticker/stickwm_${sender}.exif`)
-							})
-						})
-						.addOutputOptions([`-vcodec`, `libwebp`, `-vf`, `scale='min(320,iw)':min'(320,ih)':force_original_aspect_ratio=decrease,fps=15, pad=320:320:-1:-1:color=white@0.0, split [a][b]; [a] palettegen=reserve_transparent=on:transparency_color=ffffff [p]; [b][p] paletteuse`])
-						.toFormat('webp')
-						.save(`./sticker/${sender}.webp`)
-				} else if ((isMedia && sam.message.videoMessage.fileLength < 10000000 || isQuotedVideo && sam.message.extendedTextMessage.contextInfo.quotedMessage.videoMessage.fileLength < 10000000)) {
-					if (!arg.includes('|')) return reply(`Envie o etiquete un video/gif con el comando: *${prefix}swm nombre|autor*`)
-					const encmedia = isQuotedVideo ? JSON.parse(JSON.stringify(sam).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo : sam
-					const media = await samu330.downloadAndSaveMediaMessage(encmedia, `./sticker/${sender}`)
-					const packname1 = arg.split('|')[0]
-					const author1 = arg.split('|')[1]
-					exif.create(packname1, author1, `stickwm_${sender}`)
-					reply('wait')
-					await ffmpeg(`${media}`)
-						.inputFormat(media.split('.')[4])
-						.on('start', function (cmd) {
-							console.log(`Started : ${cmd}`)
-						})
-						.on('error', function (err) {
-							console.log(`Error : ${err}`)
-							fs.unlinkSync(media)
-							tipe = media.endsWith('.mp4') ? 'video' : 'gif'
-							reply('error')
-						})
-						.on('end', function () {
-							console.log('Finish')
-							exec(`webpmux -set exif ./sticker/stickwm_${sender}.exif ./sticker/${sender}.webp -o ./sticker/${sender}.webp`, async (error) => {
-								if (error) return reply('error')
-								wa.sendSticker(from, fs.readFileSync(`./sticker/${sender}.webp`), ftoko)
-								fs.unlinkSync(media)
-								fs.unlinkSync(`./sticker/${sender}.webp`)
-								fs.unlinkSync(`./sticker/stickwm_${sender}.exif`)
-							})
-						})
-						.addOutputOptions([`-vcodec`, `libwebp`, `-vf`, `scale='min(320,iw)':min'(320,ih)':force_original_aspect_ratio=decrease,fps=15, pad=320:320:-1:-1:color=white@0.0, split [a][b]; [a] palettegen=reserve_transparent=on:transparency_color=ffffff [p]; [b][p] paletteuse`])
-						.toFormat('webp')
-						.save(`./sticker/${sender}.webp`)
-				} else {
-					reply(`Envie o etiquete una imagen/vido/gif con el comando: ${prefix}swm nombre|autor *OJO!* El video/gif no debe de durar mas de 10 segundos`)
-				}
 				break
 
 			case 'pornode':
@@ -2618,78 +2701,7 @@ ${m}
 				reply(`${u}`)
 				break
 
-			case 'sticker':
-			case 's':
-			case 'stiker':
-				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: `😊 Hola, ${timeFt}.\n*Yo soy Sam*, Asistente de *Nexus*.\n\nAl parecer no estas registrado en _*Nexusᴮᴼᵀ*_, Para registrarte usa el comando: *${prefix}reg*`, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
-				if (isMedia && !sam.message.videoMessage || isQuotedImage) {
-					const encmedia1 = isQuotedImage ? JSON.parse(JSON.stringify(sam).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo : sam
-					const media1 = await samu330.downloadAndSaveMediaMessage(encmedia1, `./sticker/${sender}`)
-					const packname10 = `Sam NexusBOT\n\n        Sticker`
-					const author10 = args.join(' ')
-					exif.create(packname10, author10, `stickwm_${sender}`)
-					await ffmpeg(`${media1}`)
-						.input(media1)
-						.on('start', function (cmd) {
-							console.log(`Started : ${cmd}`)
-						})
-						.on('error', function (err) {
-							console.log(`Error : ${err}`)
-							fs.unlinkSync(media1)
-							reply('*Intenta de nuevo*')
-						})
-						.on('end', function () {
-							console.log('Finish')
-							exec(`webpmux -set exif ./sticker/stickwm_${sender}.exif ./sticker/${sender}.webp -o ./sticker/${sender}.webp`, async (error) => {
-								if (error) return reply('error')
-								wa.sendSticker(from, fs.readFileSync(`./sticker/${sender}.webp`), ftoko)
-								fs.unlinkSync(media1)
-								fs.unlinkSync(`./sticker/${sender}.webp`)
-								fs.unlinkSync(`./sticker/stickwm_${sender}.exif`)
-							})
-						})
-						.addOutputOptions([`-vcodec`, `libwebp`, `-vf`, `scale='min(320,iw)':min'(320,ih)':force_original_aspect_ratio=decrease,
-fps=15, pad=320:320:-1:-1:color=white@0.0, split [a][b]; [a] palettegen=reserve_transparent=on:transparency_color=ffffff [p]; [b][p]
-paletteuse`])
-						.toFormat('webp')
-						.save(`./sticker/${sender}.webp`)
-				} else if ((isMedia && sam.message.videoMessage.fileLength < 10000000 || isQuotedVideo && sam.message.extendedTextMessage.contextInfo.quotedMessage.videoMessage.fileLength < 10000000)) {
-					const encmedia2 = isQuotedVideo ? JSON.parse(JSON.stringify(sam).replace('quotedM', 'm')).message.extendedTextMessage.
-						contextInfo : sam
-					const media2 = await samu330.downloadAndSaveMediaMessage(encmedia2, `./sticker/${sender}`)
-					const packname101 = `Sam NexusBOT\n\n        Sticker`
-					const author101 = args.join(' ')
-					exif.create(packname101, author101, `stickwm_${sender}`)
-					reply('*⌛EN PROCESO*')
-					await ffmpeg(`${media2}`)
-						.inputFormat(media2.split('.')[4])
-						.on('start', function (cmd) {
-							console.log(`Started : ${cmd}`)
-						})
-						.on('error', function (err) {
-							console.log(`Error : ${err}`)
-							fs.unlinkSync(media2)
-							tipe = media.endsWith('.mp4') ? 'video' : 'gif'
-							reply('*Intenta de nuevo*')
-						})
-						.on('end', function () {
-							console.log('Finish')
-							exec(`webpmux -set exif ./sticker/stickwm_${sender}.exif ./sticker/${sender}.webp -o ./sticker/${sender}.webp`, async (error) => {
-								if (error) return reply('error')
-								wa.sendSticker(from, fs.readFileSync(`./sticker/${sender}.webp`), ftoko)
-								fs.unlinkSync(media2)
-								fs.unlinkSync(`./sticker/${sender}.webp`)
-								fs.unlinkSync(`./sticker/stickwm_${sender}.exif`)
-							})
-						})
-						.addOutputOptions([`-vcodec`, `libwebp`, `-vf`, `scale='min(320,iw)':min'(320,ih)':force_original_aspect_ratio=decre
-ase,fps=15, pad=320:320:-1:-1:color=white@0.0, split [a][b]; [a] palettegen=reserve_transparent=on:transparency_color=ffffff [p]; [b][p] paletteuse`])
-						.toFormat('webp')
-						.save(`./sticker/${sender}.webp`)
-				} else {
-					reply(`Envie o etiquete una imagen/vido/gif con el comando: ${prefix}swm nombre|autor *OJO!* El video/gif no debe de durar mas de 10 segundos`)
-				}
-				break
+			
 			
 			case 'snobg':
 				if ((isMedia || isQuotedImage)) {
