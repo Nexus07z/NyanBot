@@ -2055,7 +2055,7 @@ _*El archivo se esta enviando.....*_
 				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
 				if (!isQuotedVideo) return reply('*Por favor etiqueta un video con el comando.*')
 				reply('*Espera un momento por favor...*')
-				encmediav = JSON.parse(JSON.stringify(sam).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo
+				encmediav = isQuotedVideo ? JSON.parse(JSON.stringify(sam).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo : sam;
 				mediav = await samu330.downloadAndSaveMediaMessage(encmediav)
 				ran = getRandom('.mp4')
 				exec(`ffmpeg -i ${mediav} -vf reverse -af areverse ${ran}`, (err) => {
