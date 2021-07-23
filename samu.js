@@ -945,7 +945,7 @@ Hola *${pushname}* ${timeFt}
 ║
 ╠ *${prefix}renombrar*
 ║ _Etiqueta un sticker para renombrarlo._
-║ _ Sticker|WhatsApp 
+║ _Sticker|WhatsApp 
 ║
 ╠ *${prefix}renombrarp* [Nombre|Autor]
 ║ _Etiqueta un sticker para renombrarlo._
@@ -2364,7 +2364,7 @@ ase,fps=15, pad=320:320:-1:-1:color=white@0.0, split [a][b]; [a] palettegen=rese
 						.toFormat('webp')
 						.save(`./sticker/${sender}.webp`)
 				} else {
-					reply(`*Por favor etiqueta una imagen/video/gif con el comando.\nNota: El video/gif no debe de durar mas de 10 segundos.*`)
+					reply(`*Por favor etiqueta una imagen/video/gif con el comando.*\nNota: El video/gif no debe de durar mas de 10 segundos.`)
 				}
 			break
 
@@ -2372,7 +2372,7 @@ ase,fps=15, pad=320:320:-1:-1:color=white@0.0, split [a][b]; [a] palettegen=rese
 				assistant = fs.readFileSync('./src/assistant.jpg')
 				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
 				if (isMedia && !sam.message.videoMessage || isQuotedImage) {
-					if (!arg.includes('|')) return reply(`*Envía o etiqueta una imagen con el comando.*\nPor ejemplo *${prefix + command} nombre|autor*`)
+					if (!arg.includes('|')) return reply(`*Envía o etiqueta una imagen con el comando.*\nPor ejemplo: *${prefix + command} nombre|autor`)
 					const encmedia = isQuotedImage ? JSON.parse(JSON.stringify(sam).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo : sam
 					const media = await samu330.downloadAndSaveMediaMessage(encmedia, `./sticker/${sender}`)
 					const packname1 = arg.split('|')[0]
@@ -2402,7 +2402,7 @@ ase,fps=15, pad=320:320:-1:-1:color=white@0.0, split [a][b]; [a] palettegen=rese
 						.toFormat('webp')
 						.save(`./sticker/${sender}.webp`)
 				} else if ((isMedia && sam.message.videoMessage.fileLength < 10000000 || isQuotedVideo && sam.message.extendedTextMessage.contextInfo.quotedMessage.videoMessage.fileLength < 10000000)) {
-					if (!arg.includes('|')) return reply(`Envía o etiqueta una imagen con el comando.*\nPor ejemplo *${prefix + command} nombre|autor`)
+					if (!arg.includes('|')) return reply(`*Envía o etiqueta una imagen con el comando.*\nPor ejemplo: ${prefix + command} nombre|autor`)
 					const encmedia = isQuotedVideo ? JSON.parse(JSON.stringify(sam).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo : sam
 					const media = await samu330.downloadAndSaveMediaMessage(encmedia, `./sticker/${sender}`)
 					const packname1 = arg.split('|')[0]
@@ -2434,7 +2434,7 @@ ase,fps=15, pad=320:320:-1:-1:color=white@0.0, split [a][b]; [a] palettegen=rese
 						.toFormat('webp')
 						.save(`./sticker/${sender}.webp`)
 				} else {
-					reply(`*Por favor etiqueta una imagen/video/gif con el comando, agregando también nombre|autor.\nNota: El video/gif no debe de durar mas de 10 segundos.*`)
+					reply(`*Por favor etiqueta una imagen/video/gif con el comando, agregando también nombre|autor*\nNota: El video/gif no debe de durar mas de 10 segundos.`)
 				}
 			break
 
@@ -2454,9 +2454,9 @@ ase,fps=15, pad=320:320:-1:-1:color=white@0.0, split [a][b]; [a] palettegen=rese
 			case 'renombrarp':
 				assistant = fs.readFileSync('./src/assistant.jpg')
 				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
-				if (!isQuotedSticker) return reply(`*Por favor etiqueta un sticker con el comando.*\nPor ejemplo *${prefix + command} nombre|autor`)
+				if (!isQuotedSticker) return reply(`*Por favor etiqueta un sticker con el comando.*\nPor ejemplo: ${prefix + command} nombre|autor`)
 				const stsam = body.slice(11)
-				if (!stsam.includes('|')) return reply(`*Por favor etiqueta un sticker con el comando.*\nPor ejemplo *${prefix + command} nombre|autor`)
+				if (!stsam.includes('|')) return reply(`*Por favor etiqueta un sticker con el comando.*\nPor ejemplo: ${prefix + command} nombre|autor`)
 				const encmedia = JSON.parse(JSON.stringify(sam).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo
 				const media = await samu330.downloadAndSaveMediaMessage(encmedia, `./sticker/${sender}`)
 				const packname = stsam.split('|')[0]
