@@ -794,8 +794,8 @@ samu330.on('chat-update', async (sam) => {
 				assistant = fs.readFileSync('./src/assistant.jpg')
 				samu330.updatePresence(from, Presence.recording)
 				uptime = process.uptime()
-				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: `😊 Hola, ${timeFt}.\n*Yo soy Sam*, Asistente de *Nexus*.\n\nAl parecer no estas registrado en _*Nexusᴮᴼᵀ*_, Para registrarte usa el comando: *${prefix}reg*`, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
-				Menu = `
+				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
+					Menu = `
 Hola *${pushname}* ${timeFt}
 
 *Hora:* ${jmn}
@@ -854,8 +854,9 @@ Hola *${pushname}* ${timeFt}
 			break
 
 			case 'menu1':
-				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: `😊 Hola, ${timeFt}.\n*Yo soy Sam*, Asistente de *Nexus*.\n\nAl parecer no estas registrado en _*Nexusᴮᴼᵀ*_, Para registrarte usa el comando: *${prefix}reg*`, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
-				mda = `
+				assistant = fs.readFileSync('./src/assistant.jpg')
+				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
+					mda = `
 ╔═════════════════╗
 ╠               *MENU MULTIMEDIA*               ╣
 ╠═════════════════╝
@@ -921,7 +922,8 @@ Hola *${pushname}* ${timeFt}
 			break
 			
 			case 'menu2':
-				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: `😊 Hola, ${timeFt}.\n*Yo soy Sam*, Asistente de *Nexus*.\n\nAl parecer no estas registrado en _*Nexusᴮᴼᵀ*_, Para registrarte usa el comando: *${prefix}reg*`, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
+				assistant = fs.readFileSync('./src/assistant.jpg')
+				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
 				stc = `
 					╔═════════════════╗
 					╠               *MENU DE STICKER*               ╣
@@ -974,7 +976,8 @@ Hola *${pushname}* ${timeFt}
 			
 			case 'menu3':
 				samu330.updatePresence(from, Presence.composing)
-				if (!isRegister) return reply(mess.only.usrReg)
+				assistant = fs.readFileSync('./src/assistant.jpg')
+				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
 				uptime = process.uptime()
 
 				const Menug = {
@@ -1038,7 +1041,8 @@ ${bodyM} ${prefix}clonar
 				break
 			case 'menu4':
 				samu330.updatePresence(from, Presence.composing)
-				if (!isRegister) return reply(mess.only.usrReg)
+				assistant = fs.readFileSync('./src/assistant.jpg')
+				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
 				uptime = process.uptime()
 				const Menud = {
 					text: `➫ြ𝚜ᷤ𝚊ͣ𝚖ͫ𝚞𝉄𖾔𖾔𖽙.li Oℱịcιɑl.li   
