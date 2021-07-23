@@ -2108,10 +2108,11 @@ _*El archivo se esta enviando.....*_
 				assistant = fs.readFileSync('./src/assistant.jpg')
 				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
 				if (args.length == 0) return reply(`*Agrega lo que deseas buscar.*\nPor ejemplo: ${prefix + command} gatos`)
+				reply(mess.wait)
 				query = args.join(' ')
 				get_result = await getJson(`https://api.lolhuman.xyz/api/wallpaper?apikey=${api}&query=${query}`)
 				ini_buffer = await getBuffer(get_result.result)
-				await samu330.sendMessage(from, ini_buffer, image, { quoted: ftoko })
+				await samu330.sendMessage(from, ini_buffer, image, { quoted: fimg })
 			break
 
 			case 'waifu':
