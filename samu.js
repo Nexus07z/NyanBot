@@ -882,7 +882,7 @@ Hola *${pushname}* ${timeFt}
 ╠ *${prefix}neko*
 ║ _Imagen aleatoria de una neko-girl._
 ║
-╟╼╾┤🎧 Efectos para 𝘈𝘶𝘥𝘪𝘰𝘴 🎧├╼╾
+╟╼╾┤🎧 Efectos para Audios 🎧├╼╾
 ║
 ╠ *${prefix}ardilla*
 ║ _Etiqueta un audio._
@@ -2062,7 +2062,7 @@ _*El archivo se esta enviando.....*_
 					fs.unlinkSync(mediav)
 					if (err) return reply(`Error: ${err}`)
 					vre = fs.readFileSync(ran)
-					samu330.sendMessage(from, vre, video, { mimetype: 'video/mp4', quoted: fvid, duration: -999999 })
+					samu330.sendMessage(from, vre, video, { mimetype: 'video/mp4', quoted: fvid })
 					fs.unlinkSync(ran)
 				})
 			break
