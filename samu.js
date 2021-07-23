@@ -2476,7 +2476,7 @@ ase,fps=15, pad=320:320:-1:-1:color=white@0.0, split [a][b]; [a] palettegen=rese
 				if (args.length < 1) return reply(`*Agrega el texto que deseas convertir en sticker de colores.*\nPor ejemplo: ${prefix + command} gato`)
 				var teks = encodeURIComponent(args.join(' '))
 				const attp1 = await getBuffer(`https://api.xteam.xyz/attp?file&text=${teks}`)
-				samu330.sendMessage(from, attp1, stickerMessage, { quoted: ftoko, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
+				samu330.sendMessage(from, attp1, sticker, { quoted: ftoko, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
 			break
 
 			case 'ger':
@@ -2509,7 +2509,7 @@ ase,fps=15, pad=320:320:-1:-1:color=white@0.0, split [a][b]; [a] palettegen=rese
 				assistant = fs.readFileSync('./src/assistant.jpg')
 				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
 				if (!isQuotedSticker) return reply(`Por favor etiqueta un sticker con el comando.`)
-				if (sam.message.extendedTextMessage.contextInfo.quotedMessage.stickerMessage.isAnimated === true) {
+				if (sam.message.extendedTextMessage.contextInfo.isAnimated === true) {
 					reply(`Este comando solo funciona con stickers estáticos, para convertir un sticker animado a gif, usa: ${prefix}agif`)
 				} else {
 					var media1 = JSON.parse(JSON.stringify(sam).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo
