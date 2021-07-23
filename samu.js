@@ -945,7 +945,7 @@ Hola *${pushname}* ${timeFt}
 ║
 ╠ *${prefix}renombrar*
 ║ _Etiqueta un sticker para renombrarlo._
-║ _Sticker|WhatsApp 
+║ _Sticker|WhatsApp_ 
 ║
 ╠ *${prefix}renombrarp* [Nombre|Autor]
 ║ _Etiqueta un sticker para renombrarlo._
@@ -2473,7 +2473,7 @@ ase,fps=15, pad=320:320:-1:-1:color=white@0.0, split [a][b]; [a] palettegen=rese
 			case 'colores':
 				assistant = fs.readFileSync('./src/assistant.jpg')
 				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
-				if (args.length < 1) return reply('Y el texto?')
+				if (args.length < 1) return reply('*Agrega el texto que deseas convertir en sticker de colores.*\nPor ejemplo: ${prefix + command} gato')
 				var teks = encodeURIComponent(args.join(' '))
 				const attp1 = await getBuffer(`https://api.xteam.xyz/attp?file&text=${teks}`)
 				samu330.sendMessage(from, attp1, sticker, { quoted: ftoko, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
@@ -2485,7 +2485,7 @@ ase,fps=15, pad=320:320:-1:-1:color=white@0.0, split [a][b]; [a] palettegen=rese
 				var imgbb = require('imgbb-uploader')
 				if ((isMedia && !sam.message.videoMessage || isQuotedImage) && args.length == 0) {
 					ger = isQuotedImage ? JSON.parse(JSON.stringify(sam).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo : sam
-					reply('*Espera un momento porfavor*')
+					reply(mess.wait)
 					owgi = await samu330.downloadAndSaveMediaMessage(ger)
 					anu = await imgbb('20a14861e4f7591f3dc52649cb07ae02', owgi)
 					teks = `${anu.display_url}`
@@ -2494,23 +2494,23 @@ ase,fps=15, pad=320:320:-1:-1:color=white@0.0, split [a][b]; [a] palettegen=rese
 					anu1 = `https://some-random-api.ml/canvas/triggered?avatar=${teks}`
 					exec(`wget ${anu1} -O ${ranp} && ffmpeg -i ${ranp} -vcodec libwebp -filter:v fps=fps=20 -lossless 1 -loop 0 -preset default -an -vsync 0 -s 512:512 ${rano}`, (err) => {
 						fs.unlinkSync(ranp)
-						if (err) return reply('*Uuuu, algo salio mal, intenta de nuevo*')
+						if (err) return reply('*Algo salio mal, intenta de nuevo.*')
 						nobg = fs.readFileSync(rano)
 						samu330.sendMessage(from, nobg, sticker, { quoted: ftoko })
 						fs.unlinkSync(rano)
 					})
 
 				} else {
-					reply('Se nececita una foto!')
+					reply('*Por favor etiqueta una imagen con el comando.*')
 				}
 			break
 
 			case 'aimg':
 				assistant = fs.readFileSync('./src/assistant.jpg')
 				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
-				if (!isQuotedSticker) return reply(`send sticker and reply with caption ${prefix}toimg`)
+				if (!isQuotedSticker) return reply(`Por favor etiqueta un sticker con el comando.`)
 				if (sam.message.extendedTextMessage.contextInfo.quotedMessage.stickerMessage.isAnimated === true) {
-					reply(`Este comando solo sirve con stikers estaticos, para convertir un stiker a gif, usa: ${prefix}agif`)
+					reply(`Este comando solo funciona con stickers estáticos, para convertir un sticker animado a gif, usa: ${prefix}agif`)
 				} else {
 					var media1 = JSON.parse(JSON.stringify(sam).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo
 					var media2 = await samu330.downloadAndSaveMediaMessage(media1)
@@ -2522,7 +2522,7 @@ ase,fps=15, pad=320:320:-1:-1:color=white@0.0, split [a][b]; [a] palettegen=rese
 							fs.unlinkSync(ran)
 						} else {
 							buffer = fs.readFileSync(ran)
-							samu330.sendMessage(from, buffer, MessageType.image, { quoted: sam, caption: '𝗦𝗮𝗺 𝘆 𝗣𝗲𝗿𝗿𝘆🍒' })
+							samu330.sendMessage(from, buffer, MessageType.image, { quoted: sam })
 							fs.unlinkSync(ran)
 						}
 					})
@@ -2534,12 +2534,12 @@ ase,fps=15, pad=320:320:-1:-1:color=white@0.0, split [a][b]; [a] palettegen=rese
 				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
 				ger = isQuotedSticker ? JSON.parse(JSON.stringify(sam).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo : sam
 				var imgbb = require('imgbb-uploader')
-				reply('*Espera un momento...*')
+				reply(mess.wait)
 				owgi = await samu330.downloadAndSaveMediaMessage(ger)
 				data = await imgbb("b0fc132474ca03ee7898fd5cac7275fe", owgi)
 				anu = await getJson(`https://api.lolhuman.xyz/api/convert/webptomp4?apikey=${api}&img=${data.display_url}`)
 				result = await getBuffer(anu.result)
-				samu330.sendMessage(from, result, video, { quoted: ftoko, caption: '𝗦𝗮𝗺 𝘆 𝗣𝗲𝗿𝗿𝘆🍒', mimetype: 'video/gif' })
+				samu330.sendMessage(from, result, video, { quoted: ftoko, mimetype: 'video/gif' })
 
 				break
 
