@@ -2067,23 +2067,7 @@ _*El archivo se esta enviando.....*_
 				}
 			break
 
-			case 'reversa':
-				assistant = fs.readFileSync('./src/assistant.jpg')
-				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
-				if (!isQuotedVideo) return reply('*Por favor etiqueta un video con el comando.*')
-				reply('*Espera un momento por favor...*')
-				encmediav = isQuotedVideo ? JSON.parse(JSON.stringify(sam).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo : sam;
-				mediav = await samu330.downloadAndSaveMediaMessage(encmediav)
-				ran = getRandom('.mp4')
-				exec(`ffmpeg -i ${mediav} -vf reverse -af areverse ${ran}`, (err) => {
-					fs.unlinkSync(mediav)
-					if (err) return reply(`Error: ${err}`)
-					vre = fs.readFileSync(ran)
-					samu330.sendMessage(from, vre, MessageType.video, { mimetype: 'video/mp4', quoted: fvid })
-					fs.unlinkSync(ran)
-				})
-			break
-
+	
 			case 'imagen':
 				assistant = fs.readFileSync('./src/assistant.jpg')
 				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
@@ -2099,6 +2083,23 @@ _*El archivo se esta enviando.....*_
 						sendFileFromUrl(random, image, { quoted: fimg, caption: `*🔍Busqueda de* _${ggimg}_` })
 					}
 				}
+			break
+
+			case 'reversa':
+				assistant = fs.readFileSync('./src/assistant.jpg')
+				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
+				if (!isQuotedVideo) return reply('*Por favor etiqueta un video con el comando.*')
+				reply('*Espera un momento por favor...*')
+				encmediav = isQuotedVideo ? JSON.parse(JSON.stringify(sam).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo : sam;
+				mediav = await samu330.downloadAndSaveMediaMessage(encmediav)
+				ran = getRandom('.mp4')
+				exec(`ffmpeg -i ${mediav} -vf reverse -af areverse ${ran}`, (err) => {
+					fs.unlinkSync(mediav)
+					if (err) return reply(`Error: ${err}`)
+					vre = fs.readFileSync(ran)
+					samu330.sendMessage(from, vre, MessageType.video, { mimetype: 'video/mp4', quoted: fvid })
+					fs.unlinkSync(ran)
+				})
 			break
 
 			case 'sinfondo':
@@ -2164,30 +2165,6 @@ _*El archivo se esta enviando.....*_
 				get_result = await getJson(`https://api.lolhuman.xyz/api/wallpaper?apikey=${api}&query=${query}`)
 				ini_buffer = await getBuffer(get_result.result)
 				await samu330.sendMessage(from, ini_buffer, image, { quoted: fimg })
-			break
-
-			case 'amongus':
-				assistant = fs.readFileSync('./src/assistant.jpg')
-				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
-				reply(mess.wait)
-				const amongusattp1 = await getBuffer(`https://api.lolhuman.xyz/api/sticker/amongus?apikey=${api}`)
-				samu330.sendMessage(from, amongusattp1, sticker, { quoted: ftoko, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
-			break
-
-			case 'anjing':
-				assistant = fs.readFileSync('./src/assistant.jpg')
-				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
-				reply(mess.wait)
-				const anjingattp1 = await getBuffer(`https://api.lolhuman.xyz/api/sticker/anjing?apikey=${api}`)
-				samu330.sendMessage(from, anjingattp1, sticker, { quoted: ftoko, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
-			break
-			
-			case 'dado':
-				assistant = fs.readFileSync('./src/assistant.jpg')
-				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
-				reply(mess.wait)
-				const dadoattp1 = await getBuffer(`https://api.lolhuman.xyz/api/sticker/dadu?apikey=${api}`)
-				samu330.sendMessage(from, dadoattp1, sticker, { quoted: ftoko, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
 			break
 
 			case 'blackpink':
@@ -2268,31 +2245,6 @@ _*El archivo se esta enviando.....*_
 				reply(mess.wait)
 				foto = `https://api.lolhuman.xyz/api/random/wallnime?apikey=${api}`
 				sendFileFromUrl(foto, image, {quoted: fimg })	
-			break
-
-			case 'nekogif':
-      			ranp = getRandom('.gif')
-      			rano = getRandom('.webp')
-				exec(`wget https://api.lolhuman.xyz/api/random2/ngif?apikey=${api} -O ${ranp} && ffmpeg -i ${ranp} -vcodec libwebp -filter:v fps=fps=15 -lossless 1 -loop 0 -preset default -an -vsync 0 -s 512:512 ${rano}`, (err) => {
-			  		fs.unlinkSync(ranp)
-					if (err) return reply('error')
-					buffer = fs.readFileSync(rano)
-					samu330.sendMessage(from, buffer, sticker, {quoted: ftoko})
-					fs.unlinkSync(rano)
-				})
-			break
-
-			case 'pussy7':
-      			ranp = getRandom('.gif')
-      			rano = getRandom('.webp')
-				pussy7 = await axios.get('https://nekos.life/api/v2/img/pussy')
-				exec(`wget ${pussy7.data.url} -O ${ranp} && ffmpeg -i ${ranp} -vcodec libwebp -filter:v fps=fps=15 -lossless 1 -loop 0 -preset default -an -vsync 0 -s 512:512 ${rano}`, (err) => {
-			  		fs.unlinkSync(ranp)
-					if (err) return reply('error')
-					buffer = fs.readFileSync(rano)
-					samu330.sendMessage(from, buffer, sticker, {quoted: ftoko})
-					fs.unlinkSync(rano)
-				})
 			break
 			
 			case 'ardilla':
@@ -2434,6 +2386,108 @@ _*El archivo se esta enviando.....*_
 				} else {
 					reply('*Por favor etiqueta un audio con el comando.*')
 				}
+			break
+
+			case 'aimg':
+				assistant = fs.readFileSync('./src/assistant.jpg')
+				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
+				if (!isQuotedSticker) return reply(`Por favor etiqueta un sticker con el comando.`)
+				if (sam.message.extendedTextMessage.contextInfo.quotedMessage.stickerMessage.isAnimated === true) {
+					reply(`Este comando solo funciona con stickers estáticos, para convertir un sticker animado a gif, usa: ${prefix}agif`)
+				} else {
+					var media1 = JSON.parse(JSON.stringify(sam).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo
+					var media2 = await samu330.downloadAndSaveMediaMessage(media1)
+					ran = getRandom('.png')
+					exec(`ffmpeg -i ${media2} ${ran}`, (err) => {
+						fs.unlinkSync(media2)
+						if (err) return reply('*Algo salio mal, intenta de nuevo.*')
+						
+						buffer = fs.readFileSync(ran)
+						samu330.sendMessage(from, buffer, MessageType.image, { quoted: fimg })
+						fs.unlinkSync(ran)
+						
+					})
+				}
+			break
+
+			case 'agif':
+				assistant = fs.readFileSync('./src/assistant.jpg')
+				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
+				ger = isQuotedSticker ? JSON.parse(JSON.stringify(sam).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo : sam
+				var imgbb = require('imgbb-uploader')
+				reply(mess.wait)
+				owgi = await samu330.downloadAndSaveMediaMessage(ger)
+				data = await imgbb("b0fc132474ca03ee7898fd5cac7275fe", owgi)
+				anu = await getJson(`https://api.lolhuman.xyz/api/convert/webptomp4?apikey=${api}&img=${data.display_url}`)
+				result = await getBuffer(anu.result)
+				samu330.sendMessage(from, result, video, { quoted: ftoko, mimetype: 'video/gif' })
+			break
+			
+			case 'colores':
+				assistant = fs.readFileSync('./src/assistant.jpg')
+				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
+				if (args.length < 1) return reply(`*Agrega el texto que deseas convertir en sticker de colores.*\nPor ejemplo: ${prefix + command} gato`)
+				var teks = encodeURIComponent(args.join(' '))
+				const attp1 = await getBuffer(`https://api.xteam.xyz/attp?file&text=${teks}`)
+				samu330.sendMessage(from, attp1, sticker, { quoted: ftoko, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
+			break
+
+			case 'ger':
+				assistant = fs.readFileSync('./src/assistant.jpg')
+				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
+				var imgbb = require('imgbb-uploader')
+				if ((isMedia && !sam.message.videoMessage || isQuotedImage) && args.length == 0) {
+					ger = isQuotedImage ? JSON.parse(JSON.stringify(sam).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo : sam
+					reply(mess.wait)
+					owgi = await samu330.downloadAndSaveMediaMessage(ger)
+					anu = await imgbb('20a14861e4f7591f3dc52649cb07ae02', owgi)
+					teks = `${anu.display_url}`
+					ranp = getRandom('.gif')
+					rano = getRandom('.webp')
+					anu1 = `https://some-random-api.ml/canvas/triggered?avatar=${teks}`
+					exec(`wget ${anu1} -O ${ranp} && ffmpeg -i ${ranp} -vcodec libwebp -filter:v fps=fps=20 -lossless 1 -loop 0 -preset default -an -vsync 0 -s 512:512 ${rano}`, (err) => {
+						fs.unlinkSync(ranp)
+						if (err) return reply('*Algo salio mal, intenta de nuevo.*')
+						nobg = fs.readFileSync(rano)
+						samu330.sendMessage(from, nobg, sticker, { quoted: ftoko })
+						fs.unlinkSync(rano)
+					})
+
+				} else {
+					reply('*Por favor etiqueta una imagen con el comando.*')
+				}
+			break
+
+			case 'renombrar':
+				assistant = fs.readFileSync('./src/assistant.jpg')
+				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
+				if (!isQuotedSticker) return reply(`*Por favor etiqueta un sticker con el comando.*`)
+				const encmediia = JSON.parse(JSON.stringify(sam).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo
+				const meidia = await samu330.downloadAndSaveMediaMessage(encmediia, `./sticker/${sender}`)
+				exec(`webpmux -set exif ./sticker/data.exif ./sticker/${sender}.webp -o ./sticker/${sender}.webp`, async (error) => {
+					if (error) return reply('error')
+					wa.sendSticker(from, fs.readFileSync(`./sticker/${sender}.webp`), ftoko)
+					fs.unlinkSync(meidia)
+				})
+			break
+
+			case 'renombrarp':
+				assistant = fs.readFileSync('./src/assistant.jpg')
+				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
+				if (!isQuotedSticker) return reply(`*Por favor etiqueta un sticker con el comando.*\nPor ejemplo: ${prefix + command} nombre|autor`)
+				const stsam = body.slice(11)
+				if (!stsam.includes('|')) return reply(`*Por favor etiqueta un sticker con el comando.*\nPor ejemplo: ${prefix + command} nombre|autor`)
+				const encmedia = JSON.parse(JSON.stringify(sam).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo
+				const media = await samu330.downloadAndSaveMediaMessage(encmedia, `./sticker/${sender}`)
+				const packname = stsam.split('|')[0]
+				const author = stsam.split('|')[1]
+				exif.create(packname, author, `takestick_${sender}`)
+				exec(`webpmux -set exif ./sticker/takestick_${sender}.exif ./sticker/${sender}.webp -o ./sticker/${sender}.webp`, async (error) => {
+					if (error) return reply('error')
+					wa.sendSticker(from, fs.readFileSync(`./sticker/${sender}.webp`), floc)
+					fs.unlinkSync(media)
+					fs.unlinkSync(`./sticker/takestick_${sender}.exif`)
+				})
 			break
 
 			case 'sticker':
@@ -2580,109 +2634,87 @@ ase,fps=15, pad=320:320:-1:-1:color=white@0.0, split [a][b]; [a] palettegen=rese
 				}
 			break
 
-			case 'renombrar':
+			case 'alimentar-sticker':
 				assistant = fs.readFileSync('./src/assistant.jpg')
 				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
-				if (!isQuotedSticker) return reply(`*Por favor etiqueta un sticker con el comando.*`)
-				const encmediia = JSON.parse(JSON.stringify(sam).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo
-				const meidia = await samu330.downloadAndSaveMediaMessage(encmediia, `./sticker/${sender}`)
-				exec(`webpmux -set exif ./sticker/data.exif ./sticker/${sender}.webp -o ./sticker/${sender}.webp`, async (error) => {
-					if (error) return reply('error')
-					wa.sendSticker(from, fs.readFileSync(`./sticker/${sender}.webp`), ftoko)
-					fs.unlinkSync(meidia)
+				ranp = getRandom('.gif')
+      			rano = getRandom('.webp')
+				reply(mess.wait)
+				exec(`wget https://api.lolhuman.xyz/api/random2/feed?apikey=${api} -O ${ranp} && ffmpeg -i ${ranp} -vcodec libwebp -filter:v fps=fps=15 -lossless 1 -loop 0 -preset default -an -vsync 0 -s 512:512 ${rano}`, (err) => {
+			  		fs.unlinkSync(ranp)
+					if (err) return reply('error')
+					buffer = fs.readFileSync(rano)
+					samu330.sendMessage(from, buffer, sticker, {quoted: ftoko})
+					fs.unlinkSync(rano)
 				})
 			break
 
-			case 'renombrarp':
+			case 'toque-sticker':
 				assistant = fs.readFileSync('./src/assistant.jpg')
 				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
-				if (!isQuotedSticker) return reply(`*Por favor etiqueta un sticker con el comando.*\nPor ejemplo: ${prefix + command} nombre|autor`)
-				const stsam = body.slice(11)
-				if (!stsam.includes('|')) return reply(`*Por favor etiqueta un sticker con el comando.*\nPor ejemplo: ${prefix + command} nombre|autor`)
-				const encmedia = JSON.parse(JSON.stringify(sam).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo
-				const media = await samu330.downloadAndSaveMediaMessage(encmedia, `./sticker/${sender}`)
-				const packname = stsam.split('|')[0]
-				const author = stsam.split('|')[1]
-				exif.create(packname, author, `takestick_${sender}`)
-				exec(`webpmux -set exif ./sticker/takestick_${sender}.exif ./sticker/${sender}.webp -o ./sticker/${sender}.webp`, async (error) => {
-					if (error) return reply('error')
-					wa.sendSticker(from, fs.readFileSync(`./sticker/${sender}.webp`), floc)
-					fs.unlinkSync(media)
-					fs.unlinkSync(`./sticker/takestick_${sender}.exif`)
+				ranp = getRandom('.gif')
+      			rano = getRandom('.webp')
+				reply(mess.wait)
+				exec(`wget https://api.lolhuman.xyz/api/random2/poke?apikey=${api} -O ${ranp} && ffmpeg -i ${ranp} -vcodec libwebp -filter:v fps=fps=15 -lossless 1 -loop 0 -preset default -an -vsync 0 -s 512:512 ${rano}`, (err) => {
+			  		fs.unlinkSync(ranp)
+					if (err) return reply('error')
+					buffer = fs.readFileSync(rano)
+					samu330.sendMessage(from, buffer, sticker, {quoted: ftoko})
+					fs.unlinkSync(rano)
+				})
+			break
+			
+			case 'amongus-sticker':
+				assistant = fs.readFileSync('./src/assistant.jpg')
+				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
+				reply(mess.wait)
+				const amongusattp1 = await getBuffer(`https://api.lolhuman.xyz/api/sticker/amongus?apikey=${api}`)
+				samu330.sendMessage(from, amongusattp1, sticker, { quoted: ftoko, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
+			break
+
+			case 'anjing-sticker':
+				assistant = fs.readFileSync('./src/assistant.jpg')
+				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
+				reply(mess.wait)
+				const anjingattp1 = await getBuffer(`https://api.lolhuman.xyz/api/sticker/anjing?apikey=${api}`)
+				samu330.sendMessage(from, anjingattp1, sticker, { quoted: ftoko, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
+			break
+			
+			case 'dado-sticker':
+				assistant = fs.readFileSync('./src/assistant.jpg')
+				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
+				reply(mess.wait)
+				const dadoattp1 = await getBuffer(`https://api.lolhuman.xyz/api/sticker/dadu?apikey=${api}`)
+				samu330.sendMessage(from, dadoattp1, sticker, { quoted: ftoko, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
+			break
+
+			case 'neko-sticker':
+				assistant = fs.readFileSync('./src/assistant.jpg')
+				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
+				ranp = getRandom('.gif')
+      			rano = getRandom('.webp')
+				reply(mess.wait)
+				exec(`wget https://api.lolhuman.xyz/api/random2/ngif?apikey=${api} -O ${ranp} && ffmpeg -i ${ranp} -vcodec libwebp -filter:v fps=fps=15 -lossless 1 -loop 0 -preset default -an -vsync 0 -s 512:512 ${rano}`, (err) => {
+			  		fs.unlinkSync(ranp)
+					if (err) return reply('error')
+					buffer = fs.readFileSync(rano)
+					samu330.sendMessage(from, buffer, sticker, {quoted: ftoko})
+					fs.unlinkSync(rano)
 				})
 			break
 
-			case 'colores':
-				assistant = fs.readFileSync('./src/assistant.jpg')
-				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
-				if (args.length < 1) return reply(`*Agrega el texto que deseas convertir en sticker de colores.*\nPor ejemplo: ${prefix + command} gato`)
-				var teks = encodeURIComponent(args.join(' '))
-				const attp1 = await getBuffer(`https://api.xteam.xyz/attp?file&text=${teks}`)
-				samu330.sendMessage(from, attp1, sticker, { quoted: ftoko, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
-			break
-
-			case 'ger':
-				assistant = fs.readFileSync('./src/assistant.jpg')
-				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
-				var imgbb = require('imgbb-uploader')
-				if ((isMedia && !sam.message.videoMessage || isQuotedImage) && args.length == 0) {
-					ger = isQuotedImage ? JSON.parse(JSON.stringify(sam).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo : sam
-					reply(mess.wait)
-					owgi = await samu330.downloadAndSaveMediaMessage(ger)
-					anu = await imgbb('20a14861e4f7591f3dc52649cb07ae02', owgi)
-					teks = `${anu.display_url}`
+			case 'pussy7':
 					ranp = getRandom('.gif')
 					rano = getRandom('.webp')
-					anu1 = `https://some-random-api.ml/canvas/triggered?avatar=${teks}`
-					exec(`wget ${anu1} -O ${ranp} && ffmpeg -i ${ranp} -vcodec libwebp -filter:v fps=fps=20 -lossless 1 -loop 0 -preset default -an -vsync 0 -s 512:512 ${rano}`, (err) => {
+				  pussy7 = await axios.get('https://nekos.life/api/v2/img/pussy')
+				  exec(`wget ${pussy7.data.url} -O ${ranp} && ffmpeg -i ${ranp} -vcodec libwebp -filter:v fps=fps=15 -lossless 1 -loop 0 -preset default -an -vsync 0 -s 512:512 ${rano}`, (err) => {
 						fs.unlinkSync(ranp)
-						if (err) return reply('*Algo salio mal, intenta de nuevo.*')
-						nobg = fs.readFileSync(rano)
-						samu330.sendMessage(from, nobg, sticker, { quoted: ftoko })
-						fs.unlinkSync(rano)
-					})
-
-				} else {
-					reply('*Por favor etiqueta una imagen con el comando.*')
-				}
-			break
-
-			case 'aimg':
-				assistant = fs.readFileSync('./src/assistant.jpg')
-				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
-				if (!isQuotedSticker) return reply(`Por favor etiqueta un sticker con el comando.`)
-				if (sam.message.extendedTextMessage.contextInfo.quotedMessage.stickerMessage.isAnimated === true) {
-					reply(`Este comando solo funciona con stickers estáticos, para convertir un sticker animado a gif, usa: ${prefix}agif`)
-				} else {
-					var media1 = JSON.parse(JSON.stringify(sam).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo
-					var media2 = await samu330.downloadAndSaveMediaMessage(media1)
-					ran = getRandom('.png')
-					exec(`ffmpeg -i ${media2} ${ran}`, (err) => {
-						fs.unlinkSync(media2)
-						if (err) return reply('*Algo salio mal, intenta de nuevo.*')
-						
-						buffer = fs.readFileSync(ran)
-						samu330.sendMessage(from, buffer, MessageType.image, { quoted: fimg })
-						fs.unlinkSync(ran)
-						
-					})
-				}
-			break
-
-			case 'agif':
-				assistant = fs.readFileSync('./src/assistant.jpg')
-				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
-				ger = isQuotedSticker ? JSON.parse(JSON.stringify(sam).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo : sam
-				var imgbb = require('imgbb-uploader')
-				reply(mess.wait)
-				owgi = await samu330.downloadAndSaveMediaMessage(ger)
-				data = await imgbb("b0fc132474ca03ee7898fd5cac7275fe", owgi)
-				anu = await getJson(`https://api.lolhuman.xyz/api/convert/webptomp4?apikey=${api}&img=${data.display_url}`)
-				result = await getBuffer(anu.result)
-				samu330.sendMessage(from, result, video, { quoted: ftoko, mimetype: 'video/gif' })
-
-				break
-
+					  if (err) return reply('error')
+					  buffer = fs.readFileSync(rano)
+					  samu330.sendMessage(from, buffer, sticker, {quoted: ftoko})
+					  fs.unlinkSync(rano)
+				  })
+			  break
 			case 'wa.me':
 			case 'wame':
 				samu330.updatePresence(from, Presence.composing)
