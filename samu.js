@@ -2274,10 +2274,11 @@ _*El archivo se esta enviando.....*_
 				assistant = fs.readFileSync('./src/assistant.jpg')
 				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
 				reply(mess.wait)
-				nekogifattp1 = await getBuffer(`https://api.lolhuman.xyz/api/random2/ngif?apikey=${api}`)
-				samu330.sendMessage(from, nekogifattp1, video, { quoted: ftoko, mimetype: 'video/gif' })
+				nekogif = await getJson(`https://api.lolhuman.xyz/api/random2/ngif?apikey=${api}`)
+				result = await getBuffer(nekogif.result)
+				samu330.sendMessage(from, result, video, { quoted: ftoko, mimetype: 'video/gif' })
 			break
-			
+	
 			case 'ardilla':
 				assistant = fs.readFileSync('./src/assistant.jpg')
 				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
