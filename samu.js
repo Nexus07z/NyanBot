@@ -2182,15 +2182,24 @@ _*El archivo se esta enviando.....*_
 				})
 			break
 			
-			case 'dado':
+			case 'amongus':
 				assistant = fs.readFileSync('./src/assistant.jpg')
 				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
 				reply(mess.wait)
-				foto = `https://api.lolhuman.xyz/api/sticker/dadu?apikey={api}`
+				foto = `https://api.lolhuman.xyz/api/sticker/amongus?apikey=${api}`
 				sendFileFromUrl(foto, image, {quoted: fimg })
 				
 			break
 			
+			case 'dado':
+				assistant = fs.readFileSync('./src/assistant.jpg')
+				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
+				reply(mess.wait)
+				foto = `https://api.lolhuman.xyz/api/sticker/dadu?apikey=${api}`
+				sendFileFromUrl(foto, image, {quoted: fimg })
+			
+			break
+
 			case 'waifu':
 				assistant = fs.readFileSync('./src/assistant.jpg')
 				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
