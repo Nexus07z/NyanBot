@@ -2274,9 +2274,16 @@ _*El archivo se esta enviando.....*_
 				assistant = fs.readFileSync('./src/assistant.jpg')
 				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
 				reply(mess.wait)
-				nekogif = await getJson(`https://api.lolhuman.xyz/api/random2/ngif?apikey=${api}`)
-				result = await getBuffer(nekogif.result)
+				result = await getBuffer(`https://api.lolhuman.xyz/api/random2/ngif?apikey=${api}`)
 				samu330.sendMessage(from, result, video, { quoted: ftoko, mimetype: 'video/gif' })
+			break
+
+			case 'nekogif1':
+				assistant = fs.readFileSync('./src/assistant.jpg')
+				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
+				reply(mess.wait)
+				result = `https://api.lolhuman.xyz/api/random2/ngif?apikey=${api}`
+				sendFileFromUrl(result, video, {quoted: fvid })
 			break
 	
 			case 'ardilla':
