@@ -2096,7 +2096,7 @@ _*El archivo se esta enviando.....*_
 					const encmedianb = isQuotedImage ? JSON.parse(JSON.stringify(sam).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo : sam
 					const median = await samu330.downloadAndSaveMediaMessage(encmedianb)
 					reply(mess.wait)
-					keyrmbg = 'bcAvZyjYAjKkp1cmK8ZgQvWH'
+					keyrmbg = 'iWVtDDPrqmy9oWKDnRR7wPpp'
 					ranp = getRandom('.png')
 					await removeBackgroundFromImageFile({ path: median, apiKey: keyrmbg, size: 'auto', type: 'auto', ranp }).then(res => {
 						fs.unlinkSync(median)
