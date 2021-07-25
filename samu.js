@@ -86,8 +86,7 @@ const sleep = async (ms) => {
 }
 
 // lolhuman.xyz
-const apiz = '967708a41dbb7e1de3be0213'
-const api = '273a9e8195c27ba24abd53e3'
+const api = '967708a41dbb7e1de3be0213'
 //
 
 fak = 'samu3300'
@@ -2520,7 +2519,7 @@ ase,fps=15, pad=320:320:-1:-1:color=white@0.0, split [a][b]; [a] palettegen=rese
 						if (err) return reply('*Algo salio mal, intenta de nuevo.*')
 						
 						buffer = fs.readFileSync(ran)
-						samu330.sendMessage(from, buffer, MessageType.image, { quoted: sam })
+						samu330.sendMessage(from, buffer, MessageType.image, { quoted: fimg })
 						fs.unlinkSync(ran)
 						
 					})
