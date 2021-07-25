@@ -2253,34 +2253,6 @@ _*El archivo se esta enviando.....*_
 				foto = `https://api.lolhuman.xyz/api/random2/neko?apikey=${api}`
 				sendFileFromUrl(foto, image, {quoted: fimg })	
 			break
-			
-			case 'neko7':
-				url = `https://api.lolhuman.xyz/api/random2/ngif?apikey=${api}`
-				neko7 = await getBuffer(url)
-				samu330.sendMessage(from, neko7, MessageType.video, { mimetype: 'video/gif', duration: 999999999, filename: `neko7.gif`, quoted: fvid })
-			break
-
-			case 'neko8':
-				url8 = `https://api.lolhuman.xyz/api/random2/ngif?apikey=${api}`
-				neko8 = await getBuffer(url8)
-				sendFileFromUrl(neko8, image, {quoted: fimg })
-				break
-
-				case 'neko9':
-					url9 = `https://api.lolhuman.xyz/api/random2/ngif?apikey=${api}`
-					neko9 = await getBuffer(url9)
-					sendFileFromUrl(neko9, video, {mimetype: 'video/gif',quoted: fimg })
-				break
-				case 'neko10':
-					url10 = `https://api.lolhuman.xyz/api/random2/ngif?apikey=${api}`
-					neko10 = await getBuffer(url10)
-					sendFileFromUrl(neko10, video, {mimetype: 'video/gif',quoted: fvid })
-				break
-				case 'neko11':
-					url11 = `https://api.lolhuman.xyz/api/random2/ngif?apikey=${api}`
-					neko11 = await getBuffer(url11)
-					sendFileFromUrl(neko11, video, {mimetype: Mimetype.gif,quoted: fvid })
-				break
 
 			case 'waifu':
 				assistant = fs.readFileSync('./src/assistant.jpg')
@@ -2310,25 +2282,26 @@ _*El archivo se esta enviando.....*_
 				assistant = fs.readFileSync('./src/assistant.jpg')
 				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
 				reply(mess.wait)
-				result = `https://api.lolhuman.xyz/api/random2/ngif?apikey=${api}`
-				sendFileFromUrl(result, video, {quoted: fvid, mimetype: Mimetype.gif })
+				nekogif1 = await getBuffer(`https://api.lolhuman.xyz/api/random2/ngif?apikey=${api}`)
+				samu330.sendMessage(from, nekogif1, video, { quoted: fvid, mimetype: Mimetype.gif })
 			break
-			
+
 			case 'nekogif2':
 				assistant = fs.readFileSync('./src/assistant.jpg')
 				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
 				reply(mess.wait)
-				const nekogif2 = await getBuffer(`https://api.lolhuman.xyz/api/random2/ngif?apikey=${api}`)
-				samu330.sendMessage(from, nekogif2, video, { quoted: ftoko, mimetype: 'video/gif' })
+				nekogif2 = `https://api.lolhuman.xyz/api/random2/ngif?apikey=${api}`
+				sendFileFromUrl(nekogif2, video, {quoted: fvid, mimetype: Mimetype.gif })
 			break
 
 			case 'nekogif3':
 				assistant = fs.readFileSync('./src/assistant.jpg')
 				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
 				reply(mess.wait)
-				result = `https://api.lolhuman.xyz/api/random2/ngif?apikey=${api}`
-				sendFileFromUrl(result, video, {quoted: fvid, mimetype: 'video/gif' })
+				nekogif2 = `https://api.lolhuman.xyz/api/random2/ngif?apikey=${api}`
+				sendFileFromUrl(nekogif3, image, {quoted: fimg, mimetype : 'image/gif', })
 			break
+			
 			case 'ardilla':
 				assistant = fs.readFileSync('./src/assistant.jpg')
 				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
