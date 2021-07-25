@@ -2166,6 +2166,62 @@ _*El archivo se esta enviando.....*_
 				await samu330.sendMessage(from, ini_buffer, image, { quoted: fimg })
 			break
 
+			case 'amongus':
+				assistant = fs.readFileSync('./src/assistant.jpg')
+				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
+				reply(mess.wait)
+				const amongusattp1 = await getBuffer(`https://api.lolhuman.xyz/api/sticker/amongus?apikey=${api}`)
+				samu330.sendMessage(from, amongusttp1, sticker, { quoted: ftoko, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
+			break
+
+			case 'anjing':
+				assistant = fs.readFileSync('./src/assistant.jpg')
+				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
+				reply(mess.wait)
+				const anjingattp1 = await getBuffer(`https://api.lolhuman.xyz/api/sticker/anjing?apikey=${api}`)
+				samu330.sendMessage(from, anjingttp1, sticker, { quoted: ftoko, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
+			break
+			
+			case 'dado':
+				assistant = fs.readFileSync('./src/assistant.jpg')
+				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
+				reply(mess.wait)
+				const dadoattp1 = await getBuffer(`https://api.lolhuman.xyz/api/sticker/dadu?apikey=${api}`)
+				samu330.sendMessage(from, dadoattp1, sticker, { quoted: ftoko, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
+			break
+
+			case 'blackpink':
+				assistant = fs.readFileSync('./src/assistant.jpg')
+				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
+				reply(mess.wait)
+				foto = `https://api.lolhuman.xyz/api/random/blackpink?apikey=${api}`
+				sendFileFromUrl(foto, image, {quoted: fimg })	
+			break
+			
+			case 'bts':
+				assistant = fs.readFileSync('./src/assistant.jpg')
+				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
+				reply(mess.wait)
+				foto = `https://api.lolhuman.xyz/api/random/bts?apikey=${api}`
+				sendFileFromUrl(foto, image, {quoted: fimg })	
+			break
+			
+			case 'elf':
+				assistant = fs.readFileSync('./src/assistant.jpg')
+				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
+				reply(mess.wait)
+				foto = `https://api.lolhuman.xyz/api/random/elf?apikey=${api}`
+				sendFileFromUrl(foto, image, {quoted: fimg })	
+			break
+			
+			case 'estetic':
+				assistant = fs.readFileSync('./src/assistant.jpg')
+				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
+				reply(mess.wait)
+				foto = `https://api.lolhuman.xyz/api/random/estetic?apikey=${api}`
+				sendFileFromUrl(foto, image, {quoted: fimg })	
+			break
+
 			case 'neko':
 				assistant = fs.readFileSync('./src/assistant.jpg')
 				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
@@ -2181,22 +2237,21 @@ _*El archivo se esta enviando.....*_
 					quoted: fimg
 				})
 			break
-			
-			case 'amongus':
+
+			case 'neko1':
 				assistant = fs.readFileSync('./src/assistant.jpg')
 				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
 				reply(mess.wait)
-				foto = `https://api.lolhuman.xyz/api/sticker/amongus?apikey=${api}`
-				sendFileFromUrl(foto, image, {quoted: fimg })
-				
+				foto = `https://api.lolhuman.xyz/api/random/neko?apikey=${api}`
+				sendFileFromUrl(foto, image, {quoted: fimg })	
 			break
-			
-			case 'dado':
+
+			case 'neko2':
 				assistant = fs.readFileSync('./src/assistant.jpg')
 				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
 				reply(mess.wait)
-				const dadoattp1 = await getBuffer(`https://api.lolhuman.xyz/api/sticker/dadu?apikey=${api}`)
-				samu330.sendMessage(from, dadoattp1, sticker, { quoted: ftoko, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
+				foto = `https://api.lolhuman.xyz/api/random2/neko?apikey=${api}`
+				sendFileFromUrl(foto, image, {quoted: fimg })	
 			break
 
 			case 'waifu':
@@ -2204,6 +2259,22 @@ _*El archivo se esta enviando.....*_
 				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
 				reply(mess.wait)
 				foto = `https://api.lolhuman.xyz/api/random/waifu?apikey=${api}`
+				sendFileFromUrl(foto, image, {quoted: fimg })	
+			break
+
+			case 'wallnime':
+				assistant = fs.readFileSync('./src/assistant.jpg')
+				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
+				reply(mess.wait)
+				foto = `https://api.lolhuman.xyz/api/random/wallnime?apikey=${api}`
+				sendFileFromUrl(foto, image, {quoted: fimg })	
+			break
+
+			case 'nekogif':
+				assistant = fs.readFileSync('./src/assistant.jpg')
+				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
+				reply(mess.wait)
+				foto = `https://api.lolhuman.xyz/api/random2/ngif?apikey=${api}`
 				sendFileFromUrl(foto, image, {quoted: fimg })	
 			break
 
