@@ -2195,8 +2195,8 @@ _*El archivo se esta enviando.....*_
 				assistant = fs.readFileSync('./src/assistant.jpg')
 				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
 				reply(mess.wait)
-				const attp1 = await getBuffer(`https://api.lolhuman.xyz/api/sticker/dadu?apikey=${api}`)
-				samu330.sendMessage(from, attp1, sticker, { quoted: ftoko, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
+				const dadoattp1 = await getBuffer(`https://api.lolhuman.xyz/api/sticker/dadu?apikey=${api}`)
+				samu330.sendMessage(from, dadoattp1, sticker, { quoted: ftoko, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
 			break
 
 			case 'waifu':
