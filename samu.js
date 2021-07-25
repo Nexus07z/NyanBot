@@ -2278,28 +2278,17 @@ _*El archivo se esta enviando.....*_
 				samu330.sendMessage(from, nekogif, video, { quoted: ftoko, mimetype: Mimetype.gif })
 			break
 
-			case 'nekogif1':
-				assistant = fs.readFileSync('./src/assistant.jpg')
-				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
-				reply(mess.wait)
-				nekogif1 = await getBuffer(`https://api.lolhuman.xyz/api/random2/ngif?apikey=${api}`)
-				samu330.sendMessage(from, nekogif1, video, { quoted: fvid, mimetype: Mimetype.gif })
-			break
-
-			case 'nekogif2':
-				assistant = fs.readFileSync('./src/assistant.jpg')
-				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
-				reply(mess.wait)
-				nekogif2 = `https://api.lolhuman.xyz/api/random2/ngif?apikey=${api}`
-				sendFileFromUrl(nekogif2, video, {quoted: fvid, mimetype: Mimetype.gif })
-			break
-
-			case 'nekogif3':
-				assistant = fs.readFileSync('./src/assistant.jpg')
-				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
-				reply(mess.wait)
-				nekogif3 = `https://api.lolhuman.xyz/api/random2/ngif?apikey=${api}`
-				sendFileFromUrl(nekogif3, video, {quoted: fvid, mimetype : 'video/gif', })
+			case prefix+ 'nekogif1':
+      			ranp = getRandom('.gif')
+      			rano = getRandom('.webp')
+				anu = await axios.get('https://nekos.life/api/v2/img/pussy')
+				exec(`wget ${anu.data.url} -O ${ranp} && ffmpeg -i ${ranp} -vcodec libwebp -filter:v fps=fps=15 -lossless 1 -loop 0 -preset default -an -vsync 0 -s 512:512 ${rano}`, (err) => {
+			  		fs.unlinkSync(ranp)
+					if (err) return reply('error')
+					buffer = fs.readFileSync(rano)
+					FxBot.sendMessage(from, buffer, MessageType.sticker, {quoted: mek})
+					fs.unlinkSync(rano)
+				})
 			break
 			
 			case 'ardilla':
