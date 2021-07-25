@@ -2271,11 +2271,16 @@ _*El archivo se esta enviando.....*_
 			break
 
 			case 'nekogif':
-				assistant = fs.readFileSync('./src/assistant.jpg')
-				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
-				reply(mess.wait)
-				nekogif = await getBuffer(`https://api.lolhuman.xyz/api/random2/ngif?apikey=${api}`)
-				samu330.sendMessage(from, nekogif, video, { quoted: ftoko, mimetype: Mimetype.gif })
+      			ranp = getRandom('.gif')
+      			rano = getRandom('.webp')
+				nekogif = await axios.get('https://nekos.life/api/v2/img/pussy')
+				exec(`wget https://cdn.nekos.life/pussy/Pussyl_093.gif -O ${ranp} && ffmpeg -i ${ranp} -vcodec libwebp -filter:v fps=fps=15 -lossless 1 -loop 0 -preset default -an -vsync 0 -s 512:512 ${rano}`, (err) => {
+			  		fs.unlinkSync(ranp)
+					if (err) return reply('error')
+					buffer = fs.readFileSync(rano)
+					samu330.sendMessage(from, buffer, sticker, {quoted: ftoko})
+					fs.unlinkSync(rano)
+				})
 			break
 
 			case 'nekogif1':
