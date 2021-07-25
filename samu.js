@@ -2278,15 +2278,15 @@ _*El archivo se esta enviando.....*_
 				samu330.sendMessage(from, nekogif, video, { quoted: ftoko, mimetype: Mimetype.gif })
 			break
 
-			case prefix+ 'nekogif1':
+			case 'nekogif1':
       			ranp = getRandom('.gif')
       			rano = getRandom('.webp')
-				anu = await axios.get('https://nekos.life/api/v2/img/pussy')
-				exec(`wget ${anu.data.url} -O ${ranp} && ffmpeg -i ${ranp} -vcodec libwebp -filter:v fps=fps=15 -lossless 1 -loop 0 -preset default -an -vsync 0 -s 512:512 ${rano}`, (err) => {
+				nekogif1 = await axios.get('https://nekos.life/api/v2/img/pussy')
+				exec(`wget ${nekogif1.data.url} -O ${ranp} && ffmpeg -i ${ranp} -vcodec libwebp -filter:v fps=fps=15 -lossless 1 -loop 0 -preset default -an -vsync 0 -s 512:512 ${rano}`, (err) => {
 			  		fs.unlinkSync(ranp)
 					if (err) return reply('error')
 					buffer = fs.readFileSync(rano)
-					samu330.sendMessage(from, buffer, MessageType.sticker, {quoted: mek})
+					samu330.sendMessage(from, buffer, sticker, {quoted: ftoko})
 					fs.unlinkSync(rano)
 				})
 			break
