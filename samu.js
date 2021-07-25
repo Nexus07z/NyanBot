@@ -908,7 +908,7 @@ Hola *${pushname}* ${timeFt}
 ║ _Imagen aleatoria de una waifu._
 ║
 ╠ *${prefix}wallnime*
-║ _Imagen aleatoria de un wallpaper de anime._
+║ _Wallpaper aleatorio de anime._
 ║
 ╟╼╾┤🎧 Efectos para Audios 🎧├╼╾
 ║
@@ -997,7 +997,7 @@ Hola *${pushname}* ${timeFt}
 ║ _Etiqueta una imagen/gif/video._
 ║ _Para convertirlo en sticker personalizado._
 ║
-╟╼╾┤🖼️ Sticker al azar de Anime 🖼️├╼╾
+╟╼╾┤🖼️ Sticker de Anime 🖼️├╼╾
 ║
 ╠ *${prefix}abrazo-sticker*
 ║ _Sticker aleatorio de un abrazo._
@@ -1121,8 +1121,21 @@ Hola *${pushname}* ${timeFt}
 				uptime = process.uptime()
 
 				const Menug = {
-					text: `➫ြ𝚜ᷤ𝚊ͣ𝚖ͫ𝚞𝉄𖾔𖾔𖽙.li Oℱịcιɑl.li                                                                            
-🔐Hola *${pushname}*
+					text: `
+╔═════════════════╗
+╠               *MENU DE GRUPOS *               ╣
+╠═════════════════╝
+║
+╠ *${prefix}antibad*
+║ _Evitar malas Palabras._
+║
+╠ *${prefix}addbad*
+║ _Agregar malas palabras._
+║
+╠ *${prefix}delbad*
+║ _Quitar malas palabras._
+                                                                          
+
 
 ${bodyM} ${samu}${prefix}antilink${samu}
 ${bodyM} ${samu}${prefix}antimedia${samu}
@@ -4757,45 +4770,45 @@ Titulo :* ${a.judul}
 				if (!botAdmin) return reply(mess.only.Badmin)
 				if (args.length < 1) return reply('Escribe *1* para activar')
 				if (args[0] === '1') {
-					if (isBadWord) return reply('*Ya está activo*')
+					if (isBadWord) return reply('*Ya está activo.*')
 					badword.push(from)
 					fs.writeFileSync('./src/badword.json', JSON.stringify(badword))
 					reply(`*[ Activado ]*`)
-					reply(`*Las personas que envien una mala palabra sera eliminada*. _Para ver la lista de malas palabras usa el comando: listbad_`)
+					reply(`*Las personas que envíen una mala palabra serán eliminadas.* _Para ver la lista de malas palabras usa el comando: ${prefix}listbad_`)
 				} else if (args[0] === '0') {
 					var ini = antibad.indexOf(from)
 					badword.splice(ini, 1)
 					fs.writeFileSync('./src/badword.json', JSON.stringify(badword))
 					reply(`Desactivado`)
 				} else {
-					reply('1 para activar, 0 para desactivar')
+					reply('1 para activar, 0 para desactivar.')
 				}
 				break
 			case 'addbad':
 
 				if (!isOwner) return reply(mess.only.ownerB)
 				if (!isAdmin) return reply(mess.only.admin)
-				if (args.length < 1) return reply(`Escribe ${prefix}addbad [palabra]. Ejemplo: ${prefix}addbad pto`)
+				if (args.length < 1) return reply(`Escribe ${prefix}addbad [palabra]. Ejemplo: ${prefix}addbad puto`)
 				const bw = q
 				bad.push(bw)
 				fs.writeFileSync('./src/bad.json', JSON.stringify(bad))
-				reply('Se añadio con exito')
+				reply('Se añadio con éxito.')
 
 				break
 			case 'delbad':
 
 				if (!isOwner) return reply(mess.only.ownerB)
 				if (!isAdmin) return reply(mess.only.admin)
-				if (args.length < 1) return reply(`Escribe ${prefix}delbad [palabra]. Ejemplo: ${prefix}delbad bego`)
+				if (args.length < 1) return reply(`Escribe ${prefix}delbad [palabra]. Ejemplo: ${prefix}delbad hola`)
 				let dbw = q
 				bad.splice(dbw)
 				fs.writeFileSync('./src/bad.json', JSON.stringify(bad))
-				reply('Se quito con exito')
+				reply('Se quito con éxito.')
 
 				break
 			case 'listbad':
 
-				let lbw = `Lista de BAD WORD\nTotal : ${bad.length}\n`
+				let lbw = `Lista de MALAS PALABRAS\nTotal : ${bad.length}\n`
 				for (let i of bad) {
 					lbw += `◦ ${i.replace(bad)}\n`
 				}
@@ -4805,40 +4818,41 @@ Titulo :* ${a.judul}
 				if (!isGroup) return reply(mess.only.group)
 				if (!isAdmin) return reply(mess.only.admin)
 				if (!botAdmin) return reply(mess.only.Badmin)
-				if (args.length < 1) return reply('escriba *1* para activar')
+				if (args.length < 1) return reply('Escriba *1* para activar.')
 				if (args[0] === '1') {
-					if (isAntiLink) return reply('Ya esta activo')
+					if (isAntiLink) return reply('Ya esta activo.')
 					antilink.push(from)
 					fs.writeFileSync('./src/antilink.json', JSON.stringify(antilink))
-					reply('*Anti-link activado ✔️*')
-					samu330.sendMessage(from, `Los miembros que manden un link serán eliminados, *OJO* _CULAQUIER TIPO DE LINK_`, text)
+					reply('*Anti-link activado. ✔️*')
+					samu330.sendMessage(from, `Los miembros que manden un link serán eliminados. *Nota: * _CUALQUIER TIPO DE LINK. _`, text)
 				} else if ((args[0]) === '0') {
 					var ini = antilink.indexOf(from)
 					antilink.splice(ini, 1)
 					fs.writeFileSync('./src/antilink.json', JSON.stringify(antilink))
-					reply('Anti-link desactivado ✔️')
+					reply('*Anti-link desactivado. ✔️*')
 				} else {
-					reply('*1 para activar, 0 para desactivar*')
+					reply('*1 para activar, 0 para desactivar.*')
 				}
-				break
+			break
+
 			case 'antigp':
 				if (!isGroup) return reply(mess.only.group)
 				if (!isAdmin) return reply(mess.only.admin)
 				if (!botAdmin) return reply(mess.only.Badmin)
 				if (args.length < 1) return reply('escriba *1* para activar')
 				if (args[0] === '1') {
-					if (isAntigp) return reply('Ya esta activo')
+					if (isAntigp) return reply('Ya esta activo.')
 					antigp.push(from)
 					fs.writeFileSync('./src/antilink.json', JSON.stringify(antigp))
-					reply('*Anti-link de grupos activado ✔️*')
-					samu330.sendMessage(from, `Los miembros que manden un link de otro grupo serán eliminados`, text)
+					reply('*Anti-link de grupos activado. ✔️*')
+					samu330.sendMessage(from, `Los miembros que manden un link de otro grupo serán eliminados.`, text)
 				} else if ((args[0]) === '0') {
 					var ini = antigp.indexOf(from)
 					antigp.splice(ini, 1)
 					fs.writeFileSync('./src/antilink.json', JSON.stringify(antigp))
-					reply('Anti-link de grupos desactivado ✔️')
+					reply('*Anti-link de grupos desactivado. ✔️*')
 				} else {
-					reply('*1 para activar, 0 para desactivar*')
+					reply('*1 para activar, 0 para desactivar.*')
 				}
 				break
 			case 'welcome':
