@@ -2196,8 +2196,7 @@ _*El archivo se esta enviando.....*_
 				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
 				reply(mess.wait)
 				foto = `https://api.lolhuman.xyz/api/sticker/dadu?apikey=${api}`
-				sendFileFromUrl(foto, image, {quoted: fimg })
-			
+				wa.sendSticker(from, foto, ftoko)
 			break
 
 			case 'waifu':
@@ -2205,8 +2204,7 @@ _*El archivo se esta enviando.....*_
 				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
 				reply(mess.wait)
 				foto = `https://api.lolhuman.xyz/api/random/waifu?apikey=${api}`
-				sendFileFromUrl(foto, image, {quoted: fimg })
-				
+				sendFileFromUrl(foto, image, {quoted: fimg })	
 			break
 
 			case 'ardilla':
