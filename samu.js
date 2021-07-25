@@ -2299,7 +2299,7 @@ _*El archivo se esta enviando.....*_
 				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
 				reply(mess.wait)
 				nekogif3 = `https://api.lolhuman.xyz/api/random2/ngif?apikey=${api}`
-				sendFileFromUrl(nekogif3, image, {quoted: fimg, mimetype : 'image/gif', })
+				sendFileFromUrl(nekogif3, video, {quoted: fvid, mimetype : 'video/gif', })
 			break
 			
 			case 'ardilla':
