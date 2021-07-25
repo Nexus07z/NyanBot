@@ -863,11 +863,11 @@ Hola *${pushname}* ${timeFt}
 ╠ *${prefix}caras*
 ║ _Etiqueta una imagen para detectar caras._
 ║
-╠ *${prefix}reversa*
-║ _Etiqueta un video para ponerlo en reversa._
-║
 ╠ *${prefix}imagen* [Palabra]
 ║ _Búsqueda de imágenes en Google._
+║
+╠ *${prefix}reversa*
+║ _Etiqueta un video para ponerlo en reversa._
 ║
 ╠ *${prefix}sinfondo*
 ║ _Etiqueta una imagen para quitarle el fondo._
@@ -881,11 +881,34 @@ Hola *${pushname}* ${timeFt}
 ╠ *${prefix}wpbusca* [Palabra]
 ║ _Búsqueda de fondos de pantalla._
 ║
-╠ *${prefix}waifu*
-║ _Imagen aleatoria de una waifu._
+╟╼╾┤🖼️ Imágenes al azar 🖼️├╼╾
+║
+╠ *${prefix}blackpink*
+║ _Imagen aleatoria de blackpink._
+║
+╠ *${prefix}bts*
+║ _Imagen aleatoria de bts._
+║
+╠ *${prefix}elf*
+║ _Imagen aleatoria de una elfo anime._
+║
+╠ *${prefix}estetic*
+║ _Imagen aleatoria estética._
 ║
 ╠ *${prefix}neko*
 ║ _Imagen aleatoria de una neko-girl._
+║
+╠ *${prefix}neko1*
+║ _Imagen aleatoria de una neko-girl._
+║
+╠ *${prefix}neko2*
+║ _Imagen aleatoria de una neko-girl._
+║
+╠ *${prefix}waifu*
+║ _Imagen aleatoria de una waifu._
+║
+╠ *${prefix}wallnime*
+║ _Imagen aleatoria de un wallpaper de anime._
 ║
 ╟╼╾┤🎧 Efectos para Audios 🎧├╼╾
 ║
@@ -934,8 +957,28 @@ Hola *${pushname}* ${timeFt}
 ╠               *MENU DE STICKER*               ╣
 ╠═════════════════╝
 ║
+╠ *${prefix}aimg*
+║ _Convierte un sticker a imagen._
+║
+╠ *${prefix}agif*
+║ _Convierte un sticker a gif._
+║
+╠ *${prefix}colores* [Texto]
+║ _Genera un sticker de colores con tu texto._
+║
+╠ *${prefix}ger*
+║ _Genera un sticker estilo Triggered_
+║
 ╠ *${prefix}imagen* [Palabra]
 ║ _Búsqueda de imágenes en Google._
+║
+╠ *${prefix}renombrar*
+║ _Etiqueta un sticker para renombrarlo._
+║ _Sticker|WhatsApp_ 
+║
+╠ *${prefix}renombrarp* [Nombre|Autor]
+║ _Etiqueta un sticker para renombrarlo._
+║ _Nombre|Autor Personalizado._
 ║
 ╠ *${prefix}sinfondo*
 ║ _Etiqueta una imagen para quitarle el fondo._
@@ -954,25 +997,105 @@ Hola *${pushname}* ${timeFt}
 ║ _Etiqueta una imagen/gif/video._
 ║ _Para convertirlo en sticker personalizado._
 ║
-╠ *${prefix}renombrar*
-║ _Etiqueta un sticker para renombrarlo._
-║ _Sticker|WhatsApp_ 
+╟╼╾┤🖼️ Sticker al azar de Anime 🖼️├╼╾
 ║
-╠ *${prefix}renombrarp* [Nombre|Autor]
-║ _Etiqueta un sticker para renombrarlo._
-║ _Nombre|Autor Personalizado._
+╠ *${prefix}abrazo-sticker*
+║ _Sticker aleatorio de un abrazo._
 ║
-╠ *${prefix}colores* [Texto]
-║ _Genera un sticker de colores con tu texto._
+╠ *${prefix}abrazo1-sticker*
+║ _Sticker aleatorio de un abrazo._
 ║
-╠ *${prefix}ger*
-║ _Genera un sticker estilo Triggered_
+╠ *${prefix}abrazo2-sticker*
+║ _Sticker aleatorio de un abrazo._
 ║
-╠ *${prefix}aimg*
-║ _Convierte un sticker a imagen._
+╠ *${prefix}alimentar-sticker*
+║ _Sticker aleatorio al alimentar._
 ║
-╠ *${prefix}agif*
-║ _Convierte un sticker a gif._
+╠ *${prefix}bailar-sticker*
+║ _Sticker aleatorio bailando._
+║
+╠ *${prefix}beso-sticker*
+║ _Sticker aleatorio de un beso._
+║
+╠ *${prefix}beso1-sticker*
+║ _Sticker aleatorio de un beso._
+║
+╠ *${prefix}bofetada-sticker*
+║ _Sticker aleatorio de una bofetada._
+║
+╠ *${prefix}bullying-sticker*
+║ _Sticker aleatorio de bullying._
+║
+╠ *${prefix}caricia-sticker*
+║ _Sticker aleatorio de una caricia._
+║
+╠ *${prefix}chocalas-sticker*
+║ _Sticker aleatorio de chocalas._
+║
+╠ *${prefix}cosquilla-sticker*
+║ _Sticker aleatorio de cosquilla._
+║
+╠ *${prefix}despedida-sticker*
+║ _Sticker aleatorio de despedida._
+║
+╠ *${prefix}feliz-sticker*
+║ _Sticker aleatorio feliz._
+║
+╠ *${prefix}golpear-sticker*
+║ _Sticker aleatorio golpe._
+║
+╠ *${prefix}guiño-sticker*
+║ _Sticker aleatorio de un guiño._
+║
+╠ *${prefix}lamer-sticker*
+║ _Sticker aleatorio lamer._
+║
+╠ *${prefix}manos-sticker*
+║ _Sticker aleatorio de manos._
+║
+╠ *${prefix}matar-sticker*
+║ _Sticker aleatorio matar._
+║
+╠ *${prefix}morder-sticker*
+║ _Sticker aleatorio morder._
+║
+╠ *${prefix}neko-sticker*
+║ _Sticker aleatorio de una neko-girl._
+║
+╠ *${prefix}presumir-sticker*
+║ _Sticker aleatorio presumir._
+║
+╠ *${prefix}roche-sticker*
+║ _Sticker aleatorio de roche._
+║
+╠ *${prefix}saludo-sticker*
+║ _Sticker aleatorio de saludo._
+║
+╠ *${prefix}sonrisa-sticker*
+║ _Sticker aleatorio de una sonrisa._
+║
+╠ *${prefix}sonrojarse-sticker*
+║ _Sticker aleatorio sonrojarse._
+║
+╠ *${prefix}toque-sticker*
+║ _Sticker aleatorio de un toque._
+║
+╠ *${prefix}toque1-sticker*
+║ _Sticker aleatorio de un toque._
+║
+╠ *${prefix}verguenza-sticker*
+║ _Sticker aleatorio de verguenza._
+║
+╟╼╾┤🖼️ Sticker al azar 🖼️├╼╾
+║
+╠ *${prefix}amongus-sticker*
+║ _Sticker aleatorio de Among Us._
+║
+╠ *${prefix}anjing-sticker*
+║ _Sticker aleatorio de Anjing._
+║
+╠ *${prefix}dado-sticker*
+║ _Sticker aleatorio de un dado._
 ║
 ╰──────────────
 `
@@ -2634,6 +2757,51 @@ ase,fps=15, pad=320:320:-1:-1:color=white@0.0, split [a][b]; [a] palettegen=rese
 				}
 			break
 
+			case 'abrazo-sticker':
+				assistant = fs.readFileSync('./src/assistant.jpg')
+				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
+				ranp = getRandom('.gif')
+      			rano = getRandom('.webp')
+				reply(mess.wait)
+				exec(`wget https://api.lolhuman.xyz/api/random/cuddle?apikey=${api} -O ${ranp} && ffmpeg -i ${ranp} -vcodec libwebp -filter:v fps=fps=15 -lossless 1 -loop 0 -preset default -an -vsync 0 -s 512:512 ${rano}`, (err) => {
+			  		fs.unlinkSync(ranp)
+					if (err) return reply('error')
+					buffer = fs.readFileSync(rano)
+					samu330.sendMessage(from, buffer, sticker, {quoted: ftoko})
+					fs.unlinkSync(rano)
+				})
+			break
+
+			case 'abrazo1-sticker':
+				assistant = fs.readFileSync('./src/assistant.jpg')
+				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
+				ranp = getRandom('.gif')
+      			rano = getRandom('.webp')
+				reply(mess.wait)
+				exec(`wget https://api.lolhuman.xyz/api/random2/cuddle?apikey=${api} -O ${ranp} && ffmpeg -i ${ranp} -vcodec libwebp -filter:v fps=fps=15 -lossless 1 -loop 0 -preset default -an -vsync 0 -s 512:512 ${rano}`, (err) => {
+			  		fs.unlinkSync(ranp)
+					if (err) return reply('error')
+					buffer = fs.readFileSync(rano)
+					samu330.sendMessage(from, buffer, sticker, {quoted: ftoko})
+					fs.unlinkSync(rano)
+				})
+			break
+
+			case 'abrazo2-sticker':
+				assistant = fs.readFileSync('./src/assistant.jpg')
+				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
+				ranp = getRandom('.gif')
+      			rano = getRandom('.webp')
+				reply(mess.wait)
+				exec(`wget https://api.lolhuman.xyz/api/random/glomp?apikey=${api} -O ${ranp} && ffmpeg -i ${ranp} -vcodec libwebp -filter:v fps=fps=15 -lossless 1 -loop 0 -preset default -an -vsync 0 -s 512:512 ${rano}`, (err) => {
+			  		fs.unlinkSync(ranp)
+					if (err) return reply('error')
+					buffer = fs.readFileSync(rano)
+					samu330.sendMessage(from, buffer, sticker, {quoted: ftoko})
+					fs.unlinkSync(rano)
+				})
+			break
+			
 			case 'alimentar-sticker':
 				assistant = fs.readFileSync('./src/assistant.jpg')
 				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
@@ -2649,7 +2817,352 @@ ase,fps=15, pad=320:320:-1:-1:color=white@0.0, split [a][b]; [a] palettegen=rese
 				})
 			break
 
+			case 'bailar-sticker':
+				assistant = fs.readFileSync('./src/assistant.jpg')
+				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
+				ranp = getRandom('.gif')
+      			rano = getRandom('.webp')
+				reply(mess.wait)
+				exec(`wget https://api.lolhuman.xyz/api/random/dance?apikey=${api} -O ${ranp} && ffmpeg -i ${ranp} -vcodec libwebp -filter:v fps=fps=15 -lossless 1 -loop 0 -preset default -an -vsync 0 -s 512:512 ${rano}`, (err) => {
+			  		fs.unlinkSync(ranp)
+					if (err) return reply('error')
+					buffer = fs.readFileSync(rano)
+					samu330.sendMessage(from, buffer, sticker, {quoted: ftoko})
+					fs.unlinkSync(rano)
+				})
+			break
+			
+			case 'beso-sticker':
+				assistant = fs.readFileSync('./src/assistant.jpg')
+				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
+				ranp = getRandom('.gif')
+      			rano = getRandom('.webp')
+				reply(mess.wait)
+				exec(`wget https://api.lolhuman.xyz/api/random/kiss?apikey=${api} -O ${ranp} && ffmpeg -i ${ranp} -vcodec libwebp -filter:v fps=fps=15 -lossless 1 -loop 0 -preset default -an -vsync 0 -s 512:512 ${rano}`, (err) => {
+			  		fs.unlinkSync(ranp)
+					if (err) return reply('error')
+					buffer = fs.readFileSync(rano)
+					samu330.sendMessage(from, buffer, sticker, {quoted: ftoko})
+					fs.unlinkSync(rano)
+				})
+			break
+
+			case 'beso1-sticker':
+				assistant = fs.readFileSync('./src/assistant.jpg')
+				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
+				ranp = getRandom('.gif')
+      			rano = getRandom('.webp')
+				reply(mess.wait)
+				exec(`wget https://api.lolhuman.xyz/api/random2/kiss?apikey=${api} -O ${ranp} && ffmpeg -i ${ranp} -vcodec libwebp -filter:v fps=fps=15 -lossless 1 -loop 0 -preset default -an -vsync 0 -s 512:512 ${rano}`, (err) => {
+			  		fs.unlinkSync(ranp)
+					if (err) return reply('error')
+					buffer = fs.readFileSync(rano)
+					samu330.sendMessage(from, buffer, sticker, {quoted: ftoko})
+					fs.unlinkSync(rano)
+				})
+			break
+
+			case 'bofetada-sticker':
+				assistant = fs.readFileSync('./src/assistant.jpg')
+				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
+				ranp = getRandom('.gif')
+      			rano = getRandom('.webp')
+				reply(mess.wait)
+				exec(`wget https://api.lolhuman.xyz/api/random/slap?apikey=${api} -O ${ranp} && ffmpeg -i ${ranp} -vcodec libwebp -filter:v fps=fps=15 -lossless 1 -loop 0 -preset default -an -vsync 0 -s 512:512 ${rano}`, (err) => {
+			  		fs.unlinkSync(ranp)
+					if (err) return reply('error')
+					buffer = fs.readFileSync(rano)
+					samu330.sendMessage(from, buffer, sticker, {quoted: ftoko})
+					fs.unlinkSync(rano)
+				})
+			break
+
+			case 'bullying-sticker':
+				assistant = fs.readFileSync('./src/assistant.jpg')
+				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
+				ranp = getRandom('.gif')
+      			rano = getRandom('.webp')
+				reply(mess.wait)
+				exec(`wget https://api.lolhuman.xyz/api/random/bully?apikey=${api} -O ${ranp} && ffmpeg -i ${ranp} -vcodec libwebp -filter:v fps=fps=15 -lossless 1 -loop 0 -preset default -an -vsync 0 -s 512:512 ${rano}`, (err) => {
+			  		fs.unlinkSync(ranp)
+					if (err) return reply('error')
+					buffer = fs.readFileSync(rano)
+					samu330.sendMessage(from, buffer, sticker, {quoted: ftoko})
+					fs.unlinkSync(rano)
+				})
+			break
+
+			case 'caricia-sticker':
+				assistant = fs.readFileSync('./src/assistant.jpg')
+				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
+				ranp = getRandom('.gif')
+      			rano = getRandom('.webp')
+				reply(mess.wait)
+				exec(`wget https://api.lolhuman.xyz/api/random/pat?apikey=${api} -O ${ranp} && ffmpeg -i ${ranp} -vcodec libwebp -filter:v fps=fps=15 -lossless 1 -loop 0 -preset default -an -vsync 0 -s 512:512 ${rano}`, (err) => {
+			  		fs.unlinkSync(ranp)
+					if (err) return reply('error')
+					buffer = fs.readFileSync(rano)
+					samu330.sendMessage(from, buffer, sticker, {quoted: ftoko})
+					fs.unlinkSync(rano)
+				})
+			break
+
+			case 'chocalas-sticker':
+				assistant = fs.readFileSync('./src/assistant.jpg')
+				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
+				ranp = getRandom('.gif')
+      			rano = getRandom('.webp')
+				reply(mess.wait)
+				exec(`wget https://api.lolhuman.xyz/api/random/highfive?apikey=${api} -O ${ranp} && ffmpeg -i ${ranp} -vcodec libwebp -filter:v fps=fps=15 -lossless 1 -loop 0 -preset default -an -vsync 0 -s 512:512 ${rano}`, (err) => {
+			  		fs.unlinkSync(ranp)
+					if (err) return reply('error')
+					buffer = fs.readFileSync(rano)
+					samu330.sendMessage(from, buffer, sticker, {quoted: ftoko})
+					fs.unlinkSync(rano)
+				})
+			break
+			
+			case 'cosquilla-sticker':
+				assistant = fs.readFileSync('./src/assistant.jpg')
+				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
+				ranp = getRandom('.gif')
+      			rano = getRandom('.webp')
+				reply(mess.wait)
+				exec(`wget https://api.lolhuman.xyz/api/random2/tickle?apikey=${api} -O ${ranp} && ffmpeg -i ${ranp} -vcodec libwebp -filter:v fps=fps=15 -lossless 1 -loop 0 -preset default -an -vsync 0 -s 512:512 ${rano}`, (err) => {
+			  		fs.unlinkSync(ranp)
+					if (err) return reply('error')
+					buffer = fs.readFileSync(rano)
+					samu330.sendMessage(from, buffer, sticker, {quoted: ftoko})
+					fs.unlinkSync(rano)
+				})
+			break
+
+			case 'despedida-sticker':
+				assistant = fs.readFileSync('./src/assistant.jpg')
+				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
+				ranp = getRandom('.gif')
+      			rano = getRandom('.webp')
+				reply(mess.wait)
+				exec(`wget https://api.lolhuman.xyz/api/random/wave?apikey=${api} -O ${ranp} && ffmpeg -i ${ranp} -vcodec libwebp -filter:v fps=fps=15 -lossless 1 -loop 0 -preset default -an -vsync 0 -s 512:512 ${rano}`, (err) => {
+			  		fs.unlinkSync(ranp)
+					if (err) return reply('error')
+					buffer = fs.readFileSync(rano)
+					samu330.sendMessage(from, buffer, sticker, {quoted: ftoko})
+					fs.unlinkSync(rano)
+				})
+			break
+
+			case 'feliz-sticker':
+				assistant = fs.readFileSync('./src/assistant.jpg')
+				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
+				ranp = getRandom('.gif')
+      			rano = getRandom('.webp')
+				reply(mess.wait)
+				exec(`wget https://api.lolhuman.xyz/api/random/happy?apikey=${api} -O ${ranp} && ffmpeg -i ${ranp} -vcodec libwebp -filter:v fps=fps=15 -lossless 1 -loop 0 -preset default -an -vsync 0 -s 512:512 ${rano}`, (err) => {
+			  		fs.unlinkSync(ranp)
+					if (err) return reply('error')
+					buffer = fs.readFileSync(rano)
+					samu330.sendMessage(from, buffer, sticker, {quoted: ftoko})
+					fs.unlinkSync(rano)
+				})
+			break
+
+			case 'golpear-sticker':
+				assistant = fs.readFileSync('./src/assistant.jpg')
+				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
+				ranp = getRandom('.gif')
+      			rano = getRandom('.webp')
+				reply(mess.wait)
+				exec(`wget https://api.lolhuman.xyz/api/random/bonk?apikey=${api} -O ${ranp} && ffmpeg -i ${ranp} -vcodec libwebp -filter:v fps=fps=15 -lossless 1 -loop 0 -preset default -an -vsync 0 -s 512:512 ${rano}`, (err) => {
+			  		fs.unlinkSync(ranp)
+					if (err) return reply('error')
+					buffer = fs.readFileSync(rano)
+					samu330.sendMessage(from, buffer, sticker, {quoted: ftoko})
+					fs.unlinkSync(rano)
+				})
+			break
+
+			case 'guiño-sticker':
+				assistant = fs.readFileSync('./src/assistant.jpg')
+				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
+				ranp = getRandom('.gif')
+      			rano = getRandom('.webp')
+				reply(mess.wait)
+				exec(`wget https://api.lolhuman.xyz/api/random/wink?apikey=${api} -O ${ranp} && ffmpeg -i ${ranp} -vcodec libwebp -filter:v fps=fps=15 -lossless 1 -loop 0 -preset default -an -vsync 0 -s 512:512 ${rano}`, (err) => {
+			  		fs.unlinkSync(ranp)
+					if (err) return reply('error')
+					buffer = fs.readFileSync(rano)
+					samu330.sendMessage(from, buffer, sticker, {quoted: ftoko})
+					fs.unlinkSync(rano)
+				})
+			break
+
+			case 'lamer-sticker':
+				assistant = fs.readFileSync('./src/assistant.jpg')
+				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
+				ranp = getRandom('.gif')
+      			rano = getRandom('.webp')
+				reply(mess.wait)
+				exec(`wget https://api.lolhuman.xyz/api/random/lick?apikey=${api} -O ${ranp} && ffmpeg -i ${ranp} -vcodec libwebp -filter:v fps=fps=15 -lossless 1 -loop 0 -preset default -an -vsync 0 -s 512:512 ${rano}`, (err) => {
+			  		fs.unlinkSync(ranp)
+					if (err) return reply('error')
+					buffer = fs.readFileSync(rano)
+					samu330.sendMessage(from, buffer, sticker, {quoted: ftoko})
+					fs.unlinkSync(rano)
+				})
+			break
+
+			case 'manos-sticker':
+				assistant = fs.readFileSync('./src/assistant.jpg')
+				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
+				ranp = getRandom('.gif')
+      			rano = getRandom('.webp')
+				reply(mess.wait)
+				exec(`wget https://api.lolhuman.xyz/api/random/handhold?apikey=${api} -O ${ranp} && ffmpeg -i ${ranp} -vcodec libwebp -filter:v fps=fps=15 -lossless 1 -loop 0 -preset default -an -vsync 0 -s 512:512 ${rano}`, (err) => {
+			  		fs.unlinkSync(ranp)
+					if (err) return reply('error')
+					buffer = fs.readFileSync(rano)
+					samu330.sendMessage(from, buffer, sticker, {quoted: ftoko})
+					fs.unlinkSync(rano)
+				})
+			break
+
+			case 'matar-sticker':
+				assistant = fs.readFileSync('./src/assistant.jpg')
+				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
+				ranp = getRandom('.gif')
+      			rano = getRandom('.webp')
+				reply(mess.wait)
+				exec(`wget https://api.lolhuman.xyz/api/random/kill?apikey=${api} -O ${ranp} && ffmpeg -i ${ranp} -vcodec libwebp -filter:v fps=fps=15 -lossless 1 -loop 0 -preset default -an -vsync 0 -s 512:512 ${rano}`, (err) => {
+			  		fs.unlinkSync(ranp)
+					if (err) return reply('error')
+					buffer = fs.readFileSync(rano)
+					samu330.sendMessage(from, buffer, sticker, {quoted: ftoko})
+					fs.unlinkSync(rano)
+				})
+			break
+
+			case 'morder-sticker':
+				assistant = fs.readFileSync('./src/assistant.jpg')
+				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
+				ranp = getRandom('.gif')
+      			rano = getRandom('.webp')
+				reply(mess.wait)
+				exec(`wget https://api.lolhuman.xyz/api/random/bite?apikey=${api} -O ${ranp} && ffmpeg -i ${ranp} -vcodec libwebp -filter:v fps=fps=15 -lossless 1 -loop 0 -preset default -an -vsync 0 -s 512:512 ${rano}`, (err) => {
+			  		fs.unlinkSync(ranp)
+					if (err) return reply('error')
+					buffer = fs.readFileSync(rano)
+					samu330.sendMessage(from, buffer, sticker, {quoted: ftoko})
+					fs.unlinkSync(rano)
+				})
+			break
+
+			case 'neko-sticker':
+				assistant = fs.readFileSync('./src/assistant.jpg')
+				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
+				ranp = getRandom('.gif')
+      			rano = getRandom('.webp')
+				reply(mess.wait)
+				exec(`wget https://api.lolhuman.xyz/api/random2/ngif?apikey=${api} -O ${ranp} && ffmpeg -i ${ranp} -vcodec libwebp -filter:v fps=fps=15 -lossless 1 -loop 0 -preset default -an -vsync 0 -s 512:512 ${rano}`, (err) => {
+			  		fs.unlinkSync(ranp)
+					if (err) return reply('error')
+					buffer = fs.readFileSync(rano)
+					samu330.sendMessage(from, buffer, sticker, {quoted: ftoko})
+					fs.unlinkSync(rano)
+				})
+			break
+
+			case 'presumir-sticker':
+				assistant = fs.readFileSync('./src/assistant.jpg')
+				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
+				ranp = getRandom('.gif')
+      			rano = getRandom('.webp')
+				reply(mess.wait)
+				exec(`wget https://api.lolhuman.xyz/api/random/smug?apikey=${api} -O ${ranp} && ffmpeg -i ${ranp} -vcodec libwebp -filter:v fps=fps=15 -lossless 1 -loop 0 -preset default -an -vsync 0 -s 512:512 ${rano}`, (err) => {
+			  		fs.unlinkSync(ranp)
+					if (err) return reply('error')
+					buffer = fs.readFileSync(rano)
+					samu330.sendMessage(from, buffer, sticker, {quoted: ftoko})
+					fs.unlinkSync(rano)
+				})
+			break
+
+			case 'roche-sticker':
+				assistant = fs.readFileSync('./src/assistant.jpg')
+				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
+				ranp = getRandom('.gif')
+      			rano = getRandom('.webp')
+				reply(mess.wait)
+				exec(`wget https://api.lolhuman.xyz/api/random/blush?apikey=${api} -O ${ranp} && ffmpeg -i ${ranp} -vcodec libwebp -filter:v fps=fps=15 -lossless 1 -loop 0 -preset default -an -vsync 0 -s 512:512 ${rano}`, (err) => {
+			  		fs.unlinkSync(ranp)
+					if (err) return reply('error')
+					buffer = fs.readFileSync(rano)
+					samu330.sendMessage(from, buffer, sticker, {quoted: ftoko})
+					fs.unlinkSync(rano)
+				})
+			break
+			
+			case 'saludo-sticker':
+				assistant = fs.readFileSync('./src/assistant.jpg')
+				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
+				ranp = getRandom('.gif')
+      			rano = getRandom('.webp')
+				reply(mess.wait)
+				exec(`wget https://api.lolhuman.xyz/api/random/wave?apikey=${api} -O ${ranp} && ffmpeg -i ${ranp} -vcodec libwebp -filter:v fps=fps=15 -lossless 1 -loop 0 -preset default -an -vsync 0 -s 512:512 ${rano}`, (err) => {
+			  		fs.unlinkSync(ranp)
+					if (err) return reply('error')
+					buffer = fs.readFileSync(rano)
+					samu330.sendMessage(from, buffer, sticker, {quoted: ftoko})
+					fs.unlinkSync(rano)
+				})
+			break
+
+			case 'sonrisa-sticker':
+				assistant = fs.readFileSync('./src/assistant.jpg')
+				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
+				ranp = getRandom('.gif')
+      			rano = getRandom('.webp')
+				reply(mess.wait)
+				exec(`wget https://api.lolhuman.xyz/api/random/smile?apikey=${api} -O ${ranp} && ffmpeg -i ${ranp} -vcodec libwebp -filter:v fps=fps=15 -lossless 1 -loop 0 -preset default -an -vsync 0 -s 512:512 ${rano}`, (err) => {
+			  		fs.unlinkSync(ranp)
+					if (err) return reply('error')
+					buffer = fs.readFileSync(rano)
+					samu330.sendMessage(from, buffer, sticker, {quoted: ftoko})
+					fs.unlinkSync(rano)
+				})
+			break
+			
+			case 'sonrojarse-sticker':
+				assistant = fs.readFileSync('./src/assistant.jpg')
+				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
+				ranp = getRandom('.gif')
+      			rano = getRandom('.webp')
+				reply(mess.wait)
+				exec(`wget https://api.lolhuman.xyz/api/random/blush?apikey=${api} -O ${ranp} && ffmpeg -i ${ranp} -vcodec libwebp -filter:v fps=fps=15 -lossless 1 -loop 0 -preset default -an -vsync 0 -s 512:512 ${rano}`, (err) => {
+			  		fs.unlinkSync(ranp)
+					if (err) return reply('error')
+					buffer = fs.readFileSync(rano)
+					samu330.sendMessage(from, buffer, sticker, {quoted: ftoko})
+					fs.unlinkSync(rano)
+				})
+			break
+
 			case 'toque-sticker':
+				assistant = fs.readFileSync('./src/assistant.jpg')
+				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
+				ranp = getRandom('.gif')
+      			rano = getRandom('.webp')
+				reply(mess.wait)
+				exec(`wget https://api.lolhuman.xyz/api/random/poke?apikey=${api} -O ${ranp} && ffmpeg -i ${ranp} -vcodec libwebp -filter:v fps=fps=15 -lossless 1 -loop 0 -preset default -an -vsync 0 -s 512:512 ${rano}`, (err) => {
+			  		fs.unlinkSync(ranp)
+					if (err) return reply('error')
+					buffer = fs.readFileSync(rano)
+					samu330.sendMessage(from, buffer, sticker, {quoted: ftoko})
+					fs.unlinkSync(rano)
+				})
+			break
+			
+			case 'toque1-sticker':
 				assistant = fs.readFileSync('./src/assistant.jpg')
 				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
 				ranp = getRandom('.gif')
@@ -2663,7 +3176,22 @@ ase,fps=15, pad=320:320:-1:-1:color=white@0.0, split [a][b]; [a] palettegen=rese
 					fs.unlinkSync(rano)
 				})
 			break
-			
+
+			case 'verguenza-sticker':
+				assistant = fs.readFileSync('./src/assistant.jpg')
+				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
+				ranp = getRandom('.gif')
+      			rano = getRandom('.webp')
+				reply(mess.wait)
+				exec(`wget https://api.lolhuman.xyz/api/random/cringe?apikey=${api} -O ${ranp} && ffmpeg -i ${ranp} -vcodec libwebp -filter:v fps=fps=15 -lossless 1 -loop 0 -preset default -an -vsync 0 -s 512:512 ${rano}`, (err) => {
+			  		fs.unlinkSync(ranp)
+					if (err) return reply('error')
+					buffer = fs.readFileSync(rano)
+					samu330.sendMessage(from, buffer, sticker, {quoted: ftoko})
+					fs.unlinkSync(rano)
+				})
+			break
+
 			case 'amongus-sticker':
 				assistant = fs.readFileSync('./src/assistant.jpg')
 				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
@@ -2686,21 +3214,6 @@ ase,fps=15, pad=320:320:-1:-1:color=white@0.0, split [a][b]; [a] palettegen=rese
 				reply(mess.wait)
 				const dadoattp1 = await getBuffer(`https://api.lolhuman.xyz/api/sticker/dadu?apikey=${api}`)
 				samu330.sendMessage(from, dadoattp1, sticker, { quoted: ftoko, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
-			break
-
-			case 'neko-sticker':
-				assistant = fs.readFileSync('./src/assistant.jpg')
-				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
-				ranp = getRandom('.gif')
-      			rano = getRandom('.webp')
-				reply(mess.wait)
-				exec(`wget https://api.lolhuman.xyz/api/random2/ngif?apikey=${api} -O ${ranp} && ffmpeg -i ${ranp} -vcodec libwebp -filter:v fps=fps=15 -lossless 1 -loop 0 -preset default -an -vsync 0 -s 512:512 ${rano}`, (err) => {
-			  		fs.unlinkSync(ranp)
-					if (err) return reply('error')
-					buffer = fs.readFileSync(rano)
-					samu330.sendMessage(from, buffer, sticker, {quoted: ftoko})
-					fs.unlinkSync(rano)
-				})
 			break
 
 			case 'pussy7':
