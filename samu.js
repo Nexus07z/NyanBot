@@ -2253,6 +2253,24 @@ _*El archivo se esta enviando.....*_
 				foto = `https://api.lolhuman.xyz/api/random2/neko?apikey=${api}`
 				sendFileFromUrl(foto, image, {quoted: fimg })	
 			break
+			
+			case 'neko7':
+				url = `https://api.lolhuman.xyz/api/random2/ngif?apikey=${api}`
+				neko7 = await getBuffer(url)
+				samu330.sendMessage(from, neko7, MessageType.video, { mimetype: 'video/mp4', duration: 999999999, filename: `neko7.mp4`, quoted: fvid })
+			break
+
+			case 'neko8':
+				url = `https://api.lolhuman.xyz/api/random2/ngif?apikey=${api}`
+				neko8 = await getBuffer(url)
+				samu330.sendMessage(from, neko8, MessageType.video, { mimetype: 'image/gif', duration: 999999999, filename: `neko8.gif`, quoted: fvid })
+			break
+
+			case 'neko9':
+				url = `https://api.lolhuman.xyz/api/random2/ngif?apikey=${api}`
+				neko9 = await getBuffer(url)
+				samu330.sendMessage(from, neko9, MessageType.video, { mimetype: Mimetype.gif, duration: 999999999, filename: `neko8.gif`, quoted: fvid })
+			break
 
 			case 'waifu':
 				assistant = fs.readFileSync('./src/assistant.jpg')
