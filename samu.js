@@ -2273,8 +2273,7 @@ _*El archivo se esta enviando.....*_
 			case 'nekogif':
       			ranp = getRandom('.gif')
       			rano = getRandom('.webp')
-				nekogif = await axios.get('https://nekos.life/api/v2/img/pussy')
-				exec(`wget https://cdn.nekos.life/pussy/Pussyl_093.gif -O ${ranp} && ffmpeg -i ${ranp} -vcodec libwebp -filter:v fps=fps=15 -lossless 1 -loop 0 -preset default -an -vsync 0 -s 512:512 ${rano}`, (err) => {
+				exec(`wget https://api.lolhuman.xyz/api/random2/ngif?apikey=${api} -O ${ranp} && ffmpeg -i ${ranp} -vcodec libwebp -filter:v fps=fps=15 -lossless 1 -loop 0 -preset default -an -vsync 0 -s 512:512 ${rano}`, (err) => {
 			  		fs.unlinkSync(ranp)
 					if (err) return reply('error')
 					buffer = fs.readFileSync(rano)
@@ -2283,11 +2282,11 @@ _*El archivo se esta enviando.....*_
 				})
 			break
 
-			case 'nekogif1':
+			case 'pussy7':
       			ranp = getRandom('.gif')
       			rano = getRandom('.webp')
-				nekogif1 = await axios.get('https://nekos.life/api/v2/img/pussy')
-				exec(`wget ${nekogif1.data.url} -O ${ranp} && ffmpeg -i ${ranp} -vcodec libwebp -filter:v fps=fps=15 -lossless 1 -loop 0 -preset default -an -vsync 0 -s 512:512 ${rano}`, (err) => {
+				pussy7 = await axios.get('https://nekos.life/api/v2/img/pussy')
+				exec(`wget ${pussy7.data.url} -O ${ranp} && ffmpeg -i ${ranp} -vcodec libwebp -filter:v fps=fps=15 -lossless 1 -loop 0 -preset default -an -vsync 0 -s 512:512 ${rano}`, (err) => {
 			  		fs.unlinkSync(ranp)
 					if (err) return reply('error')
 					buffer = fs.readFileSync(rano)
