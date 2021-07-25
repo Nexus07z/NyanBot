@@ -2261,24 +2261,24 @@ _*El archivo se esta enviando.....*_
 			break
 
 			case 'neko8':
-				url = `https://api.lolhuman.xyz/api/random2/ngif?apikey=${api}`
-				neko8 = await getBuffer(url)
+				url8 = `https://api.lolhuman.xyz/api/random2/ngif?apikey=${api}`
+				neko8 = await getBuffer(url8)
 				sendFileFromUrl(neko8, image, {quoted: fimg })
 				break
 
 				case 'neko9':
-					url = `https://api.lolhuman.xyz/api/random2/ngif?apikey=${api}`
-					neko9 = await getBuffer(url)
+					url9 = `https://api.lolhuman.xyz/api/random2/ngif?apikey=${api}`
+					neko9 = await getBuffer(url9)
 					sendFileFromUrl(neko9, video, {mimetype: 'video/gif',quoted: fimg })
 				break
 				case 'neko10':
-					url = `https://api.lolhuman.xyz/api/random2/ngif?apikey=${api}`
-					neko10 = await getBuffer(url)
+					url10 = `https://api.lolhuman.xyz/api/random2/ngif?apikey=${api}`
+					neko10 = await getBuffer(url10)
 					sendFileFromUrl(neko10, video, {mimetype: 'video/gif',quoted: fvid })
 				break
 				case 'neko11':
-					url = `https://api.lolhuman.xyz/api/random2/ngif?apikey=${api}`
-					neko11 = await getBuffer(url)
+					url11 = `https://api.lolhuman.xyz/api/random2/ngif?apikey=${api}`
+					neko11 = await getBuffer(url11)
 					sendFileFromUrl(neko11, video, {mimetype: Mimetype.gif,quoted: fvid })
 				break
 
