@@ -2171,7 +2171,7 @@ _*El archivo se esta enviando.....*_
 				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
 				reply(mess.wait)
 				const amongusattp1 = await getBuffer(`https://api.lolhuman.xyz/api/sticker/amongus?apikey=${api}`)
-				samu330.sendMessage(from, amongusttp1, sticker, { quoted: ftoko, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
+				samu330.sendMessage(from, amongusattp1, sticker, { quoted: ftoko, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
 			break
 
 			case 'anjing':
@@ -2179,7 +2179,7 @@ _*El archivo se esta enviando.....*_
 				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
 				reply(mess.wait)
 				const anjingattp1 = await getBuffer(`https://api.lolhuman.xyz/api/sticker/anjing?apikey=${api}`)
-				samu330.sendMessage(from, anjingttp1, sticker, { quoted: ftoko, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
+				samu330.sendMessage(from, anjingattp1, sticker, { quoted: ftoko, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
 			break
 			
 			case 'dado':
@@ -2274,8 +2274,8 @@ _*El archivo se esta enviando.....*_
 				assistant = fs.readFileSync('./src/assistant.jpg')
 				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
 				reply(mess.wait)
-				foto = `https://api.lolhuman.xyz/api/random2/ngif?apikey=${api}`
-				sendFileFromUrl(foto, image, {quoted: fimg })	
+				const nekogifattp1 = await getBuffer(`https://api.lolhuman.xyz/api/random2/ngif?apikey=${api}`)
+				samu330.sendMessage(from, nekogifattp1, video, { quoted: ftoko, mimetype: 'video/gif' })
 			break
 
 			case 'ardilla':
