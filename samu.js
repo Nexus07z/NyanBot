@@ -2286,7 +2286,7 @@ _*El archivo se esta enviando.....*_
 			  		fs.unlinkSync(ranp)
 					if (err) return reply('error')
 					buffer = fs.readFileSync(rano)
-					FxBot.sendMessage(from, buffer, MessageType.sticker, {quoted: mek})
+					samu330.sendMessage(from, buffer, MessageType.sticker, {quoted: mek})
 					fs.unlinkSync(rano)
 				})
 			break
