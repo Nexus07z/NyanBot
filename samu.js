@@ -872,6 +872,12 @@ Hola *${pushname}* ${timeFt}
 ╠ *${prefix}sinfondo*
 ║ _Etiqueta una imagen para quitarle el fondo._
 ║
+╠ *${prefix}sinfondo1*
+║ _Etiqueta una imagen para quitarle el fondo._
+║
+╠ *${prefix}sinfondo2*
+║ _Etiqueta una imagen para quitarle el fondo._
+║
 ╠ *${prefix}wpbusca* [Palabra]
 ║ _Búsqueda de fondos de pantalla._
 ║
@@ -932,6 +938,12 @@ Hola *${pushname}* ${timeFt}
 ║ _Búsqueda de imágenes en Google._
 ║
 ╠ *${prefix}sinfondo*
+║ _Etiqueta una imagen para quitarle el fondo._
+║
+╠ *${prefix}sinfondo1*
+║ _Etiqueta una imagen para quitarle el fondo._
+║
+╠ *${prefix}sinfondo2*
 ║ _Etiqueta una imagen para quitarle el fondo._
 ║
 ╠ *${prefix}sticker*
@@ -2168,6 +2180,31 @@ _*El archivo se esta enviando.....*_
 				samu330.sendMessage(from, buffer, image, {
 					quoted: fimg
 				})
+			break
+
+			case 'waifu2':
+				assistant = fs.readFileSync('./src/assistant.jpg')
+				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
+					samu330.updatePresence(from, Presence.composing)
+					waifu = ["https://hertz-ingenieros.com/api/lh/waifu.php","https://hertz-ingenieros.com/api/lh/waifu.php"]
+					swaifu = waifu[Math.floor(Math.random() * waifu.length)]
+					rwaifu = await getJson(`${swaifu}`, {
+					method: 'get'
+				})
+				reply(mess.wait)
+				buffer = await getBuffer(`${rwaifu.url}`)
+				samu330.sendMessage(from, buffer, image, {
+					quoted: fimg
+				})
+			break
+
+			case 'waifu2':
+				assistant = fs.readFileSync('./src/assistant.jpg')
+				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
+				reply(mess.wait)
+				foto = `https://api.lolhuman.xyz/api/random/waifu?apikey=${api}`
+				sendFileFromUrl(foto, image, {quoted: fimg })
+				
 			break
 
 			case 'neko':
