@@ -2257,20 +2257,30 @@ _*El archivo se esta enviando.....*_
 			case 'neko7':
 				url = `https://api.lolhuman.xyz/api/random2/ngif?apikey=${api}`
 				neko7 = await getBuffer(url)
-				samu330.sendMessage(from, neko7, MessageType.video, { mimetype: 'video/mp4', duration: 999999999, filename: `neko7.mp4`, quoted: fvid })
+				samu330.sendMessage(from, neko7, MessageType.video, { mimetype: 'video/gif', duration: 999999999, filename: `neko7.gif`, quoted: fvid })
 			break
 
 			case 'neko8':
 				url = `https://api.lolhuman.xyz/api/random2/ngif?apikey=${api}`
 				neko8 = await getBuffer(url)
-				samu330.sendMessage(from, neko8, MessageType.video, { mimetype: 'image/gif', duration: 999999999, filename: `neko8.gif`, quoted: fvid })
-			break
+				sendFileFromUrl(neko8, image, {quoted: fimg })
+				break
 
-			case 'neko9':
-				url = `https://api.lolhuman.xyz/api/random2/ngif?apikey=${api}`
-				neko9 = await getBuffer(url)
-				samu330.sendMessage(from, neko9, MessageType.video, { mimetype: Mimetype.gif, duration: 999999999, filename: `neko8.gif`, quoted: fvid })
-			break
+				case 'neko9':
+					url = `https://api.lolhuman.xyz/api/random2/ngif?apikey=${api}`
+					neko9 = await getBuffer(url)
+					sendFileFromUrl(neko9, video, {mimetype: 'video/gif',quoted: fimg })
+				break
+				case 'neko10':
+					url = `https://api.lolhuman.xyz/api/random2/ngif?apikey=${api}`
+					neko10 = await getBuffer(url)
+					sendFileFromUrl(neko10, video, {mimetype: 'video/gif',quoted: fvid })
+				break
+				case 'neko11':
+					url = `https://api.lolhuman.xyz/api/random2/ngif?apikey=${api}`
+					neko11 = await getBuffer(url)
+					sendFileFromUrl(neko11, video, {mimetype: Mimetype.gif,quoted: fvid })
+				break
 
 			case 'waifu':
 				assistant = fs.readFileSync('./src/assistant.jpg')
