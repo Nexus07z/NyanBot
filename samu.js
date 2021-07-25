@@ -2092,6 +2092,40 @@ _*El archivo se esta enviando.....*_
 			case 'sinfondo':
 				assistant = fs.readFileSync('./src/assistant.jpg')
 				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
+				imgbb = require('imgbb-uploader')
+				if ((isMedia || isQuotedImage)) {
+				const encmedianb = isQuotedImage ? JSON.parse(JSON.stringify(sam).replace('quotedM','m')).message.extendedTextMessage.contextInfo : sam
+				const median = await samu330.downloadAndSaveMediaMessage(encmedianb)
+				reply(mess.wait)
+				sam330 = await imgbb('20a14861e4f7591f3dc52649cb07ae02', median);
+				link = `${sam330.display_url}`;
+				foto = `https://api.lolhuman.xyz/api/removebg?apikey=${api}&img=${resultc}${link}`
+				sendFileFromUrl(foto, image, {quoted: fimg })
+				} else {
+					reply('*Por favor etiqueta una imagen con el comando.*')
+				}
+			break
+			
+			case 'sinfondo1':
+				assistant = fs.readFileSync('./src/assistant.jpg')
+				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
+				imgbb = require('imgbb-uploader')
+				if ((isMedia || isQuotedImage)) {
+				const encmedianb = isQuotedImage ? JSON.parse(JSON.stringify(sam).replace('quotedM','m')).message.extendedTextMessage.contextInfo : sam
+				const median = await samu330.downloadAndSaveMediaMessage(encmedianb)
+				reply(mess.wait)
+				sam330 = await imgbb('20a14861e4f7591f3dc52649cb07ae02', median);
+				link = `${sam330.display_url}`;
+				foto = `https://docs-jojo.herokuapp.com/api/remove-bg?url=${link}`
+				sendFileFromUrl(foto, image, {quoted: fimg })
+				} else {
+					reply('*Por favor etiqueta una imagen con el comando.*')
+				}
+			break
+			
+			case 'sinfondo2':
+				assistant = fs.readFileSync('./src/assistant.jpg')
+				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
 				if ((isMedia || isQuotedImage)) {
 					const encmedianb = isQuotedImage ? JSON.parse(JSON.stringify(sam).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo : sam
 					const median = await samu330.downloadAndSaveMediaMessage(encmedianb)
