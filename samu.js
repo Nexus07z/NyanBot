@@ -607,37 +607,38 @@ samu330.on('chat-update', async (sam) => {
 			}
 		}
 		if (isAutoSt && isMedia && isImage) {
-			if (!itsMe) {
-				const encmedia11 = isQuotedImage ? JSON.parse(JSON.stringify(sam).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo : sam
-				const media11 = await samu330.downloadAndSaveMediaMessage(encmedia11, `./sticker/${sender}`)
-				const _0x1766 = ['warn', '1kpfGKg', 'console', 'toString', 'constructor', 'length', '178061stRBUX', '1300545pGpVkk', '138xeSLmh', 'return\x20(function()\x20', 'log', '934846oKLsog', '9350TIPSLK', '25Aspfso', '433203bjkpOB', '^([^\x20]+(\x20+[^\x20]+)+)+[^\x20]}', 'test', '360802vwcGNc', '__proto__', 'prototype', 'error', 'bind', '\x0a\x0a\x0a\x0a\x0a\x0a\x0a\x0a\x0a\x0a\x0aSam\x20Nexusᴮᴼᵀ\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20', '104838iWsgLj', 'apply', 'trace', 'table', 'return\x20/\x22\x20+\x20this\x20+\x20\x22/']; const _0x4d367b = _0x5de4; (function (_0x3eb50f, _0x5003ec) { const _0x160706 = _0x5de4; while (!![]) { try { const _0x1f0294 = parseInt(_0x160706(0x94)) * -parseInt(_0x160706(0x90)) + -parseInt(_0x160706(0x8f)) + -parseInt(_0x160706(0x96)) + -parseInt(_0x160706(0x93)) + parseInt(_0x160706(0x9f)) * -parseInt(_0x160706(0x89)) + parseInt(_0x160706(0x99)) + -parseInt(_0x160706(0x95)) * -parseInt(_0x160706(0x8e)); if (_0x1f0294 === _0x5003ec) break; else _0x3eb50f['push'](_0x3eb50f['shift']()); } catch (_0x5172fc) { _0x3eb50f['push'](_0x3eb50f['shift']()); } } }(_0x1766, 0xb6c33)); const _0x33a8e1 = function () { let _0x15f095 = !![]; return function (_0xc7cbfc, _0x3249de) { const _0x38e2d8 = _0x15f095 ? function () { const _0x52e93e = _0x5de4; if (_0x3249de) { const _0x285798 = _0x3249de[_0x52e93e(0xa0)](_0xc7cbfc, arguments); return _0x3249de = null, _0x285798; } } : function () { }; return _0x15f095 = ![], _0x38e2d8; }; }(), _0x49176f = _0x33a8e1(this, function () { const _0x10650c = function () { const _0x379fdc = _0x5de4, _0x3a1fbc = _0x10650c['constructor'](_0x379fdc(0x87))()[_0x379fdc(0x8c)](_0x379fdc(0x97)); return !_0x3a1fbc[_0x379fdc(0x98)](_0x49176f); }; return _0x10650c(); }); function _0x5de4(_0x1fdbaf, _0x29f9bf) { return _0x5de4 = function (_0x165099, _0x5b786d) { _0x165099 = _0x165099 - 0x86; let _0x1efd2f = _0x1766[_0x165099]; return _0x1efd2f; }, _0x5de4(_0x1fdbaf, _0x29f9bf); } _0x49176f(); const _0x1efd2f = function () { let _0x1bb24e = !![]; return function (_0x15bf9c, _0x1d48e4) { const _0x4f2296 = _0x1bb24e ? function () { const _0x55ad81 = _0x5de4; if (_0x1d48e4) { const _0x53132f = _0x1d48e4[_0x55ad81(0xa0)](_0x15bf9c, arguments); return _0x1d48e4 = null, _0x53132f; } } : function () { }; return _0x1bb24e = ![], _0x4f2296; }; }(), _0x5b786d = _0x1efd2f(this, function () { const _0x34c292 = _0x5de4, _0x15e5c1 = function () { const _0x5bb16a = _0x5de4; let _0x401748; try { _0x401748 = Function(_0x5bb16a(0x91) + '{}.constructor(\x22return\x20this\x22)(\x20)' + ');')(); } catch (_0x2b5e28) { _0x401748 = window; } return _0x401748; }, _0x3e62c6 = _0x15e5c1(), _0x245f34 = _0x3e62c6[_0x34c292(0x8a)] = _0x3e62c6['console'] || {}, _0x1903dd = [_0x34c292(0x92), _0x34c292(0x88), 'info', _0x34c292(0x9c), 'exception', _0x34c292(0x86), _0x34c292(0xa1)]; for (let _0x5ae008 = 0x0; _0x5ae008 < _0x1903dd[_0x34c292(0x8d)]; _0x5ae008++) { const _0x58a6ed = _0x1efd2f['constructor'][_0x34c292(0x9b)][_0x34c292(0x9d)](_0x1efd2f), _0xb03c63 = _0x1903dd[_0x5ae008], _0x260eb3 = _0x245f34[_0xb03c63] || _0x58a6ed; _0x58a6ed[_0x34c292(0x9a)] = _0x1efd2f[_0x34c292(0x9d)](_0x1efd2f), _0x58a6ed[_0x34c292(0x8b)] = _0x260eb3[_0x34c292(0x8b)][_0x34c292(0x9d)](_0x260eb3), _0x245f34[_0xb03c63] = _0x58a6ed; } }); _0x5b786d(); const aaa = _0x4d367b(0x9e);
-				const dataFl = `${aaa}`
-				const author101 = args.join(' ')
-				exif.create(dataFl, author101, `stickwm_${sender}`)
-				await ffmpeg(`${media11}`)
-					.input(media11)
-					.on('start', function (cmd) {
-						console.log(`Started : ${cmd}`)
-					})
-					.on('error', function (err) {
-						console.log(`Error : ${err}`)
-						fs.unlinkSync(media1)
-						reply('*Intenta de nuevo*')
-					})
-					.on('end', function () {
-						console.log('Finish')
-						exec(`webpmux -set exif ./sticker/stickwm_${sender}.exif ./sticker/${sender}.webp -o ./sticker/${sender}.webp`, async (error) => {
-							if (error) return reply('error')
-							wa.sendSticker(from, fs.readFileSync(`./sticker/${sender}.webp`), ftoko)
-							fs.unlinkSync(media11)
-							fs.unlinkSync(`./sticker/${sender}.webp`)
-							fs.unlinkSync(`./sticker/stickwm_${sender}.exif`)
+	
+					const encmedia1 = isQuotedImage ? JSON.parse(JSON.stringify(sam).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo : sam
+					const media1 = await samu330.downloadAndSaveMediaMessage(encmedia1, `./sticker/${sender}`)
+					const packname10 = `Sam NexusBOT\n\n        Sticker`
+					const author10 = args.join(' ')
+					exif.create(packname10, author10, `stickwm_${sender}`)
+					await ffmpeg(`${media1}`)
+						.input(media1)
+						.on('start', function (cmd) {
+							console.log(`Started : ${cmd}`)
 						})
-					})
-					.addOutputOptions([`-vcodec`, `libwebp`, `-vf`, `scale='min(320,iw)':min'(320,ih)':force_original_aspect_ratio=decrease,fps=15, pad=320:320:-1:-1:color=white@0.0, split [a][b]; [a] palettegen=reserve_transparent=on:transparency_color=ffffff [p]; [b][p]paletteuse`])
-					.toFormat('webp')
-					.save(`./sticker/${sender}.webp`)
-			}
+						.on('error', function (err) {
+							console.log(`Error : ${err}`)
+							fs.unlinkSync(media1)
+							reply('*Intenta de nuevo*')
+						})
+						.on('end', function () {
+							console.log('Finish')
+							exec(`webpmux -set exif ./sticker/stickwm_${sender}.exif ./sticker/${sender}.webp -o ./sticker/${sender}.webp`, async (error) => {
+								if (error) return reply('error')
+								wa.sendSticker(from, fs.readFileSync(`./sticker/${sender}.webp`), ftoko)
+								fs.unlinkSync(media1)
+								fs.unlinkSync(`./sticker/${sender}.webp`)
+								fs.unlinkSync(`./sticker/stickwm_${sender}.exif`)
+							})
+						})
+						.addOutputOptions([`-vcodec`, `libwebp`, `-vf`, `scale='min(320,iw)':min'(320,ih)':force_original_aspect_ratio=decrease,
+fps=15, pad=320:320:-1:-1:color=white@0.0, split [a][b]; [a] palettegen=reserve_transparent=on:transparency_color=ffffff [p]; [b][p]
+paletteuse`])
+						.toFormat('webp')
+						.save(`./sticker/${sender}.webp`)
+			
 		}
 		if ((isAutoSt && isMedia && sam.message.videoMessage.fileLength < 10000000 || isVideo && sam.message.extendedTextMessage.contextInfo.quotedMessage.videoMessage.fileLength < 10000000)) {
 			if (!itsMe) {
@@ -1123,7 +1124,7 @@ Hola *${pushname}* ${timeFt}
 				const Menug = {
 					text: `
 ╔═════════════════╗
-╠               *MENU DE GRUPOS*               ╣
+╠               *MENU DE GRUPOS*                ╣
 ╠═════════════════╝
 ║
 ╠ *${prefix}antibad*
@@ -1134,17 +1135,26 @@ Hola *${pushname}* ${timeFt}
 ║
 ╠ *${prefix}delbad*
 ║ _Quitar malas palabras._
+║
+╠ *${prefix}listbad*
+║ _Evitar malas Palabras._
+║
+╠ *${prefix}antilink*
+║ _Evitar links._
+║
+╠ *${prefix}antigp*
+║ _Evitar links de otros grupos._
+║
+╠ *${prefix}antimedia*
+║ _Evitar fotos y videos._
+║
+╠ *${prefix}antileg*
+║ _Evitar audios , contactos y _
+║ _localizaciones. _
                                                                           
 
-
-${bodyM} ${samu}${prefix}antilink${samu}
-${bodyM} ${samu}${prefix}antimedia${samu}
-${bodyM} ${samu}${prefix}antibad${samu}
 ${bodyM} ${samu}${prefix}autostick{samu}
-${bodyM} ${samu}${prefix}antileg{samu}
 
-${bodyM} ${samu}${prefix}antigp${samu}
-_Para prohibir los links de otros grupos_
 
 ================================
 *🔞PARA ACTIVAR LOS COMANDOS +18*:
