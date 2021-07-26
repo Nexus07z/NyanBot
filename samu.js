@@ -4773,13 +4773,13 @@ Titulo :* ${a.judul}
 					if (isBadWord) return reply('*Ya está activo.*')
 					badword.push(from)
 					fs.writeFileSync('./src/badword.json', JSON.stringify(badword))
-					reply(`*[ Activado ]*`)
+					reply(`*Anti-bad [ Activado ] ✔️*`)
 					reply(`*Las personas que envíen una mala palabra serán eliminadas.* _Para ver la lista de malas palabras usa el comando: ${prefix}listbad_`)
 				} else if (args[0] === '0') {
 					var ini = badword.indexOf(from)
 					badword.splice(ini, 1)
 					fs.writeFileSync('./src/badword.json', JSON.stringify(badword))
-					reply(`Desactivado`)
+					reply(`*Anti-bad *[ Desactivado ]* ✔️*`)
 				} else {
 					reply('1 para activar, 0 para desactivar.')
 				}
@@ -4794,13 +4794,13 @@ Titulo :* ${a.judul}
 						if (isAntiLink) return reply('Ya esta activo.')
 						antilink.push(from)
 						fs.writeFileSync('./src/antilink.json', JSON.stringify(antilink))
-						reply('*Anti-link activado. ✔️*')
+						reply('*Anti-link [ Activado ] ✔️*')
 						samu330.sendMessage(from, `Los miembros que manden un link serán eliminados. *Nota: * _CUALQUIER TIPO DE LINK. _`, text)
 					} else if ((args[0]) === '0') {
 						var ini = antilink.indexOf(from)
 						antilink.splice(ini, 1)
 						fs.writeFileSync('./src/antilink.json', JSON.stringify(antilink))
-						reply('*Anti-link desactivado. ✔️*')
+						reply('*Anti-link *[ Desactivado ]* ✔️*')
 					} else {
 						reply('*1 para activar, 0 para desactivar.*')
 					}
@@ -4836,26 +4836,7 @@ Titulo :* ${a.judul}
 				}
 				await reply(lbw)
 				break
-			case 'antilink':
-				if (!isGroup) return reply(mess.only.group)
-				if (!isAdmin) return reply(mess.only.admin)
-				if (!botAdmin) return reply(mess.only.Badmin)
-				if (args.length < 1) return reply('Escriba *1* para activar.')
-				if (args[0] === '1') {
-					if (isAntiLink) return reply('Ya esta activo.')
-					antilink.push(from)
-					fs.writeFileSync('./src/antilink.json', JSON.stringify(antilink))
-					reply('*Anti-link activado. ✔️*')
-					samu330.sendMessage(from, `Los miembros que manden un link serán eliminados. *Nota: * _CUALQUIER TIPO DE LINK. _`, text)
-				} else if ((args[0]) === '0') {
-					var ini = antilink.indexOf(from)
-					antilink.splice(ini, 1)
-					fs.writeFileSync('./src/antilink.json', JSON.stringify(antilink))
-					reply('*Anti-link desactivado. ✔️*')
-				} else {
-					reply('*1 para activar, 0 para desactivar.*')
-				}
-			break
+		
 
 			case 'antigp':
 				if (!isGroup) return reply(mess.only.group)
