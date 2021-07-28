@@ -689,7 +689,7 @@ samu330.on('chat-update', async (sam) => {
 		if (isGroup && botAdmin && isAntiMedia) {
 			if (!itsMe) {
 				if (isImage) {
-					samu330.updatePresence(from, Presence.composing)
+					
 					reply(`Lo siento ${sender.split("@")[0]}, pero aquí no se permiten las fotos ni videos, *serás expulsado por seguridad.*`)
 					await sleep(5000)
 					samu330.groupRemove(from, [sender])
@@ -699,7 +699,7 @@ samu330.on('chat-update', async (sam) => {
 		if (isGroup && botAdmin && isAntiMedia) {
 			if (!itsMe) {
 				if (isMedia) {
-					samu330.updatePresence(from, Presence.composing)
+					
 					reply(`Lo siento ${sender.split("@")[0]}, pero aquí no se permiten las fotos ni videos, *serás expulsado por seguridad.*`)
 					await sleep(5000)
 					samu330.groupRemove(from, [sender])
