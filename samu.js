@@ -1123,7 +1123,7 @@ Hola *${pushname}* ${timeFt}
 				const Menug = {
 					text: `
 ╔═════════════════╗
-╠                *MENU DE GRUPOS*                 ╣
+╠                *MENU DE GRUPOS*                ╣
 ╠═════════════════╝
 ║
 ╠ *${prefix}antibad*
@@ -1163,29 +1163,31 @@ ${bodyM} ${prefix}+18 1/0
 ${bodyM} ${prefix}nuevogrupo
 ${bodyM} ${prefix}grupo abrir/cerrar
 ${bodyM} ${prefix}salir
-${bodyM} ${prefix}tagstick
-${bodyM} ${prefix}imagetag
-${bodyM} ${prefix}hidetag
 ${bodyM} ${prefix}todos
 ${bodyM} ${prefix}setdesc
 ${bodyM} ${prefix}nombre
 ${bodyM} ${prefix}adminlist
-${bodyM} ${prefix}setpic
-${bodyM} ${prefix}enlinea
-${bodyM} ${prefix}promote
-${bodyM} ${prefix}demote
 ${bodyM} ${prefix}eliminar
 ${bodyM} ${prefix}añadir *(Numero sin el +)*
 ${bodyM} ${prefix}notif
-${bodyM} ${prefix}reply @miembro|frase|frase
 ${bodyM} ${prefix}contacto @miembro|nombre
 ${bodyM} ${prefix}link
 ${bodyM} ${prefix}top5
-${bodyM} ${prefix}clonar
+
 
 ${prefix}entrabot *(Link del grupo)*
 ${bodyM} ${prefix}inspeccionar _(Requiere link de un grupo)_
+
+${bodyM} ${prefix}clonar
+${bodyM} ${prefix}reply @miembro|frase|frase
+${bodyM} ${prefix}promote
+${bodyM} ${prefix}demote
+${bodyM} ${prefix}enlinea
+${bodyM} ${prefix}setpic
+${bodyM} ${prefix}hidetag
+${bodyM} ${prefix}imagetag
 ${bodyM} ${prefix}getpic
+${bodyM} ${prefix}tagstick
 `,
 					contextInfo: {
 						mentionedJid: [sender], "forwardingScore": 9999, "isForwarded": true
@@ -4764,15 +4766,15 @@ Titulo :* ${a.judul}
 				if (!isOwner) return reply(mess.only.ownerB)
 				if (!isAdmin) return reply(mess.only.admin)
 				if (args.length < 1) return reply(`Escribe ${prefix}delbad [palabra]. Ejemplo: ${prefix}delbad hola`)
-				let dbw = q
-				bad.splice(dbw)
-				fs.writeFileSync('./src/bad.json', JSON.stringify(bad))
+				const dbw = q
+				badword.splice(dbw)
+				fs.writeFileSync('./src/bad.json', JSON.stringify(badword))
 				reply('Se quito con éxito.')
 
 			break
 
 			case 'listbad':
-				let lbw = `Lista de MALAS PALABRAS\nTotal : ${bad.length}\n`
+				let lbw = `Lista de malas palabras.\nTotal : ${bad.length}\n`
 				for (let i of bad) {
 					lbw += `◦ ${i.replace(bad)}\n`
 				}
