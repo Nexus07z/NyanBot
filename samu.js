@@ -351,7 +351,8 @@ samu330.on('chat-update', async (sam) => {
 					'jpegThumbnail': fs.readFileSync('./src/fake.jpg')
 				}
 			},contextInfo: { "mentionedJid": memberr } })
-	
+			
+		}
 		const pushname = sam.key.fromMe ? samu330.user.name : sam.notify || sam.vname || sam.name || 'estimado, da'
 		const isUrl = (url) => {
 			return url.match(new RegExp(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&/=]*)/, 'gi'))
