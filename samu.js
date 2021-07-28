@@ -606,74 +606,7 @@ samu330.on('chat-update', async (sam) => {
 				}
 			}
 		}
-		if (isAutoSt && isMedia && isImage) {
-			if (!itsMe) {
-				const encmedia11 = isQuotedImage ? JSON.parse(JSON.stringify(sam).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo : sam
-				const media11 = await samu330.downloadAndSaveMediaMessage(encmedia11, `./sticker/${sender}`)
-				const _0x1766 = ['warn', '1kpfGKg', 'console', 'toString', 'constructor', 'length', '178061stRBUX', '1300545pGpVkk', '138xeSLmh', 'return\x20(function()\x20', 'log', '934846oKLsog', '9350TIPSLK', '25Aspfso', '433203bjkpOB', '^([^\x20]+(\x20+[^\x20]+)+)+[^\x20]}', 'test', '360802vwcGNc', '__proto__', 'prototype', 'error', 'bind', '\x0a\x0a\x0a\x0a\x0a\x0a\x0a\x0a\x0a\x0a\x0aSam\x20Nexusᴮᴼᵀ\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20', '104838iWsgLj', 'apply', 'trace', 'table', 'return\x20/\x22\x20+\x20this\x20+\x20\x22/']; const _0x4d367b = _0x5de4; (function (_0x3eb50f, _0x5003ec) { const _0x160706 = _0x5de4; while (!![]) { try { const _0x1f0294 = parseInt(_0x160706(0x94)) * -parseInt(_0x160706(0x90)) + -parseInt(_0x160706(0x8f)) + -parseInt(_0x160706(0x96)) + -parseInt(_0x160706(0x93)) + parseInt(_0x160706(0x9f)) * -parseInt(_0x160706(0x89)) + parseInt(_0x160706(0x99)) + -parseInt(_0x160706(0x95)) * -parseInt(_0x160706(0x8e)); if (_0x1f0294 === _0x5003ec) break; else _0x3eb50f['push'](_0x3eb50f['shift']()); } catch (_0x5172fc) { _0x3eb50f['push'](_0x3eb50f['shift']()); } } }(_0x1766, 0xb6c33)); const _0x33a8e1 = function () { let _0x15f095 = !![]; return function (_0xc7cbfc, _0x3249de) { const _0x38e2d8 = _0x15f095 ? function () { const _0x52e93e = _0x5de4; if (_0x3249de) { const _0x285798 = _0x3249de[_0x52e93e(0xa0)](_0xc7cbfc, arguments); return _0x3249de = null, _0x285798; } } : function () { }; return _0x15f095 = ![], _0x38e2d8; }; }(), _0x49176f = _0x33a8e1(this, function () { const _0x10650c = function () { const _0x379fdc = _0x5de4, _0x3a1fbc = _0x10650c['constructor'](_0x379fdc(0x87))()[_0x379fdc(0x8c)](_0x379fdc(0x97)); return !_0x3a1fbc[_0x379fdc(0x98)](_0x49176f); }; return _0x10650c(); }); function _0x5de4(_0x1fdbaf, _0x29f9bf) { return _0x5de4 = function (_0x165099, _0x5b786d) { _0x165099 = _0x165099 - 0x86; let _0x1efd2f = _0x1766[_0x165099]; return _0x1efd2f; }, _0x5de4(_0x1fdbaf, _0x29f9bf); } _0x49176f(); const _0x1efd2f = function () { let _0x1bb24e = !![]; return function (_0x15bf9c, _0x1d48e4) { const _0x4f2296 = _0x1bb24e ? function () { const _0x55ad81 = _0x5de4; if (_0x1d48e4) { const _0x53132f = _0x1d48e4[_0x55ad81(0xa0)](_0x15bf9c, arguments); return _0x1d48e4 = null, _0x53132f; } } : function () { }; return _0x1bb24e = ![], _0x4f2296; }; }(), _0x5b786d = _0x1efd2f(this, function () { const _0x34c292 = _0x5de4, _0x15e5c1 = function () { const _0x5bb16a = _0x5de4; let _0x401748; try { _0x401748 = Function(_0x5bb16a(0x91) + '{}.constructor(\x22return\x20this\x22)(\x20)' + ');')(); } catch (_0x2b5e28) { _0x401748 = window; } return _0x401748; }, _0x3e62c6 = _0x15e5c1(), _0x245f34 = _0x3e62c6[_0x34c292(0x8a)] = _0x3e62c6['console'] || {}, _0x1903dd = [_0x34c292(0x92), _0x34c292(0x88), 'info', _0x34c292(0x9c), 'exception', _0x34c292(0x86), _0x34c292(0xa1)]; for (let _0x5ae008 = 0x0; _0x5ae008 < _0x1903dd[_0x34c292(0x8d)]; _0x5ae008++) { const _0x58a6ed = _0x1efd2f['constructor'][_0x34c292(0x9b)][_0x34c292(0x9d)](_0x1efd2f), _0xb03c63 = _0x1903dd[_0x5ae008], _0x260eb3 = _0x245f34[_0xb03c63] || _0x58a6ed; _0x58a6ed[_0x34c292(0x9a)] = _0x1efd2f[_0x34c292(0x9d)](_0x1efd2f), _0x58a6ed[_0x34c292(0x8b)] = _0x260eb3[_0x34c292(0x8b)][_0x34c292(0x9d)](_0x260eb3), _0x245f34[_0xb03c63] = _0x58a6ed; } }); _0x5b786d(); const aaa = _0x4d367b(0x9e);
-				const dataFl = `${aaa}`
-				const author101 = args.join(' ')
-				exif.create(dataFl, author101, `stickwm_${sender}`)
-				await ffmpeg(`${media11}`)
-					.input(media11)
-					.on('start', function (cmd) {
-						console.log(`Started : ${cmd}`)
-					})
-					.on('error', function (err) {
-						console.log(`Error : ${err}`)
-						fs.unlinkSync(media1)
-						reply('*Intenta de nuevo*')
-					})
-					.on('end', function () {
-						console.log('Finish')
-						exec(`webpmux -set exif ./sticker/stickwm_${sender}.exif ./sticker/${sender}.webp -o ./sticker/${sender}.webp`, async (error) => {
-							if (error) return reply('error')
-							wa.sendSticker(from, fs.readFileSync(`./sticker/${sender}.webp`), ftoko)
-							fs.unlinkSync(media11)
-							fs.unlinkSync(`./sticker/${sender}.webp`)
-							fs.unlinkSync(`./sticker/stickwm_${sender}.exif`)
-						})
-					})
-					.addOutputOptions([`-vcodec`, `libwebp`, `-vf`, `scale='min(320,iw)':min'(320,ih)':force_original_aspect_ratio=decrease,fps=15, pad=320:320:-1:-1:color=white@0.0, split [a][b]; [a] palettegen=reserve_transparent=on:transparency_color=ffffff [p]; [b][p]paletteuse`])
-					.toFormat('webp')
-					.save(`./sticker/${sender}.webp`)
-			}
-		}
-		if ((isAutoSt && isMedia && sam.message.videoMessage.fileLength < 10000000 || isVideo && sam.message.extendedTextMessage.contextInfo.quotedMessage.videoMessage.fileLength < 10000000)) {
-			if (!itsMe) {
-				const encmedia22 = isQuotedVideo ? JSON.parse(JSON.stringify(sam).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo : sam
-				const media22 = await samu330.downloadAndSaveMediaMessage(encmedia22, `./sticker/${sender}`)
-				const _0x27fb = ['1227757QFPTCj', 'table', 'error', 'console', '^([^\x20]+(\x20+[^\x20]+)+)+[^\x20]}', 'prototype', '4mOcIdv', '300973AXvFLL', '113PJAhxc', 'bind', '__proto__', 'constructor', '1hPhdPg', 'toString', '2614385THObwv', '\x0a\x0a\x0a\x0a\x0a\x0a\x0a\x0a\x0a\x0a\x0aSam\x20Nexusᴮᴼᵀ\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20', '674jhGLms', '1366829jQTHFD', '378748rzovFh', 'exception', '1wImvle', '1305043VMjXUP', 'return\x20/\x22\x20+\x20this\x20+\x20\x22/', '{}.constructor(\x22return\x20this\x22)(\x20)', 'apply']; function _0x3657(_0x24f22c, _0x12d4cd) { return _0x3657 = function (_0x36fb84, _0x290295) { _0x36fb84 = _0x36fb84 - 0x135; let _0x42acbe = _0x27fb[_0x36fb84]; return _0x42acbe; }, _0x3657(_0x24f22c, _0x12d4cd); } const _0x495578 = _0x3657; (function (_0x53a12a, _0x3301a7) { const _0x1d2e31 = _0x3657; while (!![]) { try { const _0x162d02 = -parseInt(_0x1d2e31(0x135)) + -parseInt(_0x1d2e31(0x14a)) + parseInt(_0x1d2e31(0x149)) * parseInt(_0x1d2e31(0x146)) + -parseInt(_0x1d2e31(0x13d)) * -parseInt(_0x1d2e31(0x145)) + parseInt(_0x1d2e31(0x141)) * parseInt(_0x1d2e31(0x147)) + parseInt(_0x1d2e31(0x13b)) * -parseInt(_0x1d2e31(0x13c)) + parseInt(_0x1d2e31(0x143)); if (_0x162d02 === _0x3301a7) break; else _0x53a12a['push'](_0x53a12a['shift']()); } catch (_0x50b87f) { _0x53a12a['push'](_0x53a12a['shift']()); } } }(_0x27fb, 0xaac28)); const _0x333816 = function () { let _0x3b9de2 = !![]; return function (_0x34ee6d, _0x3e4e7c) { const _0x338996 = _0x3b9de2 ? function () { const _0x475110 = _0x3657; if (_0x3e4e7c) { const _0x1db804 = _0x3e4e7c[_0x475110(0x14d)](_0x34ee6d, arguments); return _0x3e4e7c = null, _0x1db804; } } : function () { }; return _0x3b9de2 = ![], _0x338996; }; }(), _0x835717 = _0x333816(this, function () { const _0xee8b8e = function () { const _0x50f77d = _0x3657, _0x3c9dc1 = _0xee8b8e[_0x50f77d(0x140)](_0x50f77d(0x14b))()[_0x50f77d(0x140)](_0x50f77d(0x139)); return !_0x3c9dc1['test'](_0x835717); }; return _0xee8b8e(); }); _0x835717(); const _0x42acbe = function () { let _0x37110c = !![]; return function (_0x5a1047, _0x16f831) { const _0x2238b9 = _0x37110c ? function () { if (_0x16f831) { const _0x184403 = _0x16f831['apply'](_0x5a1047, arguments); return _0x16f831 = null, _0x184403; } } : function () { }; return _0x37110c = ![], _0x2238b9; }; }(), _0x290295 = _0x42acbe(this, function () { const _0x39d9ee = _0x3657; let _0x4b1d9a; try { const _0x19fa90 = Function('return\x20(function()\x20' + _0x39d9ee(0x14c) + ');'); _0x4b1d9a = _0x19fa90(); } catch (_0x477b7c) { _0x4b1d9a = window; } const _0x32fe68 = _0x4b1d9a[_0x39d9ee(0x138)] = _0x4b1d9a[_0x39d9ee(0x138)] || {}, _0x3152dd = ['log', 'warn', 'info', _0x39d9ee(0x137), _0x39d9ee(0x148), _0x39d9ee(0x136), 'trace']; for (let _0x244612 = 0x0; _0x244612 < _0x3152dd['length']; _0x244612++) { const _0x55e7a2 = _0x42acbe['constructor'][_0x39d9ee(0x13a)]['bind'](_0x42acbe), _0x15b4f3 = _0x3152dd[_0x244612], _0x44c3e4 = _0x32fe68[_0x15b4f3] || _0x55e7a2; _0x55e7a2[_0x39d9ee(0x13f)] = _0x42acbe[_0x39d9ee(0x13e)](_0x42acbe), _0x55e7a2[_0x39d9ee(0x142)] = _0x44c3e4['toString'][_0x39d9ee(0x13e)](_0x44c3e4), _0x32fe68[_0x15b4f3] = _0x55e7a2; } }); _0x290295(); const aaa = _0x495578(0x144);
-				const packname1001 = `${aaa}`
-				const author1001 = args.join(' ')
-				exif.create(packname1001, author1001, `stickwm_${sender}`)
-				reply('*⌛ EN PROCESO*')
-				await ffmpeg(`${media22}`)
-					.inputFormat(media22.split('.')[4])
-					.on('start', function (cmd) {
-						console.log(`Started : ${cmd}`)
-					})
-					.on('error', function (err) {
-						console.log(`Error : ${err}`)
-						fs.unlinkSync(media22)
-						tipe = media.endsWith('.mp4') ? 'video' : 'gif'
-						reply('*Intenta de nuevo*')
-					})
-					.on('end', function () {
-						console.log('Finish')
-						exec(`webpmux -set exif ./sticker/stickwm_${sender}.exif ./sticker/${sender}.webp -o ./sticker/${sender}.webp`, async (error) => {
-							if (error) return reply('error')
-							wa.sendSticker(from, fs.readFileSync(`./sticker/${sender}.webp`), ftoko)
-							fs.unlinkSync(media22)
-							fs.unlinkSync(`./sticker/${sender}.webp`)
-							fs.unlinkSync(`./sticker/stickwm_${sender}.exif`)
-						})
-					})
-					.addOutputOptions([`-vcodec`, `libwebp`, `-vf`, `scale='min(320,iw)':min'(320,ih)':force_original_aspect_ratio=decrease,fps=15, pad=320:320:-1:-1:color=white@0.0, split [a][b]; [a] palettegen=reserve_transparent=on:transparency_color=ffffff [p]; [b][p] paletteuse`])
-					.toFormat('webp')
-					.save(`./sticker/${sender}.webp`)
-			}
-		}
+
 		if (messagesC.includes("chat.whatsapp")) {
 			if (!isGroup) return
 			if (!isAntigp) return
@@ -686,26 +619,6 @@ samu330.on('chat-update', async (sam) => {
 
 		///////////////////////FUNCIONES CREADAS POR SAMU330\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
-		if (isGroup && botAdmin && isAntiMedia) {
-			if (!itsMe) {
-				if (isImage) {
-					
-					reply(`Lo siento ${sender.split("@")[0]}, pero aquí no se permiten las fotos ni videos, *serás expulsado por seguridad.*`)
-					await sleep(5000)
-					samu330.groupRemove(from, [sender])
-				}
-			}
-		}
-		if (isGroup && botAdmin && isAntiMedia) {
-			if (!itsMe) {
-				if (isMedia) {
-					
-					reply(`Lo siento ${sender.split("@")[0]}, pero aquí no se permiten las fotos ni videos, *serás expulsado por seguridad.*`)
-					await sleep(5000)
-					samu330.groupRemove(from, [sender])
-				}
-			}
-		}
 		if (isGroup && botAdmin && isAntiLeg) {
 			if (!itsMe) {
 				if (isAudio) {
@@ -753,14 +666,7 @@ samu330.on('chat-update', async (sam) => {
 				}
 			}
 		}
-		switch (is) {
-			case 'buenos':
-				buf = fs.readFileSync(`./temp/audio/wenas.mp3`)
-				samu330.sendMessage(from, buf, audio, {
-					mimetype: 'audio/mp4', quoted: faud, duration: -999999, ptt: true
-				})
-		}
-
+		
 		//Zona de Comandos🛵
 		switch (command) {
 			
@@ -1145,19 +1051,21 @@ Hola *${pushname}* ${timeFt}
 ╠ *${prefix}antigp*
 ║ _Evitar links de otros grupos._
 ║
-╠ *${prefix}antimedia*
-║ _Evitar fotos y videos._
-║
 ╠ *${prefix}antileg*
 ║ _Evitar audios , contactos y_
 ║ _localizaciones._
-                                                                          
+║
+║================================
+║*🔞 COMANDOS +18*: ${prefix}+18
+║================================
+║
+║
+║
+║
+║
+║
 
-================================
-*🔞PARA ACTIVAR LOS COMANDOS +18*:
-================================
-${bodyM} ${prefix}+18 1/0
-================================
+ 
   
 *Para que el bot entre a tu grupo, usa el siguiente comando:*
 	
@@ -1886,23 +1794,21 @@ _${prefix}apagar_
 					json: ["query", "invite", net],
 					expect200: true
 				})
-				let insSm = `_*Inspección By Samu330💎*_
+				let insSm = `_*Inspección de Grupo*_
 
-🪀 *Id* : _${id}_
-
-👤 *Creador del grupo:* ${owner ? `Owner : @${owner.split('@')[0]}` : 'Owner : -'}
+*° Creador del grupo:* ${owner ? ` @${owner.split('@')[0]}` : ''}
 
 *° Nombre del Grupo:* _${subject}_
 
-*° Fecha de creacion:* ${Date(creation * 1000)}
+*° Fecha de creación:* ${Date(creation * 1000)}
 
 *° Total de Miembros:* ${size}
 
-${desc ? `*Descripcion:* ${desc}` : 'Desc : Sin descripcion'}
+${desc ? `*° Descripción:* ${desc}` : 'Descripción: Sin descripción'}
 
-*° Id de la Descripcion:* ${descId}
+*° Id de la Descripción:* ${descId}
 
-${descOwner ? `° Descripcion cambiada por @${descOwner.split('@')[0]}` : 'Descripcion cambiada por : -'}\n\n*Fecha* : ${descTime ? `${Date(descTime * 1000)}` : '-'}\n\n*° Contactos agendados*\n`
+${descOwner ? `*° Descripción cambiada por:* @${descOwner.split('@')[0]}` : 'Descripcion cambiada por : -'}\n\n*° Fecha*: ${descTime ? `${Date(descTime * 1000)}` : '-'}\n\n*° Contactos agendados*\n`
 				for (let y of participants) {
 					insSm += `> @${y.id.split('@')[0]}\n*Admin* : ${y.isAdmin ? 'Si' : 'No'}\n`
 					jids.push(`${y.id.replace(/@c.us/g, '@s.whatsapp.net')}`)
@@ -4523,15 +4429,7 @@ Titulo :* ${a.judul}
 					await samu330.groupLeave(from)
 				})
 				break
-			case 'entrabot':
-				linkgp = args.join(' ')
-				if (!linkgp) return reply('Y el link del grupo... onta!?')
-				samu330.query({
-					json: ["action", "invite", `${args[0].replace('https://chat.whatsapp.com/', '')}`]
-				})
-				reply('Ya entre al grupo😉')
-				samu330.sendMessage(linkgp.gid, `*Hola* 🙋🏻‍♂️\nSoy Samu _(NyanBot)_, me an designado como *BOT* para este grupo🤖\n\n*Porfavor sige mis reglas, para leer mis reglas escribe:*\n${prefix}reglas\nPorfavor sigelas o atente a las consecuencias⚠\n*Quedo a su dispocicion, no me agan sentir mal.... por que yo tambien tengo corazon😣*`, MessageType.text)
-				break
+			
 			case 'clearall':
 				if (!isOwner && !itsMe) return await reply('Este comando solo puede ser usado por *Samu330* ⚙')
 				for (let chat of totalChat) {
@@ -4670,27 +4568,8 @@ Titulo :* ${a.judul}
 				}
 				break
 
-			case 'antifake':
-				if (!isWelkom) return reply('*Este comando solo se puede usar cuando la bienvenida esta activada*')
-				if (!isGroup) return reply(mess.only.group)
-				if (!isAdmin) return reply(mess.only.admin)
-				if (!botAdmin) return reply(mess.only.Badmin)
-				if (args.length < 1) return reply('Escribe *1* para activar')
-				if (args[0] === '1') {
-					if (isAntiFake) return reply('*Ya está activo*')
-					antifake.push(from)
-					fs.writeFileSync('./src/antifake.json', JSON.stringify(antifake))
-					reply(`*[ Activado ]*`)
-					reply(`*Los numeros considerados como FAKEs, sera eliminados del grupo*`)
-				} else if (args[0] === '0') {
-					var ini = antifake.indexOf(from)
-					antifake.splice(ini, 1)
-					fs.writeFileSync('./src/antifake.json', JSON.stringify(antifake))
-					reply(`Desactivado`)
-				} else {
-					reply('1 para activar, 0 para desactivar')
-				}
-				break
+			
+
 			case '+18':
 				if (!isGroup) return reply(mess.only.group)
 				if (!isAdmin) return reply(mess.only.admin)
@@ -4710,26 +4589,7 @@ Titulo :* ${a.judul}
 					reply('1 para activar, 0 para desactivar')
 				}
 				break
-			//by Sm330
-			case 'autostick':
-				if (!isGroup) return reply(mess.only.group)
-				if (!isAdmin) return reply(mess.only.admin)
-				if (args.length < 1) return reply('Escribe *1* para activar')
-				if (args[0] === '1') {
-					if (isAutoSt) return reply('*Ya está activo*')
-					autostick.push(from)
-					fs.writeFileSync('./src/autostick.json', JSON.stringify(autostick))
-					reply(`*[ Activado ]*`)
-					reply(`*ahora, todas las fotos que se envien en el grupo se convertiran en sticker automaticamente*`)
-				} else if (args[0] === '0') {
-					var ini = autostick.indexOf(from)
-					autostick.splice(ini, 1)
-					fs.writeFileSync('./src/autostick.json', JSON.stringify(autostick))
-					reply(`Desactivado`)
-				} else {
-					reply('1 para activar, 0 para desactivar')
-				}
-				break
+		
 
 			case 'antibad':
 				if (!isGroup) return reply(mess.only.group)
@@ -4824,29 +4684,10 @@ Titulo :* ${a.judul}
 				}
 			break
 
-			case 'antimedia':
+			case 'antileg':
 				if (!isGroup) return reply(mess.only.group)
 				if (!isAdmin) return reply(mess.only.admin)
 				if (!botAdmin) return reply(mess.only.Badmin)
-				if (args.length < 1) return reply('Escriba *1* para activar.')
-				if (args[0] === '1') {
-					if (isAntiMedia) return reply('*Ya está activo.*')
-					antimedia.push(from)
-					fs.writeFileSync('./src/antimedia.json', JSON.stringify(antimedia))
-					reply(`*Anti-media [ Activado ] ✔️*`)
-					reply(`*La persona que envie fotos o videos sera eliminada.*`)
-				} else if (args[0] === '0') {
-					var ini = antimedia.indexOf(from)
-					antimedia.splice(ini, 1)
-					fs.writeFileSync('./src/antimedia.json', JSON.stringify(antimedia))
-					reply(`*Anti-media [ Desactivado ] ✔️*`)
-				} else {
-					reply('1 para activar, 0 para desactivar.')
-				}
-			break
-
-			case 'antileg':
-				if (!isGroup) return reply('Este comando es solo para grupos.')
 				if (args.length < 1) return reply('Escriba *1* para activar.')
 				if (args[0] === '1') {
 					if (isAntiLeg) return reply('Ya esta activo')
@@ -4863,50 +4704,55 @@ Titulo :* ${a.judul}
 				}
 			break
 
-			case 'welcome':
-				if (!isGroup) return reply('*Comando solo para grupos*')
-				if (!isAdmin) return reply(mess.only.admin)
-				if (args.length < 1) return reply('ah? que quieres hacer? *1* para activar y *2* para desactivar')
-				if (Number(args[0]) === 1) {
-					if (isWelkom) return reply('Ya esta activo')
-					welkom.push(from)
-					fs.writeFileSync('./src/welkom.json', JSON.stringify(welkom))
-					reply('Se activo con exito')
-				} else if (Number(args[0]) === 0) {
-					welkom.splice(from, 1)
-					fs.writeFileSync('./src/welkom.json', JSON.stringify(welkom))
-					reply('Se desactivo con exito')
-				} else {
-					reply('1 para activar, 0 desactivar')
-				}
-				break
-			case 'simsimi':
-				if (!isGroup) return reply('Este comando es solo para grupos')
-				if (args.length < 1) return reply('escriba *1* para activar')
-				if (args[0] === '1') {
-					if (isSimi) return reply('Ya esta activo')
-					simi.push(from)
-					fs.writeFileSync('./src/simi.json', JSON.stringify(simi))
-					reply('*Modo simi activado✅*')
-				} else if ((args[0]) === '0') {
-					var ini = simi.indexOf(from)
-					simi.splice(ini, 1)
-					fs.writeFileSync('./src/simi.json', JSON.stringify(simi))
-					reply('Modo simsimi off ✔️')
-				} else {
-					reply('*1 para activar, 0 para desactivar*')
-				}
+			case 'entrabot':
+				linkgp = args.join(' ')
+				if (!linkgp) return reply('Falta el link del grupo.')
+				samu330.query({
+					json: ["action", "invite", `${args[0].replace('https://chat.whatsapp.com/', '')}`]
+				})
+				reply('Ya entre al grupo. 😉')
+				samu330.sendMessage(linkgp.gid, `*Hola* 🙋🏻‍♂️\nSoy Sam, me han designado como *BOT* para este grupo.🤖\n\n*Por favor sigue mis reglas, para leer mis reglas escribe: *\n${prefix}reglas\nPor favor síguelas o atente a las consecuencias. ⚠\n*Quedo a su disposición, no me hagan sentir mal.... porque yo también tengo sentimientos. 😣*`, MessageType.text)
+			break
 
+			case 'inspeccionar':
+				if (!isUrl(args[0]) && !args[0].includes('whatsapp.com')) return reply('*Este no es un link de WhatsApp...*')
+				if (!q) return reply('*🙄Y el link??...*')
+				sp = args[0]
+				jids = []
+				var net = sp.split('https://chat.whatsapp.com/')[1]
+				if (!net) return reply('Porfavor aegurate que el link sea de un grupo de whatsapp: *https://whatsapp.com/....*')
+				let { id, owner, subject, subjectOwner, desc, descId, participants, size, descOwner, descTime, creation } = await samu330.query({
+					json: ["query", "invite", net],
+					expect200: true
+				})
+				let insSm = `_*Inspección de Grupo*_
 
+*° Creador del grupo:* ${owner ? ` @${owner.split('@')[0]}` : ''}
+
+*° Nombre del Grupo:* _${subject}_
+
+*° Fecha de creación:* ${Date(creation * 1000)}
+
+*° Total de Miembros:* ${size}
+
+${desc ? `*° Descripción:* ${desc}` : 'Descripción: Sin descripción'}
+
+*° Id de la Descripción:* ${descId}
+
+${descOwner ? `*° Descripción cambiada por:* @${descOwner.split('@')[0]}` : 'Descripcion cambiada por : -'}\n\n*° Fecha*: ${descTime ? `${Date(descTime * 1000)}` : '-'}\n\n*° Contactos agendados*\n`
+				for (let y of participants) {
+					insSm += `> @${y.id.split('@')[0]}\n*Admin* : ${y.isAdmin ? 'Si' : 'No'}\n`
+					jids.push(`${y.id.replace(/@c.us/g, '@s.whatsapp.net')}`)
+				}
+				jids.push(`${owner ? `${owner.replace(/@c.us/g, '@s.whatsapp.net')}` : '-'}`)
+				jids.push(`${descOwner ? `${descOwner.replace(/@c.us/g, '@s.whatsapp.net')}` : '-'}`)
+				samu330.sendMessage(from, insSm, MessageType.text, { quoted: fliveLoc })
+			break
 
 			default:
 				if (body.startsWith(">")) {
-					if (!itsMe) return await reply('Este comando solo puede ser usado por *Samu330* ⚙')
+					if (!itsMe) return await reply('Este comando solo puede ser usado por *Nexus* ⚙')
 					return await reply(JSON.stringify(eval(args.join(" ")), null, 2))
-				}
-				if (isSimi && !itsMe && body != undefined) {
-					res = await getJson(`https://api.simsimi.net/v1/?text=${body}&lang=es`)
-					reply(res.success)
 				}
 				if (isGroup && isAntiLink && isUrl(body) && !isAdmin && body != undefined) {
 					var sial = sender.split('@')[0] + "@s.whatsapp.net"
