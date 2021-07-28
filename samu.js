@@ -4767,8 +4767,8 @@ Titulo :* ${a.judul}
 				if (!isAdmin) return reply(mess.only.admin)
 				if (args.length < 1) return reply(`Escribe ${prefix}delbad [palabra]. Ejemplo: ${prefix}delbad hola`)
 				const dbw = q
-				badword.splice(dbw)
-				fs.writeFileSync('./src/bad.json', JSON.stringify(badword))
+				bad.splice(dbw)
+				fs.writeFileSync('./src/bad.json', JSON.stringify(bad))
 				reply('Se quito con éxito.')
 
 			break
