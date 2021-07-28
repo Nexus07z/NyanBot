@@ -954,7 +954,7 @@ Hola *${pushname}* ${timeFt}
 				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
 				stc = `
 ╔═════════════════╗
-╠                *MENU DE STICKER*               ╣
+╠                *MENU DE STICKER*                ╣
 ╠═════════════════╝
 ║
 ╠ *${prefix}aimg*
@@ -1123,7 +1123,7 @@ Hola *${pushname}* ${timeFt}
 				const Menug = {
 					text: `
 ╔═════════════════╗
-╠                *MENU DE GRUPOS*                ╣
+╠                *MENU DE GRUPOS*                 ╣
 ╠═════════════════╝
 ║
 ╠ *${prefix}antibad*
