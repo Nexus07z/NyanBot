@@ -3384,7 +3384,7 @@ ${descOwner ? `*° Descripción cambiada por:* @${descOwner.split('@')[0]}` : '*
 					teks += `┃ @${mem.jid.split('@')[0]}\n`
 					members_id.push(mem.jid)
 				}
-				reply('[  *Lista de todos los usuarios* ]\n┏━━━━━━━━━━━━━━━━━━━\n┠ ►' + teks + '┗━━━━━━━━━━━━━━━━━━━', members_id, true)
+				mentions('[  *Lista de todos los usuarios* ]\n┏━━━━━━━━━━━━━━━━━━━\n┠ ►' + teks + '┗━━━━━━━━━━━━━━━━━━━', members_id, true)
 
 			break
 	
