@@ -4671,9 +4671,9 @@ Titulo :* ${a.judul}
 			break
 
 			case 'entrabot':
-				if (!isUrl(args[0]) && !args[0].includes('whatsapp.com')) return reply('*Este no es un link de WhatsApp...*')
 				linkgp = args.join(' ')
 				if (!linkgp) return reply('Falta el link del grupo.')
+				if (!isUrl(args[0]) && !args[0].includes('whatsapp.com')) return reply('*Este no es un link de WhatsApp...*')
 				var eb = q.split('https://chat.whatsapp.com/')[1]
 				var { id } = await samu330.query({ 
 				json: ["query", "invite", eb],
