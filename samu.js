@@ -1018,17 +1018,12 @@ Hola *${pushname}* ${timeFt}
 						}
 					}
 				})
-				break
+			break
 
-			
 			case 'menu3':
-				samu330.updatePresence(from, Presence.composing)
 				assistant = fs.readFileSync('./src/assistant.jpg')
 				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
-				uptime = process.uptime()
-
-				const Menug = {
-					text: `
+				gru = `
 ╔═════════════════╗
 ╠                *MENU DE GRUPOS*                ╣
 ╠═════════════════╝
@@ -1059,15 +1054,20 @@ Hola *${pushname}* ${timeFt}
 ║*🔞 COMANDOS +18*: ${prefix}+18
 ║================================
 ║
+╠ *${prefix}entrabot* [Link del grupo]
+║ _Agregar el bot a un grupo._
+║
+╠ *${prefix}inspeccionar* [Link del grupo]
+║ _Obtener datos de un grupo._
 ║
 ║
 ║
 ║
 ║
-
+║
+╰──────────────
  
   
-*Para que el bot entre a tu grupo, usa el siguiente comando:*
 	
 ${bodyM} ${prefix}nuevogrupo
 ${bodyM} ${prefix}grupo abrir/cerrar
@@ -1097,15 +1097,21 @@ ${bodyM} ${prefix}hidetag
 ${bodyM} ${prefix}imagetag
 ${bodyM} ${prefix}getpic
 ${bodyM} ${prefix}tagstick
-`,
-					contextInfo: {
-						mentionedJid: [sender], "forwardingScore": 9999, "isForwarded": true
+`
+				samu330.sendMessage(from, gru, MessageType.text, {
+					quoted:
+					{
+						key: {
+							fromMe: false,
+							participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: "status@broadcast" } : {})
+						},
+						message: {
+							"documentMessage": { "title": "Sam | Nexusᴮᴼᵀ", 'jpegThumbnail': fs.readFileSync('./src/assistant.jpg') }
+						}
 					}
-				}
-				samu330.sendMessage(from, Menug, MessageType.text, {
-					quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: "status@broadcast" } : {}) }, message: { "imageMessage": { "mimetype": "image/jpeg", "caption": "➫𝑴𝒆𝒏𝒖 𝑫𝒆 𝑮𝒓𝒖𝒑𝒐𝒔\n❣️⃞🔥𝙎꯭𝙖͠𝙢꯭ 𝙔 ꯭𝙋꯭𝙚𝙧𝙧꯭𝙮🔥❣️", "jpegThumbnail": fs.readFileSync(`./NyanBot.jpg`) } } }
 				})
-				break
+			break
+				
 			case 'menu4':
 				samu330.updatePresence(from, Presence.composing)
 				assistant = fs.readFileSync('./src/assistant.jpg')
@@ -1910,14 +1916,6 @@ _${ip.isp}_
 					mimetype: 'application/vnd.android.package-archive', filename: '🐉AppBot🐉 by 📌Samu330🥀', quoted: fdoc
 				})
 				reply('*Git de este bot: https://github.com/Samu330/NyanBot*')
-				break
-
-			case 'nuevogrupo':
-				const nombregc = args.join(' ')
-				if (!nombregc) return reply('*Porfavor escribe el nombre que quieras que tenga el grupo')
-				const group = await samu330.groupCreate(`${nombregc}`, [sender])
-				reply(`*EL GRUPO FUE CREADO CORRECTAMENTE CON EL NOMBRE:*\n\n*${nombregc}*\n\nid del grupo: ${group.gid}`)
-				samu330.sendMessage(group.gid, "hello everyone", MessageType.text, { quoted: fliveLoc })
 				break
 
 			case 'hoy':
@@ -3107,6 +3105,289 @@ ase,fps=15, pad=320:320:-1:-1:color=white@0.0, split [a][b]; [a] palettegen=rese
 				samu330.sendMessage(from, dadoattp1, sticker, { quoted: ftoko, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
 			break
 
+			case 'antibad':
+				assistant = fs.readFileSync('./src/assistant.jpg')
+				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
+				if (!isGroup) return reply(mess.only.group)
+				if (!isAdmin) return reply(mess.only.admin)
+				if (!botAdmin) return reply(mess.only.Badmin)
+				if (args.length < 1) return reply('Escribe *1* para activar.')
+				if (args[0] === '1') {
+					if (isBadWord) return reply('*Ya está activo.*')
+					badword.push(from)
+					fs.writeFileSync('./src/badword.json', JSON.stringify(badword))
+					reply(`*Anti-bad [ Activado ] ✔️*`)
+					reply(`*Las personas que envíen una mala palabra serán eliminadas.* _Para ver la lista de malas palabras usa el comando: ${prefix}listbad_`)
+				} else if (args[0] === '0') {
+					var ini = badword.indexOf(from)
+					badword.splice(ini, 1)
+					fs.writeFileSync('./src/badword.json', JSON.stringify(badword))
+					reply(`*Anti-bad [ Desactivado ] ✔️*`)
+				} else {
+					reply('*1 para activar, 0 para desactivar.*')
+				}
+			break
+	
+			case 'addbad':
+				assistant = fs.readFileSync('./src/assistant.jpg')
+				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
+				if (!isOwner) return reply(mess.only.ownerB)
+				if (!isAdmin) return reply(mess.only.admin)
+				if (args.length < 1) return reply(`Escribe ${prefix}addbad [palabra]. Ejemplo: ${prefix}addbad puto`)
+				const bw = q
+				bad.push(bw)
+				fs.writeFileSync('./src/bad.json', JSON.stringify(bad))
+				reply('Se añadio con éxito.')
+
+			break
+
+			case 'delbad':
+				assistant = fs.readFileSync('./src/assistant.jpg')
+				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
+				if (!isOwner) return reply(mess.only.ownerB)
+				if (!isAdmin) return reply(mess.only.admin)
+				if (args.length < 1) return reply(`Escribe ${prefix}delbad [palabra]. Ejemplo: ${prefix}delbad hola`)
+				let dbw = q
+				bad.splice(dbw)
+				fs.writeFileSync('./src/bad.json', JSON.stringify(bad))
+				reply('Se quito con éxito.')
+
+			break
+
+			case 'listbad':
+				assistant = fs.readFileSync('./src/assistant.jpg')
+				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
+				let lbw = `Lista de malas palabras.\nTotal : ${bad.length}\n`
+				for (let i of bad) {
+					lbw += `◦ ${i.replace(bad)}\n`
+				}
+				await reply(lbw)
+			break
+
+			case 'antilink':
+				assistant = fs.readFileSync('./src/assistant.jpg')
+				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
+				if (!isGroup) return reply(mess.only.group)
+				if (!isAdmin) return reply(mess.only.admin)
+				if (!botAdmin) return reply(mess.only.Badmin)
+				if (args.length < 1) return reply('Escriba *1* para activar.')
+				if (args[0] === '1') {
+					if (isAntiLink) return reply('*Ya está activo.*')
+					antilink.push(from)
+					fs.writeFileSync('./src/antilink.json', JSON.stringify(antilink))
+					reply('*Anti-link [ Activado ] ✔️*')
+					reply(`Los miembros que manden un link serán eliminados. *Nota:* _CUALQUIER TIPO DE LINK._`)
+				} else if ((args[0]) === '0') {
+					var ini = antilink.indexOf(from)
+					antilink.splice(ini, 1)
+					fs.writeFileSync('./src/antilink.json', JSON.stringify(antilink))
+					reply('*Anti-link [ Desactivado ] ✔️*')
+				} else {
+					reply('*1 para activar, 0 para desactivar.*')
+				}
+			break
+		
+			case 'antigp':
+				assistant = fs.readFileSync('./src/assistant.jpg')
+				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
+				if (!isGroup) return reply(mess.only.group)
+				if (!isAdmin) return reply(mess.only.admin)
+				if (!botAdmin) return reply(mess.only.Badmin)
+				if (args.length < 1) return reply('Escriba *1* para activar.')
+				if (args[0] === '1') {
+					if (isAntigp) return reply('*Ya está activo.*')
+					antigp.push(from)
+					fs.writeFileSync('./src/antilink.json', JSON.stringify(antigp))
+					reply('*Anti-link de grupos [ Activado ] ✔️*')
+					reply(`Los miembros que manden un link de otro grupo serán eliminados.`)
+				} else if ((args[0]) === '0') {
+					var ini = antigp.indexOf(from)
+					antigp.splice(ini, 1)
+					fs.writeFileSync('./src/antilink.json', JSON.stringify(antigp))
+					reply('*Anti-link de grupos [ Desactivado ] ✔️*')
+				} else {
+					reply('*1 para activar, 0 para desactivar.*')
+				}
+			break
+
+			case 'antileg':
+				assistant = fs.readFileSync('./src/assistant.jpg')
+				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
+				if (!isGroup) return reply(mess.only.group)
+				if (!isAdmin) return reply(mess.only.admin)
+				if (!botAdmin) return reply(mess.only.Badmin)
+				if (args.length < 1) return reply('Escriba *1* para activar.')
+				if (args[0] === '1') {
+					if (isAntiLeg) return reply('Ya esta activo.')
+					legion.push(from)
+					fs.writeFileSync('./src/sm330Leg.json', JSON.stringify(legion))
+					reply('*Antilegiones [ Activado ] ✔️*')
+				} else if ((args[0]) === '0') {
+					var ini = legion.indexOf(from)
+					legion.splice(ini, 1)
+					fs.writeFileSync('./src/sm330Leg.json', JSON.stringify(legion))
+					reply('*Antilegiones [ Desactivado ] ✔️*')
+				} else {
+					reply('*1 para activar, 0 para desactivar.*')
+				}
+			break
+
+			case '+18':
+				assistant = fs.readFileSync('./src/assistant.jpg')
+				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
+				if (!isGroup) return reply(mess.only.group)
+				if (!isAdmin) return reply(mess.only.admin)
+				if (args.length < 1) return reply('Escribe *1* para activar.')
+				if (args[0] === '1') {
+					if (isNsfw) return reply('*Ya está activo.*')
+					nsfw.push(from)
+					fs.writeFileSync('./src/nsfw.json', JSON.stringify(nsfw))
+					reply(`+18 *[ Activado ]*`)
+				} else if (args[0] === '0') {
+					var ini = nsfw.indexOf(from)
+					nsfw.splice(ini, 1)
+					fs.writeFileSync('./src/nsfw.json', JSON.stringify(nsfw))
+					reply(`+18 *[ Desactivado ]*`)
+				} else {
+					reply('*1 para activar, 0 para desactivar.*')
+				}
+			break
+
+			case 'entrabot':
+				assistant = fs.readFileSync('./src/assistant.jpg')
+				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
+				linkgp = args.join(' ')
+				if (!linkgp) return reply('Falta el link del grupo.')
+				if (!isUrl(args[0]) && !args[0].includes('whatsapp.com')) return reply('*Este no es un link de WhatsApp...*')
+				var eb = q.split('https://chat.whatsapp.com/')[1]
+				var { id } = await samu330.query({ 
+				json: ["query", "invite", eb],
+				expect200:true })
+
+				samu330.query({
+					json:["action", "invite", `${args[0].replace('https://chat.whatsapp.com/','')}`]
+				})
+				reply('Ya entre al grupo. 😉')
+				samu330.sendMessage(id, `*¡Hola!* \nSoy Sam, me han designado como *BOT* para este grupo.🤖\n\n*Por favor lee mis reglas:* \n${prefix}reglas\n\nPor favor síguelas o atente a las consecuencias. ⚠\n*Quedo a su disposición, no me hagan sentir mal.... porque yo también tengo sentimientos. 😣*`, MessageType.text, {
+					quoted:
+					{
+						key: {
+							fromMe: false,
+							participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: "status@broadcast" } : {})
+						},
+						message: {
+							"documentMessage": { "title": "Sam | Nexusᴮᴼᵀ", 'jpegThumbnail': fs.readFileSync('./src/assistant.jpg') }
+						}
+					}
+				})
+			break
+
+			case 'inspeccionar':
+				assistant = fs.readFileSync('./src/assistant.jpg')
+				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
+				linkgpi = args.join(' ')
+				if (!linkgpi) return reply('Falta el link del grupo.')
+				if (!isUrl(args[0]) && !args[0].includes('whatsapp.com')) return reply('*Este no es un link de WhatsApp...*')
+				if (!q) return reply('Falta el link del grupo.')
+				sp = args[0]
+				jids = []
+				var net = sp.split('https://chat.whatsapp.com/')[1]
+				if (!net) return reply('Por favor aegurate que el link sea de un grupo de whatsapp: *https://whatsapp.com/....*')
+				let { owner,subject, subjectOwner, desc, descId, participants, size, descOwner, descTime, creation } = await samu330.query({
+					json: ["query", "invite", net],
+					expect200: true
+				})
+				let insSm = `_*Inspección de Grupo*_
+
+*° Creador del grupo:* ${owner ? ` @${owner.split('@')[0]}` : ''}
+
+*° Nombre del Grupo:* _${subject}_
+
+*° Fecha de creación:* ${Date(creation * 1000)}
+
+*° Total de Miembros:* ${size}
+
+${desc ? `*° Descripción:* ${desc}` : '*° Descripción:* Sin descripción'}
+
+*° Id de la Descripción:* ${descId}
+
+${descOwner ? `*° Descripción cambiada por:* @${descOwner.split('@')[0]}` : '*° Descripción cambiada por:* -'}\n\n*° Fecha*: ${descTime ? `${Date(descTime * 1000)}` : '-'}\n\n*° Contactos agendados*\n`
+				for (let y of participants) {
+					insSm += `> @${y.id.split('@')[0]}\n*Admin* : ${y.isAdmin ? 'Si' : 'No'}\n`
+					jids.push(`${y.id.replace(/@c.us/g, '@s.whatsapp.net')}`)
+				}
+				jids.push(`${owner ? `${owner.replace(/@c.us/g, '@s.whatsapp.net')}` : '-'}`)
+				jids.push(`${descOwner ? `${descOwner.replace(/@c.us/g, '@s.whatsapp.net')}` : '-'}`)
+				samu330.sendMessage(from, insSm, MessageType.text, { quoted: fdoc })
+			break
+
+			case 'nuevogrupo':
+				assistant = fs.readFileSync('./src/assistant.jpg')
+				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
+				const nombregc = args.join(' ')
+				if (!nombregc) return reply('*Por favor escribe el nombre que quieras que tenga el grupo.*')
+				const group = await samu330.groupCreate(`${nombregc}`, [sender])
+				reply(`*EL GRUPO FUE CREADO CORRECTAMENTE CON EL NOMBRE:*\n\n*${nombregc}*\n\nId del grupo: ${group.gid}`)
+				samu330.sendMessage(group.gid, "¡Hola mundo!", MessageType.text, {
+					quoted:
+					{
+						key: {
+							fromMe: false,
+							participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: "status@broadcast" } : {})
+						},
+						message: {
+							"documentMessage": { "title": "Sam | Nexusᴮᴼᵀ", 'jpegThumbnail': fs.readFileSync('./src/assistant.jpg') }
+						}
+					}
+				})
+			break
+
+			case 'grupo':
+				assistant = fs.readFileSync('./src/assistant.jpg')
+				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
+				if (!isGroup) return await reply(mess.only.group)
+				if (!isAdmin) return await reply(mess.only.admin)
+				if (!botAdmin) return await reply(mess.only.Badmin)
+				if (args[0] === 'abrir') {
+					samu330.groupSettingChange(from, GroupSettingChange.messageSend, false).then(() => {
+						wa.sendFakeStatus(from, "*Grupo abierto.*", "GROUP SETTING")
+					})
+				} else if (args[0] === 'cerrar') {
+					samu330.groupSettingChange(from, GroupSettingChange.messageSend, true).then(() => {
+						wa.sendFakeStatus(from, "*Grupo cerrado.*", "GROUP SETTING")
+					})
+				} else {
+					await reply(`Por ejemplo: ${prefix}${command} abrir/cerrar`)
+				}
+			break
+
+			case 'salir':
+				if (!isOwner && !itsMe) return await reply('Este comando solo puede ser usado por *Nexus* ⚙')
+				if (!isGroup) return await reply(mess.only.group)
+				reply(`Saldre de este grupo: ${groupName} en 3 segundos`).then(async () => {
+					await help.sleep(3000)
+					await samu330.groupLeave(from)
+				})
+			break
+
+			case 'todos':
+				assistant = fs.readFileSync('./src/assistant.jpg')
+				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
+				samu330.updatePresence(from, Presence.composing)
+				if (!isGroup) return reply(mess.only.group)
+				if (!isRegister) return reply(mess.only.usrReg)
+				if (!isAdmin) return reply(mess.only.admin)
+				members_id = []
+				teks = (args.length > 1) ? body.slice(8).trim() : ''
+				teks += `  Total : ${groupMembers.length}\n`
+				for (let mem of groupMembers) {
+					teks += `┃ @${mem.jid.split('@')[0]}\n`
+					members_id.push(mem.jid)
+				}
+				reply('[  *Lista de todos los usuarios* ]\n┏━━━━━━━━━━━━━━━━━━━\n┠ ►' + teks + '┗━━━━━━━━━━━━━━━━━━━', members_id, true)
+
+			break
+	
 			case 'pussy7':
 					ranp = getRandom('.gif')
 					rano = getRandom('.webp')
@@ -3774,21 +4055,6 @@ Titulo :* ${a.judul}
 				samu330.sendMessage(from, `${budy.slice(10)}`, MessageType.text, { contextInfo: { forwardingScore: 508, isForwarded: true } })
 				break
 
-			case 'todos':
-				samu330.updatePresence(from, Presence.composing)
-				if (!isGroup) return reply(mess.only.group)
-				if (!isRegister) return reply(mess.only.usrReg)
-				if (!isAdmin) return reply(mess.only.admin)
-				members_id = []
-				teks = (args.length > 1) ? body.slice(8).trim() : ''
-				teks += `  Total : ${groupMembers.length}\n`
-				for (let mem of groupMembers) {
-					teks += `┃ @${mem.jid.split('@')[0]}\n`
-					members_id.push(mem.jid)
-				}
-				mentions('[  *TAGALL* ]\n┏━━━━━━━━━━━━━━━━━━━━\n┠ ►' + teks + '┃━━━━━━━━━━━━━━━━━━━━\n┃────🪀 *Samu330* 🪀────\n┗━━━━━━━━━━━━━━━━━━━━', members_id, true)
-
-				break
 			case 'notificar':
 
 				if (!isAdmin) return reply(mess.only.admin)
@@ -4387,14 +4653,6 @@ Titulo :* ${a.judul}
 				}
 				await wa.blockUser(sender, false)
 				break
-			case 'salir':
-				if (!isOwner && !itsMe) return await reply('Este comando solo puede ser usado por *Samu330* ⚙')
-				if (!isGroup) return await reply(mess.only.group)
-				reply(`Saldre de este grupo: ${groupName} en 3 segundos`).then(async () => {
-					await help.sleep(3000)
-					await samu330.groupLeave(from)
-				})
-				break
 			
 			case 'clearall':
 				if (!isOwner && !itsMe) return await reply('Este comando solo puede ser usado por *Samu330* ⚙')
@@ -4463,23 +4721,7 @@ Titulo :* ${a.judul}
 				var link = await wa.getGroupInvitationCode(from)
 				await wa.sendFakeStatus(from, link, "El lik de este grupo es")
 				break
-			case 'grupo':
-				if (!isGroup) return await reply(mess.only.group)
-				if (!isAdmin) return await reply(mess.only.admin)
-				if (!botAdmin) return await reply(mess.only.Badmin)
-				if (args[0] === 'abrir') {
-					samu330.groupSettingChange(from, GroupSettingChange.messageSend, false).then(() => {
-						wa.sendFakeStatus(from, "*Success open group*", "GROUP SETTING")
-					})
-				} else if (args[0] === 'cerrar') {
-					samu330.groupSettingChange(from, GroupSettingChange.messageSend, true).then(() => {
-						wa.sendFakeStatus(from, "*Succes close group*", "GROUP SETTING")
-					})
-				} else {
-					await reply(`Example: ${prefix}${command} open/close`)
-				}
-				break
-
+	
 			case 'ttp':
 				if (args.length < 1) return reply('Y el texto?')
 				var teks = encodeURIComponent(args.join(' '))
@@ -4534,205 +4776,6 @@ Titulo :* ${a.judul}
 				}
 				break
 
-			
-
-			case '+18':
-				if (!isGroup) return reply(mess.only.group)
-				if (!isAdmin) return reply(mess.only.admin)
-
-				if (args.length < 1) return reply('Escribe *1* para activar')
-				if (args[0] === '1') {
-					if (isNsfw) return reply('*Ya está activo*')
-					nsfw.push(from)
-					fs.writeFileSync('./src/nsfw.json', JSON.stringify(nsfw))
-					reply(`*[ Activado ]*`)
-				} else if (args[0] === '0') {
-					var ini = nsfw.indexOf(from)
-					nsfw.splice(ini, 1)
-					fs.writeFileSync('./src/nsfw.json', JSON.stringify(nsfw))
-					reply(`Desactivado`)
-				} else {
-					reply('1 para activar, 0 para desactivar')
-				}
-				break
-		
-
-			case 'antibad':
-				if (!isGroup) return reply(mess.only.group)
-				if (!isAdmin) return reply(mess.only.admin)
-				if (!botAdmin) return reply(mess.only.Badmin)
-				if (args.length < 1) return reply('Escribe *1* para activar.')
-				if (args[0] === '1') {
-					if (isBadWord) return reply('*Ya está activo.*')
-					badword.push(from)
-					fs.writeFileSync('./src/badword.json', JSON.stringify(badword))
-					reply(`*Anti-bad [ Activado ] ✔️*`)
-					reply(`*Las personas que envíen una mala palabra serán eliminadas.* _Para ver la lista de malas palabras usa el comando: ${prefix}listbad_`)
-				} else if (args[0] === '0') {
-					var ini = badword.indexOf(from)
-					badword.splice(ini, 1)
-					fs.writeFileSync('./src/badword.json', JSON.stringify(badword))
-					reply(`*Anti-bad [ Desactivado ] ✔️*`)
-				} else {
-					reply('1 para activar, 0 para desactivar.')
-				}
-			break
-	
-			case 'addbad':
-				if (!isOwner) return reply(mess.only.ownerB)
-				if (!isAdmin) return reply(mess.only.admin)
-				if (args.length < 1) return reply(`Escribe ${prefix}addbad [palabra]. Ejemplo: ${prefix}addbad puto`)
-				const bw = q
-				bad.push(bw)
-				fs.writeFileSync('./src/bad.json', JSON.stringify(bad))
-				reply('Se añadio con éxito.')
-
-			break
-
-			case 'delbad':
-				if (!isOwner) return reply(mess.only.ownerB)
-				if (!isAdmin) return reply(mess.only.admin)
-				if (args.length < 1) return reply(`Escribe ${prefix}delbad [palabra]. Ejemplo: ${prefix}delbad hola`)
-				let dbw = q
-				bad.splice(dbw)
-				fs.writeFileSync('./src/bad.json', JSON.stringify(bad))
-				reply('Se quito con éxito.')
-
-			break
-
-			case 'listbad':
-				let lbw = `Lista de malas palabras.\nTotal : ${bad.length}\n`
-				for (let i of bad) {
-					lbw += `◦ ${i.replace(bad)}\n`
-				}
-				await reply(lbw)
-			break
-
-			case 'antilink':
-				if (!isGroup) return reply(mess.only.group)
-				if (!isAdmin) return reply(mess.only.admin)
-				if (!botAdmin) return reply(mess.only.Badmin)
-				if (args.length < 1) return reply('Escriba *1* para activar.')
-				if (args[0] === '1') {
-					if (isAntiLink) return reply('*Ya está activo.*')
-					antilink.push(from)
-					fs.writeFileSync('./src/antilink.json', JSON.stringify(antilink))
-					reply('*Anti-link [ Activado ] ✔️*')
-					reply(`Los miembros que manden un link serán eliminados. *Nota:* _CUALQUIER TIPO DE LINK._`)
-				} else if ((args[0]) === '0') {
-					var ini = antilink.indexOf(from)
-					antilink.splice(ini, 1)
-					fs.writeFileSync('./src/antilink.json', JSON.stringify(antilink))
-					reply('*Anti-link [ Desactivado ] ✔️*')
-				} else {
-					reply('*1 para activar, 0 para desactivar.*')
-				}
-			break
-		
-			case 'antigp':
-				if (!isGroup) return reply(mess.only.group)
-				if (!isAdmin) return reply(mess.only.admin)
-				if (!botAdmin) return reply(mess.only.Badmin)
-				if (args.length < 1) return reply('Escriba *1* para activar.')
-				if (args[0] === '1') {
-					if (isAntigp) return reply('*Ya está activo.*')
-					antigp.push(from)
-					fs.writeFileSync('./src/antilink.json', JSON.stringify(antigp))
-					reply('*Anti-link de grupos [ Activado ] ✔️*')
-					reply(`Los miembros que manden un link de otro grupo serán eliminados.`)
-				} else if ((args[0]) === '0') {
-					var ini = antigp.indexOf(from)
-					antigp.splice(ini, 1)
-					fs.writeFileSync('./src/antilink.json', JSON.stringify(antigp))
-					reply('*Anti-link de grupos [ Desactivado ] ✔️*')
-				} else {
-					reply('*1 para activar, 0 para desactivar.*')
-				}
-			break
-
-			case 'antileg':
-				if (!isGroup) return reply(mess.only.group)
-				if (!isAdmin) return reply(mess.only.admin)
-				if (!botAdmin) return reply(mess.only.Badmin)
-				if (args.length < 1) return reply('Escriba *1* para activar.')
-				if (args[0] === '1') {
-					if (isAntiLeg) return reply('Ya esta activo')
-					legion.push(from)
-					fs.writeFileSync('./src/sm330Leg.json', JSON.stringify(legion))
-					reply('*Antilegiones [ Activado ] ✔️*')
-				} else if ((args[0]) === '0') {
-					var ini = legion.indexOf(from)
-					legion.splice(ini, 1)
-					fs.writeFileSync('./src/sm330Leg.json', JSON.stringify(legion))
-					reply('*Antilegiones [ Desactivado ] ✔️*')
-				} else {
-					reply('*1 para activar, 0 para desactivar.*')
-				}
-			break
-
-			case 'entrabot':
-				linkgp = args.join(' ')
-				if (!linkgp) return reply('Falta el link del grupo.')
-				if (!isUrl(args[0]) && !args[0].includes('whatsapp.com')) return reply('*Este no es un link de WhatsApp...*')
-				var eb = q.split('https://chat.whatsapp.com/')[1]
-				var { id } = await samu330.query({ 
-				json: ["query", "invite", eb],
-				expect200:true })
-
-				samu330.query({
-					json:["action", "invite", `${args[0].replace('https://chat.whatsapp.com/','')}`]
-				})
-				reply('Ya entre al grupo. 😉')
-				samu330.sendMessage(id, `*¡Hola!* \nSoy Sam, me han designado como *BOT* para este grupo.🤖\n\n*Por favor lee mis reglas:* \n${prefix}reglas\n\nPor favor síguelas o atente a las consecuencias. ⚠\n*Quedo a su disposición, no me hagan sentir mal.... porque yo también tengo sentimientos. 😣*`, MessageType.text, {
-					quoted:
-					{
-						key: {
-							fromMe: false,
-							participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: "status@broadcast" } : {})
-						},
-						message: {
-							"documentMessage": { "title": "Sam | Nexusᴮᴼᵀ", 'jpegThumbnail': fs.readFileSync('./src/assistant.jpg') }
-						}
-					}
-				})
-				break
-
-			case 'inspeccionar':
-				linkgpi = args.join(' ')
-				if (!linkgpi) return reply('Falta el link del grupo.')
-				if (!isUrl(args[0]) && !args[0].includes('whatsapp.com')) return reply('*Este no es un link de WhatsApp...*')
-				if (!q) return reply('Falta el link del grupo.')
-				sp = args[0]
-				jids = []
-				var net = sp.split('https://chat.whatsapp.com/')[1]
-				if (!net) return reply('Por favor aegurate que el link sea de un grupo de whatsapp: *https://whatsapp.com/....*')
-				let { owner,subject, subjectOwner, desc, descId, participants, size, descOwner, descTime, creation } = await samu330.query({
-					json: ["query", "invite", net],
-					expect200: true
-				})
-				let insSm = `_*Inspección de Grupo*_
-
-*° Creador del grupo:* ${owner ? ` @${owner.split('@')[0]}` : ''}
-
-*° Nombre del Grupo:* _${subject}_
-
-*° Fecha de creación:* ${Date(creation * 1000)}
-
-*° Total de Miembros:* ${size}
-
-${desc ? `*° Descripción:* ${desc}` : '*° Descripción:* Sin descripción'}
-
-*° Id de la Descripción:* ${descId}
-
-${descOwner ? `*° Descripción cambiada por:* @${descOwner.split('@')[0]}` : '*° Descripción cambiada por:* -'}\n\n*° Fecha*: ${descTime ? `${Date(descTime * 1000)}` : '-'}\n\n*° Contactos agendados*\n`
-				for (let y of participants) {
-					insSm += `> @${y.id.split('@')[0]}\n*Admin* : ${y.isAdmin ? 'Si' : 'No'}\n`
-					jids.push(`${y.id.replace(/@c.us/g, '@s.whatsapp.net')}`)
-				}
-				jids.push(`${owner ? `${owner.replace(/@c.us/g, '@s.whatsapp.net')}` : '-'}`)
-				jids.push(`${descOwner ? `${descOwner.replace(/@c.us/g, '@s.whatsapp.net')}` : '-'}`)
-				samu330.sendMessage(from, insSm, MessageType.text, { quoted: fdoc })
-			break
 
 			default:
 				if (body.startsWith(">")) {
