@@ -4670,12 +4670,9 @@ Titulo :* ${a.judul}
 				}
 			break
 
-			
-
-			case 'entrabot2':
+			case 'entrabot':
 				linkgp = args.join(' ')
-				if (!linkgp) return reply('Y el link del grupo... onta!?')
-				samunum = '5219984907794@swahtsapp.net'		
+				if (!linkgp) return reply('Falta el link del grupo.')
 				var eb = q.split('https://chat.whatsapp.com/')[1]
 				var { id } = await samu330.query({ 
 				json: ["query", "invite", eb],
@@ -4684,8 +4681,19 @@ Titulo :* ${a.judul}
 				samu330.query({
 					json:["action", "invite", `${args[0].replace('https://chat.whatsapp.com/','')}`]
 				})
-				reply('Ya entre al grupo😉')
-				samu330.sendMessage(id, `*Hola* 🙋🏻‍♂️\nSoy Samu _(NyanBot)_ [ @${samunum.split('@')[0]} ],\n@${sender.split('@')[0]} me que yo tambien tengo corazon😣*`, MessageType.text, {quoted: fliveLoc, sendEphemeral: true})
+				reply('Ya entre al grupo. 😉')
+				samu330.sendMessage(id, `*Hola* 🙋🏻‍♂️\nSoy Sam, me han designado como *BOT* para este grupo.🤖\n\n*Por favor sigue mis reglas, para leer mis reglas escribe: *\n${prefix}reglas\nPor favor síguelas o atente a las consecuencias. ⚠\n*Quedo a su disposición, no me hagan sentir mal.... porque yo también tengo sentimientos. 😣*`, MessageType.text, {
+					quoted:
+					{
+						key: {
+							fromMe: false,
+							participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: "status@broadcast" } : {})
+						},
+						message: {
+							"documentMessage": { "title": "Sam | Nexusᴮᴼᵀ", 'jpegThumbnail': fs.readFileSync('./src/assistant.jpg') }
+						}
+					}
+				})
 				break
 
 			case 'inspeccionar':
