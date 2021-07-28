@@ -4766,7 +4766,7 @@ Titulo :* ${a.judul}
 				if (!isOwner) return reply(mess.only.ownerB)
 				if (!isAdmin) return reply(mess.only.admin)
 				if (args.length < 1) return reply(`Escribe ${prefix}delbad [palabra]. Ejemplo: ${prefix}delbad hola`)
-				const dbw = q
+				let dbw = q
 				bad.splice(dbw)
 				fs.writeFileSync('./src/bad.json', JSON.stringify(bad))
 				reply('Se quito con éxito.')
@@ -4791,7 +4791,7 @@ Titulo :* ${a.judul}
 					antilink.push(from)
 					fs.writeFileSync('./src/antilink.json', JSON.stringify(antilink))
 					reply('*Anti-link [ Activado ] ✔️*')
-					samu330.sendMessage(from, `Los miembros que manden un link serán eliminados. *Nota: * _CUALQUIER TIPO DE LINK. _`, text)
+					reply(`Los miembros que manden un link serán eliminados. *Nota: * _CUALQUIER TIPO DE LINK. _`)
 				} else if ((args[0]) === '0') {
 					var ini = antilink.indexOf(from)
 					antilink.splice(ini, 1)
