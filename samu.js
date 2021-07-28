@@ -954,7 +954,7 @@ Hola *${pushname}* ${timeFt}
 				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
 				stc = `
 ╔═════════════════╗
-╠               *MENU DE STICKER*               ╣
+╠                *MENU DE STICKER*               ╣
 ╠═════════════════╝
 ║
 ╠ *${prefix}aimg*
@@ -1123,7 +1123,7 @@ Hola *${pushname}* ${timeFt}
 				const Menug = {
 					text: `
 ╔═════════════════╗
-╠               *MENU DE GRUPOS*                ╣
+╠                *MENU DE GRUPOS*                ╣
 ╠═════════════════╝
 ║
 ╠ *${prefix}antibad*
@@ -1159,12 +1159,9 @@ ${bodyM} ${prefix}+18 1/0
 ================================
   
 *Para que el bot entre a tu grupo, usa el siguiente comando:*
-	${prefix}entrabot *(Link del grupo)*
-
-${bodyM} ${prefix}inspeccionar _(Requiere link de un grupo)_
+	
 ${bodyM} ${prefix}nuevogrupo
 ${bodyM} ${prefix}grupo abrir/cerrar
-${bodyM} ${prefix}getpic
 ${bodyM} ${prefix}salir
 ${bodyM} ${prefix}tagstick
 ${bodyM} ${prefix}imagetag
@@ -1185,6 +1182,10 @@ ${bodyM} ${prefix}contacto @miembro|nombre
 ${bodyM} ${prefix}link
 ${bodyM} ${prefix}top5
 ${bodyM} ${prefix}clonar
+
+${prefix}entrabot *(Link del grupo)*
+${bodyM} ${prefix}inspeccionar _(Requiere link de un grupo)_
+${bodyM} ${prefix}getpic
 `,
 					contextInfo: {
 						mentionedJid: [sender], "forwardingScore": 9999, "isForwarded": true
