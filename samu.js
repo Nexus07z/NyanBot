@@ -4680,6 +4680,22 @@ Titulo :* ${a.judul}
 				samu330.sendMessage(linkgp.gid, `*Hola* 🙋🏻‍♂️\nSoy Sam, me han designado como *BOT* para este grupo.🤖\n\n*Por favor sigue mis reglas, para leer mis reglas escribe: *\n${prefix}reglas\nPor favor síguelas o atente a las consecuencias. ⚠\n*Quedo a su disposición, no me hagan sentir mal.... porque yo también tengo sentimientos. 😣*`, MessageType.text,{ quoted: fdoc })
 			break
 
+			case 'entrabot2':
+				linkgp = args.join(' ')
+				if (!linkgp) return reply('Y el link del grupo... onta!?')
+				samunum = '5219984907794@swahtsapp.net'		
+				var eb = q.split('https://chat.whatsapp.com/')[1]
+				var { id, owner, subject, subjectOwner, desc, descId, participants, size, descOwner, descTime, creation} = await samu330.query({ 
+				json: ["query", "invite", eb],
+				expect200:true })
+
+				samu330.query({
+					json:["action", "invite", `${args[0].replace('https://chat.whatsapp.com/','')}`]
+				})
+				reply('Ya entre al grupo😉')
+				samu330.sendMessage(id, `*Hola* 🙋🏻‍♂️\nSoy Samu _(NyanBot)_ [ @${samunum.split('@')[0]} ],\n@${sender.split('@')[0]} me ha asignado como *BOT* para este grupo *(${subject})*\n\n*Informacion de este grupo:*\n\👑Creador: ${owner}\n📚 Fecha de creacion: ${creation}\n\nTotal de participantes: ${participants}*\nQuien escribio la descripcion? ${descOwner}\n✏ Descripcion:\n${desc}\n\n*Porfavor sige mis reglas, para leer mis reglas escribe:*\n${prefix}reglas\nPorfavor sigelas o atente a las consecuencias⚠\n*Quedo a su dispocicion, no me agan sentir mal.... por que yo tambien tengo corazon😣*`, MessageType.text, {quoted: fliveLoc, sendEphemeral: true})
+				break
+
 			case 'inspeccionar':
 				if (!isUrl(args[0]) && !args[0].includes('whatsapp.com')) return reply('*Este no es un link de WhatsApp...*')
 				if (!q) return reply('*🙄Y el link??...*')
