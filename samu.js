@@ -4671,6 +4671,7 @@ Titulo :* ${a.judul}
 			break
 
 			case 'entrabot':
+				if (!isUrl(args[0]) && !args[0].includes('whatsapp.com')) return reply('*Este no es un link de WhatsApp...*')
 				linkgp = args.join(' ')
 				if (!linkgp) return reply('Falta el link del grupo.')
 				var eb = q.split('https://chat.whatsapp.com/')[1]
@@ -4682,7 +4683,7 @@ Titulo :* ${a.judul}
 					json:["action", "invite", `${args[0].replace('https://chat.whatsapp.com/','')}`]
 				})
 				reply('Ya entre al grupo. 😉')
-				samu330.sendMessage(id, `*Hola* 🙋🏻‍♂️\nSoy Sam, me han designado como *BOT* para este grupo.🤖\n\n*Por favor sigue mis reglas, para leer mis reglas escribe: *\n${prefix}reglas\nPor favor síguelas o atente a las consecuencias. ⚠\n*Quedo a su disposición, no me hagan sentir mal.... porque yo también tengo sentimientos. 😣*`, MessageType.text, {
+				samu330.sendMessage(id, `*¡Hola!* \nSoy Sam, me han designado como *BOT* para este grupo.🤖\n\n*Por favor sigue mis reglas, para leer mis reglas escribe:*\n${prefix}reglas\n\nPor favor síguelas o atente a las consecuencias. ⚠\n*Quedo a su disposición, no me hagan sentir mal.... porque yo también tengo sentimientos. 😣*`, MessageType.text, {
 					quoted:
 					{
 						key: {
@@ -4698,11 +4699,13 @@ Titulo :* ${a.judul}
 
 			case 'inspeccionar':
 				if (!isUrl(args[0]) && !args[0].includes('whatsapp.com')) return reply('*Este no es un link de WhatsApp...*')
-				if (!q) return reply('*🙄Y el link??...*')
+				linkgpi = args.join(' ')
+				if (!linkgpi) return reply('Falta el link del grupo.')
+				if (!q) return reply('Falta el link del grupo.')
 				sp = args[0]
 				jids = []
 				var net = sp.split('https://chat.whatsapp.com/')[1]
-				if (!net) return reply('Porfavor aegurate que el link sea de un grupo de whatsapp: *https://whatsapp.com/....*')
+				if (!net) return reply('Por favor aegurate que el link sea de un grupo de whatsapp: *https://whatsapp.com/....*')
 				let { owner,subject, subjectOwner, desc, descId, participants, size, descOwner, descTime, creation } = await samu330.query({
 					json: ["query", "invite", net],
 					expect200: true
@@ -4717,18 +4720,18 @@ Titulo :* ${a.judul}
 
 *° Total de Miembros:* ${size}
 
-${desc ? `*° Descripción:* ${desc}` : 'Descripción: Sin descripción'}
+${desc ? `*° Descripción:* ${desc}` : '*° Descripción:* Sin descripción'}
 
 *° Id de la Descripción:* ${descId}
 
-${descOwner ? `*° Descripción cambiada por:* @${descOwner.split('@')[0]}` : 'Descripcion cambiada por : -'}\n\n*° Fecha*: ${descTime ? `${Date(descTime * 1000)}` : '-'}\n\n*° Contactos agendados*\n`
+${descOwner ? `*° Descripción cambiada por:* @${descOwner.split('@')[0]}` : '*° Descripción cambiada por:* -'}\n\n*° Fecha*: ${descTime ? `${Date(descTime * 1000)}` : '-'}\n\n*° Contactos agendados*\n`
 				for (let y of participants) {
 					insSm += `> @${y.id.split('@')[0]}\n*Admin* : ${y.isAdmin ? 'Si' : 'No'}\n`
 					jids.push(`${y.id.replace(/@c.us/g, '@s.whatsapp.net')}`)
 				}
 				jids.push(`${owner ? `${owner.replace(/@c.us/g, '@s.whatsapp.net')}` : '-'}`)
 				jids.push(`${descOwner ? `${descOwner.replace(/@c.us/g, '@s.whatsapp.net')}` : '-'}`)
-				samu330.sendMessage(from, insSm, MessageType.text, { quoted: fliveLoc })
+				samu330.sendMessage(from, insSm, MessageType.text, { quoted: fdoc })
 			break
 
 			default:
