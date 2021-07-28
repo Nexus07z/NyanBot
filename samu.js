@@ -4787,11 +4787,11 @@ Titulo :* ${a.judul}
 				if (!botAdmin) return reply(mess.only.Badmin)
 				if (args.length < 1) return reply('Escriba *1* para activar.')
 				if (args[0] === '1') {
-					if (isAntiLink) return reply('Ya está activo.')
+					if (isAntiLink) return reply('*Ya está activo.*')
 					antilink.push(from)
 					fs.writeFileSync('./src/antilink.json', JSON.stringify(antilink))
 					reply('*Anti-link [ Activado ] ✔️*')
-					reply(`Los miembros que manden un link serán eliminados. *Nota: * _CUALQUIER TIPO DE LINK. _`)
+					reply(`Los miembros que manden un link serán eliminados. *Nota:* _CUALQUIER TIPO DE LINK._`)
 				} else if ((args[0]) === '0') {
 					var ini = antilink.indexOf(from)
 					antilink.splice(ini, 1)
