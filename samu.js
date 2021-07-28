@@ -679,6 +679,7 @@ samu330.on('chat-update', async (sam) => {
 			if (!isAntigp) return
 			if (isAdmin) return reply('Tienes suerte, eres administrador y no te sacaré.')
 			reply(`Link detectado ${sender.split("@")[0]} serás expulsado de este grupo.`)
+			await sleep(4000)
 			samu330.groupRemove(from, [sender])
 		}
 
@@ -4808,11 +4809,11 @@ Titulo :* ${a.judul}
 				if (!botAdmin) return reply(mess.only.Badmin)
 				if (args.length < 1) return reply('Escriba *1* para activar.')
 				if (args[0] === '1') {
-					if (isAntigp) return reply('Ya está activo.')
+					if (isAntigp) return reply('*Ya está activo.*')
 					antigp.push(from)
 					fs.writeFileSync('./src/antilink.json', JSON.stringify(antigp))
 					reply('*Anti-link de grupos [ Activado ] ✔️*')
-					samu330.sendMessage(from, `Los miembros que manden un link de otro grupo serán eliminados.`, text)
+					reply(`Los miembros que manden un link de otro grupo serán eliminados.`)
 				} else if ((args[0]) === '0') {
 					var ini = antigp.indexOf(from)
 					antigp.splice(ini, 1)
