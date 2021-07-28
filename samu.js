@@ -343,7 +343,12 @@ samu330.on('chat-update', async (sam) => {
 		mention != undefined ? mention.push(mentionByReply) : []
 		const mentionUser = mention != undefined ? mention.filter(n => n) : []
 		const mentions = (teks, memberr, id) => {
-			(id == null || id == undefined || id == false) ? samu330.sendMessage(from, teks.trim(), extendedText, { contextInfo: { "mentionedJid": memberr } }) : samu330.sendMessage(from, teks.trim(), extendedText, 
+			(id == null || id == undefined || id == false) ? samu330.sendMessage(from, teks.trim(), extendedText, { message: {
+				"documentMessage": {
+					"title": `Sam | Nexusᴮᴼᵀ\n${prefix}${command} ${q}`,
+					'jpegThumbnail': fs.readFileSync('./src/fake.jpg')
+				}
+			},contextInfo: { "mentionedJid": memberr } }) : samu330.sendMessage(from, teks.trim(), extendedText, 
 
 			{ quoted: sam, message: {
 				"documentMessage": {
