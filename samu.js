@@ -1148,23 +1148,16 @@ Hola *${pushname}* ${timeFt}
 ║ _Evitar fotos y videos._
 ║
 ╠ *${prefix}antileg*
-║ _Evitar audios , contactos y _
-║ _localizaciones. _
+║ _Evitar audios , contactos y_
+║ _localizaciones._
                                                                           
-
-${bodyM} ${samu}${prefix}autostick{samu}
-
 
 ================================
 *🔞PARA ACTIVAR LOS COMANDOS +18*:
 ================================
 ${bodyM} ${prefix}+18 1/0
 ================================
-    _Modo simsimi ilimitado_
-
-*${prefix}simsimi 1*
-
-
+  
 *Para que el bot entre a tu grupo, usa el siguiente comando:*
 	${prefix}entrabot *(Link del grupo)*
 
@@ -4639,23 +4632,6 @@ Titulo :* ${a.judul}
 				}
 				break
 
-			case 'antileg':
-				if (!isGroup) return reply('Este comando es solo para grupos')
-				if (args.length < 1) return reply('escriba *1* para activar')
-				if (args[0] === '1') {
-					if (isAntiLeg) return reply('Ya esta activo')
-					legion.push(from)
-					fs.writeFileSync('./src/sm330Leg.json', JSON.stringify(legion))
-					reply('*Modo antilegiones activado✅*')
-				} else if ((args[0]) === '0') {
-					var ini = legion.indexOf(from)
-					legion.splice(ini, 1)
-					fs.writeFileSync('./src/sm330Leg.json', JSON.stringify(legion))
-					reply('Antilegiones activado✔️')
-				} else {
-					reply('*1 para activar, 0 para desactivar*')
-				}
-				break
 			case 'nombre':
 				if (!isGroup) return await reply(mess.only.group)
 				if (!isAdmin) return await reply(mess.only.admin)
@@ -4687,28 +4663,6 @@ Titulo :* ${a.judul}
 					samu330.sendMessage(from, fs.readFileSync('wasted.jpg'), MessageType.image)
 				} else {
 					reply('Manda la foto!');
-				}
-				break
-		
-			
-			case 'antimedia':
-				if (!isGroup) return reply(mess.only.group)
-				if (!isAdmin) return reply(mess.only.admin)
-				if (!botAdmin) return reply(mess.only.Badmin)
-				if (args.length < 1) return reply('Escribe *1* para activar')
-				if (args[0] === '1') {
-					if (isAntiMedia) return reply('*Ya está activo*')
-					antimedia.push(from)
-					fs.writeFileSync('./src/antimedia.json', JSON.stringify(antimedia))
-					reply(`*[ Activado ]*`)
-					reply(`*La persona que envie fotos o videos sera eliminada*`)
-				} else if (args[0] === '0') {
-					var ini = antimedia.indexOf(from)
-					antimedia.splice(ini, 1)
-					fs.writeFileSync('./src/antimedia.json', JSON.stringify(antimedia))
-					reply(`Desactivado`)
-				} else {
-					reply('1 para activar, 0 para desactivar')
 				}
 				break
 
@@ -4777,7 +4731,7 @@ Titulo :* ${a.judul}
 				if (!isGroup) return reply(mess.only.group)
 				if (!isAdmin) return reply(mess.only.admin)
 				if (!botAdmin) return reply(mess.only.Badmin)
-				if (args.length < 1) return reply('Escribe *1* para activar')
+				if (args.length < 1) return reply('Escribe *1* para activar.')
 				if (args[0] === '1') {
 					if (isBadWord) return reply('*Ya está activo.*')
 					badword.push(from)
@@ -4788,35 +4742,13 @@ Titulo :* ${a.judul}
 					var ini = badword.indexOf(from)
 					badword.splice(ini, 1)
 					fs.writeFileSync('./src/badword.json', JSON.stringify(badword))
-					reply(`*Anti-bad *[ Desactivado ]* ✔️*`)
+					reply(`*Anti-bad [ Desactivado ] ✔️*`)
 				} else {
 					reply('1 para activar, 0 para desactivar.')
 				}
-				break
-			
-				case 'antilink':
-					if (!isGroup) return reply(mess.only.group)
-					if (!isAdmin) return reply(mess.only.admin)
-					if (!botAdmin) return reply(mess.only.Badmin)
-					if (args.length < 1) return reply('Escriba *1* para activar.')
-					if (args[0] === '1') {
-						if (isAntiLink) return reply('Ya esta activo.')
-						antilink.push(from)
-						fs.writeFileSync('./src/antilink.json', JSON.stringify(antilink))
-						reply('*Anti-link [ Activado ] ✔️*')
-						samu330.sendMessage(from, `Los miembros que manden un link serán eliminados. *Nota: * _CUALQUIER TIPO DE LINK. _`, text)
-					} else if ((args[0]) === '0') {
-						var ini = antilink.indexOf(from)
-						antilink.splice(ini, 1)
-						fs.writeFileSync('./src/antilink.json', JSON.stringify(antilink))
-						reply('*Anti-link *[ Desactivado ]* ✔️*')
-					} else {
-						reply('*1 para activar, 0 para desactivar.*')
-					}
-				break
-
+			break
+	
 			case 'addbad':
-
 				if (!isOwner) return reply(mess.only.ownerB)
 				if (!isAdmin) return reply(mess.only.admin)
 				if (args.length < 1) return reply(`Escribe ${prefix}addbad [palabra]. Ejemplo: ${prefix}addbad puto`)
@@ -4825,9 +4757,9 @@ Titulo :* ${a.judul}
 				fs.writeFileSync('./src/bad.json', JSON.stringify(bad))
 				reply('Se añadio con éxito.')
 
-				break
-			case 'delbad':
+			break
 
+			case 'delbad':
 				if (!isOwner) return reply(mess.only.ownerB)
 				if (!isAdmin) return reply(mess.only.admin)
 				if (args.length < 1) return reply(`Escribe ${prefix}delbad [palabra]. Ejemplo: ${prefix}delbad hola`)
@@ -4836,37 +4768,97 @@ Titulo :* ${a.judul}
 				fs.writeFileSync('./src/bad.json', JSON.stringify(bad))
 				reply('Se quito con éxito.')
 
-				break
-			case 'listbad':
+			break
 
+			case 'listbad':
 				let lbw = `Lista de MALAS PALABRAS\nTotal : ${bad.length}\n`
 				for (let i of bad) {
 					lbw += `◦ ${i.replace(bad)}\n`
 				}
 				await reply(lbw)
-				break
-		
+			break
 
+			case 'antilink':
+				if (!isGroup) return reply(mess.only.group)
+				if (!isAdmin) return reply(mess.only.admin)
+				if (!botAdmin) return reply(mess.only.Badmin)
+				if (args.length < 1) return reply('Escriba *1* para activar.')
+				if (args[0] === '1') {
+					if (isAntiLink) return reply('Ya está activo.')
+					antilink.push(from)
+					fs.writeFileSync('./src/antilink.json', JSON.stringify(antilink))
+					reply('*Anti-link [ Activado ] ✔️*')
+					samu330.sendMessage(from, `Los miembros que manden un link serán eliminados. *Nota: * _CUALQUIER TIPO DE LINK. _`, text)
+				} else if ((args[0]) === '0') {
+					var ini = antilink.indexOf(from)
+					antilink.splice(ini, 1)
+					fs.writeFileSync('./src/antilink.json', JSON.stringify(antilink))
+					reply('*Anti-link [ Desactivado ] ✔️*')
+				} else {
+					reply('*1 para activar, 0 para desactivar.*')
+				}
+			break
+		
 			case 'antigp':
 				if (!isGroup) return reply(mess.only.group)
 				if (!isAdmin) return reply(mess.only.admin)
 				if (!botAdmin) return reply(mess.only.Badmin)
-				if (args.length < 1) return reply('escriba *1* para activar')
+				if (args.length < 1) return reply('Escriba *1* para activar.')
 				if (args[0] === '1') {
-					if (isAntigp) return reply('Ya esta activo.')
+					if (isAntigp) return reply('Ya está activo.')
 					antigp.push(from)
 					fs.writeFileSync('./src/antilink.json', JSON.stringify(antigp))
-					reply('*Anti-link de grupos activado. ✔️*')
+					reply('*Anti-link de grupos [ Activado ] ✔️*')
 					samu330.sendMessage(from, `Los miembros que manden un link de otro grupo serán eliminados.`, text)
 				} else if ((args[0]) === '0') {
 					var ini = antigp.indexOf(from)
 					antigp.splice(ini, 1)
 					fs.writeFileSync('./src/antilink.json', JSON.stringify(antigp))
-					reply('*Anti-link de grupos desactivado. ✔️*')
+					reply('*Anti-link de grupos [ Desactivado ] ✔️*')
 				} else {
 					reply('*1 para activar, 0 para desactivar.*')
 				}
-				break
+			break
+
+			case 'antimedia':
+				if (!isGroup) return reply(mess.only.group)
+				if (!isAdmin) return reply(mess.only.admin)
+				if (!botAdmin) return reply(mess.only.Badmin)
+				if (args.length < 1) return reply('Escriba *1* para activar.')
+				if (args[0] === '1') {
+					if (isAntiMedia) return reply('*Ya está activo.*')
+					antimedia.push(from)
+					fs.writeFileSync('./src/antimedia.json', JSON.stringify(antimedia))
+					reply(`*Anti-media [ Activado ] ✔️*`)
+					reply(`*La persona que envie fotos o videos sera eliminada.*`)
+				} else if (args[0] === '0') {
+					var ini = antimedia.indexOf(from)
+					antimedia.splice(ini, 1)
+					fs.writeFileSync('./src/antimedia.json', JSON.stringify(antimedia))
+					reply(`*Anti-media [ Desactivado ] ✔️*`)
+				} else {
+					reply('1 para activar, 0 para desactivar.')
+				}
+			break
+
+			case 'antileg':
+				if (!isGroup) return reply('Este comando es solo para grupos.')
+				if (args.length < 1) return reply('Escriba *1* para activar.')
+				if (args[0] === '1') {
+					if (isAntiLeg) return reply('Ya esta activo')
+					legion.push(from)
+					fs.writeFileSync('./src/sm330Leg.json', JSON.stringify(legion))
+					reply('*Antilegiones [ Activado ] ✔️*')
+				} else if ((args[0]) === '0') {
+					var ini = legion.indexOf(from)
+					legion.splice(ini, 1)
+					fs.writeFileSync('./src/sm330Leg.json', JSON.stringify(legion))
+					reply('*Antilegiones [ Desactivado ] ✔️*')
+				} else {
+					reply('*1 para activar, 0 para desactivar.*')
+				}
+			break
+
 			case 'welcome':
 				if (!isGroup) return reply('*Comando solo para grupos*')
 				if (!isAdmin) return reply(mess.only.admin)
