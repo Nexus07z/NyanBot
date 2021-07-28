@@ -4677,7 +4677,8 @@ Titulo :* ${a.judul}
 					json: ["action", "invite", `${args[0].replace('https://chat.whatsapp.com/', '')}`]
 				})
 				reply('Ya entre al grupo. 😉')
-				samu330.sendMessage(linkgp.gid, `*Hola* 🙋🏻‍♂️\nSoy Sam, me han designado como *BOT* para este grupo.🤖\n\n*Por favor sigue mis reglas, para leer mis reglas escribe: *\n${prefix}reglas\nPor favor síguelas o atente a las consecuencias. ⚠\n*Quedo a su disposición, no me hagan sentir mal.... porque yo también tengo sentimientos. 😣*`, MessageType.text)
+				samu330.sendMessage(from, fs.readFileSync('caras.jpg'), MessageType.image, { quoted: fimg })
+				samu330.sendMessage(linkgp.gid, `*Hola* 🙋🏻‍♂️\nSoy Sam, me han designado como *BOT* para este grupo.🤖\n\n*Por favor sigue mis reglas, para leer mis reglas escribe: *\n${prefix}reglas\nPor favor síguelas o atente a las consecuencias. ⚠\n*Quedo a su disposición, no me hagan sentir mal.... porque yo también tengo sentimientos. 😣*`, MessageType.text,{ quoted: fdoc })
 			break
 
 			case 'inspeccionar':
