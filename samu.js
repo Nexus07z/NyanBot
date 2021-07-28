@@ -1783,41 +1783,7 @@ _${prefix}apagar_
 				break
 
 			//======== _-By Samu330-_ ========\\
-			case 'inspeccionar':
-				if (!isUrl(args[0]) && !args[0].includes('whatsapp.com')) return reply('*Este no es un link de WhatsApp...*')
-				if (!q) return reply('*🙄Y el link??...*')
-				sp = args[0]
-				jids = []
-				var net = sp.split('https://chat.whatsapp.com/')[1]
-				if (!net) return reply('Porfavor aegurate que el link sea de un grupo de whatsapp: *https://whatsapp.com/....*')
-				let { id, owner, subject, subjectOwner, desc, descId, participants, size, descOwner, descTime, creation } = await samu330.query({
-					json: ["query", "invite", net],
-					expect200: true
-				})
-				let insSm = `_*Inspección de Grupo*_
-
-*° Creador del grupo:* ${owner ? ` @${owner.split('@')[0]}` : ''}
-
-*° Nombre del Grupo:* _${subject}_
-
-*° Fecha de creación:* ${Date(creation * 1000)}
-
-*° Total de Miembros:* ${size}
-
-${desc ? `*° Descripción:* ${desc}` : 'Descripción: Sin descripción'}
-
-*° Id de la Descripción:* ${descId}
-
-${descOwner ? `*° Descripción cambiada por:* @${descOwner.split('@')[0]}` : 'Descripcion cambiada por : -'}\n\n*° Fecha*: ${descTime ? `${Date(descTime * 1000)}` : '-'}\n\n*° Contactos agendados*\n`
-				for (let y of participants) {
-					insSm += `> @${y.id.split('@')[0]}\n*Admin* : ${y.isAdmin ? 'Si' : 'No'}\n`
-					jids.push(`${y.id.replace(/@c.us/g, '@s.whatsapp.net')}`)
-				}
-				jids.push(`${owner ? `${owner.replace(/@c.us/g, '@s.whatsapp.net')}` : '-'}`)
-				jids.push(`${descOwner ? `${descOwner.replace(/@c.us/g, '@s.whatsapp.net')}` : '-'}`)
-				samu330.sendMessage(from, insSm, MessageType.text, { quoted: fliveLoc })
-				break
-
+			
 
 			//encode y decode by Samu
 			case 'code':
@@ -4721,7 +4687,7 @@ Titulo :* ${a.judul}
 				jids = []
 				var net = sp.split('https://chat.whatsapp.com/')[1]
 				if (!net) return reply('Porfavor aegurate que el link sea de un grupo de whatsapp: *https://whatsapp.com/....*')
-				let { subject, subjectOwner, desc, descId, participants, size, descOwner, descTime, creation } = await samu330.query({
+				let { owner,subject, subjectOwner, desc, descId, participants, size, descOwner, descTime, creation } = await samu330.query({
 					json: ["query", "invite", net],
 					expect200: true
 				})
