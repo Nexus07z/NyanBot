@@ -4683,7 +4683,7 @@ Titulo :* ${a.judul}
 					json:["action", "invite", `${args[0].replace('https://chat.whatsapp.com/','')}`]
 				})
 				reply('Ya entre al grupo. 😉')
-				samu330.sendMessage(id, `*¡Hola!* \nSoy Sam, me han designado como *BOT* para este grupo.🤖\n\n *Por favor sigue mis reglas, para leer mis reglas escribe:* \n${prefix}reglas\n\nPor favor síguelas o atente a las consecuencias. ⚠\n*Quedo a su disposición, no me hagan sentir mal.... porque yo también tengo sentimientos. 😣*`, MessageType.text, {
+				samu330.sendMessage(id, `*¡Hola!* \nSoy Sam, me han designado como *BOT* para este grupo.🤖\n\n*Por favor lee mis reglas:* \n${prefix}reglas\n\nPor favor síguelas o atente a las consecuencias. ⚠\n*Quedo a su disposición, no me hagan sentir mal.... porque yo también tengo sentimientos. 😣*`, MessageType.text, {
 					quoted:
 					{
 						key: {
@@ -4698,9 +4698,9 @@ Titulo :* ${a.judul}
 				break
 
 			case 'inspeccionar':
-				if (!isUrl(args[0]) && !args[0].includes('whatsapp.com')) return reply('*Este no es un link de WhatsApp...*')
 				linkgpi = args.join(' ')
 				if (!linkgpi) return reply('Falta el link del grupo.')
+				if (!isUrl(args[0]) && !args[0].includes('whatsapp.com')) return reply('*Este no es un link de WhatsApp...*')
 				if (!q) return reply('Falta el link del grupo.')
 				sp = args[0]
 				jids = []
