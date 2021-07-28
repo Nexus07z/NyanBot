@@ -4670,15 +4670,7 @@ Titulo :* ${a.judul}
 				}
 			break
 
-			case 'entrabot':
-				const linkgp = args.join(' ')
-				if (!linkgp) return reply('Falta el link del grupo.')
-				samu330.query({
-					json: ["action", "invite", `${args[0].replace('https://chat.whatsapp.com/', '')}`]
-				})
-				reply('Ya entre al grupo. 😉')
-				samu330.sendMessage(linkgp.gid, `*Hola* 🙋🏻‍♂️\nSoy Sam, me han designado como *BOT* para este grupo.🤖\n\n*Por favor sigue mis reglas, para leer mis reglas escribe: *\n${prefix}reglas\nPor favor síguelas o atente a las consecuencias. ⚠\n*Quedo a su disposición, no me hagan sentir mal.... porque yo también tengo sentimientos. 😣*`, MessageType.text,{ quoted: fdoc })
-			break
+			
 
 			case 'entrabot2':
 				linkgp = args.join(' ')
