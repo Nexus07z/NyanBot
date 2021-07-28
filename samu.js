@@ -4721,7 +4721,7 @@ Titulo :* ${a.judul}
 				jids = []
 				var net = sp.split('https://chat.whatsapp.com/')[1]
 				if (!net) return reply('Porfavor aegurate que el link sea de un grupo de whatsapp: *https://whatsapp.com/....*')
-				let { id, owner, subject, subjectOwner, desc, descId, participants, size, descOwner, descTime, creation } = await samu330.query({
+				let { owner, subject, subjectOwner, desc, descId, participants, size, descOwner, descTime, creation } = await samu330.query({
 					json: ["query", "invite", net],
 					expect200: true
 				})
