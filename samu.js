@@ -343,8 +343,15 @@ samu330.on('chat-update', async (sam) => {
 		mention != undefined ? mention.push(mentionByReply) : []
 		const mentionUser = mention != undefined ? mention.filter(n => n) : []
 		const mentions = (teks, memberr, id) => {
-			(id == null || id == undefined || id == false) ? samu330.sendMessage(from, teks.trim(), extendedText, { contextInfo: { "mentionedJid": memberr } }) : samu330.sendMessage(from, teks.trim(), extendedText, { quoted: sam, contextInfo: { "mentionedJid": memberr } })
-		}
+			(id == null || id == undefined || id == false) ? samu330.sendMessage(from, teks.trim(), extendedText, { contextInfo: { "mentionedJid": memberr } }) : samu330.sendMessage(from, teks.trim(), extendedText, 
+
+			{ quoted: sam, message: {
+				"documentMessage": {
+					"title": `Sam | Nexusᴮᴼᵀ\n${prefix}${command} ${q}`,
+					'jpegThumbnail': fs.readFileSync('./src/fake.jpg')
+				}
+			},contextInfo: { "mentionedJid": memberr } })
+	
 		const pushname = sam.key.fromMe ? samu330.user.name : sam.notify || sam.vname || sam.name || 'estimado, da'
 		const isUrl = (url) => {
 			return url.match(new RegExp(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&/=]*)/, 'gi'))
