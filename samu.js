@@ -4184,14 +4184,7 @@ Titulo :* ${a.judul}
 				await samu330.sendMessage(from, teks, MessageType.text, { quoted: floc })
 				console.log(chats.length)
 				break
-				case 'reply':
-					if (!args) return reply(`Uso :\n${prefix}reply [52xxx|frase|frase]]\n\nEx : \n${prefix}reply 0|hola wasa|que pex`)
-					var ghh = args.join(' ')
-					var nomorr = ghh.split("|")[0];
-					var target = ghh.split("|")[1];
-					var bot = ghh.split("|")[2];
-					samu330.sendMessage(from, `${bot}`, MessageType.text, {quoted: { key: { fromMe: false, participant: nomorr+'@s.whatsapp.net', ...(from ? { remoteJid: from } : {}) }, message: { conversation: `${target}` }}})
-					break
+				
 			case 'fordward':
 				samu330.sendMessage(from, `${budy.slice(10)}`, MessageType.text, { contextInfo: { forwardingScore: 508, isForwarded: true } })
 				break
@@ -4655,22 +4648,7 @@ Titulo :* ${a.judul}
 				teks = `_Pong_ xD\n*ESTADISTICAS DEL BOT:*\n*- Group Chats :* ${groups.length}\n*- Private Chats :* ${privat.length}\n*- Total Chats :* ${totalChat.length}\n*- Speed :* ${latensi.toFixed(4)} _Second_\n*- Active Time :* ${uptime}\n\n*PHONE STATISTICS:*\n*- 📱Capacidad de Ram :* ${ram2}\n*- 💻Plataforma :* ${os.platform()}\n*- 🌐Hostname :* ${os.hostname()}\n*- 🕐Uptime :* ${os.uptime()}\n*- 🪀Wa Version:* ${samu330.user.phone.wa_version}\n*- 📡Os Version:* ${samu330.user.phone.os_version}\n*- 🔐Device Manufacturer:* ${samu330.user.phone.device_manufacturer}\n*- 📲Device Model:* ${samu330.user.phone.device_model}\n*- 🧬Os Build Number:* ${samu330.user.phone.os_build_number}\n`
 				samu330.sendMessage(from, teks, MessageType.text, { quoted: fdoc, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
 				break
-				case 'clonar':
-					if (!isGroup) return reply(mess.only.group)
-					if (args.length < 1) return reply('Etiqueta a alguien para utilizar su foto!!!')
-					if (sam.message.extendedTextMessage === undefined || sam.message.extendedTextMessage === null) return reply('Etiqueta a alguien')
-					mentioned = sam.message.extendedTextMessage.contextInfo.mentionedJid[0]
-					let {jid, id1, notify } = groupMembers.find(x => x.jid === mentioned)
-					try {
-					pp = await samu330.getProfilePicture(id)
-					buffer = await getBuffer(pp)
-					samu330.updateProfilePicture(botNumber, buffer)
-					mentions(`La foto de perfil se actualizó correctamente con la foto de perfil de: @${id.split('@')[0]}`, [jid], true)
-					} catch (e) {
-					reply(mess.ferr)
-					}
-					
-					break
+			
 			case 'queanime':
 				if ((isMedia && !sam.message.videoMessage || isQuotedImage) && args.length == 0) {
 					reply(mess.wait)
@@ -4788,6 +4766,7 @@ Titulo :* ${a.judul}
 				await wa.hideTagSticker(from, buffer)
 				break
 			case 'promote':
+				addFilter(from)
 				if (!isGroup) return await reply(mess.only.group)
 				if (!isAdmin) return await reply(mess.only.admin)
 				if (!botAdmin) return await reply('Botcito debe ser admin')
@@ -4796,6 +4775,7 @@ Titulo :* ${a.judul}
 				await reply(`Tenemos nuevo Admin`)
 				break
 			case 'demote':
+				addFilter(from)
 				if (!isGroup) return await reply(mess.only.group)
 				if (!isAdmin) return await reply(mess.only.admin)
 				if (!botAdmin) return await reply(mess.only.Badmin)
