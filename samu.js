@@ -3626,10 +3626,10 @@ ${descOwner ? `*° Descripción cambiada por:* @${descOwner.split('@')[0]}` : '*
 				query = args.join(' ')
 				fakee = fs.readFileSync('./src/img.jpg')
 				try {
-					get_result = await getJson(`https://api.lolhuman.xyz/api/tiktok?apikey=${api}&url=${query}`)
+					get_result = await getJson(`https://api.lolhuman.xyz/api/tiktok3?apikey=${api}&url=${query}`)
 					get_result = get_result.result
 					short = await getJson(`https://api.lolhuman.xyz/api/shortlink?apikey=${api}&url=${get_result.link}`)
-					ini_txt = `Titulo : ${get_result.title}\n\n`
+					ini_txt = `Titulo : Video TikTok sin marca de agua.\n\n`
 					ini_txt += `_Si el video no llega, puedes descargarlo mediante el siguiente link:_\n${short.result}`
 					ini_buffer = await getBuffer(get_result.thumbnail)
 					await samu330.sendMessage(from, ini_buffer, image, { quoted: fimg, caption: ini_txt, contextInfo: { "forwardingScore": 9999, "isForwarded": true } })
