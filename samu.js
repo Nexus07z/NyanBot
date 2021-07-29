@@ -3558,61 +3558,8 @@ ${descOwner ? `*° Descripción cambiada por:* @${descOwner.split('@')[0]}` : '*
 					get_audio = await getBuffer(get_result.audio)
 					await samu330.sendMessage(from, get_audio, audio, { mimetype: 'audio/mp4', quoted: faud })
 				} catch {
-					reply(`*Ocurrió un problema, intentarlo nuevamente más tarde.*`)
+					reply(`*Ocurrió un problema, puedes intentarlo nuevamente más tarde.*`)
 				}
-			break
-
-			case 'play2':
-				assistant = fs.readFileSync('./src/assistant.jpg')
-				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
-				if (args.length == 0) return reply(`*Agrega lo que deseas buscar.*\nPor ejemplo: ${prefix + command} Green day Holiday`)
-				reply('*Espere un momento por favor...*')
-				query = args.join(' ')
-				assistant = fs.readFileSync('./src/img.jpg')
-				try {
-				get_result = await getJson(`https://api.lolhuman.xyz/api/ytplay?apikey=${api}&query=${query}`)
-				get_result = get_result.result
-				get_info = get_result.info
-				ini_txt = ` *Titulo* : ${get_info.title}\n`
-				ini_txt += `•Publicador : ${get_info.uploader}\n`
-				ini_txt += `•Duracion : ${get_info.duration}\n`
-				ini_txt += `°Vistas : ${get_info.view}\n`
-				ini_txt += `°Like : ${get_info.like}\n`
-				ini_txt += `°Dislike : ${get_info.dislike}\n`
-				ini_txt += `°Descripcion :\n ${get_info.description}\n\n`
-				ini_txt += `Si el audio no llega, puede descargar por aqui: :\n ${get_result.audio[3].link}\n\n`
-				ini_txt += `Puede descargar tambien el video aqui: :\n ${get_result.video[0].link}\n`
-				ini_buffer = await getBuffer(get_info.thumbnail)
-				await samu330.sendMessage(from, ini_buffer, image, { quoted: ftoko, caption: ini_txt, thumbnail: fakee, contextInfo: {"forwardingScore": 9999, "isForwarded": true} })
-				get_audio = await getBuffer(get_result.audio[4].link)
-				await samu330.sendMessage(from, get_audio, audio, { mimetype: 'audio/mp4', duration :-999999999999999, filename: `${get_info.title}.mp3`, quoted: faud })
-				get_audio = await getBuffer(get_result.audio[4].link)
-				await samu330.sendMessage(from, get_audio, audio, { mimetype: 'audio/mp4', duration :-999999999999999, ptt: true, filename: `${get_info.title}.mp3`, quoted: faud })
-
-				} catch {
-
-				reply('Ocurrio un problema con el servidor *1*, Porfavor espera mientras pruebo en el servidor *2*')
-				teks = args.join(' ')
-				if (!teks.endsWith("-doc")){
-				res = await yts(q).catch(e => {
-				reply('_[ ! ] Lo siento, su busqueda no pudo ser completada_')
-				})
-				let thumbInfo = ` [ *${res.all[0].title}* ]
-				*°Subido hace* ${res.all[0].ago}
-				*°Vistas :* ${res.all[0].views}
-				*°Duracion :* ${res.all[0].timestamp}
-				*°Canal :* ${res.all[0].author.name}
-				*°Link del Canal :* ${res.all[0].author.url}
-
-				*_El archivo se esta enviando....._*
-				`
-				sendFileFromUrl(res.all[0].image, image, {quoted: sam, caption: thumbInfo})
-				res = await y2mateA(res.all[0].url).catch(e => {
-				reply('_[ ! ] Error del servidor_')
-				})
-				sendFileFromUrl(res[0].link, audio, {quoted: faud, mimetype: 'audio/mp4', duration: 99999999999999, filename: res[0].output})
-				sendFileFromUrl(res[0].link, audio, {quoted: faud, mimetype: 'audio/mp4', ptt: true, duration: 99999999999999, filename: res[0].output})
-				}}
 			break
 
 			case 'playvid':
@@ -3627,13 +3574,13 @@ ${descOwner ? `*° Descripción cambiada por:* @${descOwner.split('@')[0]}` : '*
 					get_result = get_result.result
 					short = await getJson(`https://api.lolhuman.xyz/api/shortlink?apikey=${api}&url=${get_result.video}`)
 					ini_txt = `Titulo : ${get_result.title}\n\n`
-					ini_txt += `_Si el video no llega, puedes descargarlo mediante el siguiente link_ :\n ${short.result}`
+					ini_txt += `_Si el video no llega, puedes descargarlo mediante el siguiente link:_\n ${short.result}`
 					ini_buffer = await getBuffer(get_result.thumbnail)
 					await samu330.sendMessage(from, ini_buffer, image, { quoted: fvid, caption: ini_txt, contextInfo: { "forwardingScore": 9999, "isForwarded": true } })
 					get_video = await getBuffer(get_result.video)
-					await samu330.sendMessage(from, get_video, video, { mimetype: 'video/mp4', quoted: fvid, duration: -999999 })
+					await samu330.sendMessage(from, get_video, video, { mimetype: 'video/mp4', quoted: fvid })
 				} catch {
-					reply(`*Ocurrió un problema, puedes descargar del link mencionado en el mensaje anterior o intentarlo nuevamente más tarde.*`)
+					reply(`*Ocurrió un problema, puedes intentarlo nuevamente más tarde.*`)
 				}
 			break
 
@@ -3649,13 +3596,13 @@ ${descOwner ? `*° Descripción cambiada por:* @${descOwner.split('@')[0]}` : '*
 					get_result = get_result.result
 					short = await getJson(`https://api.lolhuman.xyz/api/shortlink?apikey=${api}&url=${get_result.video}`)
 					ini_txt = `Titulo : ${get_result.title}\n\n`
-					ini_txt += `_Si el video no llega, puedes descargarlo mediante el siguiente link_ :\n ${short.result}`
+					ini_txt += `_Si el video no llega, puedes descargarlo mediante el siguiente link:_\n ${short.result}`
 					ini_buffer = await getBuffer(get_result.thumbnail)
 					await samu330.sendMessage(from, ini_buffer, image, { quoted: fvid, caption: ini_txt, contextInfo: { "forwardingScore": 9999, "isForwarded": true } })
 					get_video = await getBuffer(get_result.video)
-					await samu330.sendMessage(from, get_video, video, { mimetype: Mimetype.gif, duration: -999999999999999, filename: `${get_result.title}.mp4`, quoted: fvid })
+					await samu330.sendMessage(from, get_video, video, { mimetype: Mimetype.gif, filename: `${get_result.title}.mp4`, quoted: fvid })
 				} catch {
-					reply(`*Ocurrió un problema, puedes descargar del link mencionado en el mensaje anterior o intentarlo nuevamente más tarde.*`)
+					reply(`*Ocurrió un problema, puedes intentarlo nuevamente más tarde.*`)
 				}
 			break
 					
