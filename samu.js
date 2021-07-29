@@ -386,7 +386,7 @@ samu330.on('chat-update', async (sam) => {
 		}
 
 		mess = {
-			wait: 'Espera un momento por favor...',
+			wait: '*Espera un momento por favor...*',
 			success: '✔️ HECHO ✔️',
 			nsfw: `𝗟𝗼 𝘀𝗶𝗲𝗻𝘁𝗼 𝗽𝗲𝗿𝗼 𝗻𝗼 𝗽𝘂𝗲𝗱𝗼 𝗲𝗷𝗲𝗰𝘂𝘁𝗮𝗿 𝗲𝘀𝗲 𝗰𝗼𝗺𝗮𝗻𝗱𝗼, 𝗲𝘀𝘁𝗲 𝗴𝗿𝘂𝗽𝗼 𝗻𝗼 𝗽𝗲𝗿𝗺𝗶𝘁𝗲 𝗰𝗼𝗻𝘁𝗲𝗻𝗶𝗱𝗼 +𝟭𝟴\n*PARA ACTIVAR LOS COMANDOS +18, USA:* ${prefix}+18 1`,
 			ferr: 'Inténtalo de nuevo más tarde.',
@@ -1153,13 +1153,15 @@ Hola *${pushname}* ${timeFt}
 ╠ *${prefix}ytmp4* [link de youtube]
 ║ _Descarga un video de youtube._
 ║
+╠ *${prefix}fb* [link de facebook]
+║ _Descarga un video de facebook._
+║
 				
 
 ${bodyM} ${prefix}ig *(Fotos y videos de Instagram)*
 ${bodyM} ${prefix}twit *(videos de Twitter)*
-${bodyM} ${prefix}fb _(Link de FaceBook)_
 ${bodyM} ${prefix}mfire *(Link de mediafire)*
-${bodyM} ${prefix}tomp3 *(Videos a audio)*
+
 ${bodyM} ${prefix}letra *(Busca la letra de una cancion)*
 `
 				samu330.sendMessage(from, desca, MessageType.text, {
@@ -3616,6 +3618,28 @@ ${descOwner ? `*° Descripción cambiada por:* @${descOwner.split('@')[0]}` : '*
 				})
 			break
 
+			case 'tiktok':
+				assistant = fs.readFileSync('./src/assistant.jpg')
+				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
+				if (args.length == 0) return reply(`*Agrega el link de tiktok.*\nPor ejemplo: ${prefix + command} https://vm.tiktok.com/ZMdvgJgM7/`)
+				reply(mess.wait);
+				query = args.join(' ')
+				fakee = fs.readFileSync('./src/img.jpg')
+				try {
+					get_result = await getJson(`https://api.lolhuman.xyz/api/tiktok?apikey=${api}&url=${query}`)
+					get_result = get_result.result
+					short = await getJson(`https://api.lolhuman.xyz/api/shortlink?apikey=${api}&url=${get_result.link}`)
+					ini_txt = `Titulo : ${get_result.title}\n\n`
+					ini_txt += `_Si el video no llega, puedes descargarlo mediante el siguiente link:_\n${short.result}`
+					ini_buffer = await getBuffer(get_result.thumbnail)
+					await samu330.sendMessage(from, ini_buffer, image, { quoted: fimg, caption: ini_txt, contextInfo: { "forwardingScore": 9999, "isForwarded": true } })
+					get_video = await getBuffer(get_result.link)
+					await samu330.sendMessage(from, get_video, video, { mimetype: 'video/mp4', quoted: fvid })
+				} catch {
+					reply(`*Ocurrió un problema, puedes intentarlo nuevamente más tarde.*`)
+				}
+			break
+			
 			case 'facebook':
 			case 'fb':
 				assistant = fs.readFileSync('./src/assistant.jpg')
@@ -4534,7 +4558,7 @@ ${m}
 				}
 
 				break
-			case 'tiktok':
+			case 'tiktok1':
 			case 'arcade8bit':
 			case 'battlefield4':
 			case 'pubg':
