@@ -1073,6 +1073,18 @@ Hola *${pushname}* ${timeFt}
 ╠ *${prefix}inspeccionar* [Link del grupo]
 ║ _Obtener datos de un grupo._
 ║
+╠ *${prefix}nuevogrupo* [Nombre del grupo]
+║ _Crear un grupo._
+║
+╠ *${prefix}grupo [abrir/cerrar]
+║ _Abrir o cerrar mensajes del grupo._
+║
+╠ *${prefix}salir*
+║ _Salir del grupo._
+║
+╠ *${prefix}todos*
+║ _Lista de todos los usuarios._
+║
 ║
 ║
 ║
@@ -1081,11 +1093,7 @@ Hola *${pushname}* ${timeFt}
 ╰──────────────
  
   
-	
-${bodyM} ${prefix}nuevogrupo
-${bodyM} ${prefix}grupo abrir/cerrar
-${bodyM} ${prefix}salir
-${bodyM} ${prefix}todos
+
 ${bodyM} ${prefix}setdesc
 ${bodyM} ${prefix}nombre
 ${bodyM} ${prefix}adminlist
@@ -3400,7 +3408,57 @@ ${descOwner ? `*° Descripción cambiada por:* @${descOwner.split('@')[0]}` : '*
 				mentions('[  *Lista de todos los usuarios* ]\n┏━━━━━━━━━━━━━━━━━━━\n┠ ►' + teks + '┗━━━━━━━━━━━━━━━━━━━', members_id, true)
 
 			break
-	
+
+			case 'setdesc':
+				assistant = fs.readFileSync('./src/assistant.jpg')
+				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
+				if (!isGroup) return await reply(mess.only.group)
+				if (!isAdmin) return await reply(mess.only.admin)
+				if (!botAdmin) return await reply(mess.only.Badmin)
+				var newDesc = args.join(" ")
+				samu330.groupUpdateDescription(from, newDesc).then(() => {
+					wa.sendFakeStatus(from, "La descripción del grupo se ha cambiado a" + newDesc, "GROUP SETTING")
+				})
+			break
+			
+			case 'nombre':
+				assistant = fs.readFileSync('./src/assistant.jpg')
+				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
+				if (!isGroup) return await reply(mess.only.group)
+				if (!isAdmin) return await reply(mess.only.admin)
+				if (!botAdmin) return await reply(mess.only.Badmin)
+				var newName = args.join(" ")
+				samu330.groupUpdateSubject(from, newName).then(() => {
+					wa.sendFakeStatus(from, "El nombre del grupo se ha cambiado a" + newName, "GROUP SETTING")
+				})
+			break
+
+			case 'adminlist':
+				assistant = fs.readFileSync('./src/assistant.jpg')
+				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
+				var textt = msg.admin(groupAdmins, groupName)
+				await wa.sendFakeStatus(from, textt, "Lista de administradores", groupAdmins)
+			break
+			
+			case 'eliminar':
+				assistant = fs.readFileSync('./src/assistant.jpg')
+				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
+				if (!isGroup) return reply(mess.only.group)
+				if (!isAdmin) return reply(mess.only.admin)
+				if (!botAdmin) return reply(mess.only.Badmin)
+				if (sam.message.extendedTextMessage != undefined) {
+					mentioned = sam.message.extendedTextMessage.contextInfo.mentionedJid
+					if (!mentioned) return reply(`*Debes agregar el tag del usuario.*\nPor ejemplo: ${prefix + command} @usuario\nTambién puedes etiquetar un mensaje del usuario a eliminar.`)
+					await wa.FakeTokoForwarded(from, `Adios...`, '')
+					if (mentionUser.length == 1)
+						samu330.groupRemove(from, mentionUser)
+					//samu330.groupRemove(from, mentioned)
+				} else {
+					await wa.FakeTokoForwarded(from, `Adios...`, '')
+					samu330.groupRemove(from, mentioned)
+				}
+			break
+					
 			case 'pussy7':
 					ranp = getRandom('.gif')
 					rano = getRandom('.webp')
@@ -4519,22 +4577,7 @@ Titulo :* ${a.judul}
 				break
 
 			case 'kick':
-			case 'eliminar':
-				if (!isGroup) return reply(mess.only.group)
-				if (!isAdmin) return reply(mess.only.admin)
-				if (!botAdmin) return reply(mess.only.Badmin)
-				if (sam.message.extendedTextMessage != undefined) {
-					mentioned = sam.message.extendedTextMessage.contextInfo.mentionedJid
-					if (!mentioned) return reply(`exampol xd: ${prefix + command} @participante... o etiqueta el mensaje de la persona a eliminar`)
-					await wa.FakeTokoForwarded(from, `Baaaiii...`, '')
-					if (mentionUser.length == 1)
-						samu330.groupRemove(from, mentionUser)
-					//samu330.groupRemove(from, mentioned)
-				} else {
-					await wa.FakeTokoForwarded(from, `Baaaiii...`, '')
-					samu330.groupRemove(from, mentioned)
-				}
-				break
+			
 
 			case 'translate':
 				if (args.length == 0) return reply(`Example: ${prefix + command} es Hi bro`)
@@ -4726,10 +4769,7 @@ Titulo :* ${a.judul}
 				await wa.demoteAdmin(from, mentionUser)
 				await reply(`jsjs un adm menos`)
 				break
-			case 'admin':
-				var textt = msg.admin(groupAdmins, groupName)
-				await wa.sendFakeStatus(from, textt, "LIST ADMIN", groupAdmins)
-				break
+				
 			case 'link':
 				var link = await wa.getGroupInvitationCode(from)
 				await wa.sendFakeStatus(from, link, "El lik de este grupo es")
@@ -4755,24 +4795,7 @@ Titulo :* ${a.judul}
 				}
 				break
 
-			case 'nombre':
-				if (!isGroup) return await reply(mess.only.group)
-				if (!isAdmin) return await reply(mess.only.admin)
-				if (!botAdmin) return await reply(mess.only.Badmin)
-				var newName = args.join(" ")
-				samu330.groupUpdateSubject(from, newName).then(() => {
-					wa.sendFakeStatus(from, "El nombre del grupo se ah cambiao a" + newName, "GROUP SETTING")
-				})
-				break
-			case 'setdesc':
-				if (!isGroup) return await reply(mess.only.group)
-				if (!isAdmin) return await reply(mess.only.admin)
-				if (!botAdmin) return await reply(mess.only.Badmin)
-				var newDesc = args.join(" ")
-				samu330.groupUpdateDescription(from, newDesc).then(() => {
-					wa.sendFakeStatus(from, "La descripcion del grupo se ah cambiado a" + newDesc, "GROUP SETTING")
-				})
-				break
+			
 			case 'wasted':
 				var imgbb = require('imgbb-uploader')
 				if (((isMedia && !sam.message.videoMessage) || isQuotedImage) && args.length == 0) {
