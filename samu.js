@@ -4766,7 +4766,7 @@ Titulo :* ${a.judul}
 				await wa.hideTagSticker(from, buffer)
 				break
 			case 'promote':
-				addFilter(from)
+			
 				if (!isGroup) return await reply(mess.only.group)
 				if (!isAdmin) return await reply(mess.only.admin)
 				if (!botAdmin) return await reply('Botcito debe ser admin')
@@ -4775,7 +4775,7 @@ Titulo :* ${a.judul}
 				await reply(`Tenemos nuevo Admin`)
 				break
 			case 'demote':
-				addFilter(from)
+				
 				if (!isGroup) return await reply(mess.only.group)
 				if (!isAdmin) return await reply(mess.only.admin)
 				if (!botAdmin) return await reply(mess.only.Badmin)
