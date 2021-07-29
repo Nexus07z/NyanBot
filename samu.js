@@ -3415,9 +3415,10 @@ ${descOwner ? `*° Descripción cambiada por:* @${descOwner.split('@')[0]}` : '*
 				if (!isGroup) return await reply(mess.only.group)
 				if (!isAdmin) return await reply(mess.only.admin)
 				if (!botAdmin) return await reply(mess.only.Badmin)
+				if (args.length < 1) return reply('Escribe alguna descripción.')
 				var newDesc = args.join(" ")
 				samu330.groupUpdateDescription(from, newDesc).then(() => {
-					wa.sendFakeStatus(from, "La descripción del grupo se ha cambiado a" + newDesc, "GROUP SETTING")
+					wa.sendFakeStatus(from, "La descripción del grupo se ha cambiado a: " + newDesc, "GROUP SETTING")
 				})
 			break
 			
@@ -3427,6 +3428,7 @@ ${descOwner ? `*° Descripción cambiada por:* @${descOwner.split('@')[0]}` : '*
 				if (!isGroup) return await reply(mess.only.group)
 				if (!isAdmin) return await reply(mess.only.admin)
 				if (!botAdmin) return await reply(mess.only.Badmin)
+				if (args.length < 1) return reply('Escribe un nombre.')
 				var newName = args.join(" ")
 				samu330.groupUpdateSubject(from, newName).then(() => {
 					wa.sendFakeStatus(from, "El nombre del grupo se ha cambiado a" + newName, "GROUP SETTING")
@@ -3450,11 +3452,13 @@ ${descOwner ? `*° Descripción cambiada por:* @${descOwner.split('@')[0]}` : '*
 					mentioned = sam.message.extendedTextMessage.contextInfo.mentionedJid
 					if (!mentioned) return reply(`*Debes agregar el tag del usuario.*\nPor ejemplo: ${prefix + command} @usuario\nTambién puedes etiquetar un mensaje del usuario a eliminar.`)
 					await wa.FakeTokoForwarded(from, `Adios...`, '')
+					await sleep(5000)
 					if (mentionUser.length == 1)
 						samu330.groupRemove(from, mentionUser)
 					//samu330.groupRemove(from, mentioned)
 				} else {
 					await wa.FakeTokoForwarded(from, `Adios...`, '')
+					await sleep(5000)
 					samu330.groupRemove(from, mentioned)
 				}
 			break
@@ -3787,7 +3791,7 @@ ${m}
 				})
 				break
 			case 'contacto':
-				if (!itsMe) return reply('Este comando solo puede ser usado por *Samu330* ⚙')
+				if (!itsMe) return reply('Este comando solo puede ser usado por *Nexus* ⚙')
 				argz = arg.split('|')
 				if (!argz) return reply(`Uso ${prefix}contacto @tag o escribe el numero|nombre`)
 				if (sam.message.extendedTextMessage != undefined) {
