@@ -1139,7 +1139,7 @@ Hola *${pushname}* ${timeFt}
 ╠═════════════════╝
 ║
 ╠ *${prefix}play* [nombre de la canción]
-║ _Descarga un mp3._
+║ _Descarga un audio._
 ║
 ╠ *${prefix}playvid* [nombre de la canción]
 ║ _Descarga un video._
@@ -1148,7 +1148,7 @@ Hola *${pushname}* ${timeFt}
 ║ _Descarga un video en forma de gif._
 ║
 ╠ *${prefix}ytmp3* [link de youtube]
-║ _Descarga un mp3 de youtube._
+║ _Descarga un audio de youtube._
 ║
 ╠ *${prefix}ytmp4* [link de youtube]
 ║ _Descarga un video de youtube._
@@ -2007,26 +2007,6 @@ _*El archivo se esta enviando......*_`
 				}
 				break
 		
-			
-
-			case 'tomp3':
-			case 'toaudio':
-				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: `😊 Hola, ${timeFt}.\n*Yo soy Sam*, Asistente de *Nexus*.\n\nAl parecer no estas registrado en _*Nexusᴮᴼᵀ*_, Para registrarte usa el comando: *${prefix}reg*`, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
-				samu330.updatePresence(from, Presence.recording)
-				if (!isQuotedVideo) return reply('Y el video?')
-				reply('*Perame tatito!*')
-				const encmedia3 = JSON.parse(JSON.stringify(sam).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo
-				const media3 = await samu330.downloadAndSaveMediaMessage(encmedia3)
-				ran = getRandom('.mp3')
-				exec(`ffmpeg -i ${media3} ${ran}`, (err) => {
-					fs.unlinkSync(media3)
-					if (err) return reply(mess.ferr)
-					buffer = fs.readFileSync(ran)
-					samu330.sendMessage(from, buffer, audio, { mimetype: 'audio/mp4', quoted: faud })
-					fs.unlinkSync(ran)
-				})
-				break
-
 			case 'caras':
 				assistant = fs.readFileSync('./src/assistant.jpg')
 				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
@@ -3511,7 +3491,7 @@ ${descOwner ? `*° Descripción cambiada por:* @${descOwner.split('@')[0]}` : '*
 				assistant = fs.readFileSync('./src/assistant.jpg')
 				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
 				if (args.length == 0) return reply(`*Agrega lo que deseas buscar.*\nPor ejemplo: ${prefix + command} Green day Holiday`)
-				reply('*Espere un momento por favor...*')
+				reply(mess.wait);
 				query = args.join(' ')
 				fakee = fs.readFileSync('./src/img.jpg')
 				try {
@@ -3533,7 +3513,7 @@ ${descOwner ? `*° Descripción cambiada por:* @${descOwner.split('@')[0]}` : '*
 				assistant = fs.readFileSync('./src/assistant.jpg')
 				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
 				if (args.length == 0) return reply(`*Agrega lo que deseas buscar.*\nPor ejemplo: ${prefix + command} Green day Holiday`)
-				reply('*Espere un momento por favor...*')
+				reply(mess.wait);
 				query = args.join(' ')
 				fakee = fs.readFileSync('./src/img.jpg')
 				try {
@@ -3555,7 +3535,7 @@ ${descOwner ? `*° Descripción cambiada por:* @${descOwner.split('@')[0]}` : '*
 				assistant = fs.readFileSync('./src/assistant.jpg')
 				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
 				if (args.length == 0) return reply(`*Agrega lo que deseas buscar.*\nPor ejemplo: ${prefix + command} Green day Holiday`)
-				reply('*Espere un momento por favor...*')
+				reply(mess.wait);
 				query = args.join(' ')
 				fakee = fs.readFileSync('./src/img.jpg')
 				try {
@@ -3577,7 +3557,7 @@ ${descOwner ? `*° Descripción cambiada por:* @${descOwner.split('@')[0]}` : '*
 				assistant = fs.readFileSync('./src/assistant.jpg')
 				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
 				if (args.length == 0) return reply(`*Agrega el link de youtube.*\nPor ejemplo: ${prefix + command} https://youtu.be/z5YonNBmNXI`)
-				reply('*Espere un momento por favor...*')
+				reply(mess.wait);
 				query = args.join(' ')
 				fakee = fs.readFileSync('./src/img.jpg')
 				try {
@@ -3599,7 +3579,7 @@ ${descOwner ? `*° Descripción cambiada por:* @${descOwner.split('@')[0]}` : '*
 				assistant = fs.readFileSync('./src/assistant.jpg')
 				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
 				if (args.length == 0) return reply(`*Agrega el link de youtube.*\nPor ejemplo: ${prefix + command} https://youtu.be/z5YonNBmNXI`)
-				reply('*Espere un momento por favor...*')
+				reply(mess.wait);
 				query = args.join(' ')
 				fakee = fs.readFileSync('./src/img.jpg')
 				try {
@@ -3616,7 +3596,48 @@ ${descOwner ? `*° Descripción cambiada por:* @${descOwner.split('@')[0]}` : '*
 					reply(`*Ocurrió un problema, puedes intentarlo nuevamente más tarde.*`)
 				}
 			break
-					
+
+			case 'tomp3':
+			case 'toaudio':
+				assistant = fs.readFileSync('./src/assistant.jpg')
+				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
+				samu330.updatePresence(from, Presence.recording)
+				if (!isQuotedVideo) return reply('*Por favor etiqueta un video con el comando.*')
+				reply(mess.wait);
+				const encmedia3 = JSON.parse(JSON.stringify(sam).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo
+				const media3 = await samu330.downloadAndSaveMediaMessage(encmedia3)
+				ran = getRandom('.mp3')
+				exec(`ffmpeg -i ${media3} ${ran}`, (err) => {
+					fs.unlinkSync(media3)
+					if (err) return reply(mess.ferr)
+					buffer = fs.readFileSync(ran)
+					samu330.sendMessage(from, buffer, audio, { mimetype: 'audio/mp4', quoted: faud })
+					fs.unlinkSync(ran)
+				})
+			break
+
+			case 'facebook':
+			case 'fb':
+				assistant = fs.readFileSync('./src/assistant.jpg')
+				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
+				if (args.length < 1) return reply(`*Agrega el link del video de facebook.*`)
+				if (!isUrl(args[0]) && !args[0].includes('facebook')) return reply('El link tiene que ser de facebook')
+				teks = args.join(' ')
+				reply(mess.wait)
+				res = await fbDown(teks).catch(e => {
+					reply(mess.ferr)
+				})
+				a = res[0]
+				result = `
+*Source:* ${a.source}
+*Tamaño:* ${a.size}
+*Calidad:* ${a.quality}
+*Tipo:* ${a.type}
+`
+				sendFileFromUrl(a.thumb, image, { caption: result, quoted: fimg })
+				sendFileFromUrl(a.link, video, { mimetype: 'video/mp4', quoted: fvid, filename: `${a.judul}.${a.type}` })
+			break
+		
 			case 'pussy7':
 					ranp = getRandom('.gif')
 					rano = getRandom('.webp')
@@ -4069,27 +4090,7 @@ ${m}
 				}
 			break
 
-			case 'facebook':
-			case 'fb':
-				if (args.length < 1) return reply('Y el link? ')
-				if (!isUrl(args[0]) && !args[0].includes('facebook')) return reply('LINK DE FACEBOOK MLDT STUPID!!')
-				teks = args.join(' ')
-				reply(mess.wait)
-				res = await fbDown(teks).catch(e => {
-					reply(mess.ferr)
-				})
-				a = res[0]
-				result = `
-Titulo :* ${a.judul}
-*Source :* ${a.source}
-*Tamaño :* ${a.size}
-*Calidad :* ${a.quality}
-*Tipo :* ${a.type}
-*Name File :* ${a.judul}.${a.type}
-`
-				sendFileFromUrl(a.thumb, image, { caption: result, quoted: sam })
-				sendFileFromUrl(a.link, video, { mimetype: 'video/mp4', quoted: sam, filename: `${a.judul}.${a.type}` })
-				break
+			
 			case 'ytsearch':
 
 				if (args.length == 0) return reply(`Ejemplo: ${prefix + command} Me olvide de vivir`)
