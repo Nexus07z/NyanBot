@@ -3635,6 +3635,15 @@ ${descOwner ? `*° Descripción cambiada por:* @${descOwner.split('@')[0]}` : '*
 					reply(`*Ocurrió un problema, puedes intentarlo nuevamente más tarde.*`)
 				}
 			break
+
+			case 'tiktokwm':
+				assistant = fs.readFileSync('./src/assistant.jpg')
+				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
+				if (args.length == 0) return reply(`*Agrega el link de tiktok.*\nPor ejemplo: ${prefix + command} https://vm.tiktok.com/ZMdvgJgM7/`)
+				reply(mess.wait);
+				const tiktokwm = await getBuffer(`https://api.lolhuman.xyz/api/tiktokwm?apikey=${api}&url=${query}`)
+				samu330.sendMessage(from, tiktokwm, video, { mimetype: 'video/mp4', quoted: fvid })
+			break
 			
 			case 'facebook':
 			case 'fb':
