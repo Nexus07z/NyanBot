@@ -1141,9 +1141,14 @@ Hola *${pushname}* ${timeFt}
 ╠ *${prefix}play* [nombre de la canción]
 ║ _Descarga un mp3._
 ║
+╠ *${prefix}playvid* [nombre de la canción]
+║ _Descarga un video._
+║
+╠ *${prefix}playvidgif* [nombre de la canción]
+║ _Descarga un video en forma de gif._
+║
 				
-${bodyM} ${prefix}play *(Descarga de musica)*
-${bodyM} ${prefix}playvid *(Descarga de videos por nombre)*
+
 ${bodyM} ${prefix}ig *(Fotos y videos de Instagram)*
 ${bodyM} ${prefix}twit *(videos de Twitter)*
 ${bodyM} ${prefix}ytmp3 *(Descarga de musica por link)*
@@ -1997,50 +2002,8 @@ _*El archivo se esta enviando......*_`
 					})
 				}
 				break
-			case 'ytmp3':
-				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: `😊 Hola, ${timeFt}.\n*Yo soy Sam*, Asistente de *Nexus*.\n\nAl parecer no estas registrado en _*Nexusᴮᴼᵀ*_, Para registrarte usa el comando: *${prefix}reg*`, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
-				if (args.length < 1) return reply('Y el link?')
-				if (!isUrl(args[0]) && !args[0].includes('youtu')) return reply('Link de YouTube we, *De YouTube!!*')
-				teks = args.join(' ')
-				reply('*Espere un momento...*')
-				res = await y2mateA(teks).catch(e => {
-					reply('_[ ! ] Error del servidor_')
-				})
-				result = `「  𝗦𝗮𝗺 𝘆 𝗣𝗲𝗿𝗿𝘆🍒  」
-*°Titulo :* ${res[0].judul}
-*°Tamaño :* ${res[0].size}
-*°Calidad :* ${res[0].quality}kbps
-*°Nombre del archivo :* ${res[0].output}
-*°Salida :* ${res[0].tipe}
-_*El archivo se esta enviando.....*_
-`
-				sendFileFromUrl(res[0].thumb, image, { caption: result, quoted: sam }).then((lalu) => {
-					sendFileFromUrl(res[0].link, audio, { quoted: faud, mimetype: 'audio/mp3', duration: 99999999 })
-					sendFileFromUrl(res[0].link, audio, { quoted: faud, mimetype: 'audio/mp3', ptt: true, duration: 99999999 })
-				})
-
-				break
-			case 'ytmp4':
-				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: `😊 Hola, ${timeFt}.\n*Yo soy Sam*, Asistente de *Nexus*.\n\nAl parecer no estas registrado en _*Nexusᴮᴼᵀ*_, Para registrarte usa el comando: *${prefix}reg*`, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
-				if (args.length < 1) return reply('Y el link?')
-				if (!isUrl(args[0]) && !args[0].includes('youtu')) return reply('Link de YouTube we, *De YouTube!!*')
-				teks = args.join(' ')
-				reply(mess.wait)
-				res = await y2mateV(teks).catch(e => {
-					reply('_[ ! ] Error del servidor_')
-				})
-				result = `「  𝗦𝗮𝗺 𝘆 𝗣𝗲𝗿𝗿𝘆🍒  」
-*°Titulo :* ${res[0].judul}
-*°Tamaño :* ${res[0].size}
-*°Calidad :* ${res[0].quality}p
-*°Nombre :* ${res[0].output}
-*°Output :* ${res[0].tipe}
-_*El archivo se esta enviando.....*_
-`
-				sendFileFromUrl(res[0].thumb, image, { caption: result, quoted: sam }).then((lalu) => {
-					sendFileFromUrl(res[0].link, video, { quoted: fvid, mimetype: Mimetype.gif, duration: 9999999999 })
-				})
-				break
+		
+			
 
 			case 'tomp3':
 			case 'toaudio':
@@ -3574,7 +3537,7 @@ ${descOwner ? `*° Descripción cambiada por:* @${descOwner.split('@')[0]}` : '*
 					get_result = get_result.result
 					short = await getJson(`https://api.lolhuman.xyz/api/shortlink?apikey=${api}&url=${get_result.video}`)
 					ini_txt = `Titulo : ${get_result.title}\n\n`
-					ini_txt += `_Si el video no llega, puedes descargarlo mediante el siguiente link:_\n ${short.result}`
+					ini_txt += `_Si el video no llega, puedes descargarlo mediante el siguiente link:_\n${short.result}`
 					ini_buffer = await getBuffer(get_result.thumbnail)
 					await samu330.sendMessage(from, ini_buffer, image, { quoted: fvid, caption: ini_txt, contextInfo: { "forwardingScore": 9999, "isForwarded": true } })
 					get_video = await getBuffer(get_result.video)
@@ -3596,11 +3559,33 @@ ${descOwner ? `*° Descripción cambiada por:* @${descOwner.split('@')[0]}` : '*
 					get_result = get_result.result
 					short = await getJson(`https://api.lolhuman.xyz/api/shortlink?apikey=${api}&url=${get_result.video}`)
 					ini_txt = `Titulo : ${get_result.title}\n\n`
-					ini_txt += `_Si el video no llega, puedes descargarlo mediante el siguiente link:_\n ${short.result}`
+					ini_txt += `_Si el video no llega, puedes descargarlo mediante el siguiente link:_\n${short.result}`
 					ini_buffer = await getBuffer(get_result.thumbnail)
 					await samu330.sendMessage(from, ini_buffer, image, { quoted: fvid, caption: ini_txt, contextInfo: { "forwardingScore": 9999, "isForwarded": true } })
 					get_video = await getBuffer(get_result.video)
 					await samu330.sendMessage(from, get_video, video, { mimetype: Mimetype.gif, filename: `${get_result.title}.mp4`, quoted: fvid })
+				} catch {
+					reply(`*Ocurrió un problema, puedes intentarlo nuevamente más tarde.*`)
+				}
+			break
+
+			case 'ytmp3':
+				assistant = fs.readFileSync('./src/assistant.jpg')
+				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
+				if (args.length == 0) return reply(`*Agrega lo que deseas buscar.*\nPor ejemplo: ${prefix + command} Green day Holiday`)
+				reply('*Espere un momento por favor...*')
+				query = args.join(' ')
+				fakee = fs.readFileSync('./src/img.jpg')
+				try {
+					get_result = await getJson(`https://api.lolhuman.xyz/api/ytaudio?apikey=${api}&url=${query}`)
+					get_result = get_result.result
+					short = await getJson(`https://api.lolhuman.xyz/api/shortlink?apikey=${api}&url=${get_result.link.link}`)
+					ini_txt = `Titulo : ${get_result.title}\n\n`
+					ini_txt += `_Si el audio no llega, puedes descargarlo mediante el siguiente link:_\n${short.result}`
+					ini_buffer = await getBuffer(get_result.thumbnail)
+					await samu330.sendMessage(from, ini_buffer, image, { quoted: fimg, caption: ini_txt, contextInfo: { "forwardingScore": 9999, "isForwarded": true } })
+					get_audio = await getBuffer(get_result.link.link)
+					await samu330.sendMessage(from, get_audio, audio, { mimetype: 'audio/mp4', quoted: faud })
 				} catch {
 					reply(`*Ocurrió un problema, puedes intentarlo nuevamente más tarde.*`)
 				}
