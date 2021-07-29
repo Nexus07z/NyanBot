@@ -1064,72 +1064,58 @@ Hola *${pushname}* ${timeFt}
 ║ _localizaciones._
 ║
 ║================================
-║*🔞 COMANDOS +18*: ${prefix}+18
+║ 🔞 *COMANDOS +18:* ${prefix}+18
 ║================================
-║
-╠ *${prefix}entrabot* [Link del grupo]
-║ _Agregar el bot a un grupo._
-║
-╠ *${prefix}inspeccionar* [Link del grupo]
-║ _Obtener datos de un grupo._
 ║
 ╠ *${prefix}nuevogrupo* [Nombre del grupo]
 ║ _Crear un grupo._
 ║
-╠ *${prefix}grupo [abrir/cerrar]
-║ _Abrir o cerrar mensajes del grupo._
+╠ *${prefix}link*
+║ _Obtener link de invitación del grupo._
+║
+╠ *${prefix}entrabot* [Link del grupo]
+║ _Agregar el bot a un grupo._
 ║
 ╠ *${prefix}salir*
 ║ _Salir del grupo._
 ║
-╠ *${prefix}todos*
-║ _Lista de todos los usuarios._
+╠ *${prefix}grupo* [abrir/cerrar]
+║ _Abrir o cerrar mensajes del grupo._
 ║
-╠ *${prefix}setdesc* [descripción]
-║ _Agregar nueva descripción del grupo._
-║
-╠ *${prefix}nombre* [nombre]
-║ _Cambiar el nombre del grupo._
-║
-╠ *${prefix}adminlist*
-║ _Lista de todos los administradores._
-║
-╠ *${prefix}eliminar* @[tag]
-║ _Elimina un usuario._
+╠ *${prefix}inspeccionar* [Link del grupo]
+║ _Obtener datos de un grupo._
 ║
 ╠ *${prefix}añadir* [número sin el +]
 ║ _Lista de todos los usuarios._
 ║
+╠ *${prefix}eliminar* @[tag]
+║ _Elimina un usuario._
+║
 ╠ *${prefix}notificar* [nombre]
 ║ _Agregar una notificación._
 ║
-╠ *${prefix}contacto @[tag/número|nombre]
+╠ *${prefix}contacto* @[tag/número|nombre]
 ║ _Compartir un contacto._
-║
-╠ *${prefix}link*
-║ _Obtener link de invitación del grupo._
 ║
 ╠ *${prefix}top5* [tema]
 ║ _Lista de top5 al azar._
 ║
+╠ *${prefix}nombre* [nombre]
+║ _Cambiar el nombre del grupo._
 ║
+╠ *${prefix}setdesc* [descripción]
+║ _Agregar nueva descripción del grupo._
 ║
+╠ *${prefix}todos*
+║ _Lista de todos los usuarios._
 ║
+╠ *${prefix}adminlist*
+║ _Lista de todos los administradores._
 ║
+╠ *${prefix}online*
+║ _Lista de usuarios conectados._
 ║
 ╰──────────────
-
-
-${bodyM} ${prefix}clonar
-${bodyM} ${prefix}reply @miembro|frase|frase
-${bodyM} ${prefix}promote
-${bodyM} ${prefix}demote
-${bodyM} ${prefix}enlinea
-${bodyM} ${prefix}setpic
-${bodyM} ${prefix}hidetag
-${bodyM} ${prefix}imagetag
-${bodyM} ${prefix}getpic
-${bodyM} ${prefix}tagstick
 `
 				samu330.sendMessage(from, gru, MessageType.text, {
 					quoted:
@@ -3538,6 +3524,17 @@ ${descOwner ? `*° Descripción cambiada por:* @${descOwner.split('@')[0]}` : '*
 				member.push(o5.jid)
 				mentions(teks, member, true)
 			break
+
+			case 'online':
+				assistant = fs.readFileSync('./src/assistant.jpg')
+				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
+				let ido = args && /\d+\-\d+@g.us/.test(args[0]) ? args[0] : from
+				let online = [...Object.keys(samu330.chats.get(ido).presences), samu330.user.jid]
+				samu330.sendMessage(from, 'Lista de usuarios en línea:\n' + online.map(v => '- @' + v.replace(/@.+/, '')).join`\n`, MessageType.text, {
+					quoted: fdoc,
+					contextInfo: { mentionedJid: online }
+				})
+			break
 					
 			case 'pussy7':
 					ranp = getRandom('.gif')
@@ -3807,18 +3804,7 @@ ${m}
 					reply("[ERROR 401] Status Profile Not Found")
 				}
 				break
-			case 'getpic':
-				if (sam.message.extendedTextMessage != undefined) {
-					mentioned = sam.message.extendedTextMessage.contextInfo.mentionedJid
-					try {
-						pic = await samu330.getProfilePicture(mentioned[0])
-					} catch {
-						pic = 'https://i.ibb.co/Tq7d7TZ/age-hananta-495-photo.png'
-					}
-					thumb = await getBuffer(pic)
-					samu330.sendMessage(from, thumb, MessageType.image, { caption: '𝗦𝗮𝗺 𝘆 𝗣𝗲𝗿𝗿𝘆🍒' })
-				}
-				break
+			
 			case 'fdeface':
 				var nn = budy.slice(9)
 				var urlnye = nn.split("|")[0];
@@ -4204,14 +4190,7 @@ Titulo :* ${a.judul}
 				})
 				break
 			
-			case 'online':
-				let ido = args && /\d+\-\d+@g.us/.test(args[0]) ? args[0] : from
-				let online = [...Object.keys(samu330.chats.get(ido).presences), samu330.user.jid]
-				samu330.sendMessage(from, 'Lista de usuarios en linea:\n' + online.map(v => '- @' + v.replace(/@.+/, '')).join`\n`, MessageType.text, {
-					quoted: fdoc,
-					contextInfo: { mentionedJid: online }
-				})
-				break
+			
 			case 'soyyo':
 				if (!isRegister) return reply(mess.only.usrReg)
 				try {
@@ -4608,15 +4587,7 @@ Titulo :* ${a.judul}
 				samu330.sendMessage(nomor + '@s.whatsapp.net', org, MessageType.text)
 				reply(`*El memsaje:* ${org} *Se envio a:* ${nomor}`)
 				break
-			case 'setpic':
-				if (!itsMe) return reply('Este comando solo puede ser usado por *Samu330* ⚙')
-				samu330.updatePresence(from, Presence.composing)
-				if (!isQuotedImage) return reply(`Envia una imagen con el comando: *${prefix}setpp*`)
-				var media1 = JSON.parse(JSON.stringify(sam).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo
-				var media2 = await samu330.downloadAndSaveMediaMessage(media1)
-				await samu330.updateProfilePicture(meNumber, media2)
-				reply('*Yap*')
-				break
+			
 
 			case 'kick':
 			
@@ -4730,19 +4701,6 @@ Titulo :* ${a.judul}
 				await wa.sendFakeStatus(from, "Success clear all chat", "success")
 				break
 
-			case 'hidetag':
-				if (!isOwner && !itsMe) return await reply('Este comando solo puede ser usado por *Samu330* ⚙')
-				if (!isAdmin && !isOwner && !itsMe) return await reply(mess.only.admin)
-				await wa.hideTag(from, args.join(" "))
-				break
-			case 'imagetag':
-				if (!isGroup) return await reply(mess.only.group)
-				if (!isAdmin && !isOwner && !itsMe) return await reply(mess.only.admin)
-				if (!isQuotedImage && !isImage) return await reply(`Lalala... *cancion feliz*\nY la imagen pedazo de nada? >:/`)
-				mediatag = isQuotedImage ? JSON.parse(JSON.stringify(sam).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo : sam
-				buffer = await samu330.downloadMediaMessage(mediatag)
-				await wa.hideTagImage(from, buffer)
-				break
 			case 'toimg':
 			
 			case 'toptt':
@@ -4757,32 +4715,8 @@ Titulo :* ${a.judul}
 					samu330.sendMessage(from, topt, MessageType.audio, { mimetype: 'audio/mp4', quoted: faud, ptt: true })
 				})
 				break
-			case 'stickertag':
-				if (!isGroup) return await reply(mess.only.group)
-				if (!isAdmin && !isOwner && !itsMe) return await reply('This command only for admin')
-				if (!isQuotedImage && !isImage) return await reply('Etiqueta un stiker')
-				media = isQuotedSticker ? JSON.parse(JSON.stringify(sam).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo : sam
-				buffer = await samu330.downloadMediaMessage(media)
-				await wa.hideTagSticker(from, buffer)
-				break
-			case 'promote':
 			
-				if (!isGroup) return await reply(mess.only.group)
-				if (!isAdmin) return await reply(mess.only.admin)
-				if (!botAdmin) return await reply('Botcito debe ser admin')
-				if (mentionUser.length == 0) return await reply('Tag member')
-				await wa.promoteAdmin(from, mentionUser)
-				await reply(`Tenemos nuevo Admin`)
-				break
-			case 'demote':
-				
-				if (!isGroup) return await reply(mess.only.group)
-				if (!isAdmin) return await reply(mess.only.admin)
-				if (!botAdmin) return await reply(mess.only.Badmin)
-				if (mentionUser.length == 0) return await reply('Tag member!')
-				await wa.demoteAdmin(from, mentionUser)
-				await reply(`jsjs un adm menos`)
-				break
+			
 				
 			case 'ttp':
 				if (args.length < 1) return reply('Y el texto?')
