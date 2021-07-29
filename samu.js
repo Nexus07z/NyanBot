@@ -1135,7 +1135,7 @@ Hola *${pushname}* ${timeFt}
 				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
 				desca = `
 ╔═════════════════╗
-╠              *MENU DE DESCARGAS*              ╣
+╠             *MENU DE DESCARGAS*             ╣
 ╠═════════════════╝
 ║
 ╠ *${prefix}play* [nombre de la canción]
