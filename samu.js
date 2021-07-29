@@ -1147,12 +1147,16 @@ Hola *${pushname}* ${timeFt}
 ╠ *${prefix}playvidgif* [nombre de la canción]
 ║ _Descarga un video en forma de gif._
 ║
+╠ *${prefix}ytmp3* [link de youtube]
+║ _Descarga un mp3 de youtube._
+║
+╠ *${prefix}ytmp4* [link de youtube]
+║ _Descarga un video de youtube._
+║
 				
 
 ${bodyM} ${prefix}ig *(Fotos y videos de Instagram)*
 ${bodyM} ${prefix}twit *(videos de Twitter)*
-${bodyM} ${prefix}ytmp3 *(Descarga de musica por link)*
-${bodyM} ${prefix}ytmp4 *(Descarga de videos por link)*
 ${bodyM} ${prefix}fb _(Link de FaceBook)_
 ${bodyM} ${prefix}mfire *(Link de mediafire)*
 ${bodyM} ${prefix}tomp3 *(Videos a audio)*
@@ -3572,7 +3576,7 @@ ${descOwner ? `*° Descripción cambiada por:* @${descOwner.split('@')[0]}` : '*
 			case 'ytmp3':
 				assistant = fs.readFileSync('./src/assistant.jpg')
 				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
-				if (args.length == 0) return reply(`*Agrega lo que deseas buscar.*\nPor ejemplo: ${prefix + command} Green day Holiday`)
+				if (args.length == 0) return reply(`*Agrega el link de youtube.*\nPor ejemplo: ${prefix + command} https://youtu.be/z5YonNBmNXI`)
 				reply('*Espere un momento por favor...*')
 				query = args.join(' ')
 				fakee = fs.readFileSync('./src/img.jpg')
@@ -3586,6 +3590,28 @@ ${descOwner ? `*° Descripción cambiada por:* @${descOwner.split('@')[0]}` : '*
 					await samu330.sendMessage(from, ini_buffer, image, { quoted: fimg, caption: ini_txt, contextInfo: { "forwardingScore": 9999, "isForwarded": true } })
 					get_audio = await getBuffer(get_result.link.link)
 					await samu330.sendMessage(from, get_audio, audio, { mimetype: 'audio/mp4', quoted: faud })
+				} catch {
+					reply(`*Ocurrió un problema, puedes intentarlo nuevamente más tarde.*`)
+				}
+			break
+
+			case 'ytmp4':
+				assistant = fs.readFileSync('./src/assistant.jpg')
+				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
+				if (args.length == 0) return reply(`*Agrega el link de youtube.*\nPor ejemplo: ${prefix + command} https://youtu.be/z5YonNBmNXI`)
+				reply('*Espere un momento por favor...*')
+				query = args.join(' ')
+				fakee = fs.readFileSync('./src/img.jpg')
+				try {
+					get_result = await getJson(`https://api.lolhuman.xyz/api/ytvideo?apikey=${api}&url=${query}`)
+					get_result = get_result.result
+					short = await getJson(`https://api.lolhuman.xyz/api/shortlink?apikey=${api}&url=${get_result.link.link}`)
+					ini_txt = `Titulo : ${get_result.title}\n\n`
+					ini_txt += `_Si el video no llega, puedes descargarlo mediante el siguiente link:_\n${short.result}`
+					ini_buffer = await getBuffer(get_result.thumbnail)
+					await samu330.sendMessage(from, ini_buffer, image, { quoted: fimg, caption: ini_txt, contextInfo: { "forwardingScore": 9999, "isForwarded": true } })
+					get_video = await getBuffer(get_result.link.link)
+					await samu330.sendMessage(from, get_video, video, { mimetype: 'video/mp4', quoted: fvid })
 				} catch {
 					reply(`*Ocurrió un problema, puedes intentarlo nuevamente más tarde.*`)
 				}
