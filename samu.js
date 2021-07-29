@@ -3415,7 +3415,7 @@ ${descOwner ? `*° Descripción cambiada por:* @${descOwner.split('@')[0]}` : '*
 				if (!isGroup) return await reply(mess.only.group)
 				if (!isAdmin) return await reply(mess.only.admin)
 				if (!botAdmin) return await reply(mess.only.Badmin)
-				if (args.length < 1) return reply('Escribe alguna descripción.')
+				if (args.length < 1) return reply('Escribe una descripción.')
 				var newDesc = args.join(" ")
 				samu330.groupUpdateDescription(from, newDesc).then(() => {
 					wa.sendFakeStatus(from, "La descripción del grupo se ha cambiado a: " + newDesc, "GROUP SETTING")
@@ -3431,7 +3431,7 @@ ${descOwner ? `*° Descripción cambiada por:* @${descOwner.split('@')[0]}` : '*
 				if (args.length < 1) return reply('Escribe un nombre.')
 				var newName = args.join(" ")
 				samu330.groupUpdateSubject(from, newName).then(() => {
-					wa.sendFakeStatus(from, "El nombre del grupo se ha cambiado a" + newName, "GROUP SETTING")
+					wa.sendFakeStatus(from, "El nombre del grupo se ha cambiado a: " + newName, "GROUP SETTING")
 				})
 			break
 
@@ -3461,6 +3461,46 @@ ${descOwner ? `*° Descripción cambiada por:* @${descOwner.split('@')[0]}` : '*
 					await sleep(5000)
 					samu330.groupRemove(from, mentioned)
 				}
+			break
+
+			case 'añadir':
+				assistant = fs.readFileSync('./src/assistant.jpg')
+				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
+				if (!isGroup) return reply(mess.only.group)
+				if (!botAdmin) return reply(mess.only.Badmin)
+				if (args.length < 1) return reply('Falta agregar el número de celular.')
+				if (args[0].startsWith('99')) return reply('Utiliza el código de pais.')
+				try {
+					num = `${args[0].replace(/ /g, '')}@s.whatsapp.net`
+					samu330.groupAdd(from, [num])
+				} catch (e) {
+					console.log('Error:', e)
+					return samu330.sendMessage(from, 'Modo privado.', MessageType.text)
+				}
+			break
+			
+			case 'notificar':
+				assistant = fs.readFileSync('./src/assistant.jpg')
+				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
+				if (!isAdmin) return reply(mess.only.admin)
+				samu330.updatePresence(from, Presence.composing)
+				if (!isGroup) return reply(mess.only.group)
+				if (args.length < 1) return reply('Escribe un mensaje.')
+				teks = `Notificación dada por @${sender.split("@")[0]}\n*Mensaje : ${args.join(' ')}*`
+				const groupN = await samu330.groupMetadata(from);
+				member = groupN['participants']
+				jids = [];
+				member.map(async adm => {
+					jids.push(adm.id.replace('c.us', 's.whatsapp.net'));
+				})
+				options = {
+					text: teks,
+					contextInfo: {
+						mentionedJid: jids, "forwardingScore": 9999, "isForwarded": true
+					},
+					quoted: faud
+				}
+				await samu330.sendMessage(from, options, MessageType.text)
 			break
 					
 			case 'pussy7':
@@ -4130,28 +4170,7 @@ Titulo :* ${a.judul}
 				samu330.sendMessage(from, `${budy.slice(10)}`, MessageType.text, { contextInfo: { forwardingScore: 508, isForwarded: true } })
 				break
 
-			case 'notificar':
-
-				if (!isAdmin) return reply(mess.only.admin)
-				samu330.updatePresence(from, Presence.composing)
-				if (!isRegister) return reply(mess.only.usrReg)
-				if (!isGroup) return reply(mess.only.group)
-				teks = `Notificación dada por @${sender.split("@")[0]}\n*Mensaje : ${args.join(' ')}*`
-				const groupN = await samu330.groupMetadata(from);
-				member = groupN['participants']
-				jids = [];
-				member.map(async adm => {
-					jids.push(adm.id.replace('c.us', 's.whatsapp.net'));
-				})
-				options = {
-					text: teks,
-					contextInfo: {
-						mentionedJid: jids, "forwardingScore": 9999, "isForwarded": true
-					},
-					quoted: faud
-				}
-				await samu330.sendMessage(from, options, MessageType.text)
-				break
+			
 			case 'leermas':
 				samu330.updatePresence(from, Presence.composing)
 				if (!isRegister) return reply(mess.only.usrReg)
@@ -4642,21 +4661,6 @@ Titulo :* ${a.judul}
 				break
 			
 
-			case 'añadir':
-				if (!isGroup) return reply(mess.only.group)
-				if (!botAdmin) return reply(mess.only.Badmin)
-				if (args.length < 1) return reply('Y el numero?')
-				if (args[0].startsWith('99')) return reply('Utiliza el codigo de pais')
-				try {
-					num = `${args[0].replace(/ /g, '')}@s.whatsapp.net`
-					samu330.groupAdd(from, [num])
-				} catch (e) {
-					console.log('Error :', e)
-					return samu330.sendMessage(from, 'Modo privado dice:v', MessageType.text)
-				}
-
-				break
-
 			case 'public':
 				if (!isOwner && !itsMe) return await reply('Este comando solo puede ser usado por *Samu330* ⚙')
 				if (public) return await reply('*El modo publico Ya esta activado*')
@@ -4785,19 +4789,7 @@ Titulo :* ${a.judul}
 				const ttp = await getBuffer(`https://api.xteam.xyz/ttp?file&text=${teks}`)
 				samu330.sendMessage(from, ttp, sticker, { quoted: ftoko, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
 				break
-			case 'añadir':
-				if (!isGroup) return reply(mess.only.group)
-				if (!botAdmin) return reply(mess.only.Badmin)
-				if (args.length < 1) return reply('Y el numero?')
-				if (args[0].startsWith('99')) return reply('Utiliza el codigo de pais')
-				try {
-					num = `${args[0].replace(/ /g, '')}@s.whatsapp.net`
-					samu330.groupAdd(from, [num])
-				} catch (e) {
-					console.log('Error :', e)
-					return samu330.sendMessage(from, 'Modo privado dice:v', MessageType.text)
-				}
-				break
+			
 
 			
 			case 'wasted':
@@ -4815,7 +4807,6 @@ Titulo :* ${a.judul}
 					reply('Manda la foto!');
 				}
 				break
-
 
 			default:
 				if (body.startsWith(">")) {
