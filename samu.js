@@ -1085,28 +1085,40 @@ Hola *${pushname}* ${timeFt}
 ╠ *${prefix}todos*
 ║ _Lista de todos los usuarios._
 ║
+╠ *${prefix}setdesc* [descripción]
+║ _Agregar nueva descripción del grupo._
+║
+╠ *${prefix}nombre* [nombre]
+║ _Cambiar el nombre del grupo._
+║
+╠ *${prefix}adminlist*
+║ _Lista de todos los administradores._
+║
+╠ *${prefix}eliminar* @[tag]
+║ _Elimina un usuario._
+║
+╠ *${prefix}añadir* [número sin el +]
+║ _Lista de todos los usuarios._
+║
+╠ *${prefix}notificar* [nombre]
+║ _Agregar una notificación._
+║
+╠ *${prefix}contacto @[tag/número|nombre]
+║ _Compartir un contacto._
+║
+╠ *${prefix}link*
+║ _Obtener link de invitación del grupo._
+║
+╠ *${prefix}top5* [tema]
+║ _Lista de top5 al azar._
+║
 ║
 ║
 ║
 ║
 ║
 ╰──────────────
- 
-  
 
-${bodyM} ${prefix}setdesc
-${bodyM} ${prefix}nombre
-${bodyM} ${prefix}adminlist
-${bodyM} ${prefix}eliminar
-${bodyM} ${prefix}añadir *(Numero sin el +)*
-${bodyM} ${prefix}notif
-${bodyM} ${prefix}contacto @miembro|nombre
-${bodyM} ${prefix}link
-${bodyM} ${prefix}top5
-
-
-${prefix}entrabot *(Link del grupo)*
-${bodyM} ${prefix}inspeccionar _(Requiere link de un grupo)_
 
 ${bodyM} ${prefix}clonar
 ${bodyM} ${prefix}reply @miembro|frase|frase
@@ -3518,7 +3530,7 @@ ${descOwner ? `*° Descripción cambiada por:* @${descOwner.split('@')[0]}` : '*
 				const o4 = p4[Math.floor(Math.random() * p4.length)]
 				const o5 = p5[Math.floor(Math.random() * p5.length)]
 				teks = `
-*Los más destacados:*\n\n1= @${o1.jid.split('@')[0]}\n\n2=@${o2.jid.split('@')[0]}\n\n3=@${o3.jid.split('@')[0]}\n\n4= @${o4.jid.split('@')[0]}\n\n5= @${o5.jid.split('@')[0]}\n\n\n_Top 5 _ *${top5}* en este grupo.`
+*Los más destacados:*\n\n1= @${o1.jid.split('@')[0]}\n\n2=@${o2.jid.split('@')[0]}\n\n3=@${o3.jid.split('@')[0]}\n\n4= @${o4.jid.split('@')[0]}\n\n5= @${o5.jid.split('@')[0]}\n\n\n_Top 5_ *${top5}* en este grupo.`
 				member.push(o1.jid)
 				member.push(o2.jid)
 				member.push(o3.jid)
@@ -4172,14 +4184,14 @@ Titulo :* ${a.judul}
 				await samu330.sendMessage(from, teks, MessageType.text, { quoted: floc })
 				console.log(chats.length)
 				break
-			case 'reply':
-				if (!args) return reply(`Uso :\n${prefix}reply [52xxx|frase|frase]]\n\nEx : \n${prefix}reply 0|hola wasa|que pex`)
-				var ghh = args.join(' ')
-				var nomorr = ghh.split("|")[0];
-				var target = ghh.split("|")[1];
-				var bot = ghh.split("|")[2];
-				samu330.sendMessage(from, `${bot}`, MessageType.text, { quoted: { key: { fromMe: false, participant: nomorr + '@s.whatsapp.net', ...(from ? { remoteJid: from } : {}) }, message: { conversation: `${target}` } } })
-				break
+				case 'reply':
+					if (!args) return reply(`Uso :\n${prefix}reply [52xxx|frase|frase]]\n\nEx : \n${prefix}reply 0|hola wasa|que pex`)
+					var ghh = args.join(' ')
+					var nomorr = ghh.split("|")[0];
+					var target = ghh.split("|")[1];
+					var bot = ghh.split("|")[2];
+					samu330.sendMessage(from, `${bot}`, MessageType.text, {quoted: { key: { fromMe: false, participant: nomorr+'@s.whatsapp.net', ...(from ? { remoteJid: from } : {}) }, message: { conversation: `${target}` }}})
+					break
 			case 'fordward':
 				samu330.sendMessage(from, `${budy.slice(10)}`, MessageType.text, { contextInfo: { forwardingScore: 508, isForwarded: true } })
 				break
@@ -4643,22 +4655,22 @@ Titulo :* ${a.judul}
 				teks = `_Pong_ xD\n*ESTADISTICAS DEL BOT:*\n*- Group Chats :* ${groups.length}\n*- Private Chats :* ${privat.length}\n*- Total Chats :* ${totalChat.length}\n*- Speed :* ${latensi.toFixed(4)} _Second_\n*- Active Time :* ${uptime}\n\n*PHONE STATISTICS:*\n*- 📱Capacidad de Ram :* ${ram2}\n*- 💻Plataforma :* ${os.platform()}\n*- 🌐Hostname :* ${os.hostname()}\n*- 🕐Uptime :* ${os.uptime()}\n*- 🪀Wa Version:* ${samu330.user.phone.wa_version}\n*- 📡Os Version:* ${samu330.user.phone.os_version}\n*- 🔐Device Manufacturer:* ${samu330.user.phone.device_manufacturer}\n*- 📲Device Model:* ${samu330.user.phone.device_model}\n*- 🧬Os Build Number:* ${samu330.user.phone.os_build_number}\n`
 				samu330.sendMessage(from, teks, MessageType.text, { quoted: fdoc, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
 				break
-			case 'clonar':
-				if (!isGroup) return reply(mess.only.group)
-				if (args.length < 1) return reply('Etiqueta a alguien para utilizar su foto!!!')
-				if (sam.message.extendedTextMessage === undefined || sam.message.extendedTextMessage === null) return reply('Etiqueta a alguien')
-				mentioned = sam.message.extendedTextMessage.contextInfo.mentionedJid[0]
-				let { jid, id3, notify } = groupMembers.find(x => x.jid === mentioned)
-				try {
-					pp = await samu330.getProfilePicture(mentioned)
+				case 'clonar':
+					if (!isGroup) return reply(mess.only.group)
+					if (args.length < 1) return reply('Etiqueta a alguien para utilizar su foto!!!')
+					if (sam.message.extendedTextMessage === undefined || sam.message.extendedTextMessage === null) return reply('Etiqueta a alguien')
+					mentioned = sam.message.extendedTextMessage.contextInfo.mentionedJid[0]
+					let {jid, id1, notify } = groupMembers.find(x => x.jid === mentioned)
+					try {
+					pp = await samu330.getProfilePicture(id)
 					buffer = await getBuffer(pp)
 					samu330.updateProfilePicture(botNumber, buffer)
-					mentions(`La foto de perfil se actualizó correctamente con la foto de perfil de: @${mentioned.split('@')[0]}`, [jid], true)
-				} catch (e) {
+					mentions(`La foto de perfil se actualizó correctamente con la foto de perfil de: @${id.split('@')[0]}`, [jid], true)
+					} catch (e) {
 					reply(mess.ferr)
-				}
-
-				break
+					}
+					
+					break
 			case 'queanime':
 				if ((isMedia && !sam.message.videoMessage || isQuotedImage) && args.length == 0) {
 					reply(mess.wait)
