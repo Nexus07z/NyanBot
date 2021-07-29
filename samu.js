@@ -748,12 +748,11 @@ Hola *${pushname}* ${timeFt}
 ├
 ├ *${prefix}menu1* (Comandos Multimedia)
 ├ *${prefix}menu2* (Comandos de Sticker)
-├ *${prefix}menu3* (Comandos de Grupos)
-├ *${prefix}menu4* (Comandos de Descargas)
-├ *${prefix}menu5* (Comandos Herramientas)
-├ *${prefix}menu6* (Comandos +18)
-├ *${prefix}menu7* (Comandos para Logos)
-├ *${prefix}menu8* (Comandos para el Creador)
+├ *${prefix}menu3* (Comandos de Descargas)
+├ *${prefix}menu4* (Comandos Herramientas)
+├ *${prefix}menu5* (Comandos +18)
+├ *${prefix}menu6* (Comandos para Logos)
+├ *${prefix}menu7* (Comandos para el Creador)
 ├ *${prefix}audios* (Audios)
 ├
 ╰─ *FIN LISTA DE MENUS*
@@ -1033,7 +1032,7 @@ Hola *${pushname}* ${timeFt}
 				})
 			break
 
-			case 'menu3':
+			case 'menug':
 				assistant = fs.readFileSync('./src/assistant.jpg')
 				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
 				gru = `
@@ -1131,18 +1130,18 @@ Hola *${pushname}* ${timeFt}
 				})
 			break
 				
-			case 'menu4':
-				samu330.updatePresence(from, Presence.composing)
+			case 'menu3':
 				assistant = fs.readFileSync('./src/assistant.jpg')
 				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
-				uptime = process.uptime()
-				const Menud = {
-					text: `➫ြ𝚜ᷤ𝚊ͣ𝚖ͫ𝚞𝉄𖾔𖾔𖽙.li Oℱịcιɑl.li   
-
-🔐Hola *${pushname}*
-
-♫♪.ılılıll|̲̅̅●̲̅̅|̲̅̅=̲̅̅|̲̅̅●̲̅̅|llılılı.♫♪
-
+				desca = `
+╔═════════════════╗
+╠              *MENU DE DESCARGAS*                ╣
+╠═════════════════╝
+║
+╠ *${prefix}play* [nombre de la canción]
+║ _Descarga un mp3._
+║
+				
 ${bodyM} ${prefix}play *(Descarga de musica)*
 ${bodyM} ${prefix}playvid *(Descarga de videos por nombre)*
 ${bodyM} ${prefix}ig *(Fotos y videos de Instagram)*
@@ -1153,15 +1152,20 @@ ${bodyM} ${prefix}fb _(Link de FaceBook)_
 ${bodyM} ${prefix}mfire *(Link de mediafire)*
 ${bodyM} ${prefix}tomp3 *(Videos a audio)*
 ${bodyM} ${prefix}letra *(Busca la letra de una cancion)*
-`,
-					contextInfo: {
-						mentionedJid: [sender], "forwardingScore": 9999, "isForwarded": true
+`
+				samu330.sendMessage(from, desca, MessageType.text, {
+					quoted:
+					{
+						key: {
+							fromMe: false,
+							participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: "status@broadcast" } : {})
+						},
+						message: {
+							"documentMessage": { "title": "Sam | Nexusᴮᴼᵀ", 'jpegThumbnail': fs.readFileSync('./src/assistant.jpg') }
+						}
 					}
-				}
-				samu330.sendMessage(from, Menud, MessageType.text, {
-					quoted: fvid
 				})
-				break
+			break
 			case 'menu5':
 				samu330.updatePresence(from, Presence.composing)
 				if (!isRegister) return reply(mess.only.usrReg)
