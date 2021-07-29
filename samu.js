@@ -1677,30 +1677,6 @@ _${prefix}apagar_
 				reply(`*Estos audios son originales, provenientes de la app:*\nhttps://play.google.com/store/apps/details?id=com.aromaticnectarineapps.anime\n\n- anana\n- asen\n- flash\n- hentai\n- jai\n- jashire\n- kareta\n- kataka\n- kicks\n- kobarashi\n- mitamita\n- mma\n- motomoto\n- nani\n- niconico\n- nya\n- nyan\n- omaiga\n- omaiwa\n- omg\n- onichan\n- ooaa\n- piano\n- pikachu\n- pupu\n- sempai\n- sss\n- suspenso\n- talcho\n- tobec\n- tuturu\n- tututu\n- uchinchi\n- uff\n- uma\n- umai\n- unga\n- woau\n- yajaro\n- yame\n- yamete\n- yokese\n- yutki\n- ñaña\n- ñañañi\n\n🍒 *By Samu330* 💠`)
 				break
 
-			case 'top5':
-				if (!isGroup) return reply('*Este comando solo puede usarse en grupos🤕')
-				member = []
-				top5 = args.join(' ')
-				const p1 = groupMembers
-				const p2 = groupMembers
-				const p3 = groupMembers
-				const p4 = groupMembers
-				const p5 = groupMembers
-				const o1 = p1[Math.floor(Math.random() * p1.length)]
-				const o2 = p2[Math.floor(Math.random() * p2.length)]
-				const o3 = p3[Math.floor(Math.random() * p3.length)]
-				const o4 = p4[Math.floor(Math.random() * p4.length)]
-				const o5 = p5[Math.floor(Math.random() * p5.length)]
-				teks = `
-*😵TOP CINCO:*\n\n1= @${o1.jid.split('@')[0]}\n\n2=@${o2.jid.split('@')[0]}\n\n3=@${o3.jid.split('@')[0]}\n\n4= @${o4.jid.split('@')[0]}\n\n5= @${o5.jid.split('@')[0]}\n\n\n_Top 5 de_ *${top5}* en este grupo`
-				member.push(o1.jid)
-				member.push(o2.jid)
-				member.push(o3.jid)
-				member.push(o4.jid)
-				member.push(o5.jid)
-				mentions(teks, member, true)
-				break
-
 			case 'pregunta':
 				respuesta = ['Si', 'No', 'Tal vez', 'Puede ser', 'Ahí una probabilidad del 99.99999999991.01%', 'Puede que no', 'Qué sé yo', 'mmmm🤔.... Dejame pensarlo un poco']
 				answer = respuesta[Math.floor(Math.random() * respuesta.length)]
@@ -3502,6 +3478,54 @@ ${descOwner ? `*° Descripción cambiada por:* @${descOwner.split('@')[0]}` : '*
 				}
 				await samu330.sendMessage(from, options, MessageType.text)
 			break
+
+			case 'contacto':
+				assistant = fs.readFileSync('./src/assistant.jpg')
+				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
+				if (!itsMe) return reply('Este comando solo puede ser usado por *Nexus* ⚙')
+				argz = arg.split('|')
+				if (!argz) return reply(`Usa ${prefix}contacto @(tag/número)|nombre`)
+				if (sam.message.extendedTextMessage != undefined) {
+					mentioned = sam.message.extendedTextMessage.contextInfo.mentionedJid
+					wa.sendKontak(from, mentioned[0].split('@')[0], argz[1])
+				} else {
+					wa.sendKontak(from, argz[0], argz[1])
+				}
+			break
+
+			case 'link':
+				assistant = fs.readFileSync('./src/assistant.jpg')
+				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
+				var link = await wa.getGroupInvitationCode(from)
+				await wa.sendFakeStatus(from, link, "El lik de este grupo es: ")
+			break
+
+			case 'top5':
+				assistant = fs.readFileSync('./src/assistant.jpg')
+				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
+				if (!isGroup) return reply('*Este comando solo puede usarse en grupos🤕')
+				if (args.length < 1) return reply('Escribe un tema.')
+				member = []
+				top5 = args.join(' ')
+				const p1 = groupMembers
+				const p2 = groupMembers
+				const p3 = groupMembers
+				const p4 = groupMembers
+				const p5 = groupMembers
+				const o1 = p1[Math.floor(Math.random() * p1.length)]
+				const o2 = p2[Math.floor(Math.random() * p2.length)]
+				const o3 = p3[Math.floor(Math.random() * p3.length)]
+				const o4 = p4[Math.floor(Math.random() * p4.length)]
+				const o5 = p5[Math.floor(Math.random() * p5.length)]
+				teks = `
+*Los más destacados:*\n\n1= @${o1.jid.split('@')[0]}\n\n2=@${o2.jid.split('@')[0]}\n\n3=@${o3.jid.split('@')[0]}\n\n4= @${o4.jid.split('@')[0]}\n\n5= @${o5.jid.split('@')[0]}\n\n\n_Top 5 _ *${top5}* en este grupo.`
+				member.push(o1.jid)
+				member.push(o2.jid)
+				member.push(o3.jid)
+				member.push(o4.jid)
+				member.push(o5.jid)
+				mentions(teks, member, true)
+			break
 					
 			case 'pussy7':
 					ranp = getRandom('.gif')
@@ -3830,17 +3854,7 @@ ${m}
 					if (stdout) reply(stdout)
 				})
 				break
-			case 'contacto':
-				if (!itsMe) return reply('Este comando solo puede ser usado por *Nexus* ⚙')
-				argz = arg.split('|')
-				if (!argz) return reply(`Uso ${prefix}contacto @tag o escribe el numero|nombre`)
-				if (sam.message.extendedTextMessage != undefined) {
-					mentioned = sam.message.extendedTextMessage.contextInfo.mentionedJid
-					wa.sendKontak(from, mentioned[0].split('@')[0], argz[1])
-				} else {
-					wa.sendKontak(from, argz[0], argz[1])
-				}
-				break
+		
 
 			case 'runtime':
 				run = process.uptime()
@@ -4778,11 +4792,6 @@ Titulo :* ${a.judul}
 				await reply(`jsjs un adm menos`)
 				break
 				
-			case 'link':
-				var link = await wa.getGroupInvitationCode(from)
-				await wa.sendFakeStatus(from, link, "El lik de este grupo es")
-				break
-	
 			case 'ttp':
 				if (args.length < 1) return reply('Y el texto?')
 				var teks = encodeURIComponent(args.join(' '))
