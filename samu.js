@@ -358,7 +358,7 @@ samu330.on('chat-update', async (sam) => {
 			},contextInfo: { "mentionedJid": memberr } })
 			
 		}
-		const pushname = sam.key.fromMe ? samu330.user.name : sam.notify || sam.vname || sam.name || 'estimado, da'
+		const pushname = sam.key.fromMe ? samu330.user.name : sam.notify || sam.vname || sam.name || 'usuario'
 		const isUrl = (url) => {
 			return url.match(new RegExp(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&/=]*)/, 'gi'))
 		}
@@ -572,21 +572,7 @@ samu330.on('chat-update', async (sam) => {
 
 		if (!isGroup && isCmd) console.log(chalk.greenBright("├"), chalk.keyword("aqua")("[ COMMANDO ]"), chalk.whiteBright(typeMessage), chalk.greenBright("de"), chalk.keyword("yellow")(senderNumber))
 		if (isGroup && isCmd) console.log(chalk.greenBright("├"), chalk.keyword("aqua")("[ COMMANDO ]"), chalk.whiteBright(typeMessage), chalk.greenBright("de"), chalk.keyword("yellow")(senderNumber), chalk.greenBright("en el grupo"), chalk.keyword("yellow")(groupName))
-
-		if (messagesC.includes("bot")) {
-			samu330.updatePresence(from, Presence.composing)
-			rm = [
-				result = fs.readFileSync(`./temp/Samu.webp`),
-				result1 = fs.readFileSync(`./temp/Samu1.webp`),
-				result2 = fs.readFileSync(`./temp/Samu2.webp`),
-				result3 = fs.readFileSync(`./temp/Samu3.webp`),
-				result4 = fs.readFileSync(`./temp/Samu4.webp`)
-			]
-			nk = rm[Math.floor(Math.random() * rm.length)]
-			samu330.sendMessage(from, nk, sticker, {
-				quoted: fimg, "forwardingScore": 9999, "isForwarded": true
-			})
-		}
+		
 		if (isGroup && botAdmin && isBadWord) {
 			if (bad.includes(messagesC)) {
 				if (!isAdmin) {
