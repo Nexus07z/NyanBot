@@ -3248,6 +3248,34 @@ ase,fps=15, pad=320:320:-1:-1:color=white@0.0, split [a][b]; [a] palettegen=rese
 				}
 			break
 
+			case 'nuevogrupo':
+				assistant = fs.readFileSync('./src/assistant.jpg')
+				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
+				const nombregc = args.join(' ')
+				if (!nombregc) return reply('*Por favor escribe el nombre que quieras que tenga el grupo.*')
+				const group = await samu330.groupCreate(`${nombregc}`, [sender])
+				reply(`*EL GRUPO FUE CREADO CORRECTAMENTE CON EL NOMBRE:*\n\n*${nombregc}*\n\nId del grupo: ${group.gid}`)
+				samu330.sendMessage(group.gid, "¡Hola mundo!", MessageType.text, {
+					quoted:
+					{
+						key: {
+							fromMe: false,
+							participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: "status@broadcast" } : {})
+						},
+						message: {
+							"documentMessage": { "title": "Sam | Nexusᴮᴼᵀ", 'jpegThumbnail': fs.readFileSync('./src/assistant.jpg') }
+						}
+					}
+				})
+			break
+
+			case 'link':
+				assistant = fs.readFileSync('./src/assistant.jpg')
+				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
+				var link = await wa.getGroupInvitationCode(from)
+				await wa.sendFakeStatus(from, link, "El lik de este grupo es: ")
+			break
+
 			case 'entrabot':
 				assistant = fs.readFileSync('./src/assistant.jpg')
 				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
@@ -3275,6 +3303,34 @@ ase,fps=15, pad=320:320:-1:-1:color=white@0.0, split [a][b]; [a] palettegen=rese
 						}
 					}
 				})
+			break
+
+			case 'salir':
+				if (!isOwner && !itsMe) return await reply('Este comando solo puede ser usado por *Nexus* ⚙')
+				if (!isGroup) return await reply(mess.only.group)
+				reply(`Saldre de este grupo: ${groupName} en 3 segundos`).then(async () => {
+					await help.sleep(3000)
+					await samu330.groupLeave(from)
+				})
+			break
+
+			case 'grupo':
+				assistant = fs.readFileSync('./src/assistant.jpg')
+				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
+				if (!isGroup) return await reply(mess.only.group)
+				if (!isAdmin) return await reply(mess.only.admin)
+				if (!botAdmin) return await reply(mess.only.Badmin)
+				if (args[0] === 'abrir') {
+					samu330.groupSettingChange(from, GroupSettingChange.messageSend, false).then(() => {
+						wa.sendFakeStatus(from, "*Grupo abierto.*", "GROUP SETTING")
+					})
+				} else if (args[0] === 'cerrar') {
+					samu330.groupSettingChange(from, GroupSettingChange.messageSend, true).then(() => {
+						wa.sendFakeStatus(from, "*Grupo cerrado.*", "GROUP SETTING")
+					})
+				} else {
+					await reply(`Por ejemplo: ${prefix}${command} abrir/cerrar`)
+				}
 			break
 
 			case 'inspeccionar':
@@ -3316,106 +3372,22 @@ ${descOwner ? `*° Descripción cambiada por:* @${descOwner.split('@')[0]}` : '*
 				samu330.sendMessage(from, insSm, MessageType.text, { quoted: fdoc })
 			break
 
-			case 'nuevogrupo':
+			case 'añadir':
 				assistant = fs.readFileSync('./src/assistant.jpg')
 				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
-				const nombregc = args.join(' ')
-				if (!nombregc) return reply('*Por favor escribe el nombre que quieras que tenga el grupo.*')
-				const group = await samu330.groupCreate(`${nombregc}`, [sender])
-				reply(`*EL GRUPO FUE CREADO CORRECTAMENTE CON EL NOMBRE:*\n\n*${nombregc}*\n\nId del grupo: ${group.gid}`)
-				samu330.sendMessage(group.gid, "¡Hola mundo!", MessageType.text, {
-					quoted:
-					{
-						key: {
-							fromMe: false,
-							participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: "status@broadcast" } : {})
-						},
-						message: {
-							"documentMessage": { "title": "Sam | Nexusᴮᴼᵀ", 'jpegThumbnail': fs.readFileSync('./src/assistant.jpg') }
-						}
-					}
-				})
-			break
-
-			case 'grupo':
-				assistant = fs.readFileSync('./src/assistant.jpg')
-				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
-				if (!isGroup) return await reply(mess.only.group)
-				if (!isAdmin) return await reply(mess.only.admin)
-				if (!botAdmin) return await reply(mess.only.Badmin)
-				if (args[0] === 'abrir') {
-					samu330.groupSettingChange(from, GroupSettingChange.messageSend, false).then(() => {
-						wa.sendFakeStatus(from, "*Grupo abierto.*", "GROUP SETTING")
-					})
-				} else if (args[0] === 'cerrar') {
-					samu330.groupSettingChange(from, GroupSettingChange.messageSend, true).then(() => {
-						wa.sendFakeStatus(from, "*Grupo cerrado.*", "GROUP SETTING")
-					})
-				} else {
-					await reply(`Por ejemplo: ${prefix}${command} abrir/cerrar`)
-				}
-			break
-
-			case 'salir':
-				if (!isOwner && !itsMe) return await reply('Este comando solo puede ser usado por *Nexus* ⚙')
-				if (!isGroup) return await reply(mess.only.group)
-				reply(`Saldre de este grupo: ${groupName} en 3 segundos`).then(async () => {
-					await help.sleep(3000)
-					await samu330.groupLeave(from)
-				})
-			break
-
-			case 'todos':
-				assistant = fs.readFileSync('./src/assistant.jpg')
-				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
-				samu330.updatePresence(from, Presence.composing)
 				if (!isGroup) return reply(mess.only.group)
-				if (!isRegister) return reply(mess.only.usrReg)
-				if (!isAdmin) return reply(mess.only.admin)
-				members_id = []
-				teks = (args.length > 1) ? body.slice(8).trim() : ''
-				teks += `  Total : ${groupMembers.length}\n`
-				for (let mem of groupMembers) {
-					teks += `┃ @${mem.jid.split('@')[0]}\n`
-					members_id.push(mem.jid)
+				if (!botAdmin) return reply(mess.only.Badmin)
+				if (args.length < 1) return reply('Falta agregar el número de celular.')
+				if (args[0].startsWith('99')) return reply('Utiliza el código de pais.')
+				try {
+					num = `${args[0].replace(/ /g, '')}@s.whatsapp.net`
+					samu330.groupAdd(from, [num])
+				} catch (e) {
+					console.log('Error:', e)
+					return samu330.sendMessage(from, 'Modo privado.', MessageType.text)
 				}
-				mentions('[  *Lista de todos los usuarios* ]\n┏━━━━━━━━━━━━━━━━━━━\n┠ ►' + teks + '┗━━━━━━━━━━━━━━━━━━━', members_id, true)
-
 			break
 
-			case 'setdesc':
-				assistant = fs.readFileSync('./src/assistant.jpg')
-				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
-				if (!isGroup) return await reply(mess.only.group)
-				if (!isAdmin) return await reply(mess.only.admin)
-				if (!botAdmin) return await reply(mess.only.Badmin)
-				if (args.length < 1) return reply('Escribe una descripción.')
-				var newDesc = args.join(" ")
-				samu330.groupUpdateDescription(from, newDesc).then(() => {
-					wa.sendFakeStatus(from, "La descripción del grupo se ha cambiado a: " + newDesc, "GROUP SETTING")
-				})
-			break
-			
-			case 'nombre':
-				assistant = fs.readFileSync('./src/assistant.jpg')
-				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
-				if (!isGroup) return await reply(mess.only.group)
-				if (!isAdmin) return await reply(mess.only.admin)
-				if (!botAdmin) return await reply(mess.only.Badmin)
-				if (args.length < 1) return reply('Escribe un nombre.')
-				var newName = args.join(" ")
-				samu330.groupUpdateSubject(from, newName).then(() => {
-					wa.sendFakeStatus(from, "El nombre del grupo se ha cambiado a: " + newName, "GROUP SETTING")
-				})
-			break
-
-			case 'adminlist':
-				assistant = fs.readFileSync('./src/assistant.jpg')
-				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
-				var textt = msg.admin(groupAdmins, groupName)
-				await wa.sendFakeStatus(from, textt, "Lista de administradores", groupAdmins)
-			break
-			
 			case 'eliminar':
 				assistant = fs.readFileSync('./src/assistant.jpg')
 				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
@@ -3437,22 +3409,6 @@ ${descOwner ? `*° Descripción cambiada por:* @${descOwner.split('@')[0]}` : '*
 				}
 			break
 
-			case 'añadir':
-				assistant = fs.readFileSync('./src/assistant.jpg')
-				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
-				if (!isGroup) return reply(mess.only.group)
-				if (!botAdmin) return reply(mess.only.Badmin)
-				if (args.length < 1) return reply('Falta agregar el número de celular.')
-				if (args[0].startsWith('99')) return reply('Utiliza el código de pais.')
-				try {
-					num = `${args[0].replace(/ /g, '')}@s.whatsapp.net`
-					samu330.groupAdd(from, [num])
-				} catch (e) {
-					console.log('Error:', e)
-					return samu330.sendMessage(from, 'Modo privado.', MessageType.text)
-				}
-			break
-			
 			case 'notificar':
 				assistant = fs.readFileSync('./src/assistant.jpg')
 				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
@@ -3491,13 +3447,6 @@ ${descOwner ? `*° Descripción cambiada por:* @${descOwner.split('@')[0]}` : '*
 				}
 			break
 
-			case 'link':
-				assistant = fs.readFileSync('./src/assistant.jpg')
-				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
-				var link = await wa.getGroupInvitationCode(from)
-				await wa.sendFakeStatus(from, link, "El lik de este grupo es: ")
-			break
-
 			case 'top5':
 				assistant = fs.readFileSync('./src/assistant.jpg')
 				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
@@ -3524,7 +3473,58 @@ ${descOwner ? `*° Descripción cambiada por:* @${descOwner.split('@')[0]}` : '*
 				member.push(o5.jid)
 				mentions(teks, member, true)
 			break
+			
+			case 'nombre':
+				assistant = fs.readFileSync('./src/assistant.jpg')
+				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
+				if (!isGroup) return await reply(mess.only.group)
+				if (!isAdmin) return await reply(mess.only.admin)
+				if (!botAdmin) return await reply(mess.only.Badmin)
+				if (args.length < 1) return reply('Escribe un nombre.')
+				var newName = args.join(" ")
+				samu330.groupUpdateSubject(from, newName).then(() => {
+					wa.sendFakeStatus(from, "El nombre del grupo se ha cambiado a: " + newName, "GROUP SETTING")
+				})
+			break
 
+			case 'setdesc':
+				assistant = fs.readFileSync('./src/assistant.jpg')
+				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
+				if (!isGroup) return await reply(mess.only.group)
+				if (!isAdmin) return await reply(mess.only.admin)
+				if (!botAdmin) return await reply(mess.only.Badmin)
+				if (args.length < 1) return reply('Escribe una descripción.')
+				var newDesc = args.join(" ")
+				samu330.groupUpdateDescription(from, newDesc).then(() => {
+					wa.sendFakeStatus(from, "La descripción del grupo se ha cambiado a: " + newDesc, "GROUP SETTING")
+				})
+			break
+
+			case 'todos':
+				assistant = fs.readFileSync('./src/assistant.jpg')
+				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
+				samu330.updatePresence(from, Presence.composing)
+				if (!isGroup) return reply(mess.only.group)
+				if (!isRegister) return reply(mess.only.usrReg)
+				if (!isAdmin) return reply(mess.only.admin)
+				members_id = []
+				teks = (args.length > 1) ? body.slice(8).trim() : ''
+				teks += `  Total : ${groupMembers.length}\n`
+				for (let mem of groupMembers) {
+					teks += `┃ @${mem.jid.split('@')[0]}\n`
+					members_id.push(mem.jid)
+				}
+				mentions('[  *Lista de todos los usuarios* ]\n┏━━━━━━━━━━━━━━━━━━━\n┠ ►' + teks + '┗━━━━━━━━━━━━━━━━━━━', members_id, true)
+
+			break
+
+			case 'adminlist':
+				assistant = fs.readFileSync('./src/assistant.jpg')
+				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
+				var textt = msg.admin(groupAdmins, groupName)
+				await wa.sendFakeStatus(from, textt, "Lista de administradores", groupAdmins)
+			break
+			
 			case 'online':
 				assistant = fs.readFileSync('./src/assistant.jpg')
 				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
