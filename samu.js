@@ -86,7 +86,7 @@ const sleep = async (ms) => {
 }
 
 // lolhuman.xyz
-const api = '967708a41dbb7e1de3be0213'
+const api = '4c69154700f597736c4b38e8'
 //
 
 fak = 'samu3300'
