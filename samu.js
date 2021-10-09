@@ -2755,14 +2755,16 @@ ${descOwner ? `*° Descripción cambiada por:* @${descOwner.split('@')[0]}` : '*
 				query = args.join(' ')
 				fakee = fs.readFileSync('./src/img.jpg')
 				try {
-					get_result = await getJson(`https://api.lolhuman.xyz/api/ytaudio?apikey=${api}&url=${query}`)
+					//get_result = await getJson(`https://api.lolhuman.xyz/api/ytaudio?apikey=${api}&url=${query}`)
+					get_result = await getJson(`https://api.vhtear.com/ytdl?link=${query}&apikey=${apivh}`)
 					get_result = get_result.result
-					short = await getJson(`https://api.lolhuman.xyz/api/shortlink?apikey=${api}&url=${get_result.link.link}`)
+					//short = await getJson(`https://api.lolhuman.xyz/api/shortlink?apikey=${api}&url=${get_result.link.link}`)
 					ini_txt = `Titulo : ${get_result.title}\n\n`
-					ini_txt += `_Si el audio no llega, puedes descargarlo mediante el siguiente link:_\n${short.result}`
-					ini_buffer = await getBuffer(get_result.thumbnail)
+					//ini_txt += `_Si el audio no llega, puedes descargarlo mediante el siguiente link:_\n${short.result}`
+					ini_txt += `_Si el audio no llega, puedes descargarlo mediante el siguiente link:_\n${get_result.UrlMp3}`
+					ini_buffer = await getBuffer(get_result.imgUrl)
 					await samu330.sendMessage(from, ini_buffer, image, { quoted: fimg, caption: ini_txt, contextInfo: { "forwardingScore": 9999, "isForwarded": true } })
-					get_audio = await getBuffer(get_result.link.link)
+					get_audio = await getBuffer(get_result.UrlMp3)
 					await samu330.sendMessage(from, get_audio, audio, { mimetype: 'audio/mp4', quoted: faud })
 				} catch {
 					reply(`*Ocurrió un problema, puedes intentarlo nuevamente más tarde.*`)
@@ -2777,14 +2779,16 @@ ${descOwner ? `*° Descripción cambiada por:* @${descOwner.split('@')[0]}` : '*
 				query = args.join(' ')
 				fakee = fs.readFileSync('./src/img.jpg')
 				try {
-					get_result = await getJson(`https://api.lolhuman.xyz/api/ytvideo?apikey=${api}&url=${query}`)
+					//get_result = await getJson(`https://api.lolhuman.xyz/api/ytvideo?apikey=${api}&url=${query}`)
+					get_result = await getJson(`https://api.vhtear.com/ytdl?link=${query}&apikey=${apivh}`)
 					get_result = get_result.result
-					short = await getJson(`https://api.lolhuman.xyz/api/shortlink?apikey=${api}&url=${get_result.link.link}`)
+					//short = await getJson(`https://api.lolhuman.xyz/api/shortlink?apikey=${api}&url=${get_result.link.link}`)
 					ini_txt = `Titulo : ${get_result.title}\n\n`
-					ini_txt += `_Si el video no llega, puedes descargarlo mediante el siguiente link:_\n${short.result}`
-					ini_buffer = await getBuffer(get_result.thumbnail)
+					//ini_txt += `_Si el video no llega, puedes descargarlo mediante el siguiente link:_\n${short.result}`
+					ini_txt += `_Si el video no llega, puedes descargarlo mediante el siguiente link:_\n${get_result.UrlVideo}`
+					ini_buffer = await getBuffer(get_result.imgUrl)
 					await samu330.sendMessage(from, ini_buffer, image, { quoted: fimg, caption: ini_txt, contextInfo: { "forwardingScore": 9999, "isForwarded": true } })
-					get_video = await getBuffer(get_result.link.link)
+					get_video = await getBuffer(get_result.UrlVideo)
 					await samu330.sendMessage(from, get_video, video, { mimetype: 'video/mp4', quoted: fvid })
 				} catch {
 					reply(`*Ocurrió un problema, puedes intentarlo nuevamente más tarde.*`)
