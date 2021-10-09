@@ -2690,9 +2690,10 @@ ${descOwner ? `*° Descripción cambiada por:* @${descOwner.split('@')[0]}` : '*
 				try {
 					get_result = await getJson(`https://api.vhtear.com/ytmp3?query=${query}&apikey=${apivh}`)
 					get_result = get_result.result
-					short = await getJson(`https://api.lolhuman.xyz/api/shortlink?apikey=${api}&url=${get_result.mp3}`)
+					//short = await getJson(`https://api.lolhuman.xyz/api/shortlink?apikey=${api}&url=${get_result.mp3}`)
 					ini_txt = `Titulo : ${get_result.title}\n\n`
-					ini_txt += `_Si el audio no llega, puedes descargarlo mediante el siguiente link:_\n${short.result}`
+					//ini_txt += `_Si el audio no llega, puedes descargarlo mediante el siguiente link:_\n${short.result}`
+					ini_txt += `_Si el audio no llega, puedes descargarlo mediante el siguiente link:_\n${get_result.mp3}`
 					ini_buffer = await getBuffer(get_result.image)
 					await samu330.sendMessage(from, ini_buffer, image, { quoted: fimg, caption: ini_txt, contextInfo: { "forwardingScore": 9999, "isForwarded": true } })
 					get_audio = await getBuffer(get_result.mp3)
