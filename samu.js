@@ -2851,6 +2851,23 @@ ${descOwner ? `*° Descripción cambiada por:* @${descOwner.split('@')[0]}` : '*
 				const tiktokmusic = await getBuffer(`https://api.lolhuman.xyz/api/tiktokmusic?apikey=${api}&url=${query}`)
 				samu330.sendMessage(from, tiktokmusic, audio, { mimetype: 'audio/mp4', quoted: faud })
 			break
+
+			case 'fbvideo':
+				assistant = fs.readFileSync('./src/assistant.jpg')
+				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
+				if (args.length == 0) return reply(`*Agrega el link del video de facebook.*\nPor ejemplo: ${prefix + command} Link_video_facebook`)
+				reply(mess.wait);
+				query = args.join(' ')
+				fakee = fs.readFileSync('./src/img.jpg')
+				try {
+					get_result = await getJson(`https://api.vhtear.com/fbdl?link=${query}&apikey=${apivh}`)
+					get_result = get_result.result
+					get_video = await getBuffer(get_result.VideoUrl)
+					await samu330.sendMessage(from, get_video, video, { mimetype: 'video/mp4', quoted: fvid })
+				} catch {
+					reply(`*Ocurrió un problema, puedes intentarlo nuevamente más tarde.*`)
+				}
+			break
 			
 			case 'facebook':
 			case 'fb':
