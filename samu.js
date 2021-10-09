@@ -87,6 +87,7 @@ const sleep = async (ms) => {
 
 // lolhuman.xyz
 const api = '4c69154700f597736c4b38e8'
+const apivh = '2aba63b48dbe4e788cc43cd3e7fb1943'
 //
 
 fak = 'samu3300'
@@ -1567,7 +1568,7 @@ Hola *${pushname}* ${timeFt}
 				var imgbb = require('imgbb-uploader')
 				reply(mess.wait)
 				owgi = await samu330.downloadAndSaveMediaMessage(ger)
-				data = await imgbb("b0fc132474ca03ee7898fd5cac7275fe", owgi)
+				data = await imgbb("20a14861e4f7591f3dc52649cb07ae02", owgi)
 				anu = await getJson(`https://api.lolhuman.xyz/api/convert/webptomp4?apikey=${api}&img=${data.display_url}`)
 				result = await getBuffer(anu.result)
 				samu330.sendMessage(from, result, video, { quoted: ftoko, mimetype: 'video/gif' })
@@ -2687,14 +2688,14 @@ ${descOwner ? `*° Descripción cambiada por:* @${descOwner.split('@')[0]}` : '*
 				query = args.join(' ')
 				fakee = fs.readFileSync('./src/img.jpg')
 				try {
-					get_result = await getJson(`https://api.lolhuman.xyz/api/ytplay2?apikey=${api}&query=${query}`)
+					get_result = await getJson(`https://api.vhtear.com/ytmp3?query=${query}&apikey=${apivh}`)
 					get_result = get_result.result
-					short = await getJson(`https://api.lolhuman.xyz/api/shortlink?apikey=${api}&url=${get_result.audio}`)
+					short = await getJson(`https://api.lolhuman.xyz/api/shortlink?apikey=${api}&url=${get_result.mp3}`)
 					ini_txt = `Titulo : ${get_result.title}\n\n`
 					ini_txt += `_Si el audio no llega, puedes descargarlo mediante el siguiente link:_\n${short.result}`
-					ini_buffer = await getBuffer(get_result.thumbnail)
+					ini_buffer = await getBuffer(get_result.image)
 					await samu330.sendMessage(from, ini_buffer, image, { quoted: fimg, caption: ini_txt, contextInfo: { "forwardingScore": 9999, "isForwarded": true } })
-					get_audio = await getBuffer(get_result.audio)
+					get_audio = await getBuffer(get_result.mp3)
 					await samu330.sendMessage(from, get_audio, audio, { mimetype: 'audio/mp4', quoted: faud })
 				} catch {
 					reply(`*Ocurrió un problema, puedes intentarlo nuevamente más tarde.*`)
