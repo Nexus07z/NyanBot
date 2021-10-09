@@ -44,8 +44,6 @@ const samuGgImg = require('g-i-s');
 const { y2mateA, y2mateV } = require('./lib/y2mate.js')
 const { sm330mfire } = require('./lib/mediafire.js')
 const { covidworld } = require('./lib/covidworld.js')
-const { ssstik } = require("./lib/tiktok.js")
-const { fbDown } = require('./lib/fb.js')
 const conn = require("./lib/connect")
 const msg = require("./lib/message")
 const wa = require("./lib/wa")
@@ -2818,13 +2816,13 @@ ${descOwner ? `*° Descripción cambiada por:* @${descOwner.split('@')[0]}` : '*
 				assistant = fs.readFileSync('./src/assistant.jpg')
 				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
 				if (args.length == 0) return reply(`*Agrega el link de tiktok.*\nPor ejemplo: ${prefix + command} https://vm.tiktok.com/ZMdvgJgM7/`)
+				if (!isUrl(args[0]) && !args[0].includes('tiktok')) return reply('El link tiene que ser de tiktok')
 				reply(mess.wait);
 				query = args.join(' ')
 				fakee = fs.readFileSync('./src/img.jpg')
 				try {
 					get_result = await getJson(`https://api.lolhuman.xyz/api/tiktok3?apikey=${api}&url=${query}`)
 					get_result = get_result.result
-					short = await getJson(`https://api.lolhuman.xyz/api/shortlink?apikey=${api}&url=${get_result}`)
 					get_video = await getBuffer(get_result)
 					await samu330.sendMessage(from, get_video, video, { mimetype: 'video/mp4', quoted: fvid })
 				} catch {
@@ -2836,10 +2834,15 @@ ${descOwner ? `*° Descripción cambiada por:* @${descOwner.split('@')[0]}` : '*
 				assistant = fs.readFileSync('./src/assistant.jpg')
 				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
 				if (args.length == 0) return reply(`*Agrega el link de tiktok.*\nPor ejemplo: ${prefix + command} https://vm.tiktok.com/ZMdvgJgM7/`)
+				if (!isUrl(args[0]) && !args[0].includes('tiktok')) return reply('El link tiene que ser de tiktok')
 				reply(mess.wait);
 				query = args.join(' ')
-				const tiktokwm = await getBuffer(`https://api.lolhuman.xyz/api/tiktokwm?apikey=${api}&url=${query}`)
-				samu330.sendMessage(from, tiktokwm, video, { mimetype: 'video/mp4', quoted: fvid })
+				try {
+					const tiktokwm = await getBuffer(`https://api.lolhuman.xyz/api/tiktokwm?apikey=${api}&url=${query}`)
+					samu330.sendMessage(from, tiktokwm, video, { mimetype: 'video/mp4', quoted: fvid })
+				} catch {
+					reply(`*Ocurrió un problema, puedes intentarlo nuevamente más tarde.*`)
+				}
 			break
 
 			case 'tiktokmusic':
@@ -2852,10 +2855,13 @@ ${descOwner ? `*° Descripción cambiada por:* @${descOwner.split('@')[0]}` : '*
 				samu330.sendMessage(from, tiktokmusic, audio, { mimetype: 'audio/mp4', quoted: faud })
 			break
 
+			case 'facebook':
+			case 'fb':
 			case 'fbvideo':
 				assistant = fs.readFileSync('./src/assistant.jpg')
 				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
 				if (args.length == 0) return reply(`*Agrega el link del video de facebook.*\nPor ejemplo: ${prefix + command} Link_video_facebook`)
+				if (!isUrl(args[0]) && !args[0].includes('facebook')) return reply('El link tiene que ser de facebook')
 				reply(mess.wait);
 				query = args.join(' ')
 				fakee = fs.readFileSync('./src/img.jpg')
@@ -2869,28 +2875,6 @@ ${descOwner ? `*° Descripción cambiada por:* @${descOwner.split('@')[0]}` : '*
 				}
 			break
 			
-			case 'facebook':
-			case 'fb':
-				assistant = fs.readFileSync('./src/assistant.jpg')
-				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
-				if (args.length < 1) return reply(`*Agrega el link del video de facebook.*`)
-				if (!isUrl(args[0]) && !args[0].includes('facebook')) return reply('El link tiene que ser de facebook')
-				teks = args.join(' ')
-				reply(mess.wait)
-				res = await fbDown(teks).catch(e => {
-					reply(mess.ferr)
-				})
-				a = res[0]
-				result = `
-*Source:* ${a.source}
-*Tamaño:* ${a.size}
-*Calidad:* ${a.quality}
-*Tipo:* ${a.type}
-`
-				sendFileFromUrl(a.thumb, image, { caption: result, quoted: fimg })
-				sendFileFromUrl(a.link, video, { mimetype: 'video/mp4', quoted: fvid, filename: `${a.judul}.${a.type}` })
-			break
-	
 			case 'shortlink':
 				url = args.join(" ")
 				request(`https://tinyurl.com/api-create.php?url=${url}`, function (error, response, body) {
