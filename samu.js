@@ -1713,6 +1713,8 @@ Hola *${pushname}* ${timeFt}
 				
 		
 				}
+				const sattp1 = await getBuffer(`https://api.xteam.xyz/attp?file&text=hola`)
+				samu330.sendMessage(from, sattp1, sticker, { quoted: ftoko, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
 			break
 				
 			case 'sticker':
