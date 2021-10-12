@@ -1697,23 +1697,18 @@ Hola *${pushname}* ${timeFt}
 			case 'stickernobg':
 				assistant = fs.readFileSync('./src/assistant.jpg')
 				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
+				imgbb = require('imgbb-uploader')
 				if ((isMedia || isQuotedImage)) {
-					const encmedianb1 = isQuotedImage ? JSON.parse(JSON.stringify(sam).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo : sam
-					const median1 = await samu330.downloadAndSaveMediaMessage(encmedianb1)
-					reply(mess.wait)
-					keyrmbg = 'iWVtDDPrqmy9oWKDnRR7wPpp'
-					ranp = getRandom('.png')
-					await removeBackgroundFromImageFile({ path: median1, apiKey: keyrmbg, size: 'auto', type: 'auto', ranp }).then(res => {
-						fs.unlinkSync(median1)
-						let buffer = Buffer.from(res.base64img, 'base64')
-						samu330.sendMessage(from, buffer, image, { quoted: fimg })
-						fs.unlinkSync(buffer)
-					})
-					const sattp1 = await getBuffer(`https://api.xteam.xyz/attp?file&text=hola`)
-					samu330.sendMessage(from, sattp1, sticker, { quoted: ftoko, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
-		
+				const encmedianb = isQuotedImage ? JSON.parse(JSON.stringify(sam).replace('quotedM','m')).message.extendedTextMessage.contextInfo : sam
+				const median = await samu330.downloadAndSaveMediaMessage(encmedianb)
+				reply(mess.wait)
+				sam330 = await imgbb('20a14861e4f7591f3dc52649cb07ae02', median);
+				link = `${sam330.display_url}`;
+				foto = `https://api.lolhuman.xyz/api/removebg?apikey=${api}&img=${link}`
+				sendFileFromUrl(foto, sticker, {quoted: ftoko })
+				} else {
+					reply('*Por favor etiqueta una imagen con el comando.*')
 				}
-				
 			break
 				
 			case 'sticker':
