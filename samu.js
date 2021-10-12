@@ -1695,6 +1695,8 @@ Hola *${pushname}* ${timeFt}
 			break
 
 			case 'stickernobg':
+				assistant = fs.readFileSync('./src/assistant.jpg')
+				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
 				if ((isMedia && !sam.message.videoMessage || isQuotedImage) && args.length == 0) {
 					const encmedia = isQuotedImage ? JSON.parse(JSON.stringify(sam).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo : sam
 					filePath = await samu330.downloadAndSaveMediaMessage(encmedia)
@@ -1710,14 +1712,15 @@ Hola *${pushname}* ${timeFt}
 					}, function(error, response, body) {
 						fs.unlinkSync(filePath)
 						fs.writeFileSync(file_name, body, "binary")
-						ffmpeg(`./${file_name}`)
+						await ffmpeg(`./${file_name}`)
 							.input(file_name)
 							.on('error', function(err) {
 								console.log(err)
 								fs.unlinkSync(file_name)
 							})
 							.on('end', function() {
-								samu330.sendMessage(from, fs.readFileSync(file_name2), sticker, { quoted: ftoko })
+								
+								wa.sendSticker(from, fs.readFileSync(file_name2), ftoko)
 								fs.unlinkSync(file_name2)
 							})
 							.addOutputOptions([`-vcodec`, `libwebp`, `-vf`, `scale='min(320,iw)':min'(320,ih)':force_original_aspect_ratio=decrease,fps=15, pad=320:320:-1:-1:color=white@0.0, split [a][b]; [a] palettegen=reserve_transparent=on:transparency_color=ffffff [p]; [b][p] paletteuse`])
