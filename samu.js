@@ -1695,22 +1695,37 @@ Hola *${pushname}* ${timeFt}
 			break
 
 			case 'stickernobg':
-				assistant = fs.readFileSync('./src/assistant.jpg')
-				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
-				imgbb = require('imgbb-uploader')
-				if ((isMedia || isQuotedImage)) {
-				const encmedianb = isQuotedImage ? JSON.parse(JSON.stringify(sam).replace('quotedM','m')).message.extendedTextMessage.contextInfo : sam
-				const median = await samu330.downloadAndSaveMediaMessage(encmedianb)
-				reply(mess.wait)
-				sam330 = await imgbb('20a14861e4f7591f3dc52649cb07ae02', median);
-				link = `${sam330.display_url}`;
-				foto = `https://api.lolhuman.xyz/api/removebg?apikey=${api}&img=${link}`
-				short = await getJson(`https://api.lolhuman.xyz/api/shortlink?apikey=${api}&url=${foto}`)
-				//sendFileFromUrl(foto, sticker, {quoted: ftoko })
-				const snobattp1 = await getBuffer(`https://api.lolhuman.xyz/api/convert/towebp?apikey=${api}&img=${short.result}`)
-				samu330.sendMessage(from, snobattp1, sticker, { quoted: ftoko, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
+				if ((isMedia && !sam.message.videoMessage || isQuotedImage) && args.length == 0) {
+					const encmedia = isQuotedImage ? JSON.parse(JSON.stringify(sam).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo : sam
+					filePath = await samu330.downloadAndSaveMediaMessage(encmedia)
+					file_name = getRandom('.png')
+					file_name2 = getRandom('.webp')
+					request({
+						url: `https://api.lolhuman.xyz/api/removebg?apikey=${api}`,
+						method: 'POST',
+						formData: {
+							"img": fs.createReadStream(filePath)
+						},
+						encoding: "binary"
+					}, function(error, response, body) {
+						fs.unlinkSync(filePath)
+						fs.writeFileSync(file_name, body, "binary")
+						ffmpeg(`./${file_name}`)
+							.input(file_name)
+							.on('error', function(err) {
+								console.log(err)
+								fs.unlinkSync(file_name)
+							})
+							.on('end', function() {
+								samu330.sendMessage(from, fs.readFileSync(file_name2), sticker, { quoted: ftoko })
+								fs.unlinkSync(file_name2)
+							})
+							.addOutputOptions([`-vcodec`, `libwebp`, `-vf`, `scale='min(320,iw)':min'(320,ih)':force_original_aspect_ratio=decrease,fps=15, pad=320:320:-1:-1:color=white@0.0, split [a][b]; [a] palettegen=reserve_transparent=on:transparency_color=ffffff [p]; [b][p] paletteuse`])
+							.toFormat('webp')
+							.save(file_name2)
+					});
 				} else {
-					reply('*Por favor etiqueta una imagen con el comando.*')
+					reply(`Kirim gambar dengan caption ${prefix}sticker atau tag gambar yang sudah dikirim`)
 				}
 			break
 				
