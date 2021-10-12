@@ -894,6 +894,10 @@ Hola *${pushname}* ${timeFt}
 ╠ *${prefix}sinfondo2*
 ║ _Etiqueta una imagen para quitarle el fondo._
 ║
+╠ *${prefix}stickernobg*
+║ _Etiqueta una imagen/gif/video._
+║ _Para convertirlo en sticker sin fondo._
+║
 ╠ *${prefix}sticker*
 ║ _Etiqueta una imagen/gif/video._
 ║ _Para convertirlo en sticker._
@@ -1127,12 +1131,6 @@ Hola *${pushname}* ${timeFt}
 ╠ *${prefix}play* [nombre de la canción]
 ║ _Descarga un audio._
 ║
-╠ *${prefix}playvid* [nombre de la canción]
-║ _Descarga un video._
-║
-╠ *${prefix}playvidgif* [nombre de la canción]
-║ _Descarga un video en forma de gif._
-║
 ╠ *${prefix}ytmp3* [link de youtube]
 ║ _Descarga un audio de youtube._
 ║
@@ -1141,6 +1139,12 @@ Hola *${pushname}* ${timeFt}
 ║
 ╠ *${prefix}fb* [link de facebook]
 ║ _Descarga un video de facebook._
+║
+╠ *${prefix}ig* [link de instagram]
+║ _Descarga un video de instagram._
+║
+╠ *${prefix}twitter* [link de twitter]
+║ _Descarga un video de twitter._
 ║
 ╠ *${prefix}titkok* [link de tiktok]
 ║ _Descarga un video sin marca de agua._
@@ -1154,6 +1158,57 @@ Hola *${pushname}* ${timeFt}
 ╰──────────────				
 `
 				samu330.sendMessage(from, desca, MessageType.text, {
+					quoted:
+					{
+						key: {
+							fromMe: false,
+							participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: "status@broadcast" } : {})
+						},
+						message: {
+							"documentMessage": { "title": "Sam | Nexusᴮᴼᵀ", 'jpegThumbnail': fs.readFileSync('./src/assistant.jpg') }
+						}
+					}
+				})
+			break
+
+			case 'menu4':
+				assistant = fs.readFileSync('./src/assistant.jpg')
+				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
+				conve = `
+╔═════════════════╗
+╠             *MENU CONVERTIDOR*            ╣
+╠═════════════════╝
+║
+╠ *${prefix}tomp3*
+║ _Convierte un video en un audio._
+║
+╠ *${prefix}ytmp3* [link de youtube]
+║ _Descarga un audio de youtube._
+║
+╠ *${prefix}ytmp4* [link de youtube]
+║ _Descarga un video de youtube._
+║
+╠ *${prefix}fb* [link de facebook]
+║ _Descarga un video de facebook._
+║
+╠ *${prefix}ig* [link de instagram]
+║ _Descarga un video de instagram._
+║
+╠ *${prefix}twitter* [link de twitter]
+║ _Descarga un video de twitter._
+║
+╠ *${prefix}titkok* [link de tiktok]
+║ _Descarga un video sin marca de agua._
+║
+╠ *${prefix}tiktokwm* [link de tiktok]
+║ _Descarga un video con marca de agua._
+║
+╠ *${prefix}tiktokmusic* [link de tiktok]
+║ _Descarga la musica original del video._
+║
+╰──────────────				
+`
+				samu330.sendMessage(from, conve, MessageType.text, {
 					quoted:
 					{
 						key: {
@@ -1639,6 +1694,22 @@ Hola *${pushname}* ${timeFt}
 				})
 			break
 
+			case 'stickernobg':
+				if ((isMedia || isQuotedImage)) {
+					const encmedianb1 = isQuotedImage ? JSON.parse(JSON.stringify(sam).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo : sam
+					const median1 = await samu330.downloadAndSaveMediaMessage(encmedianb1)
+					reply(mess.wait)
+					keyrmbg = 'iWVtDDPrqmy9oWKDnRR7wPpp'
+					ranp = getRandom('.png')
+					await removeBackgroundFromImageFile({ path: median1, apiKey: keyrmbg, size: 'auto', type: 'auto', ranp }).then(res => {
+						fs.unlinkSync(median1)
+						let buffer = Buffer.from(res.base64img, 'base64')
+						samu330.sendMessage(from, buffer, sticker, { quoted: ftoko, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
+						fs.unlinkSync(buffer)
+					})
+				}
+			break
+				
 			case 'sticker':
 			case 's':
 			case 'stiker':
@@ -2816,7 +2887,7 @@ ${descOwner ? `*° Descripción cambiada por:* @${descOwner.split('@')[0]}` : '*
 				assistant = fs.readFileSync('./src/assistant.jpg')
 				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
 				if (args.length == 0) return reply(`*Agrega el link de tiktok.*\nPor ejemplo: ${prefix + command} https://vm.tiktok.com/ZMdvgJgM7/`)
-				if (!isUrl(args[0]) && !args[0].includes('tiktok')) return reply('El link tiene que ser de tiktok')
+				if (!isUrl(args[0]) && !args[0].includes('tiktok')) return reply('*El link tiene que ser de tiktok.*')
 				reply(mess.wait);
 				query = args.join(' ')
 				fakee = fs.readFileSync('./src/img.jpg')
@@ -2834,7 +2905,7 @@ ${descOwner ? `*° Descripción cambiada por:* @${descOwner.split('@')[0]}` : '*
 				assistant = fs.readFileSync('./src/assistant.jpg')
 				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
 				if (args.length == 0) return reply(`*Agrega el link de tiktok.*\nPor ejemplo: ${prefix + command} https://vm.tiktok.com/ZMdvgJgM7/`)
-				if (!isUrl(args[0]) && !args[0].includes('tiktok')) return reply('El link tiene que ser de tiktok')
+				if (!isUrl(args[0]) && !args[0].includes('tiktok')) return reply('*El link tiene que ser de tiktok.*')
 				reply(mess.wait);
 				query = args.join(' ')
 				try {
@@ -2851,8 +2922,12 @@ ${descOwner ? `*° Descripción cambiada por:* @${descOwner.split('@')[0]}` : '*
 				if (args.length == 0) return reply(`*Agrega el link de tiktok.*\nPor ejemplo: ${prefix + command} https://vm.tiktok.com/ZMdvgJgM7/`)
 				reply(mess.wait);
 				query = args.join(' ')
-				const tiktokmusic = await getBuffer(`https://api.lolhuman.xyz/api/tiktokmusic?apikey=${api}&url=${query}`)
-				samu330.sendMessage(from, tiktokmusic, audio, { mimetype: 'audio/mp4', quoted: faud })
+				try {
+					const tiktokmusic = await getBuffer(`https://api.lolhuman.xyz/api/tiktokmusic?apikey=${api}&url=${query}`)
+					samu330.sendMessage(from, tiktokmusic, audio, { mimetype: 'audio/mp4', quoted: faud })
+				} catch {
+					reply(`*Ocurrió un problema, puedes intentarlo nuevamente más tarde.*`)
+				}
 			break
 
 			case 'facebook':
@@ -2861,7 +2936,7 @@ ${descOwner ? `*° Descripción cambiada por:* @${descOwner.split('@')[0]}` : '*
 				assistant = fs.readFileSync('./src/assistant.jpg')
 				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
 				if (args.length == 0) return reply(`*Agrega el link del video de facebook.*\nPor ejemplo: ${prefix + command} Link_video_facebook`)
-				if (!isUrl(args[0]) && !args[0].includes('facebook')) return reply('El link tiene que ser de facebook')
+				if (!isUrl(args[0]) && !args[0].includes('facebook')) return reply('*El link tiene que ser de facebook.*')
 				reply(mess.wait);
 				query = args.join(' ')
 				fakee = fs.readFileSync('./src/img.jpg')
@@ -2869,6 +2944,45 @@ ${descOwner ? `*° Descripción cambiada por:* @${descOwner.split('@')[0]}` : '*
 					get_result = await getJson(`https://api.vhtear.com/fbdl?link=${query}&apikey=${apivh}`)
 					get_result = get_result.result
 					get_video = await getBuffer(get_result.VideoUrl)
+					await samu330.sendMessage(from, get_video, video, { mimetype: 'video/mp4', quoted: fvid })
+				} catch {
+					reply(`*Ocurrió un problema, puedes intentarlo nuevamente más tarde.*`)
+				}
+			break
+
+			case 'instagram':
+			case 'ig':
+			case 'igvideo':
+				assistant = fs.readFileSync('./src/assistant.jpg')
+				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
+				if (args.length == 0) return reply(`*Agrega el link del video de instagram.*\nPor ejemplo: ${prefix + command} Link_video_instagram`)
+				if (!isUrl(args[0]) && !args[0].includes('instagram')) return reply('*El link tiene que ser de instagram.*')
+				reply(mess.wait);
+				query = args.join(' ')
+				fakee = fs.readFileSync('./src/img.jpg')
+				try {
+					get_result = await getJson(`https://api.vhtear.com/instadl?link=${query}&apikey=${apivh}`)
+					get_result = get_result.result
+					get_video = await getBuffer(get_result.post.urlDownload)
+					await samu330.sendMessage(from, get_video, video, { mimetype: 'video/mp4', quoted: fvid })
+				} catch {
+					reply(`*Ocurrió un problema, puedes intentarlo nuevamente más tarde.*`)
+				}
+			break
+
+			case 'twitter':
+			case 'twvideo':
+				assistant = fs.readFileSync('./src/assistant.jpg')
+				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
+				if (args.length == 0) return reply(`*Agrega el link del video de twitter.*\nPor ejemplo: ${prefix + command} Link_video_twitter`)
+				if (!isUrl(args[0]) && !args[0].includes('twitter')) return reply('*El link tiene que ser de twitter.*')
+				reply(mess.wait);
+				query = args.join(' ')
+				fakee = fs.readFileSync('./src/img.jpg')
+				try {
+					get_result = await getJson(`https://api.vhtear.com/twitter?link=${query}&apikey=${apivh}`)
+					get_result = get_result.result
+					get_video = await getBuffer(get_result.urlVideo)
 					await samu330.sendMessage(from, get_video, video, { mimetype: 'video/mp4', quoted: fvid })
 				} catch {
 					reply(`*Ocurrió un problema, puedes intentarlo nuevamente más tarde.*`)
