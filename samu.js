@@ -1705,12 +1705,16 @@ Hola *${pushname}* ${timeFt}
 					ranp = getRandom('.png')
 					await removeBackgroundFromImageFile({ path: median1, apiKey: keyrmbg, size: 'auto', type: 'auto', ranp }).then(res => {
 						fs.unlinkSync(median1)
-						//let buffer = Buffer.from(res.base64img, 'base64')
-						//let buff = await getBuffer(ppimg)
-						const snobg = await getBuffer(res.base64img, 'base64')
-						samu330.sendMessage(from, snobg, sticker, { quoted: ftoko, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
-						
+						let buffer = Buffer.from(res.base64img, 'base64')
+						samu330.sendMessage(from, buffer, image, { quoted: fimg })
+						samu330.sendMessage(from, buffer, image, { quoted: ftoko })
+						samu330.sendMessage(from, buffer, sticker, { quoted: fimg })
+						samu330.sendMessage(from, buffer, sticker, { quoted: ftoko, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
+						fs.unlinkSync(buffer)
 					})
+					const attpnbg = await getBuffer(`https://api.xteam.xyz/attp?file&text=hola`)
+					samu330.sendMessage(from, attpnbg, sticker, { quoted: ftoko, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
+		
 				}
 			break
 				
