@@ -1705,8 +1705,9 @@ Hola *${pushname}* ${timeFt}
 				sam330 = await imgbb('20a14861e4f7591f3dc52649cb07ae02', median);
 				link = `${sam330.display_url}`;
 				foto = `https://api.lolhuman.xyz/api/removebg?apikey=${api}&img=${link}`
+				short = await getJson(`https://api.lolhuman.xyz/api/shortlink?apikey=${api}&url=${foto}`)
 				//sendFileFromUrl(foto, sticker, {quoted: ftoko })
-				const snobattp1 = await getBuffer(`https://api.lolhuman.xyz/api/convert/towebp?apikey=${api}&img=${foto}`)
+				const snobattp1 = await getBuffer(`https://api.lolhuman.xyz/api/convert/towebp?apikey=${api}&img=${short.result}`)
 				samu330.sendMessage(from, snobattp1, sticker, { quoted: ftoko, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
 				} else {
 					reply('*Por favor etiqueta una imagen con el comando.*')
