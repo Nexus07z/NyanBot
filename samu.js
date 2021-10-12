@@ -1712,7 +1712,7 @@ Hola *${pushname}* ${timeFt}
 					}, function(error, response, body) {
 						fs.unlinkSync(filePath)
 						fs.writeFileSync(file_name, body, "binary")
-						await ffmpeg(`./${file_name}`)
+						ffmpeg(`./${file_name}`)
 							.input(file_name)
 							.on('error', function(err) {
 								console.log(err)
