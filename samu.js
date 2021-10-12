@@ -1707,13 +1707,9 @@ Hola *${pushname}* ${timeFt}
 						fs.unlinkSync(median1)
 						let buffer = Buffer.from(res.base64img, 'base64')
 						samu330.sendMessage(from, buffer, image, { quoted: fimg })
-						samu330.sendMessage(from, buffer, image, { quoted: ftoko })
-						samu330.sendMessage(from, buffer, sticker, { quoted: fimg })
-						samu330.sendMessage(from, buffer, sticker, { quoted: ftoko, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
 						fs.unlinkSync(buffer)
 					})
-					const attpnbg = await getBuffer(`https://api.xteam.xyz/attp?file&text=hola`)
-					samu330.sendMessage(from, attpnbg, sticker, { quoted: ftoko, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
+				
 		
 				}
 			break
