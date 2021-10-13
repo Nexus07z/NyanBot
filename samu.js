@@ -1705,15 +1705,16 @@ Hola *${pushname}* ${timeFt}
 				nobg = await imgbb('20a14861e4f7591f3dc52649cb07ae02', media);
 				link = `${nobg.display_url}`;
 				
-				ini_buffer = `https://api.lolhuman.xyz/api/removebg?apikey=${api}&img=${link}`
-				nobgs = await imgbb('20a14861e4f7591f3dc52649cb07ae02', ini_buffer);
-				links = `${nobgs.display_url}`;
-				get_result = await getJson(`https://api.vhtear.com/removebgwithurl?link=${link}&apikey=${apivh}`)
-				get_result = get_result.result
-				short = await getJson(`https://api.lolhuman.xyz/api/shortlink?apikey=${api}&url=${get_result.image}`)
+				//ini_buffer = `https://api.lolhuman.xyz/api/removebg?apikey=${api}&img=${link}`
+				anu1 = await getBuffer(`https://api.lolhuman.xyz/api/removebg?apikey=${api}&img=${link}`);
+					fs.writeFileSync('wasted.webp', anu1)
+					samu330.sendMessage(from, fs.readFileSync('wasted.webp'), sticker)
+				//get_result = await getJson(`https://api.vhtear.com/removebgwithurl?link=${link}&apikey=${apivh}`)
+				//get_result = get_result.result
+				//short = await getJson(`https://api.lolhuman.xyz/api/shortlink?apikey=${api}&url=${get_result.image}`)
 		
-				const attp1 = await getBuffer(`https://api.lolhuman.xyz/api/convert/towebp?apikey=${api}&img=${short.result}`)
-				samu330.sendMessage(from, attp1, sticker, { quoted: ftoko, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
+				//const attp1 = await getBuffer(`https://api.lolhuman.xyz/api/convert/towebp?apikey=${api}&img=${short.result}`)
+				//samu330.sendMessage(from, attp1, sticker, { quoted: ftoko, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
 			
 				} else {
 					reply('*Por favor etiqueta una imagen con el comando.*')
