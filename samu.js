@@ -1699,22 +1699,18 @@ Hola *${pushname}* ${timeFt}
 				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
 				imgbb = require('imgbb-uploader')
 				if (isMedia && !sam.message.videoMessage || isQuotedImage) {
-					const encmedia77 = isQuotedImage ? JSON.parse(JSON.stringify(sam).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo : sam
-					const media77 = await samu330.downloadAndSaveMediaMessage(encmedia77)
-					file_name = getRandom('.png')
-					file_name2 = getRandom('.webp')
-					sam330 = await imgbb('20a14861e4f7591f3dc52649cb07ae02', media77);
-					link = `${sam330.display_url}`;
-					const foto = await getBuffer(`https://api.lolhuman.xyz/api/removebg?apikey=${api}&img=${link}`)
-					fotostick = await imgbb('20a14861e4f7591f3dc52649cb07ae02', foto);
-					linkstick = `${fotostick.display_url}`;
-					const attp77 = await getBuffer(`https://api.lolhuman.xyz/api/convert/towebp?apikey=${api}&img=${linkstick}`)
+					const encmedia = isQuotedImage ? JSON.parse(JSON.stringify(sam).replace('quotedM','m')).message.extendedTextMessage.contextInfo : sam
+				const media = await samu330.downloadAndSaveMediaMessage(encmedia)
+				reply(mess.wait)
+				nobg = await imgbb('20a14861e4f7591f3dc52649cb07ae02', media);
+				link = `${nobg.display_url}`;
+				foto = `https://api.lolhuman.xyz/api/removebg?apikey=${api}&img=${link}`
+				sendFileFromUrl(foto, image, {quoted: fimg })
+				} else {
+					reply('*Por favor etiqueta una imagen con el comando.*')
+				}
 					
-					samu330.sendMessage(from, attp77, sticker, { quoted: ftoko, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
-			
-					
-					
-				} 
+				
 			break
 				
 			case 'sticker':
