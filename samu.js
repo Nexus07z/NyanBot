@@ -433,6 +433,8 @@ samu330.on('chat-update', async (sam) => {
 			mods.slice(mods.indexOf(owner), 1)
 		}
 
+	
+
 		const sendFileFromUrl = async (link, type, options) => {
 			hasil = await getBuffer(link)
 			samu330.sendMessage(from, hasil, type, options).catch(e => {
@@ -446,6 +448,8 @@ samu330.on('chat-update', async (sam) => {
 				})
 			})
 		}
+
+
 
 		const reply = async (teks) => {
 			await samu330.sendMessage(from, teks, MessageType.text, {
@@ -1313,7 +1317,7 @@ Hola *${pushname}* ${timeFt}
 				link = `${sam330.display_url}`;
 				foto = `https://api.lolhuman.xyz/api/removebg?apikey=${api}&img=${link}`
 				//sendFileFromUrl(foto, image, {quoted: fimg })
-				sendImageAsSticker(from,foto)
+				samu330.sendImageAsSticker(from,foto)
 				} else {
 					reply('*Por favor etiqueta una imagen con el comando.*')
 				}
