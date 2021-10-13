@@ -1694,7 +1694,7 @@ Hola *${pushname}* ${timeFt}
 				})
 			break
 
-			case 'stickernobg2':
+			case 'stickernobg':
 				assistant = fs.readFileSync('./src/assistant.jpg')
 				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
 				imgbb = require('imgbb-uploader')
@@ -1705,47 +1705,16 @@ Hola *${pushname}* ${timeFt}
 				nobg = await imgbb('20a14861e4f7591f3dc52649cb07ae02', media);
 				link = `${nobg.display_url}`;
 				
-				//ini_buffer = `https://api.lolhuman.xyz/api/removebg?apikey=${api}&img=${link}`
-				
-				//get_result = await getJson(`https://api.vhtear.com/removebgwithurl?link=${link}&apikey=${apivh}`)
-				//get_result = get_result.result
-				//short = await getJson(`https://api.lolhuman.xyz/api/shortlink?apikey=${api}&url=${get_result.image}`)
+				ini_buffer = `https://api.lolhuman.xyz/api/removebg?apikey=${api}&img=${link}`
+				nobgs = await imgbb('20a14861e4f7591f3dc52649cb07ae02', ini_buffer);
+				links = `${nobgs.display_url}`;
+				get_result = await getJson(`https://api.vhtear.com/removebgwithurl?link=${link}&apikey=${apivh}`)
+				get_result = get_result.result
+				short = await getJson(`https://api.lolhuman.xyz/api/shortlink?apikey=${api}&url=${get_result.image}`)
 		
-				//const attp1 = await getBuffer(`https://api.lolhuman.xyz/api/convert/towebp?apikey=${api}&img=${short.result}`)
-				//samu330.sendMessage(from, attp1, sticker, { quoted: ftoko, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
-			
-				const attp1 = await getBuffer(`https://api.lolhuman.xyz/api/removebg?apikey=${api}&img=${link}`)
+				const attp1 = await getBuffer(`https://api.lolhuman.xyz/api/convert/towebp?apikey=${api}&img=${short.result}`)
 				samu330.sendMessage(from, attp1, sticker, { quoted: ftoko, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
-
-				
-					const packname10 = `Sam NexusBOT\n\n        Sticker`
-					const author10 = args.join(' ')
-					exif.create(packname10, author10, `stickwm_${sender}`)
-					await ffmpeg(`${media1}`)
-						.input(media1)
-						.on('start', function (cmd) {
-							console.log(`Started : ${cmd}`)
-						})
-						.on('error', function (err) {
-							console.log(`Error : ${err}`)
-							fs.unlinkSync(media1)
-							reply('*Intenta de nuevo*')
-						})
-						.on('end', function () {
-							console.log('Finish')
-							exec(`webpmux -set exif ./sticker/stickwm_${sender}.exif ./sticker/${sender}.webp -o ./sticker/${sender}.webp`, async (error) => {
-								if (error) return reply('error')
-								wa.sendSticker(from, fs.readFileSync(`./sticker/${sender}.webp`), ftoko)
-								fs.unlinkSync(media1)
-								fs.unlinkSync(`./sticker/${sender}.webp`)
-								fs.unlinkSync(`./sticker/stickwm_${sender}.exif`)
-							})
-						})
-						.addOutputOptions([`-vcodec`, `libwebp`, `-vf`, `scale='min(320,iw)':min'(320,ih)':force_original_aspect_ratio=decrease,
-fps=15, pad=320:320:-1:-1:color=white@0.0, split [a][b]; [a] palettegen=reserve_transparent=on:transparency_color=ffffff [p]; [b][p]
-paletteuse`])
-						.toFormat('webp')
-						.save(`./sticker/${sender}.webp`)
+			
 				} else {
 					reply('*Por favor etiqueta una imagen con el comando.*')
 				}
@@ -1753,40 +1722,7 @@ paletteuse`])
 				
 			break
 
-			case 'stickernobg':
-                    if ((isMedia && !sam.message.videoMessage || isQuotedImage) && args.length == 0) {
-                        const encmedia = isQuotedImage ? JSON.parse(JSON.stringify(sam).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo : sam
-                        filePath = await samu330.downloadAndSaveMediaMessage(encmedia)
-                        file_name = getRandom('.png')
-                        file_name2 = getRandom('.webp')
-                        request({
-                            url: `https://api.lolhuman.xyz/api/removebg?apikey=${api}`,
-                            method: 'POST',
-                            formData: {
-                                "img": fs.createReadStream(filePath)
-                            },
-                            encoding: 'binary'
-                        }, function (error, response, body) {
-                            fs.unlinkSync(filePath)
-                            fs.writeFileSync(file_name, body, `binary`)
-                            ffmpeg(`./${file_name}`)
-                                .input(file_name)
-                                .on('error', function(err) {
-                                    console.log(err)
-                                    fs.unlinkSync(file_name)
-                                })
-                                .on('end', function() {
-                                    samu330.sendMessage(from, fs.readFileSync(file_name2), sticker, { quoted: ftoko })
-                                    fs.unlinkSync(file_name2)
-                                })
-                                .addOutputOptions([`-vcodec`, `libwebp`, `-vf`, `scale='min(320,iw)':min'(320,ih)':force_original_aspect_ratio=decrease,fps=15, pad=320:320:-1:-1:color=white@0.0, split [a][b]; [a] palettegen=reserve_transparent=on:transparency_color=ffffff [p]; [b][p] paletteuse`])
-                                .toFormat('webp')
-                                .save(file_name2)
-                        });
-                    } else {
-                        reply(`Kirim gambar dengan caption ${prefix}sticker atau tag gambar yang sudah dikirim`)
-                    }
-                    break
+	
 		
 			case 'sticker':
 			case 's':
