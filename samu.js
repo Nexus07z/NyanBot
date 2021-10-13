@@ -1697,6 +1697,7 @@ Hola *${pushname}* ${timeFt}
 			case 'stickernobg':
 				assistant = fs.readFileSync('./src/assistant.jpg')
 				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
+				imgbb = require('imgbb-uploader')
 				if (isMedia && !sam.message.videoMessage || isQuotedImage) {
 					const encmedia77 = isQuotedImage ? JSON.parse(JSON.stringify(sam).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo : sam
 					const media77 = await samu330.downloadAndSaveMediaMessage(encmedia77)
