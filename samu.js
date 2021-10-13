@@ -1713,8 +1713,18 @@ Hola *${pushname}* ${timeFt}
 		
 				//const attp1 = await getBuffer(`https://api.lolhuman.xyz/api/convert/towebp?apikey=${api}&img=${short.result}`)
 				//samu330.sendMessage(from, attp1, sticker, { quoted: ftoko, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
+				ran = getRandom('.webp')
 				const attp1 = await getBuffer(`https://api.lolhuman.xyz/api/removebg?apikey=${api}&img=${link}`)
-				samu330.sendMessage(from, attp1, sticker, { quoted: ftoko, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
+				exec(`ffmpeg -i ${attp1} ${ran}`, (err) => {
+					fs.unlinkSync(media2)
+					if (err) return reply('*Algo salio mal, intenta de nuevo.*')
+					
+					buffer = fs.readFileSync(ran)
+					samu330.sendMessage(from, buffer, sticker, { quoted: ftoko })
+					fs.unlinkSync(ran)
+					
+				})
+				//samu330.sendMessage(from, attp1, sticker, { quoted: ftoko, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
 				} else {
 					reply('*Por favor etiqueta una imagen con el comando.*')
 				}
