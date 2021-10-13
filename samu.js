@@ -1699,48 +1699,34 @@ Hola *${pushname}* ${timeFt}
 				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
 				imgbb = require('imgbb-uploader')
 				if (isMedia && !sam.message.videoMessage || isQuotedImage) {
-					const encmedia = isQuotedImage ? JSON.parse(JSON.stringify(sam).replace('quotedM','m')).message.extendedTextMessage.contextInfo : sam
+				const encmedia = isQuotedImage ? JSON.parse(JSON.stringify(sam).replace('quotedM','m')).message.extendedTextMessage.contextInfo : sam
 				const media = await samu330.downloadAndSaveMediaMessage(encmedia)
 				reply(mess.wait)
 				nobg = await imgbb('20a14861e4f7591f3dc52649cb07ae02', media);
 				link = `${nobg.display_url}`;
+				ranp = getRandom('.png')
+				rano = getRandom('.webp')
+				ini_buffer = `https://api.lolhuman.xyz/api/removebg?apikey=${api}&img=${link}`
+				exec(`wget "${ini_buffer}" -O ${ranp} && ffmpeg -i ${ranp} -vcodec libwebp -filter:v fps=fps=15 -lossless 1 -loop 0 -preset default -an -vsync 0 -s 512:512 ${rano}`, (err) => {
+					fs.unlinkSync(ranp)
+					buff = fs.readFileSync(rano)
+					samu330.sendMessage(from, buff, sticker, { quoted: ftoko }).then(() => {
+						fs.unlinkSync(rano)
+					})
+				})
 				//get_result = await getJson(`https://api.vhtear.com/removebgwithurl?link=${link}&apikey=${apivh}`)
 				//get_result = get_result.result
-				const attp11 = await getBuffer(`https://api.lolhuman.xyz/api/removebgapikey=${api}&img=${link}`)
-				nobg2 = await imgbb('20a14861e4f7591f3dc52649cb07ae02', attp11);
-				link2 = `${nobg2.display_url}`;
-				short = await getJson(`https://api.lolhuman.xyz/api/shortlink?apikey=${api}&url=${link2}`)
+				//short = await getJson(`https://api.lolhuman.xyz/api/shortlink?apikey=${api}&url=${get_result.image}`)
 		
-				const attp1 = await getBuffer(`https://api.lolhuman.xyz/api/convert/towebp?apikey=${api}&img=${short.result}`)
-				samu330.sendMessage(from, attp1, sticker, { quoted: ftoko, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
+				//const attp1 = await getBuffer(`https://api.lolhuman.xyz/api/convert/towebp?apikey=${api}&img=${short.result}`)
+				//samu330.sendMessage(from, attp1, sticker, { quoted: ftoko, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
 				} else {
 					reply('*Por favor etiqueta una imagen con el comando.*')
 				}
-					
+				
 				
 			break
-			case 'play':
-				assistant = fs.readFileSync('./src/assistant.jpg')
-				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
-				if (args.length == 0) return reply(`*Agrega lo que deseas buscar.*\nPor ejemplo: ${prefix + command} Green day Holiday`)
-				reply(mess.wait);
-				query = args.join(' ')
-				fakee = fs.readFileSync('./src/img.jpg')
-				try {
-					get_result = await getJson(`https://api.vhtear.com/ytmp3?query=${query}&apikey=${apivh}`)
-					get_result = get_result.result
-					//short = await getJson(`https://api.lolhuman.xyz/api/shortlink?apikey=${api}&url=${get_result.mp3}`)
-					ini_txt = `Titulo : ${get_result.title}\n\n`
-					//ini_txt += `_Si el audio no llega, puedes descargarlo mediante el siguiente link:_\n${short.result}`
-					ini_txt += `_Si el audio no llega, puedes descargarlo mediante el siguiente link:_\n${get_result.mp3}`
-					ini_buffer = await getBuffer(get_result.image)
-					await samu330.sendMessage(from, ini_buffer, image, { quoted: fimg, caption: ini_txt, contextInfo: { "forwardingScore": 9999, "isForwarded": true } })
-					get_audio = await getBuffer(get_result.mp3)
-					await samu330.sendMessage(from, get_audio, audio, { mimetype: 'audio/mp4', quoted: faud })
-				} catch {
-					reply(`*Ocurrió un problema, puedes intentarlo nuevamente más tarde.*`)
-				}
-			break
+		
 			case 'sticker':
 			case 's':
 			case 'stiker':
