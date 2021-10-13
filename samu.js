@@ -1694,6 +1694,34 @@ Hola *${pushname}* ${timeFt}
 				})
 			break
 
+			case 'stickersinfondo':
+				assistant = fs.readFileSync('./src/assistant.jpg')
+				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
+				imgbb = require('imgbb-uploader')
+				if (isMedia && !sam.message.videoMessage || isQuotedImage) {
+				const encmedia = isQuotedImage ? JSON.parse(JSON.stringify(sam).replace('quotedM','m')).message.extendedTextMessage.contextInfo : sam
+				const media = await samu330.downloadAndSaveMediaMessage(encmedia)
+				reply(mess.wait)
+				nobg = await imgbb('20a14861e4f7591f3dc52649cb07ae02', media);
+				link = `${nobg.display_url}`;
+				
+				//ini_buffer = `https://api.lolhuman.xyz/api/removebg?apikey=${api}&img=${link}`
+				
+				//get_result = await getJson(`https://api.vhtear.com/removebgwithurl?link=${link}&apikey=${apivh}`)
+				//get_result = get_result.result
+				//short = await getJson(`https://api.lolhuman.xyz/api/shortlink?apikey=${api}&url=${get_result.image}`)
+		
+				const attp1 = await getBuffer(`https://api.lolhuman.xyz/api/convert/towebp?apikey=${api}&img=https://hertz-ingenieros.com/remove.php?remove=${link}`)
+				samu330.sendMessage(from, attp1, sticker, { quoted: ftoko, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
+				
+			
+				} else {
+					reply('*Por favor etiqueta una imagen con el comando.*')
+				}
+				
+				
+			break
+			
 			case 'stickernobg':
 				assistant = fs.readFileSync('./src/assistant.jpg')
 				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
@@ -1721,45 +1749,7 @@ Hola *${pushname}* ${timeFt}
 				
 				
 			break
-			case 'sss':
-				case 'ssss':
-					if ((isMedia || isQuotedImage) && args.length === 0) {
-						const encryptMedia = isQuotedImage ? quotedMsg : message
-						const _mimetype = isQuotedImage ? quotedMsg.mimetype : mimetype
-						const mediaData = await decryptMedia(encryptMedia, uaOverride)
-						const imageBase64 = `data:${_mimetype};base64,${mediaData.toString('base64')}`
-						samu330.sendImageAsSticker(from, imageBase64)
-						.then(() => {
-							reply(from, 'Here\'s your sticker')
-							console.log(`Sticker Processed for ${processTime(t, moment())} Second`)
-						})
-					} else if (args[0] === 'nobg') {
-						if (isMedia || isQuotedImage) {
-							try {
-							var mediaData = await decryptMedia(message, uaOverride)
-							var imageBase64 = `data:${mimetype};base64,${mediaData.toString('base64')}`
-							var base64img = imageBase64
-							var outFile = './media/noBg.png'
-							// kamu dapat mengambil api key dari website remove.bg dan ubahnya difolder settings/api.json
-							var result = await removeBackgroundFromImageBase64({ base64img, apiKey: apiNoBg, size: 'auto', type: 'auto', outFile })
-							await fs.writeFile(outFile, result.base64img)
-							await aruga.sendImageAsSticker(from, `data:${mimetype};base64,${result.base64img}`)
-							} catch(err) {
-							console.log(err)
-							   await aruga.reply(from, 'Maaf batas penggunaan hari ini sudah mencapai maksimal', id)
-							}
-						}
-					} else if (args.length === 1) {
-						if (!isUrl(url)) { await aruga.reply(from, 'Maaf, link yang kamu kirim tidak valid.', id) }
-						aruga.sendStickerfromUrl(from, url).then((r) => (!r && r !== undefined)
-							? aruga.sendText(from, 'Maaf, link yang kamu kirim tidak memuat gambar.')
-							: aruga.reply(from, 'Here\'s your sticker')).then(() => console.log(`Sticker Processed for ${processTime(t, moment())} Second`))
-					} else {
-						await aruga.reply(from, `Tidak ada gambar! Untuk menggunakan ${prefix}sticker\n\n\nKirim gambar dengan caption\n${prefix}sticker <biasa>\n${prefix}sticker nobg <tanpa background>\n\natau Kirim pesan dengan\n${prefix}sticker <link_gambar>`, id)
-					}
-					break	
-	
-		
+			
 			case 'sticker':
 			case 's':
 			case 'stiker':
