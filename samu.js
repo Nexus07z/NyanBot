@@ -1697,39 +1697,23 @@ Hola *${pushname}* ${timeFt}
 			case 'stickernobg':
 				assistant = fs.readFileSync('./src/assistant.jpg')
 				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
-				if ((isMedia && !sam.message.videoMessage || isQuotedImage) && args.length == 0) {
-					const encmedia = isQuotedImage ? JSON.parse(JSON.stringify(sam).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo : sam
-					filePath = await samu330.downloadAndSaveMediaMessage(encmedia)
+				if (isMedia && !sam.message.videoMessage || isQuotedImage) {
+					const encmedia77 = isQuotedImage ? JSON.parse(JSON.stringify(sam).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo : sam
+					const media77 = await samu330.downloadAndSaveMediaMessage(encmedia77)
 					file_name = getRandom('.png')
 					file_name2 = getRandom('.webp')
-					request({
-						url: `https://api.lolhuman.xyz/api/removebg?apikey=${api}`,
-						method: 'POST',
-						formData: {
-							"img": fs.createReadStream(filePath)
-						},
-						encoding: "binary"
-					}, function(error, response, body) {
-						fs.unlinkSync(filePath)
-						fs.writeFileSync(file_name, body, "binary")
-						ffmpeg(`./${file_name}`)
-							.input(file_name)
-							.on('error', function(err) {
-								console.log(err)
-								fs.unlinkSync(file_name)
-							})
-							.on('end', function() {
-								
-								wa.sendSticker(from, fs.readFileSync(file_name2), ftoko)
-								fs.unlinkSync(file_name2)
-							})
-							.addOutputOptions([`-vcodec`, `libwebp`, `-vf`, `scale='min(320,iw)':min'(320,ih)':force_original_aspect_ratio=decrease,fps=15, pad=320:320:-1:-1:color=white@0.0, split [a][b]; [a] palettegen=reserve_transparent=on:transparency_color=ffffff [p]; [b][p] paletteuse`])
-							.toFormat('webp')
-							.save(file_name2)
-					});
-				} else {
-					reply(`Kirim gambar dengan caption ${prefix}sticker atau tag gambar yang sudah dikirim`)
-				}
+					sam330 = await imgbb('20a14861e4f7591f3dc52649cb07ae02', media77);
+					link = `${sam330.display_url}`;
+					foto = await getBuffer(`https://api.lolhuman.xyz/api/removebg?apikey=${api}&img=${link}`)
+					fotostick = await imgbb('20a14861e4f7591f3dc52649cb07ae02', foto);
+					linkstick = `${fotostick.display_url}`;
+					const attp77 = await getBuffer(`https://api.lolhuman.xyz/api/convert/towebp?apikey=${api}&img=${linkstick}`)
+					
+					samu330.sendMessage(from, attp77, sticker, { quoted: ftoko, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
+			
+					
+					
+				} 
 			break
 				
 			case 'sticker':
