@@ -1716,7 +1716,6 @@ Hola *${pushname}* ${timeFt}
 				ran = getRandom('.webp')
 				const attp1 = await getBuffer(`https://api.lolhuman.xyz/api/removebg?apikey=${api}&img=${link}`)
 				exec(`ffmpeg -i ${attp1} ${ran}`, (err) => {
-					fs.unlinkSync(media2)
 					if (err) return reply('*Algo salio mal, intenta de nuevo.*')
 					
 					buffer = fs.readFileSync(ran)
