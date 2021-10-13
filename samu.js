@@ -1312,7 +1312,8 @@ Hola *${pushname}* ${timeFt}
 				sam330 = await imgbb('20a14861e4f7591f3dc52649cb07ae02', median);
 				link = `${sam330.display_url}`;
 				foto = `https://api.lolhuman.xyz/api/removebg?apikey=${api}&img=${link}`
-				sendFileFromUrl(foto, image, {quoted: fimg })
+				//sendFileFromUrl(foto, image, {quoted: fimg })
+				sendImageAsSticker(from,foto)
 				} else {
 					reply('*Por favor etiqueta una imagen con el comando.*')
 				}
