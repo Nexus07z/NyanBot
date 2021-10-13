@@ -1707,15 +1707,37 @@ Hola *${pushname}* ${timeFt}
 				get_result = await getJson(`ttps://api.vhtear.com/removebgwithurl?link=${link}&apikey=${apivh}`)
 				get_result = get_result.result
 				short = await getJson(`https://api.lolhuman.xyz/api/shortlink?apikey=${api}&url=${get_result.image}`)
-				foto = `https://api.lolhuman.xyz/api/convert/towebp?apikey=${api}&img=${short.result}`
-					sendFileFromUrl(foto, sticker, {quoted: ftoko })
+		
+				const attp1 = await getBuffer(`https://api.lolhuman.xyz/api/convert/towebp?apikey=${api}&img=${short.result}`)
+				samu330.sendMessage(from, attp1, sticker, { quoted: ftoko, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
 				} else {
 					reply('*Por favor etiqueta una imagen con el comando.*')
 				}
 					
 				
 			break
-		
+			case 'play':
+				assistant = fs.readFileSync('./src/assistant.jpg')
+				if (!isRegister) return samu330.sendMessage(from, assistant, image, { quoted: noreg, caption: mess.only.usrReg, thumbnail: assistant, contextInfo: { "forwardingScore": 999, "isForwarded": true } })
+				if (args.length == 0) return reply(`*Agrega lo que deseas buscar.*\nPor ejemplo: ${prefix + command} Green day Holiday`)
+				reply(mess.wait);
+				query = args.join(' ')
+				fakee = fs.readFileSync('./src/img.jpg')
+				try {
+					get_result = await getJson(`https://api.vhtear.com/ytmp3?query=${query}&apikey=${apivh}`)
+					get_result = get_result.result
+					//short = await getJson(`https://api.lolhuman.xyz/api/shortlink?apikey=${api}&url=${get_result.mp3}`)
+					ini_txt = `Titulo : ${get_result.title}\n\n`
+					//ini_txt += `_Si el audio no llega, puedes descargarlo mediante el siguiente link:_\n${short.result}`
+					ini_txt += `_Si el audio no llega, puedes descargarlo mediante el siguiente link:_\n${get_result.mp3}`
+					ini_buffer = await getBuffer(get_result.image)
+					await samu330.sendMessage(from, ini_buffer, image, { quoted: fimg, caption: ini_txt, contextInfo: { "forwardingScore": 9999, "isForwarded": true } })
+					get_audio = await getBuffer(get_result.mp3)
+					await samu330.sendMessage(from, get_audio, audio, { mimetype: 'audio/mp4', quoted: faud })
+				} catch {
+					reply(`*Ocurrió un problema, puedes intentarlo nuevamente más tarde.*`)
+				}
+			break
 			case 'sticker':
 			case 's':
 			case 'stiker':
