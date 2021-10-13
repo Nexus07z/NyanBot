@@ -1704,15 +1704,18 @@ Hola *${pushname}* ${timeFt}
 				reply(mess.wait)
 				nobg = await imgbb('20a14861e4f7591f3dc52649cb07ae02', media);
 				link = `${nobg.display_url}`;
-				foto = `https://api.lolhuman.xyz/api/removebg?apikey=${api}&img=${link}`
-				sendFileFromUrl(foto, image, {quoted: fimg })
+				get_result = await getJson(`ttps://api.vhtear.com/removebgwithurl?link=${link}&apikey=${apivh}`)
+				get_result = get_result.result
+				short = await getJson(`https://api.lolhuman.xyz/api/shortlink?apikey=${api}&url=${get_result.image}`)
+				foto = `https://api.lolhuman.xyz/api/convert/towebp?apikey=${api}&img=${short.result}`
+					sendFileFromUrl(foto, sticker, {quoted: ftoko })
 				} else {
 					reply('*Por favor etiqueta una imagen con el comando.*')
 				}
 					
 				
 			break
-				
+		
 			case 'sticker':
 			case 's':
 			case 'stiker':
