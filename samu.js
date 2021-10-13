@@ -1704,7 +1704,7 @@ Hola *${pushname}* ${timeFt}
 					file_name2 = getRandom('.webp')
 					sam330 = await imgbb('20a14861e4f7591f3dc52649cb07ae02', media77);
 					link = `${sam330.display_url}`;
-					foto = await getBuffer(`https://api.lolhuman.xyz/api/removebg?apikey=${api}&img=${link}`)
+					const foto = await getBuffer(`https://api.lolhuman.xyz/api/removebg?apikey=${api}&img=${link}`)
 					fotostick = await imgbb('20a14861e4f7591f3dc52649cb07ae02', foto);
 					linkstick = `${fotostick.display_url}`;
 					const attp77 = await getBuffer(`https://api.lolhuman.xyz/api/convert/towebp?apikey=${api}&img=${linkstick}`)
