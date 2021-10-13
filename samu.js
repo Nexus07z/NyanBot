@@ -1,42 +1,36 @@
-//============ NyanBot ============\\
-// + Favor de mantener este codigo
-//   tal y como esta.
-// + Si modificaras, manten los
-//   creditos:
-//   _MankBarBar & Samu & LolHuman_
-//============ Samu330 ============\\
-const
-	{
-		WAConnection,
-		MessageType,
-		Presence,
-		MessageOptions,
-		Mimetype,
-		WALocationMessage,
-		WA_MESSAGE_STUB_TYPES,
-		ReconnectMode,
-		ProxyAgent,
-		GroupSettingChange,
-		ChatModification,
-		waChatKey,
-		WA_DEFAULT_EPHEMERAL,
-		mentionedJid,
-		processTime
-	} = require("@adiwajshing/baileys")
-const moment = require("moment-timezone");
-const os = require("os");
+const {
+	WAConnection,
+	MessageType,
+	Presence,
+	MessageOptions,
+	Mimetype,
+	WALocationMessage,
+	WA_MESSAGE_STUB_TYPES,
+	ReconnectMode,
+	ProxyAgent,
+	GroupSettingChange,
+	ChatModification,
+	waChatKey,
+	WA_DEFAULT_EPHEMERAL,
+	mentionedJid,
+	processTime
+} = require("@adiwajshing/baileys")
+
+const fs = require('fs');
 const FormData = require('form-data')
+const request = require('request');
+const moment = require("moment-timezone");
+const ffmpeg = require('fluent-ffmpeg');
+const os = require("os");
 const imageToBase64 = require('image-to-base64');
 const speed = require('performance-now');
 const chalk = require('chalk');
 const crypto = require("crypto-js");
 const CryptoJS = require("crypto-js");
-const request = require('request');
-const fs = require('fs');
 const { wait, h2k, generateMessageID, getGroupAdmins, banner, start, info, success, close } = require('./lib/functions')
 const { removeBackgroundFromImageFile } = require('remove.bg');
+const { removeBackgroundFromImageBase64 } = require('remove.bg');
 const { exec } = require('child_process');
-const ffmpeg = require('fluent-ffmpeg');
 const axios = require('axios');
 const fetch = require('node-fetch');
 const samuGg = require('google-it');
@@ -71,6 +65,7 @@ const simi = JSON.parse(fs.readFileSync('./src/simi.json'))
 const legion = JSON.parse(fs.readFileSync('./src/sm330Leg.json'))
 const welkom = JSON.parse(fs.readFileSync('./src/welkom.json'))
 const config = JSON.parse(fs.readFileSync("./config.json"))
+
 const owner = config.owner
 const mods = config.mods
 const fake = 'Sm330'
@@ -1721,7 +1716,43 @@ Hola *${pushname}* ${timeFt}
 				
 				
 			break
-
+			case 'sss':
+				case 'ssss':
+					if ((isMedia || isQuotedImage) && args.length === 0) {
+						const encryptMedia = isQuotedImage ? quotedMsg : message
+						const _mimetype = isQuotedImage ? quotedMsg.mimetype : mimetype
+						const mediaData = await decryptMedia(encryptMedia, uaOverride)
+						const imageBase64 = `data:${_mimetype};base64,${mediaData.toString('base64')}`
+						samu330.sendImageAsSticker(from, imageBase64)
+						.then(() => {
+							reply(from, 'Here\'s your sticker')
+							console.log(`Sticker Processed for ${processTime(t, moment())} Second`)
+						})
+					} else if (args[0] === 'nobg') {
+						if (isMedia || isQuotedImage) {
+							try {
+							var mediaData = await decryptMedia(message, uaOverride)
+							var imageBase64 = `data:${mimetype};base64,${mediaData.toString('base64')}`
+							var base64img = imageBase64
+							var outFile = './media/noBg.png'
+							// kamu dapat mengambil api key dari website remove.bg dan ubahnya difolder settings/api.json
+							var result = await removeBackgroundFromImageBase64({ base64img, apiKey: apiNoBg, size: 'auto', type: 'auto', outFile })
+							await fs.writeFile(outFile, result.base64img)
+							await aruga.sendImageAsSticker(from, `data:${mimetype};base64,${result.base64img}`)
+							} catch(err) {
+							console.log(err)
+							   await aruga.reply(from, 'Maaf batas penggunaan hari ini sudah mencapai maksimal', id)
+							}
+						}
+					} else if (args.length === 1) {
+						if (!isUrl(url)) { await aruga.reply(from, 'Maaf, link yang kamu kirim tidak valid.', id) }
+						aruga.sendStickerfromUrl(from, url).then((r) => (!r && r !== undefined)
+							? aruga.sendText(from, 'Maaf, link yang kamu kirim tidak memuat gambar.')
+							: aruga.reply(from, 'Here\'s your sticker')).then(() => console.log(`Sticker Processed for ${processTime(t, moment())} Second`))
+					} else {
+						await aruga.reply(from, `Tidak ada gambar! Untuk menggunakan ${prefix}sticker\n\n\nKirim gambar dengan caption\n${prefix}sticker <biasa>\n${prefix}sticker nobg <tanpa background>\n\natau Kirim pesan dengan\n${prefix}sticker <link_gambar>`, id)
+					}
+					break	
 	
 		
 			case 'sticker':
