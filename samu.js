@@ -1704,15 +1704,13 @@ Hola *${pushname}* ${timeFt}
 				reply(mess.wait)
 				nobg = await imgbb('20a14861e4f7591f3dc52649cb07ae02', media);
 				link = `${nobg.display_url}`;
-				ranp = getRandom('.png')
 				rano = getRandom('.webp')
 				ini_buffer = `https://api.lolhuman.xyz/api/removebg?apikey=${api}&img=${link}`
-				exec(`wget "${ini_buffer}" -O ${ranp} && ffmpeg -i ${ranp} -vcodec libwebp -filter:v fps=fps=15 -lossless 1 -loop 0 -preset default -an -vsync 0 -s 512:512 ${rano}`, (err) => {
-					fs.unlinkSync(ranp)
+				exec(`ffmpeg -i ${ini_buffer} ${rano}`, (err) => {
+					fs.unlinkSync(ini_buffer)
 					buff = fs.readFileSync(rano)
-					samu330.sendMessage(from, buff, sticker, { quoted: ftoko }).then(() => {
-						fs.unlinkSync(rano)
-					})
+					samu330.sendMessage(from, buff, sticker, { quoted: ftoko })
+					fs.unlinkSync(rano)
 				})
 				//get_result = await getJson(`https://api.vhtear.com/removebgwithurl?link=${link}&apikey=${apivh}`)
 				//get_result = get_result.result
