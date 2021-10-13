@@ -1704,7 +1704,7 @@ Hola *${pushname}* ${timeFt}
 				reply(mess.wait)
 				nobg = await imgbb('20a14861e4f7591f3dc52649cb07ae02', media);
 				link = `${nobg.display_url}`;
-				get_result = await getJson(`ttps://api.vhtear.com/removebgwithurl?link=${link}&apikey=${apivh}`)
+				get_result = await getJson(`https://api.vhtear.com/removebgwithurl?link=${link}&apikey=${apivh}`)
 				get_result = get_result.result
 				short = await getJson(`https://api.lolhuman.xyz/api/shortlink?apikey=${api}&url=${get_result.image}`)
 		
